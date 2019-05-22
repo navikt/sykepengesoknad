@@ -1,0 +1,109 @@
+{
+  "id": "597f75ad-bcba-4a48-af3a-3a574b027042",
+  "aktorId": "000111222333",
+  "sykmeldingId": null,
+  "soknadstype": "OPPHOLD_UTLAND",
+  "status": "NY",
+  "fom": null,
+  "tom": null,
+  "opprettetDato": "2018-10-18",
+  "innsendtDato": null,
+  "avbruttDato": null,
+  "korrigerer": null,
+  "korrigertAv": null,
+  "sporsmal": [
+    {
+      "id": "23832",
+      "tag": "PERIODEUTLAND",
+      "sporsmalstekst": "Når skal du være utenfor Norge?",
+      "undertekst": null,
+      "svartype": "PERIODER",
+      "min": "2018-07-18",
+      "max": "2019-04-18",
+      "pavirkerAndreSporsmal": false,
+      "kriterieForVisningAvUndersporsmal": null,
+      "svar": [],
+      "undersporsmal": []
+    },
+    {
+      "id": "23833",
+      "tag": "LAND",
+      "sporsmalstekst": "Hvilket land skal du reise til?",
+      "undertekst": null,
+      "svartype": "LAND",
+      "min": null,
+      "max": "50",
+      "pavirkerAndreSporsmal": false,
+      "kriterieForVisningAvUndersporsmal": null,
+      "svar": [],
+      "undersporsmal": []
+    },
+    {
+      "id": "23834",
+      "tag": "ARBEIDSGIVER",
+      "sporsmalstekst": "Har du arbeidsgiver?",
+      "undertekst": null,
+      "svartype": "JA_NEI",
+      "min": null,
+      "max": null,
+      "pavirkerAndreSporsmal": true,
+      "kriterieForVisningAvUndersporsmal": "JA",
+      "svar": [],
+      "undersporsmal": [
+        {
+          "id": "23835",
+          "tag": "SYKMELDINGSGRAD",
+          "sporsmalstekst": "Er du 100 % sykmeldt?",
+          "undertekst": null,
+          "svartype": "JA_NEI",
+          "min": null,
+          "max": null,
+          "pavirkerAndreSporsmal": false,
+          "kriterieForVisningAvUndersporsmal": null,
+          "svar": [],
+          "undersporsmal": []
+        },
+        {
+          "id": "23836",
+          "tag": "FERIE",
+          "sporsmalstekst": "Har du avtalt med arbeidsgiveren din at du skal ha ferie i hele perioden?",
+          "undertekst": null,
+          "svartype": "JA_NEI",
+          "min": null,
+          "max": null,
+          "pavirkerAndreSporsmal": false,
+          "kriterieForVisningAvUndersporsmal": null,
+          "svar": [],
+          "undersporsmal": []
+        }
+      ]
+    },
+    {
+      "id": "23837",
+      "tag": "BEKREFT_OPPLYSNINGER_UTLAND_INFO",
+      "sporsmalstekst": "Før du reiser ber vi deg bekrefte:",
+      "undertekst": "<ul>\n    <li>Reisen vil ikke gjøre at jeg blir dårligere </li>\n    <li>Reisen vil ikke gjøre at sykefraværet blir lengre</li>\n    <li>Reisen vil ikke hindre planlagt behandling eller oppfølging fra NAV</li>\n</ul>",
+      "svartype": "IKKE_RELEVANT",
+      "min": null,
+      "max": null,
+      "pavirkerAndreSporsmal": false,
+      "kriterieForVisningAvUndersporsmal": null,
+      "svar": [],
+      "undersporsmal": [
+        {
+          "id": "23838",
+          "tag": "BEKREFT_OPPLYSNINGER_UTLAND",
+          "sporsmalstekst": "Jeg bekrefter de tre punktene ovenfor. Jeg har avklart reisen med legen.",
+          "undertekst": null,
+          "svartype": "CHECKBOX_PANEL",
+          "min": null,
+          "max": null,
+          "pavirkerAndreSporsmal": false,
+          "kriterieForVisningAvUndersporsmal": null,
+          "svar": [],
+          "undersporsmal": []
+        }
+      ]
+    }
+  ]
+}

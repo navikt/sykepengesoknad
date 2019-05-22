@@ -1,0 +1,35 @@
+.illustrertTittel {
+  position: relative;
+  text-align: center;
+  margin-bottom: 2em;
+
+  &:after {
+    content: "";
+    height: 1px;
+    width: 2em;
+    background-color: @navGra40;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
+
+.illustrertTittel__tittel {
+  margin: 0;
+  padding: 1em 0;
+  .typo-undertittel-mixin();
+}
+
+.illustrertTittel__tittel--innholdstittel {
+  .typo-innholdstittel-mixin();
+}
+
+.illustrertTittel__img {
+  width: 8rem;
+  height: auto;
+}
+
+.illustrertTittel__img--mikro {
+  width: 2rem;
+}

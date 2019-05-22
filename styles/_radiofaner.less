@@ -1,0 +1,33 @@
+.radiofaner {
+  display: flex;
+  justify-content: center;
+}
+
+.radiofaner__valg {
+  list-style-type: none;
+  padding: 0;
+}
+
+.radiofaner__valg--tidslinjeutdrag {
+  margin-top: 0;
+}
+
+.nav-radioknapp--mork + label:before {
+  border-color: @navMorkGra;
+}
+
+@media(min-width: @skjermMini) {
+  .radiofaner__valg {
+
+    display: flex;
+
+    li {
+      list-style-type: none;
+      margin-right: 2rem;
+    }
+
+    li:last-child {
+      margin-right: 0;
+    }
+  }
+}

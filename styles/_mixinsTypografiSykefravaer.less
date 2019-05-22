@@ -1,0 +1,111 @@
+@fontSizeBreakPoint: 35rem;
+
+.typo-sidetittel-mixin() {
+  font-family: @font-family;
+  font-size: 32rem / @remUnit;
+  line-height: 1.133333333;
+  font-weight: @fontWeightBold;
+
+  @media(min-width: @fontSizeBreakPoint) {
+    font-size: 40rem / @remUnit;
+    line-height: 44rem / @remUnit;
+  }
+}
+
+.typo-innholdstittel-mixin() {
+  font-family: @font-family;
+  font-size: 26rem / @remUnit;
+  font-weight: @fontWeightBold;
+  line-height: 1.5;
+
+  @media(min-width: @fontSizeBreakPoint) {
+    font-size: 32rem / @remUnit;
+    line-height: 36rem / @remUnit;
+  }
+}
+
+.typo-systemtittel-mixin() {
+  font-family: @font-family;
+  font-size: 24rem / @remUnit;
+  line-height: 1.1;
+  font-weight: @fontWeightBold;
+
+  @media(min-width: @fontSizeBreakPoint) {
+    font-size: 24rem / @remUnit;
+    line-height: 28rem / @remUnit;
+  }
+}
+
+.typo-undertittel-mixin() {
+  font-family: @font-family;
+  font-size: 22rem / @remUnit;
+  line-height: 1.136;
+  font-weight: @fontWeightBold;
+}
+
+.typo-ingress-mixin() {
+  font-family: @font-family;
+  font-size: 20rem / @remUnit;
+  line-height: 1.136;
+  font-weight: @fontWeightNormal;
+}
+
+.typo-element-mixin() {
+  font-family: @font-family;
+  font-size: 18rem / @remUnit;
+  line-height: 1.375;
+  font-weight: @fontWeightBold;
+
+  @media (min-width: @fontSizeBreakPoint) {
+    font-size: 16rem / @remUnit;
+    line-height: 22rem / @remUnit;
+  }
+}
+
+.typo-normal-mixin() {
+  font-family: @font-family;
+  font-size: 18rem / @remUnit;
+  line-height: 1.375;
+  font-weight: 400;
+
+  @media (min-width: @fontSizeBreakPoint) {
+    font-size: 16rem / @remUnit;
+    line-height: 22rem / @remUnit;
+  }
+}
+
+.typo-etikett-liten-mixin() {
+  font-family: @font-family;
+  font-size: 15rem / @remUnit;
+  line-height: 1.375;
+  font-weight: @fontWeightNormal;
+  text-transform: uppercase;
+
+  @media (min-width: @fontSizeBreakPoint) {
+    font-size: 14rem / @remUnit;
+    line-height: 20rem / @remUnit;
+  }
+}
+
+.typo-undertekst-mixin() {
+  font-size: 15rem / @remUnit;
+  line-height: 1.3;
+  font-family: @font-family;
+  font-weight: @fontWeightNormal;
+
+
+  @media (min-width: @fontSizeBreakPoint) {
+    font-size: 14rem / @remUnit;
+    line-height: 20rem / @remUnit;
+  }
+}
+
+.typo-undertekst-bold-mixin() {
+  .typo-undertekst-mixin();
+  font-weight: @fontWeightBold;
+
+  @media (min-width: @fontSizeBreakPoint) {
+    font-size: 14rem / @remUnit;
+    line-height: 20rem / @remUnit;
+  }
+}

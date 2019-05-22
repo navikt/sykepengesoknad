@@ -1,0 +1,116 @@
+.peker {
+  color: @navMorkGra;
+  background-color: @white;
+  background-image: data-uri("../img/svg/pil-videre-graa.svg");
+  background-repeat: no-repeat;
+  background-position: 97% 50%;
+  background-size: 1rem 1rem;
+  transition: background-position ease-in-out .1s;
+  transform: translate3d(0, 0, 0);
+  width: 100%;
+  display: flex;
+  margin-bottom: 0.5rem;
+
+  &:hover {
+    background-image: data-uri("../img/svg/pil-videre-blaa.svg");
+    box-shadow: #b7b1a9 0 2px 1px 0;
+  }
+
+  &:focus {
+    background-color: @white;
+    box-shadow: 0 0 0 3px @orangeFocus;
+  }
+
+  &:visited, &:hover, &:active {
+    color: @navMorkGra;
+  }
+
+}
+
+.peker span {
+    align-self: center;
+}
+
+.peker__ikon {
+  margin-right: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 0.625rem;
+  height: 4.5rem;
+  background-color: #C2EAF7;
+}
+
+.peker__ikonBilde {
+  display: none;
+}
+
+.peker__tittel {
+  .typo-undertittel-mixin();
+}
+
+.peker__undertittel {
+  .typo-normal-mixin();
+  margin-top: .2em;
+}
+
+.peker__innhold {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-right: 2rem;
+
+  h2 {
+    margin-top: 0;
+    margin-bottom: 0;
+    font-size: 1.25rem;
+  }
+
+  p {
+    margin-bottom: 0;
+  }
+}
+
+@media (min-width: @skjermLiten) {
+
+  .peker__ikon {
+    width: 4.5rem;
+    margin-right: 1.5rem;
+  }
+
+  .peker__ikonBilde {
+    width: 2rem;
+    height: 2rem;
+    display: flex;
+  }
+
+  .peker__ikonBilde--hover {
+    display: none;
+  }
+
+  .peker:hover {
+
+    .peker__ikonBilde--standard {
+      display: none;
+    }
+
+    .peker__ikonBilde--hover {
+      display: flex;
+    }
+
+  }
+
+}
+
+.peker--sykepengeutbetaling {
+  border: 5px solid @lyseroed;
+
+  &:hover {
+    box-shadow: #ccc 0 0 4px 2px
+  }
+}
+
+.peker__ikon--sykepengeutbetaling {
+  background-color: transparent;
+  margin-right: 0;
+}

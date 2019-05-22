@@ -1,0 +1,39 @@
+.knapperad {
+    padding-top: 2rem;
+    text-align: center;
+}
+
+@media (max-width: 30rem) {
+    .knapperad__element:not(:last-child) {
+        margin-bottom: 2rem;
+    }
+}
+
+@media(min-width: 30em) {
+    .knapperad__element {
+        display: inline-block;
+    }
+
+    .knapperad__element:not(:last-child) {
+        margin-right: 2rem;
+    }
+}
+
+.knapperad--forrigeNeste {
+    @media (max-width: @skjermMini) {
+        display: flex;
+        flex-direction: column-reverse;
+
+        .knapperad__element:not(:first-child) {
+            margin-bottom: 2rem;
+        }
+    }
+}
+
+.knapperad--medAvbryt {
+    margin-bottom: 2rem;
+}
+
+.knapperad--justervenstre {
+    text-align: left;
+}

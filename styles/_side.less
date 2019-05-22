@@ -1,0 +1,40 @@
+.side {
+    position: relative;
+}
+
+.side--hvit, .body--hvit {
+    background-color: @white;
+}
+
+.side__spinner {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    opacity: 0;
+}
+
+.side__spinner,
+.side__innhold {
+    .transition-mixin(.3s, opacity);
+}
+
+.side__innhold {
+    position: relative;
+    transition-delay: .4s;
+}
+
+.side__innhold--begrenset {
+    .begrensning();
+    padding-top: 2rem;
+    padding-bottom: 4rem;
+}
+
+.side--laster .side__innhold {
+    opacity: 0;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.side--laster .side__spinner {
+    opacity: 1;
+}

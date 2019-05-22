@@ -1,0 +1,48 @@
+.fremdriftsbar {
+  margin: 1rem auto 0 auto;
+  max-width: ~'calc(100vw - 5rem)';
+  position: relative;
+}
+
+.fremdriftsbar__fullbredde {
+  background-color: @navGra20;
+  border-radius: 10px;
+  height: 6px;
+}
+
+.fremdriftsbar__fremdrift {
+  background-color: @navDypBla;
+  border-radius: 10px;
+  height: 6px;
+  margin-top: -6px;
+}
+
+.fremdriftsbar__tekst {
+  position: relative;
+  display: block;
+  text-align: right;
+  .typo-normal-mixin();
+}
+
+.stegindikator-med-fremdriftsbar {
+  margin-bottom: 1rem;
+
+  .stegindikator {
+    display: none;
+  }
+}
+
+
+@media (min-width: 34rem) {
+  .stegindikator-med-fremdriftsbar {
+    margin-bottom: 2rem;
+  }
+
+  .stegindikator-med-fremdriftsbar .stegindikator {
+    display: block;
+  }
+
+  .fremdriftsbar {
+    display: none;
+  }
+}

@@ -1,0 +1,67 @@
+.sykmeldingPerioder {
+
+	.nokkelopplysning:not(:only-child) {
+		padding-bottom: 1rem;
+		margin-bottom: 1rem;
+		border-bottom: 1px solid @navGra40;
+	}
+
+}
+
+.sykmeldingPerioder--flere {
+	margin-bottom: 1rem;
+}
+
+@media(min-width: @skjermMini) {
+	.rad-container {
+		display: flex;
+
+		.nokkelopplysning {
+			margin-right: 2rem;
+			flex: 1;
+			width: ~"calc(50% - 2rem)";
+		}
+
+		.nokkelopplysning:last-child {
+			width: 50%;
+			margin-right: 0;
+		}
+	}
+}
+
+@media (min-width: @skjermMini) {
+	.hoveddiagnose {
+		margin-bottom: 2rem;
+	}
+}
+
+/* Flere opplysninger fra den som har sykmeldt deg */
+
+.sykmeldingSeksjon {
+	margin-bottom: 2rem;
+	border-bottom: 1px solid @navGra40;
+
+	&:last-of-type
+	 {
+		margin: 0;
+		border: 0;
+	}
+}
+
+.sykmeldingSeksjon__tittel {
+	.typo-undertittel-mixin();
+	margin-bottom: 2rem;
+	margin-top: 0;
+}
+
+/* introtekst */
+
+.introtekst__knapperad {
+	text-align: center;
+}
+
+@media (min-width: @skjermMini) {
+	.introtekst__knapperad {
+		text-align: left;
+	}
+}

@@ -1,0 +1,267 @@
+/* DayPicker styles */
+
+@navDypBlaLys: #ccdee6;
+
+.DayPicker {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    position: relative;
+    padding: 0;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.DayPicker-Month {
+    display: table;
+    border-collapse: collapse;
+    border-spacing: 0;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    margin: 0;
+}
+
+.DayPicker-NavBar {
+    position: absolute;
+    left: 0;
+    right: 0;
+    padding: 0 .5em;
+}
+
+.DayPicker-NavButton {
+    position: absolute;
+    width: 3em;
+    height: 3em;
+    background-repeat: no-repeat;
+    background-position: center;
+    cursor: pointer;
+    text-indent: -9999px;
+    border: 0;
+    background-color: transparent;
+    background-image: data-uri("../img/png/pilNeste--graa.png");
+    background-size: 1.25em 1.25em;
+    z-index: 1;
+
+    &:focus {
+        outline: none;
+        box-shadow: 0 0 0 3px @orangeFocus;
+    }
+
+    &:focus, &:hover {
+        background-image: data-uri("../img/png/pilNeste--blaa.png");
+    }
+
+}
+
+.DayPicker-NavButton--prev {
+    left: 1em;
+    background-image: data-uri("../img/png/pilForrige--graa.png");
+
+    &:focus, &:hover {
+        background-image: data-uri("../img/png/pilForrige--blaa.png");
+    }
+}
+
+.DayPicker-NavButton--next {
+    right: 1em;
+}
+
+.DayPicker-wrapper:focus {
+    outline: none;
+}
+
+.DayPicker-Caption {
+    display: table-caption;
+    .typo-element-mixin();
+    height: 3em;
+    line-height: 3em;
+    text-align: center;
+    margin-bottom: .5em;
+
+    @media (min-width: @fontSizeBreakPoint) {
+        padding-top: .75rem;
+    }
+}
+
+.DayPicker-Weekdays {
+    border-top: 1px solid @navGra40;
+    display: table-header-group;
+}
+
+.DayPicker-WeekdaysRow {
+    display: table-row;
+}
+
+.DayPicker-Weekday {
+    display: table-cell;
+    padding: .5em;
+    text-align: center;
+    .typo-element-mixin();
+
+    abbr {
+        text-decoration: none;
+    }
+}
+
+.DayPicker-Body {
+    display: table-row-group;
+}
+
+.DayPicker-Week {
+    display: table-row;
+}
+
+.DayPicker-Day {
+    font-weight: 600;
+    display: table-cell;
+    padding: .7em;
+    text-align: center;
+    cursor: pointer;
+    vertical-align: middle;
+
+    &:focus {
+        outline: none;
+    }
+
+    &:hover {
+        background-color: @navDypBlaLys;
+    }
+
+    &:empty:hover {
+        background-color: transparent;
+    }
+
+    &:last-child {
+        color: @navRod;
+    }
+
+    @media (min-width: 350px) {
+        font-size: 1.2em;
+    }
+
+    @media (min-width: 30em) {
+        font-size: 1em;
+    }
+}
+
+.DayPicker--interactionDisabled .DayPicker-Day {
+    cursor: default;
+}
+
+.DayPicker-Day--disabled,
+.DayPicker-Day--disabled:last-child {
+    color: @navGra40;
+    cursor: default;
+    font-weight: normal;
+
+    &:focus {
+        color: @navGra60;
+    }
+}
+
+.DayPicker-Day--disabled:hover {
+    background-color: transparent;
+}
+
+.DayPicker-Day--outside {
+    cursor: default;
+    color: #dce0e0;
+}
+
+.DayPicker-Day--today {
+    border: 0;
+}
+
+.DayPicker-Day--selected:not(.DayPicker-Day--disabled):not(.DayPicker-Day--outside) {
+    background-color: @navDypBla;
+    color: @white;
+}
+
+.periodekalender .DayPicker-Day--selected:not(.DayPicker-Day--disabled):not(.DayPicker-Day--outside) {
+    background-color: @navDypBlaLys;
+    color: @navMorkGra;
+
+    &.DayPicker-Day--start {
+        background-color: @navDypBla;
+        color: @white;
+    }
+
+    &.DayPicker-Day--end {
+        background-color: @navDypBla;
+        color: @white;
+    }
+}
+
+.periodekalender .DayPicker-Day:focus {
+    box-shadow: 0 0 0 3px @orangeFocus inset;
+}
+
+.DayPicker:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px @orangeFocus;
+}
+
+.datovelger__input {
+    width: 8.65em;
+}
+
+.datovelger {
+    position: relative;
+}
+
+.datovelger__inner {
+    display: inline-block;
+    width: 100%;
+}
+
+.datovelger__inputContainer {
+    display: flex;
+}
+
+.datovelger__toggleDayPicker {
+    display: block;
+    text-indent: -9999px;
+    width: 2em;
+    height: ~'calc(2.5rem - 1px)';
+    border: 0;
+    border-bottom-right-radius: .25rem;
+    border-top-right-radius: .25rem;
+    background-color: transparent;
+    padding: 0;
+    position: absolute;
+    top: 1px;
+    left: ~'calc(6.65em - 1px)';
+    background-image: data-uri("../img/png/kalender.png");
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: 16px 16px;
+
+    &:focus {
+        outline: none;
+        box-shadow: 0 0 0 3px @orangeFocus;
+    }
+
+    &:hover, &:focus {
+        background-image: data-uri("../img/png/kalender--hover.png");
+    }
+}
+
+.periodevelger__tom .datovelger__toggleDayPicker {
+    left: auto;
+    right: 2px;
+}
+
+@media (min-width: @fontSizeBreakPoint) {
+    .datovelger__toggleDayPicker {
+        height: 2.25rem;
+    }
+}

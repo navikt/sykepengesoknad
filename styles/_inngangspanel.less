@@ -1,0 +1,216 @@
+.inngangspanelerHeader {
+    .mixin-panel-padding();
+    display: flex;
+    width: 100%;
+    padding-top: 1.25rem;
+    padding-bottom: 1.25rem;
+    margin-bottom: 1px;
+    display: flex;
+    background: @white;
+    margin-bottom: 1px;
+}
+
+.inngangspanelerHeader__tittel {
+    .typo-element-mixin();
+    flex: 1;
+    margin: 0;
+    align-self: center;
+}
+
+.inngangspanelerHeader__verktoy {
+    .typo-normal-mixin();
+    margin-left: 1rem;
+}
+
+.inngangspanel:extend(.panel) {
+    margin-bottom: 1px;
+    padding-right: 3rem;
+    background-image: data-uri("../img/svg/pil-videre-graa.svg");
+    background-repeat: no-repeat;
+    background-position: 97% 2rem;
+    background-size: 1rem 1rem;
+    transition: background-position ease-in-out .1s;
+    transform: translate3d(0, 0, 0);
+    display: flex;
+    width: 100%;
+    color: @navMorkGra;
+    border-bottom-width: 0;
+    font-size: 1rem;
+    text-align: left;
+    border: 0;
+
+    &:hover, &:focus {
+        position: relative;
+        z-index: 1;
+    }
+
+    &:visited {
+        color: @navMorkGra;
+    }
+
+    &:focus {
+        background-color: @white;
+        outline: 3px solid @orangeFocus;
+    }
+
+    &:hover {
+        background-image: data-uri("../img/svg/pil-videre-blaa.svg");
+        box-shadow: #ccc 0 0 4px 2px; /* hentet fra saksoversikt */
+    }
+
+    @media(min-width: @skjermLiten) {
+        background-position: 97% 35px;
+    }
+}
+
+.inngangspanel {
+    .inngangspanel__undertekst {
+        .typo-normal-mixin();
+        margin-bottom: 0;
+    }
+
+    .inngangspanel__tekst {
+        .typo-normal-mixin();
+        margin-bottom: 1.25rem;
+    }
+
+    .inngangspanel__tekst:last-child {
+        margin-bottom: 0;
+    }
+}
+
+.inngangspanel--inaktivt, .inngangspanel--inaktivt:hover {
+    background-image: none;
+    color: @navGra60;
+
+    .inngangspanel__status {
+        color: @navMorkGra;
+    }
+}
+
+.inngangspanel--ekstern {
+    border: 5px solid #669db4;
+    background-position: 97% center;
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+
+    &:focus {
+        outline: none;
+        box-shadow: 0 0 0 5px @grayBackground, 0 0 0 10px @orangeFocus;
+    }
+
+    .inngangspanel__tittel {
+        margin-bottom: 0;
+    }
+
+    .inngangspanel__innhold {
+        align-self: center;
+    }
+}
+
+.inaktivtInngangspanel__inner {
+    color: @navGra60;
+    display: flex;
+    width: 100%;
+
+    .inngangspanel__status {
+        color: @navMorkGra;
+    }
+}
+
+.inngangspanel__innhold .mute {
+    color: @navGra60;
+}
+
+.inngangspanel--sykmelding .inngangspanel__tekst {
+    p {
+        margin-top: 0;
+        margin-bottom: .5rem;
+        .typo-normal-mixin();
+    }
+}
+
+.inngangspanel__ikon {
+    display: none;
+}
+
+@media(min-width: @skjermLiten) {
+    .inngangspanel__innhold {
+        flex: 1;
+    }
+
+    .inngangspanel__header {
+        display: flex;
+
+        h3 {
+            flex: 1;
+        }
+    }
+}
+
+@media(min-width: @skjermMedium) {
+
+    .inngangspanelerHeader__verktoy {
+        display: flex;
+    }
+
+    .inngangspanelerHeader__verktoyLabel {
+        margin-bottom: 0;
+        align-self: center;
+        margin-right: .5rem;
+    }
+
+    .inngangspanel__ikon {
+        display: block;
+        align-self: flex-start;
+        width: 2rem;
+        box-sizing: content-box;
+        padding-right: 1rem;
+
+        img {
+            width: 100%;
+            height: auto;
+        }
+    }
+
+    .inngangspanel__ikon--hover {
+        display: none;
+    }
+
+    .inngangspanel:hover .inngangspanel__ikon--hover {
+        display: block;
+    }
+
+    .inngangspanel:hover .inngangspanel__ikon--normal {
+        display: none;
+    }
+}
+
+.inngangspanel__meta {
+    .typo-normal-mixin();
+    display: block;
+    margin-bottom: 8px;
+}
+
+.inngangspanel__header h3 {
+    margin: 0;
+    font-size: 1rem;
+}
+
+.inngangspanel__tittel {
+    .typo-undertittel-mixin();
+    display: block;
+    margin: 0;
+    margin-bottom: 8px;
+    padding: 0;
+}
+
+.inngangspanel__status {
+    .typo-normal-mixin();
+    margin-bottom: 8px;
+}
+
+.inngangspanel__punktliste {
+    margin: 0;
+    padding-left: 1rem;
+}

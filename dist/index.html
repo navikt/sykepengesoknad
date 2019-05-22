@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+    <!-- /sykepengesoknad -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title></title>
+    <meta charset="UTF-8">
+    <script>
+        dataLayer = [];
+    </script>
+    {{{NAV_STYLES}}}
+    {{{NAV_MEGAMENU_RESOURCES}}}
+    {{{NAV_SCRIPTS}}}
+    {{#isProd}}
+    <link href="/sykepengesoknad/resources/styles.css?ts={{{timestamp}}}" rel="stylesheet" id="sykepengesoknad-styles" />
+    {{/isProd}}
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <style>
+        .app:focus {
+            outline: none;
+        }
+        .app--laster {
+            height: 100vh;
+        }
+        .app-spinner {
+            width: 4rem;
+            height: 4rem;
+            border-top: 0.3125rem solid #7f756c;
+            border-left: 0.3125rem solid #b7b1a9;
+            border-bottom: 0.3125rem solid #b7b1a9;
+            border-right: 0.3125rem solid #7f756c;
+            border-radius: 50%;
+            -webkit-transform: translateZ(0);
+            -ms-transform: translateZ(0);
+            transform: translateZ(0);
+            -webkit-animation: rotering 800ms infinite linear;
+            animation: rotering 800ms infinite linear;
+            margin-left: auto;
+            margin-right: auto;
+
+        }
+        .app-spinner--side {
+            margin-top: 8em;
+            margin-bottom: 8em;
+        }
+
+        @-webkit-keyframes rotering {
+            from {
+                -webkit-transform: rotate(0deg);
+                transform: rotate(0deg);
+            }
+            to {
+                -webkit-transform: rotate(360deg);
+                transform: rotate(360deg);
+            }
+        }
+        @keyframes rotering {
+            from {
+                -webkit-transform: rotate(0deg);
+                transform: rotate(0deg);
+            }
+            to {
+                -webkit-transform: rotate(360deg);
+                transform: rotate(360deg);
+            }
+        }
+    </style>
+</head>
+<body>
+{{{NAV_SKIPLINKS}}}
+{{{NAV_HEADING}}}
+<div id="maincontent" class="app app--laster" tabindex="-1">
+    <div class="app-spinner app-spinner--side" aria-label="Vent litt mens siden laster"></div>
+</div>
+{{{NAV_FOOTER}}}
+
+<div id="feilmelding" style="display: none;">
+    <div class="scriptFeilmelding">
+        <div class="scriptFeilmelding__panel">
+            {{#isProd}}
+            <h2 class="scriptFeilmelding__tittel">Hoi! Der gikk det galt!</h2>
+            <p>Vi har problemer med å vise Dine sykepengesøknader nå.</p>
+            <p>Vi jobber med å løse feilen, og håper å være tilbake om kort tid.</p>
+            <p>Beklager!</p>
+            <p>Her finner du <a href="https://www.nav.no/no/Person/Arbeid/Sykmeldt%2C+arbeidsavklaringspenger+og+yrkesskade">informasjon om sykmelding og sykepenger</a>.</p>
+            {{/isProd}}
+            {{^isProd}}
+            <h2 class="scriptFeilmelding__tittel">Utvikling i Dine sykepengersøknader</h2>
+            <p>Kjør appen lokalt med mockede rest-endepunkter ved å kjøre <code>npm run start-local</code>. Mock-oppsett og mock-data finner du i <code>/mock</code></p>
+            <p>Kjør <code>npm run dev</code> for å kjøre opp en webpack-dev-server som bygger JS og CSS for deg.</p>
+            <p>Dine sykepengersøknader blir da tilgjengelig under <a href="http://localhost:8085/sykepengesoknad">http://localhost:8085/sykepengesoknad</a></p>
+            <p>Happy coding!</p>
+            {{/isProd}}
+        </div>
+    </div>
+</div>
+
+<style>
+    .scriptFeilmelding {
+        padding-left: 1em;
+        padding-right: 1em;
+        padding-top: 2em;
+    }
+
+    .scriptFeilmelding__panel {
+        max-width: 40em;
+        width: 100%;
+        margin-left: auto;
+        margin-right: auto;
+        padding: 1.5em;
+        background: #fff;
+        border-radius: .25em;
+    }
+
+    .scriptFeilmelding__tittel {
+        font-size: 1.7em;
+        margin: .5em 0 .5em 0;
+    }
+
+    .scriptFeilmelding__panel p {
+        font-size: 1.15em;
+        margin-top: 0;
+        margin-bottom: 1em;
+        line-height: 1.35;
+    }
+
+    .scriptFeilmelding__panel p:last-child {
+        margin-bottom: 0;
+    }
+
+    .scriptFeilmelding a {
+        color: #0067c5;
+        text-decoration: none;
+        border-bottom: 1px solid #B7B1A9
+    }
+
+    .scriptFeilmelding a:hover {
+        border-bottom-color: #0067c5;
+    }
+
+    .scriptFeilmelding a:focus {
+        background-color: #ffbd66;
+    }
+    {{^isProd}}
+    .scriptFeilmelding code {
+        color: #ba3a26;
+        background-color: #e9e7e7;
+        border: 1px solid #B7B1A9;
+        border-radius: 1px;
+    }
+    {{/isProd}}
+</style>
+
+<script>
+    (function() {
+        var visFeilmelding = function() {
+            var el = document.getElementById("maincontent");
+            var feilmelding = document.getElementById("feilmelding");
+            el.innerHTML = feilmelding.innerHTML;
+        };
+
+        var script = document.createElement("script");
+
+        {{#isProd}}
+        script.src = "/sykepengesoknad/resources/bundle-prod.js?ts={{timestamp}}";
+        {{/isProd}}
+            {{^isProd}}
+            script.src = "http://localhost:8086/assets/bundle.js";
+            {{/isProd}}
+                script.onerror = visFeilmelding;
+                document.body.appendChild(script);
+            })();
+</script>
+<script type="application/javascript">
+    window.frontendlogger = { info: function(){}, warn: function(){}, error: function(){}, event: function(){}};
+    window.frontendlogger.appname = 'sykepengesoknad';
+</script>
+{{#isProd}}
+<script type="application/javascript" src="/frontendlogger/logger.js"></script>
+{{/isProd}}
+</body>
+</html>

@@ -1,0 +1,89 @@
+.periodevelger__periode {
+    margin-bottom: 2rem;
+    position: relative;
+}
+
+.periodevelger__periode:first-child .periodevelger__datoer {
+    margin-bottom: 0;
+}
+
+.periodevelger__periode:not(:last-child) {
+    padding-bottom: 2rem;
+    border-bottom: 1px solid @navGra40;
+}
+
+@media(min-width: 490px) {
+    .periodevelger__periode {
+        display: flex;
+        margin-bottom: 2rem;
+    }
+
+    .periodevelger__tom {
+        margin-right: 2rem;
+    }
+
+    .periodevelger__verktoy {
+        padding-top: 1.9rem;
+        height: 4rem;
+        line-height: 2;
+    }
+
+    .periodevelger__periode:not(:last-child) {
+        padding: 0;
+        border: 0;
+    }
+
+}
+
+.periodevelger__datoer {
+    display: flex;
+    position: relative;
+    margin-bottom: 1rem;
+    width: 100%;
+    max-width: 310px;
+
+    .skjema__feilmelding {
+        padding-right: 1rem;
+    }
+}
+
+.periodevelger__skille {
+    position: absolute;
+    top: 2.5rem;
+    left: 7.5rem;
+}
+
+.periodevelger__fom,
+.periodevelger__tom {
+    width: 50%;
+    max-width: 140px;
+}
+
+.datovelger__input--fom,
+.datovelger__input--tom {
+    width: 100%;
+}
+
+.periodevelger__fom .skjemaelement__feilmelding {
+    padding-right: 1rem;
+}
+
+.datovelger__input--fom {
+    border-right-width: 0!important;
+    border-top-right-radius: 0!important;
+    border-bottom-right-radius: 0!important;
+}
+
+.datovelger__input--tom {
+    border-left-width: 0!important;
+    border-top-left-radius: 0!important;
+    border-bottom-left-radius: 0!important;
+}
+
+@media (min-width: @fontSizeBreakPoint) {
+    .periodevelger__skille {
+        top: 2.25rem;
+        left: 8rem;
+    }
+
+}

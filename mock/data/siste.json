@@ -1,0 +1,114 @@
+{
+  "moteUuid": "7645eb7f-2e46-4b0d-a19c-8d9b43158eca",
+  "status": "OPPRETTET",
+  "fnr": "19026900010",
+  "opprettetTidspunkt": "2018-11-08T12:35:37.669+01:00",
+  "bekreftetTidspunkt": null,
+  "deltakere": [
+    {
+      "navn": "Fanny Storm",
+      "orgnummer": "982708672",
+      "type": "arbeidsgiver",
+      "svartidspunkt": null,
+      "svar": [
+        {
+          "id": 11802,
+          "tid": "2018-11-22T10:00:00+01:00",
+          "created": "2018-11-08T12:35:37.693+01:00",
+          "sted": "Storgata 1",
+          "valgt": false
+        },
+        {
+          "id": 11801,
+          "tid": "2018-11-14T12:00:00+01:00",
+          "created": "2018-11-08T12:35:37.687+01:00",
+          "sted": "Storgata 1",
+          "valgt": false
+        }
+      ]
+    },
+    {
+      "navn": "Mariann Løvold",
+      "orgnummer": null,
+      "type": "Bruker",
+      "svartidspunkt": "2018-11-08T12:57:11.396+01:00",
+      "svar": [
+        {
+          "id": 11802,
+          "tid": "2018-11-22T10:00:00+01:00",
+          "created": "2018-11-08T12:35:37.693+01:00",
+          "sted": "Storgata 1",
+          "valgt": false
+        },
+        {
+          "id": 11801,
+          "tid": "2018-11-14T12:00:00+01:00",
+          "created": "2018-11-08T12:35:37.687+01:00",
+          "sted": "Storgata 1",
+          "valgt": true
+        }
+      ]
+    },
+    {
+      "navn": "Fanny Storm",
+      "orgnummer": "982708672",
+      "type": "arbeidsgiver",
+      "svartidspunkt": null,
+      "svar": [
+        {
+          "id": 11802,
+          "tid": "2018-11-22T10:00:00+01:00",
+          "created": "2018-11-08T12:35:37.693+01:00",
+          "sted": "Storgata 1",
+          "valgt": false
+        },
+        {
+          "id": 11801,
+          "tid": "2018-11-14T12:00:00+01:00",
+          "created": "2018-11-08T12:35:37.687+01:00",
+          "sted": "Storgata 1",
+          "valgt": false
+        }
+      ]
+    },
+    {
+      "navn": "Mariann Løvold",
+      "orgnummer": null,
+      "type": "Bruker",
+      "svartidspunkt": "2018-11-08T12:57:11.396+01:00",
+      "svar": [
+        {
+          "id": 11802,
+          "tid": "2018-11-22T10:00:00+01:00",
+          "created": "2018-11-08T12:35:37.693+01:00",
+          "sted": "Storgata 1",
+          "valgt": false
+        },
+        {
+          "id": 11801,
+          "tid": "2018-11-14T12:00:00+01:00",
+          "created": "2018-11-08T12:35:37.687+01:00",
+          "sted": "Storgata 1",
+          "valgt": true
+        }
+      ]
+    }
+  ],
+  "bekreftetAlternativ": null,
+  "alternativer": [
+    {
+      "id": 11802,
+      "tid": "2018-11-22T10:00:00+01:00",
+      "created": "2018-11-08T12:35:37.693+01:00",
+      "sted": "Storgata 1",
+      "valgt": false
+    },
+    {
+      "id": 11801,
+      "tid": "2018-11-14T12:00:00+01:00",
+      "created": "2018-11-08T12:35:37.687+01:00",
+      "sted": "Storgata 1",
+      "valgt": false
+    }
+  ]
+}

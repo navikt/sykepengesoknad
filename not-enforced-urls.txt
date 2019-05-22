@@ -1,0 +1,2 @@
+https://${DomainName}/sykepengesoknad/img/*
+https://${DomainName}/sykepengesoknad/resources/*

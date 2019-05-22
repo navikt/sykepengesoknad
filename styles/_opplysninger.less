@@ -1,0 +1,117 @@
+ .opplysning {
+    margin-bottom: 1rem;
+    page-break-inside: avoid;
+    display: inline-table;
+    width: 100%;
+    margin-bottom: 2rem;
+
+    p {
+        margin-bottom: 0;
+    }
+
+}
+
+.opplysning__tittel {
+    .typo-element-mixin();
+    margin-top: 0;
+    margin-bottom: .25rem;
+}
+
+.opplysning__verdi:before {
+    content: "\2013 ";
+    display: inline-block;
+    margin-right: .25rem;
+}
+
+.nokkelopplysning {
+    margin-bottom: 2rem;
+    page-break-inside: avoid;
+    display: inline-table;
+    width: 100%;
+
+    p {
+        .typo-normal-mixin();
+        margin: 0;
+    }
+
+    .blokk--s {
+        margin-bottom: .25rem;
+    }
+
+    a {
+        .lenke-mixin()
+    }
+}
+
+.nokkelopplysning__liste {
+    margin: 0;
+    padding-left: 1.5rem;
+}
+
+@media (min-width: @skjermMini) {
+    .nokkelopplysning--hoveddiagnose {
+        margin-bottom: 0;
+    }
+}
+
+.nokkelopplysning__tittel {
+        .typo-etikett-liten-mixin();
+        margin-bottom: .25rem;
+        color: @navGra60;
+        margin-top: 0;
+}
+
+.nokkelopplysning__meta,
+p.nokkelopplysning__meta {
+    .typo-normal-mixin();
+}
+
+.nokkelopplysning__meta--desktop {
+    display: none;
+}
+
+@media (min-width: @skjermMini) {
+    .nokkelopplysning__meta--mobil {
+        display: none;
+    }
+
+    .nokkelopplysning__meta--desktop {
+        display: block;
+    }
+}
+
+.subopplysning {
+    margin-left: 1.5rem;
+}
+
+.checkboxOpplysning {
+    display: flex;
+    page-break-inside: avoid;
+
+    img {
+        align-self: flex-start;
+        display: inline-block;
+        width: 1rem;
+        height: auto;
+        margin-right: .5rem;
+        margin-top: 2px;
+        vertical-align: top;
+
+        @media(min-width: @skjermMini) {
+            margin-top: 1px;
+        }
+    }
+
+}
+
+.checkboxOpplysning__label {
+    flex: 1;
+}
+
+.opplysning .checkboxOpplysning {
+    margin-bottom: .5rem;
+
+    &:last-child {
+        margin-bottom: 1rem;
+    }
+}

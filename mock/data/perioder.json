@@ -1,0 +1,26 @@
+[
+  {
+    "fom": "2018-11-03",
+    "tom": "2018-11-05",
+    "grad": 100,
+    "behandlingsdager": 0,
+    "reisetilskudd": false,
+    "avventende": null
+  },
+  {
+    "fom": "2018-11-08",
+    "tom": "2018-12-05",
+    "grad": 100,
+    "behandlingsdager": 0,
+    "reisetilskudd": false,
+    "avventende": null
+  },
+  {
+    "fom": "2018-10-10",
+    "tom": "2019-11-05",
+    "grad": 100,
+    "behandlingsdager": 0,
+    "reisetilskudd": false,
+    "avventende": null
+  }
+]

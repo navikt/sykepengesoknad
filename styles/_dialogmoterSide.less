@@ -1,0 +1,32 @@
+.dialogmoterInnholdLenke__header {
+  background: @white;
+  padding: 1em 2em;
+  border-bottom: 0.125em solid #efefef;
+  h2 {
+    margin: 0;
+    font-size: 1.25em;
+  }
+  @media (max-width: @screen-xs-max) {
+    padding: 0.5em 1em;
+  }
+}
+
+.dialogmoterInnholdLenke__ikon {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1em;
+
+  img {
+    width: 0;
+    height: 0;
+  }
+  @media (min-width: @screen-sm-min) {
+    margin: 0 2em 0 0;
+    display: block;
+
+    img {
+      width: 4.5em;
+      height: 4.5em;
+    }
+  }
+}

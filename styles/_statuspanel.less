@@ -1,0 +1,45 @@
+.statusopplysninger .nokkelopplysning--statusopplysning {
+  margin-bottom: 1rem;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+@media (min-width: @skjermMedium) {
+
+  .statuspanel--toKol {
+    .statusopplysninger {
+      display: flex;
+      flex-wrap: wrap;
+    }
+
+    .nokkelopplysning__tittel {
+      word-break: break-word;
+      hyphens: auto;
+    }
+
+    .nokkelopplysning--statusopplysning {
+      width: ~"calc(50% - 1em)";
+
+      &:nth-child(odd) {
+        margin-right: 1rem;
+      }
+
+      &:nth-child(even) {
+        margin-left: 1rem;
+      }
+    }
+
+    .nokkelopplysning--statusopplysning:last-child,
+    .nokkelopplysning--statusopplysning:nth-last-child(2) {
+      margin-bottom: 0;
+    }
+
+    .nokkelopplysning--statusopplysning:only-child {
+      width: 100%;
+      margin-left: 0;
+      margin-right: 0;
+    }
+  }
+}

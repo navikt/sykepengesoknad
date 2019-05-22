@@ -1,0 +1,63 @@
+@appresRoot: 'https://appres.nav.no/_public/appressurser/built-appres-v4/';
+
+.siteheader .varsler-display {
+    z-index: 2;
+}
+
+.varsler-display .varsel-liste .varsel-container {
+    border-bottom: 1px solid #7f756c;
+    padding-bottom: 12px;
+    margin-bottom: 12px
+}
+.nav-varsler .hide-text {
+    text-indent: 100%;
+    white-space: nowrap;
+    overflow: hidden
+}
+.nav-varsler .varsel {
+    display: flex;
+    padding: 4px
+}
+.nav-varsler .varsel .varsel-ikon {
+    flex: 0 0 40px;
+    width: 40px;
+    height: 40px;
+    margin-right: 8px
+}
+.nav-varsler .varsel .varsel-ikon {
+    background: #ffe4c2 url("@{appresRoot}img/varsel/alarm.svg") no-repeat center
+}
+.nav-varsler .varsel .varsel-ikon.alarm {
+    background: #ffe4c2 url("@{appresRoot}img/varsel/alarm.svg") no-repeat center
+}
+.nav-varsler .varsel .varsel-ikon.klokke {
+    background: #ffe4c2 url("@{appresRoot}img/varsel/alarm-clock.svg") no-repeat center
+}
+.nav-varsler .varsel .varsel-ikon.boble {
+    background: #f1d8d4 url("@{appresRoot}img/varsel/bubblechat-2.svg") no-repeat center
+}
+.nav-varsler .varsel .varsel-ikon.kalender {
+    background: #ecefcc url("@{appresRoot}img/varsel/calendar-3.svg") no-repeat center
+}
+.nav-varsler .varsel .varsel-ikon.dokument {
+    background: #e0dae7 url("@{appresRoot}img/varsel/dokument_normal.svg") no-repeat center
+}
+.nav-varsler .varsel .varsel-ikon.digisyfo {
+    background: #e0f5fb url("@{appresRoot}img/varsel/first-aid-plaster.svg") no-repeat center
+}
+.nav-varsler .varsel .varsel-ikon.okonomi {
+    background: #dff0e6 url("@{appresRoot}img/varsel/coinreceive.svg") no-repeat center
+}
+.nav-varsler .varsel .varsel-ikon.oppgave {
+    background: #cce1f3 url("@{appresRoot}img/varsel/checklist.svg") no-repeat center
+}
+.nav-varsler .varsel .varsel-innhold {
+    overflow-wrap: break-word;
+    color: #3e3832
+}
+.nav-varsler .varsel .varsel-innhold .varsel-dato {
+    color: #7f756c
+}
+.nav-varsler .varsel .varsel-innhold p {
+    margin-bottom: 4px
+}

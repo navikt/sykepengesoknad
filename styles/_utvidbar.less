@@ -1,0 +1,123 @@
+@purple-light: #e0dae7;
+
+.utvidbar {
+	border: 1px solid @navGra40;
+	border-radius: 2px;
+}
+
+.utvidbar__toggle {
+	color: @navMorkGra;
+	display: flex;
+	width: 100%;
+	border-bottom-width: 0;
+}
+
+.utvidbar__toggle:focus {
+	color: @navMorkGra;
+	background-color: transparent;
+	box-shadow: 0 0 0 3px @orangeFocus;
+	z-index: 1;
+	position: relative;
+}
+
+.utvidbar__toggle:hover {
+	color: @navBla;
+}
+
+.utvidbar__header:extend(.panelHeader) {
+	padding: .75rem;
+	margin: 0;
+	min-height: 3.5rem;
+	.typo-normal-mixin();
+
+	@media(min-width: @skjermMini) {
+		padding-left: 1rem;
+		padding-right: 1rem;
+	}
+
+}
+
+.utvidbar__ikon {
+	width: 1.5rem;
+	height: 1.5rem;
+	margin-right: 1rem;
+	align-self: center;
+
+	@media(min-width: @skjermMini) {
+		width: 2rem;
+		height: 2rem;
+	}
+}
+
+.utvidbar__tittel {
+	flex: 1;
+	align-self: center;
+	display: flex;
+	font-weight: 600;
+}
+
+.utvidbar__handling {
+	padding-right: 1.5rem;
+	background-image: data-uri("../img/svg/arrow-down_hover.svg");
+	background-repeat: no-repeat;
+	background-position: 100% center;
+	background-size: 1rem .5rem;
+	color: @navBla;
+	min-height: 1rem;
+	align-self: center;
+	font-style: normal;
+
+	@media(min-width: @skjermMini) {
+		margin-left: 1rem;
+	}
+}
+
+.utvidbar__handling__tekst {
+	display: none;
+
+	@media (min-width: @skjermMini) {
+		display: inline;
+	}
+}
+
+.utvidbar__header--lilla {
+	 background: @purple-light;
+ }
+
+.utvidbar__header--lysebla {
+	background-color: @blueLight;
+}
+
+.utvidbar__header--erApen .utvidbar__handling {
+	background-image: data-uri("../img/svg/arrow-up_hover.svg");
+}
+
+.utvidbar__innholdContainer:focus {
+	outline: none;
+}
+
+.utvidbar__innholdContainer--medAnimasjon {
+	overflow: hidden;
+	transition: height ease-in-out .3s;
+	transform: translate3d(0, 0, 0);
+}
+
+.utvidbar__innhold {
+	padding: 1.5rem 1rem 2.5rem 1rem;
+	background-color: @white;
+
+	@media(min-width: @skjermMini) {
+		padding: 2.5rem;
+	}
+}
+
+.utvidbar__innhold:empty {
+	padding: 0;
+}
+
+@media print {
+	.utvidbar__toggle {
+		border-bottom: 1px solid @navGra40;
+		text-decoration: none;
+	}
+}

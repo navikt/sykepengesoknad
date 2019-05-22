@@ -1,0 +1,13 @@
+.mixin-panel-padding() {
+	padding-left: 1rem;
+	padding-right: 1rem;
+
+	@media(min-width: @skjermMini) {
+		padding-left: 2rem;
+		padding-right: 2rem;
+	}
+}
+
+.transition-mixin(@varighet: 150ms, @type: all) {
+	transition: @type @varighet cubic-bezier(0.465, 0.183, 0.153, 0.946);
+}

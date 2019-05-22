@@ -1,0 +1,229 @@
+[
+  {
+    "id": 2689,
+    "sistEndretDato": "2018-10-18T14:46:43.573+02:00",
+    "opprettetDato": "2018-10-18T12:00:00+02:00",
+    "status": "UNDER_ARBEID",
+    "virksomhet": {
+      "virksomhetsnummer": "110110110",
+      "navn": ""
+    },
+    "godkjentPlan": null,
+    "godkjenninger": [],
+    "arbeidsoppgaveListe": [
+      {
+        "arbeidsoppgaveId": 4893,
+        "arbeidsoppgavenavn": "Redningsarbeid",
+        "erVurdertAvSykmeldt": true,
+        "gjennomfoering": {
+          "kanGjennomfoeres": "KAN_IKKE",
+          "paaAnnetSted": null,
+          "medMerTid": null,
+          "medHjelp": null,
+          "kanBeskrivelse": null,
+          "kanIkkeBeskrivelse": "Tunge løft utgår"
+        },
+        "opprettetDato": "2018-10-18T14:42:06.273+02:00",
+        "sistEndretDato": "2018-10-18T14:42:06.273+02:00",
+        "sistEndretAv": {
+          "navn": " ",
+          "fnr": "110110110110",
+          "epost": null,
+          "tlf": null,
+          "sistInnlogget": null,
+          "samtykke": null,
+          "evaluering": null,
+          "stillinger": []
+        },
+        "opprettetAv": {
+          "navn": " ",
+          "fnr": "110110110110",
+          "epost": null,
+          "tlf": null,
+          "sistInnlogget": null,
+          "samtykke": null,
+          "evaluering": null,
+          "stillinger": []
+        }
+      },
+      {
+        "arbeidsoppgaveId": 4894,
+        "arbeidsoppgavenavn": "Opplæring",
+        "erVurdertAvSykmeldt": true,
+        "gjennomfoering": {
+          "kanGjennomfoeres": "KAN",
+          "paaAnnetSted": null,
+          "medMerTid": null,
+          "medHjelp": null,
+          "kanBeskrivelse": null,
+          "kanIkkeBeskrivelse": null
+        },
+        "opprettetDato": "2018-10-18T14:43:30.806+02:00",
+        "sistEndretDato": "2018-10-18T14:43:30.806+02:00",
+        "sistEndretAv": {
+          "navn": " ",
+          "fnr": "110110110110",
+          "epost": null,
+          "tlf": null,
+          "sistInnlogget": null,
+          "samtykke": null,
+          "evaluering": null,
+          "stillinger": []
+        },
+        "opprettetAv": {
+          "navn": " ",
+          "fnr": "110110110110",
+          "epost": null,
+          "tlf": null,
+          "sistInnlogget": null,
+          "samtykke": null,
+          "evaluering": null,
+          "stillinger": []
+        }
+      },
+      {
+        "arbeidsoppgaveId": 4892,
+        "arbeidsoppgavenavn": "Slukningsarbeid",
+        "erVurdertAvSykmeldt": true,
+        "gjennomfoering": {
+          "kanGjennomfoeres": "TILRETTELEGGING",
+          "paaAnnetSted": false,
+          "medMerTid": true,
+          "medHjelp": true,
+          "kanBeskrivelse": "Trenger ny ergonomisk slange",
+          "kanIkkeBeskrivelse": null
+        },
+        "opprettetDato": "2018-10-18T14:41:14.093+02:00",
+        "sistEndretDato": "2018-10-18T14:41:14.093+02:00",
+        "sistEndretAv": {
+          "navn": " ",
+          "fnr": "110110110110",
+          "epost": null,
+          "tlf": null,
+          "sistInnlogget": null,
+          "samtykke": null,
+          "evaluering": null,
+          "stillinger": []
+        },
+        "opprettetAv": {
+          "navn": " ",
+          "fnr": "110110110110",
+          "epost": null,
+          "tlf": null,
+          "sistInnlogget": null,
+          "samtykke": null,
+          "evaluering": null,
+          "stillinger": []
+        }
+      }
+    ],
+    "tiltakListe": [
+      {
+        "tiltakId": 3581,
+        "tiltaknavn": "Redusert arbeidstid",
+        "knyttetTilArbeidsoppgaveId": null,
+        "fom": "2018-10-01T12:00:00+02:00",
+        "tom": "2018-12-31T12:00:00+01:00",
+        "beskrivelse": "En dag fri i uken, til medisinsk oppfølging. ",
+        "beskrivelseIkkeAktuelt": null,
+        "opprettetDato": "2018-10-18T14:44:46.956+02:00",
+        "sistEndretDato": "2018-10-18T14:44:46.956+02:00",
+        "kommentarer": [],
+        "status": "FORSLAG",
+        "gjennomfoering": null,
+        "opprettetAv": {
+          "navn": " ",
+          "fnr": "110110110110",
+          "epost": null,
+          "tlf": null,
+          "sistInnlogget": null,
+          "samtykke": null,
+          "evaluering": null,
+          "stillinger": []
+        },
+        "sistEndretAv": {
+          "navn": " ",
+          "fnr": "110110110110",
+          "epost": null,
+          "tlf": null,
+          "sistInnlogget": null,
+          "samtykke": null,
+          "evaluering": null,
+          "stillinger": []
+        }
+      },
+      {
+        "tiltakId": 3582,
+        "tiltaknavn": "Ergonomisk slange",
+        "knyttetTilArbeidsoppgaveId": null,
+        "fom": "2018-10-01T12:00:00+02:00",
+        "tom": "2018-12-31T12:00:00+01:00",
+        "beskrivelse": "Ønskelig at jobben bestiller en tilpasset ergonomisk slange.",
+        "beskrivelseIkkeAktuelt": null,
+        "opprettetDato": "2018-10-18T14:46:43.574+02:00",
+        "sistEndretDato": "2018-10-18T14:46:43.574+02:00",
+        "kommentarer": [],
+        "status": "FORSLAG",
+        "gjennomfoering": null,
+        "opprettetAv": {
+          "navn": " ",
+          "fnr": "110110110110",
+          "epost": null,
+          "tlf": null,
+          "sistInnlogget": null,
+          "samtykke": null,
+          "evaluering": null,
+          "stillinger": []
+        },
+        "sistEndretAv": {
+          "navn": " ",
+          "fnr": "110110110110",
+          "epost": null,
+          "tlf": null,
+          "sistInnlogget": null,
+          "samtykke": null,
+          "evaluering": null,
+          "stillinger": []
+        }
+      }
+    ],
+    "avbruttPlanListe": [],
+    "arbeidsgiver": {
+      "naermesteLeder": {
+        "navn": " ",
+        "fnr": null,
+        "epost": null,
+        "tlf": null,
+        "sistInnlogget": null,
+        "samtykke": null,
+        "evaluering": null,
+        "stillinger": [],
+        "virksomhetsnummer": null,
+        "erAktiv": false,
+        "aktivFom": null,
+        "aktivTom": null
+      },
+      "forrigeNaermesteLeder": null
+    },
+    "arbeidstaker": {
+      "navn": " ",
+      "fnr": "110110110110",
+      "epost": null,
+      "tlf": null,
+      "sistInnlogget": "2018-10-18T14:38:26.703+02:00",
+      "samtykke": null,
+      "evaluering": null,
+      "stillinger": []
+    },
+    "sistEndretAv": {
+      "navn": " ",
+      "fnr": "110110110110",
+      "epost": null,
+      "tlf": null,
+      "sistInnlogget": null,
+      "samtykke": null,
+      "evaluering": null,
+      "stillinger": []
+    }
+  }
+]

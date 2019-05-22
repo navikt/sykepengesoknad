@@ -1,0 +1,86 @@
+.motebehovSvar {
+  .hjelpeboble {
+    margin-bottom: 2em;
+  }
+}
+
+.motebehovInfoForSvar {
+  @bildeBredde: 4em;
+  @halvBildeBredde: @bildeBredde/2;
+
+  position: relative;
+  border: 2px solid @navLysBla;
+  border-radius: 0.5em;
+  margin-top: 5em;
+  .tekstInformasjon__bilde {
+    left: 50%;
+    transform: translateX(-50%);
+    top: -@halvBildeBredde;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #c2eaf7;
+    height: @bildeBredde;
+    width: @bildeBredde;
+    border-radius: 50%;
+  }
+  .tekstInformasjon__innhold {
+    margin-top: 1.5em;
+  }
+  .tekstInformasjon__tittel {
+    display: block;
+    width: 100%;
+    text-align: center;
+    font-size: 20px;
+  }
+}
+
+.svarMotebehovSkjema {
+  textarea {
+    resize: none;
+  }
+}
+
+.svarMotebehovSkjema__tekstOpplysning p {
+  text-align: center;
+}
+
+.folketrygdlovenTekst {
+  p {
+    margin: 0;
+  }
+}
+
+.motebehovKvittering {
+  h4 {
+    display: block;
+    text-transform: uppercase;
+    margin-top: 0;
+  }
+  p {
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+  }
+  img {
+    width: 2em;
+  }
+}
+
+.motebehovKvitteringUtvidbar {
+  h5 {
+    font-weight: normal;
+    text-transform: uppercase;
+    margin: .5em 0;
+  }
+  p {
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+  }
+}
+
+.motebehovSkjemaTekstomraade {
+  label {
+    margin-bottom: .5em;
+  }
+}

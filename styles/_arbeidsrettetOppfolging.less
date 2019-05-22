@@ -1,0 +1,103 @@
+.arbeidsrettetOppfolging {
+  padding-top: 2rem;
+
+  @media (min-width: @skjermMedium) {
+    padding-left: 4rem;
+    padding-right: 4rem;
+  }
+}
+
+.arbeidsrettetOppfolgingRad {
+  margin-bottom: 2rem;
+
+  @media(min-width: @skjermMedium) {
+    margin-bottom: 3rem;
+  }
+
+  &:last-child {
+    margin-bottom: 0;
+    padding-bottom: 2rem;
+  }
+}
+
+.arbeidsrettetOppfolgingTiltak {
+  margin-bottom: 2rem;
+  display: flex;
+
+  @media (min-width: @skjermLiten) {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  p:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.arbeidsrettetOppfolgingTiltak__tittel {
+  .typo-element-mixin();
+  margin-top: 0;
+  margin-bottom: .25rem;
+}
+
+.arbeidsrettetOppfolgingTiltak__bilde {
+  width: 4rem;
+  margin-right: 1rem;
+
+  img {
+    width: 4rem;
+    height: auto;
+  }
+}
+
+.panel--merVeiledning {
+  border: 2px solid @navLimeGronnLighten60;
+  border-radius: .25rem;
+}
+
+.merVeiledning__knapper {
+  text-align: center;
+}
+
+.alleredeOppfolging {
+  margin-top: 2rem;
+}
+
+.alleredeOppfolging__innhold {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.alleredeOppfolging__tekst {
+  margin: auto 0;
+}
+
+.alleredeOppfolging__knapp {
+  padding: 0.5rem;
+  margin-top: 1rem;
+}
+
+@media (min-width: @skjermLiten) {
+
+  .alleredeOppfolging__innhold {
+    flex-direction: row;
+    flex-wrap: nowrap;
+  }
+
+  .alleredeOppfolging__knapp {
+    margin-top: 0;
+  }
+
+}
+
+.arbeidsrettetOppfolgingUtvidbar {
+  ul {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  li {
+    margin-bottom: 1rem;
+  }
+}

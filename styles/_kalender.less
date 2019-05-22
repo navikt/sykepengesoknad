@@ -1,0 +1,114 @@
+.datokalender,
+.periodekalender {
+    position: fixed;
+    display: block;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: @white;
+    padding: .5rem;
+    z-index: 1;
+
+    &:focus {
+        outline: 0;
+        box-shadow: 0 0 0 3px @orangeFocus;
+    }
+}
+
+.periodekalender {
+    display: flex;
+    flex-direction: column;
+}
+
+.periodekalender__kalender {
+    flex: 1;
+}
+
+.periodekalender__tittel {
+  .typo-undertittel-mixin();
+  text-align: center;
+  margin: 0 .25rem;
+}
+
+.periodekalender__kontroller {
+    text-align: center;
+    height: 8rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    border-top: 1px solid @navGra40;
+}
+
+@media (min-width: @skjermMini) {
+    .datokalender,
+    .periodekalender {
+        position: absolute;
+        top: 3.5rem;
+        left: 0;
+        right: auto;
+        bottom: auto;
+        border-radius: 2px;
+        border: 1px solid @navGra40;
+        display: block;
+    }
+
+    .periodekalender {
+        top: 5rem;
+    }
+
+    .periodekalender__tittel,
+    .periodekalender__datoer {
+        position: absolute;
+        overflow: hidden;
+        clip: rect(0 0 0 0);
+        height: 1px;
+        width: 1px;
+        margin: -1px;
+        padding: 0;
+        border: 0;
+    }
+
+    .periodekalender__kontroller {
+        height: 4rem;
+    }
+
+    .periodekalender--velgStartdato,
+    .periodekalender--velgSluttdato,
+    .datokalender {
+        &:before {
+            content: '';
+            display: block;
+            position: absolute;
+            top: -1px;
+            transform: rotate(-45deg);
+            border-top: 1px solid @navGra40;
+            border-right: 1px solid @navGra40;
+            background-color: @white;
+            width: 1rem;
+            height: 1rem;
+            transform-origin: 0 0;
+            .transition-mixin(.3s, left);
+        }
+
+        &:focus:before {
+            box-shadow: 2px -2px 0 1px @orangeFocus;
+        }
+
+    }
+
+    .periodekalender--velgStartdato:before {
+        left: 1rem;
+    }
+
+    .periodekalender--velgSluttdato:before {
+        left: 9rem;
+    }
+
+}
+
+.periodekalender {
+    .DayPicker-Month {
+        position: relative;
+
+    }
+}

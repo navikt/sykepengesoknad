@@ -1,0 +1,1 @@
+export const MANGLER_OIDC_TOKEN = 'MANGLER_OIDC_TOKEN';

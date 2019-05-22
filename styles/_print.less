@@ -1,0 +1,18 @@
+@media print {
+
+	.ikke-print, .hodefot {
+		display: none;
+	}
+
+    .panel {
+        border: 1px solid @navGra40;
+	}
+
+    .sykmelding-nokkelopplysning, .sykmelding-opplysning {
+        page-break-inside: avoid;
+    }
+
+    .utvidbar[aria-expanded="false"] {
+        display: none;
+    }
+}

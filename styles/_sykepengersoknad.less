@@ -1,0 +1,236 @@
+.soknadskjema:focus {
+    outline: none;
+}
+
+.inputgruppe {
+}
+
+.inputgruppe--horisontal {
+    display: flex;
+
+    .skjemaelement {
+        margin-right: 2rem;
+    }
+}
+
+.medEnhet {
+    display: flex;
+}
+
+.medEnhet__enhet {
+    margin: 0;
+    margin-left: .5rem;
+    align-self: center;
+}
+
+.oppsummering__vaerKlarOverAt {
+    h3 {
+        margin: 0 0 1rem 0;
+        .typo-element-mixin();
+    }
+
+    li {
+        margin-bottom: 1rem;
+    }
+}
+
+.oppsummering__seksjon {
+    border-bottom: 1px solid @navGra40;
+    margin-bottom: 2rem;
+    padding-bottom: 2rem;
+}
+
+.oppsummering__seksjon:last-child {
+    border-bottom-width: 0;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.oppsummering__sporsmalscontainer {
+    margin-bottom: 2rem;
+
+    &:last-child {
+        margin-bottom: 0;
+    }
+}
+
+.oppsummering__sporsmal {
+    .typo-element-mixin();
+    margin-top: 0;
+    margin-bottom: .5rem;
+}
+
+.oppsummering__avkrysset {
+    display: flex;
+    width: 100%;
+
+    img {
+        width: 1rem;
+        height: 1rem;
+        margin-right: .5rem;
+        margin-top: .175rem;
+    }
+
+    span {
+        flex: 1;
+    }
+}
+
+.oppsummering__undersporsmal .oppsummering__undersporsmal {
+    padding-left: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.oppsummering__undersporsmal + .oppsummering__undersporsmal {
+    margin-top: 1.5rem;
+}
+
+.oppsummering__tekst,
+.oppsummering__dato {
+    margin-bottom: .5rem;
+}
+
+.oppsummering__avkrysset + .oppsummering__tekstsvar,
+.oppsummering__svarliste + .oppsummering__tekstsvar,
+.oppsummering__avkrysset + .oppsummering__undersporsmalsliste,
+.oppsummering__tekstsvar + .oppsummering__tekstsvar {
+    padding-left: 1.5rem;
+}
+
+.oppsummering__svarliste:last-child .oppsummering__undersporsmalsliste {
+    margin-bottom: 0;
+}
+
+.oppsummering__svarliste + .oppsummering__svarliste {
+    margin-top: 1rem;
+}
+
+.oppsummering__undersporsmalsliste {
+    margin-top: 2rem;
+}
+
+.oppsummering__sporsmal + .oppsummering__undersporsmalsliste,
+.oppsummering__avkrysset + .oppsummering__undersporsmalsliste {
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+
+    > .oppsummering__tekstsvar:first-child {
+        margin-top: -1rem;
+    }
+
+    > .oppsummering__tekstsvar {
+        padding-left: 0;
+    }
+
+    .oppsummering__tekstsvar + .oppsummering__sporsmalscontainer {
+        margin-top: 1rem;
+    }
+}
+
+.oppsummering__sporsmal + .oppsummering__undersporsmalsliste {
+    margin-top: 0;
+}
+
+.oppsummering__dato,
+.oppsummering__land{
+    margin-bottom: 0;
+
+    &:before {
+        content: "\2022";
+        display: inline-block;
+        width: .5rem;
+        margin-right: .5rem;
+    }
+}
+
+.oppsummering__landliste {
+    margin: 0;
+    padding: 0;
+}
+
+.oppsummering__land {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.soknad__stegtittel {
+    .typo-undertittel-mixin();
+    font-size: 24px;
+    margin-top: 0;
+    margin-bottom: 1rem;
+}
+
+.soknad__undersporsmal {
+    margin-bottom: 2rem;
+
+    &:last-child {
+        margin-bottom: 0;
+    }
+}
+
+.sykepenger__tidligSoknad {
+    .typo-ingress-mixin();
+    margin: 0;
+}
+
+.bekreftet-container {
+    .mixin-panel-padding();
+}
+
+.verktoylinje {
+    padding-top: 2rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    grid-row-gap: 2rem;
+}
+
+.verktoylinje--liten {
+    padding-top: 1rem;
+}
+
+.verktoylinje:empty {
+    display: none;
+}
+
+.tidligereVersjoner__tittel {
+    .typo-undertittel-mixin();
+    margin: 0;
+}
+
+.tidligereVersjoner a {
+    color: @navBla;
+    border-bottom: 1px solid @navGra40;
+
+    &:hover, &:focus {
+        border-bottom-color: @navBla;
+    }
+}
+
+.tidligereVersjoner__liste {
+
+    margin-bottom: 0;
+
+    li {
+        margin-bottom: .5rem;
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+}
+
+.sykepengerskjema__sendesTil {
+    border-top: 1px solid @navGra40;
+    text-align: center;
+    padding-top: 2rem;
+    margin: 0 0 2rem 0;
+}
+
+.utenlandsoppholdsporsmal {
+    margin-top: 1rem;
+
+    @media (min-width: 30rem) {
+        margin-top: 2rem;
+    }
+}

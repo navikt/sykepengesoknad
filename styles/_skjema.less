@@ -1,0 +1,52 @@
+.skjema__sporsmal {
+  .typo-element-mixin();
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+
+label.skjema__sporsmal {
+  display: block;
+}
+
+.skjema__feilomrade:focus {
+  outline: none;
+}
+
+.skjema__feilomrade--harFeil:focus {
+  outline: none;
+  box-shadow: 0 0 0 8px @pinkErrorBg, 0 0 0 11px @orangeFocus;
+}
+
+.skjema__legend {
+  display: block;
+}
+
+.skjema__legend h3 {
+  font-size: inherit;
+  margin: 0;
+  padding: 0;
+}
+
+.inputPanelGruppe--horisontal {
+    margin-bottom: 1.25rem;
+
+    @media (min-width: 450px) {
+      .inputPanelGruppe__inner {
+      display: flex;
+    }
+
+    .radioPanel {
+      flex: 1;
+      margin-left: .5rem;
+      margin-right: .5rem;
+    }
+
+    .radioPanel:first-child {
+      margin-left: 0;
+    }
+
+    .radioPanel:last-child {
+      margin-right: 0;
+    }
+  }
+}

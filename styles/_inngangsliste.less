@@ -1,0 +1,44 @@
+.inngangsliste {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+
+	li {
+		padding-left: 0;
+		margin-bottom: 1rem;
+		display: flex;
+	}
+
+	li:last-child {
+		margin-bottom: 0;
+	}
+
+	a {
+		.typo-ingress-mixin();
+		background-image: data-uri("../img/png/pilNeste--graa.png");
+		background-repeat: no-repeat;
+		background-position: right center;
+		background-size: .75rem;
+		padding-right: 1.25rem;
+		color: @navMorkGra;
+	}
+
+	a:hover, a:focus {
+		color: @navBla;
+		background-image: data-uri("../img/png/pilNeste--blaa.png");
+	}
+
+}
+
+.inngangsliste__meta {
+	.typo-etikett-liten-mixin();
+	display: block;
+	color: @navGra60;
+}
+
+.inngangsliste__ikon {
+	position: relative;
+	width: 1.5rem;
+	height: 1.5rem;
+	margin-right: .5rem;
+}
