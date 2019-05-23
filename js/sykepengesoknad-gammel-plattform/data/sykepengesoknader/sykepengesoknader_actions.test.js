@@ -2,7 +2,7 @@ import chai from 'chai';
 import sinon from 'sinon';
 import chaiEnzyme from 'chai-enzyme';
 import * as actions from './sykepengesoknader_actions';
-import * as actiontyper from '../../../actions/actiontyper';
+import * as actiontyper from '../../../data/actiontyper';
 
 chai.use(chaiEnzyme());
 const expect = chai.expect;

@@ -1,7 +1,7 @@
 import { call, put, fork, takeEvery } from 'redux-saga/effects';
 import { post, log } from '@navikt/digisyfo-npm';
 import * as actions from './arbeidsgiverperiodeberegning_actions';
-import { HENT_ARBEIDSGIVERPERIODEBEREGNING_FORESPURT } from '../../../actions/actiontyper';
+import { HENT_ARBEIDSGIVERPERIODEBEREGNING_FORESPURT } from '../../../data/actiontyper';
 
 export function* hentArbeidsgiverperiodeberegning(action) {
     yield put(actions.henterArbeidsgiverperiodeberegning());

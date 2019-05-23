@@ -1,10 +1,10 @@
 import { connect } from 'react-redux';
 import { reduxForm, getFormValues } from 'redux-form';
 import { bindActionCreators, compose } from 'redux';
-import { onSubmitFail } from '../../containers/skjema/FeiloppsummeringContainer';
+import { onSubmitFail } from '../../components/skjema/feiloppsummering/FeiloppsummeringContainer';
 import { sendSoknad, lagreSoknad, oppdaterSoknader } from '../data/soknader/soknaderActions';
 import { getSoknadSkjemanavn } from '../../enums/skjemanavn';
-import { utfyllingStartet } from '../../actions/metrikker_actions';
+import { utfyllingStartet } from '../../data/metrikker/metrikker_actions';
 import fraBackendsoknadTilInitiellSoknad from './fraBackendsoknadTilInitiellSoknad';
 
 export const finnSoknad = (state, ownProps) => {

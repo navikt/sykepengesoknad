@@ -2,7 +2,7 @@ import { call, put, fork, takeEvery, all } from 'redux-saga/effects';
 import { browserHistory } from 'react-router';
 import { post, log } from '@navikt/digisyfo-npm';
 import * as actions from './dinSykmeldingActions';
-import * as actiontyper from '../../../actions/actiontyper';
+import * as actiontyper from '../../../data/actiontyper';
 
 const gaTilSykmelding = (sykmeldingId) => {
     browserHistory.push(`${process.env.REACT_APP_SYKEFRAVAER_CONTEXT_ROOT}/sykmeldinger/${sykmeldingId}/`);

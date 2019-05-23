@@ -7,14 +7,14 @@ import { Provider } from 'react-redux';
 import createSagaMiddleware from 'redux-saga';
 import { forlengInnloggetSesjon, hentLedetekster, setPerformOnHttpCalls, sjekkInnloggingssesjon } from '@navikt/digisyfo-npm';
 import AppRouter from './routers/AppRouter';
-import { hentVedlikehold } from './actions/vedlikehold_actions';
+import { hentVedlikehold } from './data/vedlikehold/vedlikehold_actions';
 import history from './history';
-import rootSaga from './sagas';
+import rootSaga from './data/rootSaga';
 import '../styles/styles.less';
 import './logging';
-import { hentUnleashToggles } from './actions/unleashToggles_actions';
+import { hentUnleashToggles } from './data/unleashToggles/unleashToggles_actions';
 import { hentSoknader } from './sykepengesoknad/data/soknader/soknaderActions';
-import reducers from './reducers';
+import reducers from './data/rootReducer';
 
 const rootReducer = combineReducers(reducers);
 

@@ -7,7 +7,7 @@ import * as actions from './soknaderActions';
 import {
     SYKMELDING_BEKREFTET,
     SYKMELDING_SENDT,
-} from '../../../actions/actiontyper';
+} from '../../../data/actiontyper';
 import { soknadrespons } from '../../../../test/mock/mockSoknadSelvstendig';
 import { toggleBrukMockDataSelvstendigSoknad, toggleBrukMockdataUtland } from '../../../toggles';
 import logger from '../../../logging';
@@ -15,12 +15,12 @@ import { ARBEIDSTAKERE, OPPHOLD_UTLAND, SELVSTENDIGE_OG_FRILANSERE } from '../..
 import { hentSoknad, skalHenteSoknader, skalHenteSoknaderHvisIkkeHenter } from './soknaderSelectors';
 import { populerSoknadMedSvarUtenKonvertertePerioder } from '../../utils/populerSoknadMedSvar';
 import fraBackendsoknadTilInitiellSoknad from '../../utils/fraBackendsoknadTilInitiellSoknad';
-import { hentSkjemaVerdier } from '../../../selectors/reduxFormSelectors';
+import { hentSkjemaVerdier } from '../../../data/redux-form/reduxFormSelectors';
 import { getSkjemanavnFraSoknad } from '../../utils/getSkjemanavnFraSoknad';
 import getContextRoot from '../../../utils/getContextRoot';
 import { soknadUtland1 } from '../../../../test/mock/mockSoknadUtland';
 import { UTKAST_TIL_KORRIGERING } from '../../enums/soknadstatuser';
-import { toggleNyArbeidstakerSoknad } from '../../../selectors/unleashTogglesSelectors';
+import { toggleNyArbeidstakerSoknad } from '../../../data/unleashToggles/unleashTogglesSelectors';
 import { MANGLER_OIDC_TOKEN } from '../../../enums/exceptionMessages';
 import {
     AVBRYT_SOKNAD_FORESPURT,

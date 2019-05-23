@@ -2,7 +2,7 @@ import deepFreeze from 'deep-freeze';
 import { expect } from 'chai';
 import sinon from 'sinon';
 import { parseSykepengesoknad } from '@navikt/digisyfo-npm';
-import * as actiontyper from '../../../actions/actiontyper';
+import * as actiontyper from '../../../data/actiontyper';
 import sykepengesoknader, {
     finnSoknad,
     sorterAktiviteterEldsteFoerst,

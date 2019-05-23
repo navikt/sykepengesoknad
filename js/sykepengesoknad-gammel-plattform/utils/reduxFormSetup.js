@@ -3,7 +3,7 @@ import { compose } from 'redux';
 import { reduxForm } from 'redux-form';
 import { inntektskildetyper as inntektskildetypeEnums, sykepengesoknadstatuser, toDatePrettyPrint } from '@navikt/digisyfo-npm';
 import history from '../../history';
-import { onSubmitFail } from '../../containers/skjema/FeiloppsummeringContainer';
+import { onSubmitFail } from '../../components/skjema/feiloppsummering/FeiloppsummeringContainer';
 import { mapAktiviteter } from './sykepengesoknadUtils';
 import mapBackendsoknadToSkjemasoknad from '../mappers/mapBackendsoknadToSkjemasoknad';
 import { getSoknadSkjemanavn } from '../../enums/skjemanavn';

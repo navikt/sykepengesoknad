@@ -1,8 +1,8 @@
 import deepFreeze from 'deep-freeze';
 import { expect } from 'chai';
 import sinon from 'sinon';
-import metrikker from '../../js/reducers/metrikker';
-import { utfyllingStartet } from '../../js/actions/metrikker_actions';
+import metrikker from '../../js/data/metrikker/metrikker';
+import { utfyllingStartet } from '../../js/data/metrikker/metrikker_actions';
 import { UTFYLLING_STARTET } from '../../js/enums/metrikkerEnums';
 import { soknadSendt } from '../../js/sykepengesoknad/data/soknader/soknaderActions';
 

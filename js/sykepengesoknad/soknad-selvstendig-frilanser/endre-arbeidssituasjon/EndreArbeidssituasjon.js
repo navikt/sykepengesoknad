@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { getLedetekst, sykmelding as sykmeldingPt } from '@navikt/digisyfo-npm';
-import { connectAngreArbeidssituasjon } from '../../../sykmeldinger/sykmelding-bekreftet/AngreBekreftSykmeldingContainer';
+import { connectAngreArbeidssituasjon } from '../../../sykmeldinger/angre-bekreftet-sykmelding/AngreBekreftSykmeldingContainer';
 import EndreArbeidssituasjonLightbox from './EndreArbeidssituasjonLightbox';
 
 class EndreArbeidssituasjonLenke extends Component {

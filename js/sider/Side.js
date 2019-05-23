@@ -6,7 +6,7 @@ import cn from 'classnames';
 import AppSpinner from '../components/AppSpinner';
 import Brodsmuler from '../components/Brodsmuler';
 import Feilmelding from '../components/Feilmelding';
-import * as actions from '../actions/brukerinfo_actions';
+import * as actions from '../data/brukerinfo/brukerinfo_actions';
 import { brodsmule as brodsmulePt } from '../propTypes';
 import { toggleHeleAppen } from '../toggles';
 

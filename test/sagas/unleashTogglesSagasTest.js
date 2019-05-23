@@ -1,7 +1,7 @@
 import { expect } from 'chai';
 import { put, call } from 'redux-saga/effects';
-import { hentUnleashToggles } from '../../js/sagas/unleashTogglesSagas';
-import { henterUnleashToggles, unleashTogglesHentet } from '../../js/actions/unleashToggles_actions';
+import { hentUnleashToggles } from '../../js/data/unleashToggles/unleashTogglesSagas';
+import { henterUnleashToggles, unleashTogglesHentet } from '../../js/data/unleashToggles/unleashToggles_actions';
 import { post } from '../../js/gateway-api';
 import * as toggles from '../../js/enums/unleashToggles';
 

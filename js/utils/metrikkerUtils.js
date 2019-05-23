@@ -5,8 +5,8 @@ import {
     TID_INNSENDING_SYKMELDING,
     UTFYLLING_STARTET,
 } from '../enums/metrikkerEnums';
-import { SYKEPENGESOKNAD_SENDT, SYKMELDING_SENDT } from '../actions/actiontyper';
-import { hentEvent } from '../selectors/metrikkerSelectors';
+import { SYKEPENGESOKNAD_SENDT, SYKMELDING_SENDT } from '../data/actiontyper';
+import { hentEvent } from '../data/metrikker/metrikkerSelectors';
 import { SOKNAD_SENDT } from '../sykepengesoknad/data/soknader/soknaderActiontyper';
 
 const beregnMillisekunder = (start, slutt) => {

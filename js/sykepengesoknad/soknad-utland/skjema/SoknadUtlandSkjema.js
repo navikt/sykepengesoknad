@@ -9,7 +9,7 @@ import Sporsmal from '../../felleskomponenter/sporsmal/Sporsmal';
 import { soknadPt } from '../../../propTypes/index';
 import { OPPHOLD_UTLAND_SKJEMA } from '../../../enums/skjemanavn';
 import validate from '../validering/validerSoknadUtland';
-import FeiloppsummeringContainer, { onSubmitFail } from '../../../containers/skjema/FeiloppsummeringContainer';
+import FeiloppsummeringContainer, { onSubmitFail } from '../../../components/skjema/feiloppsummering/FeiloppsummeringContainer';
 import populerSoknadMedSvar from '../../utils/populerSoknadMedSvar';
 import { IKKE_RELEVANT } from '../../enums/svartyper';
 import { PERIODEUTLAND } from '../../enums/tagtyper';

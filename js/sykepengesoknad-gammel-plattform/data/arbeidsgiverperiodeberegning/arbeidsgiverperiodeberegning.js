@@ -1,5 +1,5 @@
-import * as actiontyper from '../../../actions/actiontyper';
-import { createReducer } from '../../../reducers/createReducer';
+import * as actiontyper from '../../../data/actiontyper';
+import { createReducer } from '../../../data/createReducer';
 
 const arbeidsgiverperiodeberegning = createReducer(
     actiontyper.HENT_ARBEIDSGIVERPERIODEBEREGNING_FEILET,

@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import FeiloppsummeringContainer from '../../../containers/skjema/FeiloppsummeringContainer';
+import FeiloppsummeringContainer from '../../../components/skjema/feiloppsummering/FeiloppsummeringContainer';
 import { getSkjemanavnFraSoknad } from '../../utils/getSkjemanavnFraSoknad';
 import Sporsmalsliste from '../sporsmal/Sporsmalsliste';
 import KnapperadEttSporsmalPerSide from './KnapperadEttSporsmalPerSide';

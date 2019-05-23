@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 import { formaterEnkeltverdi, genererParseForEnkeltverdi } from './fieldUtils';
 import Sporsmalstekst from './Sporsmalstekst';
 import { getSkjemanavnFraSoknad } from '../../utils/getSkjemanavnFraSoknad';
-import { hentSkjemaVerdier } from '../../../selectors/reduxFormSelectors';
+import { hentSkjemaVerdier } from '../../../data/redux-form/reduxFormSelectors';
 import { CHECKED } from '../../enums/svarEnums';
 import Undersporsmalsliste from './Undersporsmalsliste';
 import Feilomrade from '../../../components/skjema/Feilomrade';

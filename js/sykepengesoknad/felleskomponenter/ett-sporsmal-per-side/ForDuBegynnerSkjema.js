@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { getLedetekst } from '@navikt/digisyfo-npm';
-import FeiloppsummeringContainer from '../../../containers/skjema/FeiloppsummeringContainer';
+import FeiloppsummeringContainer from '../../../components/skjema/feiloppsummering/FeiloppsummeringContainer';
 import { getSkjemanavnFraSoknad } from '../../utils/getSkjemanavnFraSoknad';
 import Checkboxpanel from '../sporsmal/Checkboxpanel';
 import KnapperadEttSporsmalPerSide from './KnapperadEttSporsmalPerSide';

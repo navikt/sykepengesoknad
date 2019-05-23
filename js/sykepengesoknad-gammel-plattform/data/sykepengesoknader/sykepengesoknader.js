@@ -1,5 +1,5 @@
 import { parseSykepengesoknad, tidligsteFom, senesteTom, sykepengesoknadstatuser } from '@navikt/digisyfo-npm';
-import * as actiontyper from '../../../actions/actiontyper';
+import * as actiontyper from '../../../data/actiontyper';
 
 const { KORRIGERT, AVBRUTT, NY, UTKAST_TIL_KORRIGERING, SLETTET_UTKAST } = sykepengesoknadstatuser;
 

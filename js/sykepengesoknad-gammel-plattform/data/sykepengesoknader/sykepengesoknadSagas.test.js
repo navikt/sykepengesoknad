@@ -13,7 +13,7 @@ import {
     gjenapneSoknad,
 } from './sykepengesoknadSagas';
 import { finnSoknad } from './sykepengesoknader';
-import * as actiontyper from '../../../actions/actiontyper';
+import * as actiontyper from '../../../data/actiontyper';
 import * as actions from './sykepengesoknader_actions';
 
 describe('sykepengersoknadSagas', () => {

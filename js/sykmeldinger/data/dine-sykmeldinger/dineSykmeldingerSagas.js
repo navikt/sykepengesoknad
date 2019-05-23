@@ -1,7 +1,7 @@
 import { call, put, fork, takeEvery, all, select } from 'redux-saga/effects';
 import { get, log } from '@navikt/digisyfo-npm';
 import * as actions from './dineSykmeldingerActions';
-import * as actiontyper from '../../../actions/actiontyper';
+import * as actiontyper from '../../../data/actiontyper';
 import { selectSkalHenteDineSykmeldinger } from './dineSykmeldingerSelectors';
 
 export function* oppdaterDineSykmeldinger() {

@@ -12,7 +12,7 @@ import * as actions from './soknaderActions';
 import mockSoknader from '../../../../test/mock/mockSoknadSelvstendig';
 import { OPPHOLD_UTLAND, SELVSTENDIGE_OG_FRILANSERE } from '../../enums/soknadtyper';
 import { UTKAST_TIL_KORRIGERING } from '../../enums/soknadstatuser';
-import { toggleNyArbeidstakerSoknad } from '../../../selectors/unleashTogglesSelectors';
+import { toggleNyArbeidstakerSoknad } from '../../../data/unleashToggles/unleashTogglesSelectors';
 
 describe('soknaderSagas', () => {
     describe('Henting av søknader når det er togglet på', () => {

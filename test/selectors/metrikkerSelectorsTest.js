@@ -2,7 +2,7 @@ import deepFreeze from 'deep-freeze';
 import { expect } from 'chai';
 import sinon from 'sinon';
 import { UTFYLLING_STARTET } from '../../js/enums/metrikkerEnums';
-import { hentEvent, hentEvents, hentMetrikk } from '../../js/selectors/metrikkerSelectors';
+import { hentEvent, hentEvents, hentMetrikk } from '../../js/data/metrikker/metrikkerSelectors';
 import { soknadSendt } from '../../js/sykepengesoknad/data/soknader/soknaderActions';
 import { SELVSTENDIGE_OG_FRILANSERE } from '../../js/sykepengesoknad/enums/soknadtyper';
 

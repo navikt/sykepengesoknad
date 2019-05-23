@@ -1,4 +1,4 @@
-import * as actiontyper from '../../../actions/actiontyper';
+import * as actiontyper from '../../../data/actiontyper';
 
 export function henterSykepengesoknader() {
     return {

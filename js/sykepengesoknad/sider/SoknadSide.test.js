@@ -12,7 +12,7 @@ import dineSykmeldinger from '../../sykmeldinger/data/dine-sykmeldinger/dineSykm
 import SendtSoknadSelvstendig from '../soknad-selvstendig-frilanser/SendtSoknadSelvstendig';
 import mountWithStore from '../../../test/mountWithStore';
 import { getSendtSoknadSelvstendig } from '../../../test/mock/mockSoknadSelvstendig';
-import reduxFormMeta from '../../reducers/reduxFormMeta';
+import reduxFormMeta from '../../data/redux-form-meta/reduxFormMeta';
 import mockNySoknadArbeidstaker from '../../../test/mock/mockNySoknadArbeidstaker';
 import NySoknadArbeidstaker from '../soknad-arbeidstaker/NySoknadArbeidstaker';
 import SoknadKvitteringSjekker from '../felleskomponenter/SoknadKvitteringSjekker';
@@ -22,7 +22,7 @@ import EttSporsmalPerSideContainer from '../felleskomponenter/ett-sporsmal-per-s
 import { getParsetSoknad } from '../../../test/mock/mockSykepengesoknader';
 import FravaerOgFriskmeldingContainerGammelPlattform from '../../sykepengesoknad-gammel-plattform/fravar-og-friskmelding/FravaerOgFriskmeldingContainer';
 import FoerDuBegynnerGammelPlattform from '../../sykepengesoknad-gammel-plattform/for-du-begynner/FoerDuBegynnerContainer';
-import vedlikehold from '../../reducers/vedlikehold';
+import vedlikehold from '../../data/vedlikehold/vedlikehold';
 
 chai.use(chaiEnzyme());
 

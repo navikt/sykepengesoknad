@@ -1,6 +1,6 @@
 import {
     BEKREFT_SYKMELDING_ANGRET,
-} from '../../../actions/actiontyper';
+} from '../../../data/actiontyper';
 import { DATO, PERIODER, PROSENT, TIMER, TALL } from '../../enums/svartyper';
 import { SENDT, NY, AVBRUTT, UTKAST_TIL_KORRIGERING } from '../../enums/soknadstatuser';
 import { OPPHOLD_UTLAND } from '../../enums/soknadtyper';

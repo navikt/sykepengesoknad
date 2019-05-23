@@ -1,9 +1,9 @@
 import { expect } from 'chai';
 import { get, getAjax } from '@navikt/digisyfo-npm';
 import { put, call, select } from 'redux-saga/effects';
-import { hentBrukerinfo, sjekkInnlogging } from '../../js/sagas/brukerinfoSagas';
-import { skalHenteBrukerinfoSelector } from '../../js/selectors/brukerinfoSelectors';
-import { henterBrukerinfo, brukerinfoHentet, setErInnlogget, sjekkerInnlogging } from '../../js/actions/brukerinfo_actions';
+import { hentBrukerinfo, sjekkInnlogging } from '../../js/data/brukerinfo/brukerinfoSagas';
+import { skalHenteBrukerinfoSelector } from '../../js/data/brukerinfo/brukerinfoSelectors';
+import { henterBrukerinfo, brukerinfoHentet, setErInnlogget, sjekkerInnlogging } from '../../js/data/brukerinfo/brukerinfo_actions';
 
 describe('brukerinfoSagas', () => {
     describe('hentBrukerinfo', () => {

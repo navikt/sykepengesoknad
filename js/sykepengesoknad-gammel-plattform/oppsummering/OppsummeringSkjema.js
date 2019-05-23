@@ -13,7 +13,7 @@ import { sykepengesoknad as sykepengesoknadPt, oppsummeringsoknad as oppsummerin
 import ForskuttererArbeidsgiver from './ForskuttererArbeidsgiver';
 import AvbrytSoknadContainer from '../avbryt-soknad/AvbrytSoknadContainer';
 import Feilstripe from '../../components/Feilstripe';
-import FeiloppsummeringContainer from '../../containers/skjema/FeiloppsummeringContainer';
+import FeiloppsummeringContainer from '../../components/skjema/feiloppsummering/FeiloppsummeringContainer';
 import { getSoknadSkjemanavn } from '../../enums/skjemanavn';
 import { ARBEIDSGIVER, ARBEIDSGIVER_OG_NAV, NAV } from '../../sykepengesoknad/enums/soknadmottakertyper';
 

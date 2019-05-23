@@ -1,6 +1,6 @@
 import deepFreeze from 'deep-freeze';
-import unleashToggles from '../../js/reducers/unleashToggles';
-import * as actions from '../../js/actions/unleashToggles_actions';
+import unleashToggles from '../../js/data/unleashToggles/unleashToggles';
+import * as actions from '../../js/data/unleashToggles/unleashToggles_actions';
 import expect from '../expect';
 
 describe('toggles', () => {

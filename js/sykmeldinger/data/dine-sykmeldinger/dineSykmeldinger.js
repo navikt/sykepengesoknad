@@ -1,5 +1,5 @@
 import { parseSykmelding, sykmeldingstatuser } from '@navikt/digisyfo-npm';
-import * as actiontyper from '../../../actions/actiontyper';
+import * as actiontyper from '../../../data/actiontyper';
 
 const { NY } = sykmeldingstatuser;
 

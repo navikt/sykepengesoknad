@@ -10,12 +10,12 @@ import Feilmelding from '../../components/Feilmelding';
 import { sykepengesoknad as sykepengesoknadPt, brodsmule as brodsmulePt, soknadPt } from '../../propTypes/index';
 import { hentSykepengesoknader } from '../data/sykepengesoknader/sykepengesoknader_actions';
 import { hentSoknader } from '../../sykepengesoknad/data/soknader/soknaderActions';
-import { skalHenteSykepengesoknader } from '../../selectors/sykepengesoknaderSelectors';
+import { skalHenteSykepengesoknader } from '../data/sykepengesoknader/sykepengesoknaderSelectors';
 import { skalHenteSoknader } from '../../sykepengesoknad/data/soknader/soknaderSelectors';
 import { selectSkalHenteDineSykmeldinger } from '../../sykmeldinger/data/dine-sykmeldinger/dineSykmeldingerSelectors';
 import { hentDineSykmeldinger } from '../../sykmeldinger/data/dine-sykmeldinger/dineSykmeldingerActions';
 import { ARBEIDSTAKERE } from '../../sykepengesoknad/enums/soknadtyper';
-import { toggleNyArbeidstakerSoknad } from '../../selectors/unleashTogglesSelectors';
+import { toggleNyArbeidstakerSoknad } from '../../data/unleashToggles/unleashTogglesSelectors';
 
 export class Container extends Component {
     componentWillMount() {

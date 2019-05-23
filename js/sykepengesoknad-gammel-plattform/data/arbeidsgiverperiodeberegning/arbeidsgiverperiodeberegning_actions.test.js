@@ -1,7 +1,7 @@
 import { expect } from 'chai';
 
 import * as actions from './arbeidsgiverperiodeberegning_actions';
-import * as actiontyper from '../../../actions/actiontyper';
+import * as actiontyper from '../../../data/actiontyper';
 
 describe('arbeidsgiverperiodeberegning_actions', () => {
     it('Har nødvendige actiontyper', () => {
