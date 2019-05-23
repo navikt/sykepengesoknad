@@ -107,7 +107,7 @@ export function mapStateToProps(state) {
         }),
         brodsmuler: [{
             tittel: getLedetekst('landingsside.sidetittel'),
-            sti: '/',
+            sti: '/sykefravaer',
             erKlikkbar: true,
         }, {
             tittel: getLedetekst('soknader.sidetittel'),

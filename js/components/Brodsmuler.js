@@ -4,14 +4,39 @@ import { Link } from 'react-router';
 import getContextRoot from '../utils/getContextRoot';
 import { brodsmule as brodsmuleProptype } from '../propTypes';
 
+const erHerokuApp = () => {
+    const url = window
+    && window.location
+    && window.location.href
+        ? window.location.href
+        : '';
+
+    return url.indexOf('herokuapp') > -1;
+};
+
+export const getSykefravaerUrl = () => {
+    return erHerokuApp()
+        ? 'https://sykefravaer.herokuapp.com'
+        : process.env.REACT_APP_SYKEFRAVAER_CONTEXT_ROOT;
+};
+
 const Brodsmule = ({ sti, tittel, sisteSmule, erKlikkbar }) => {
+    const nySti = sti && sti.indexOf(process.env.REACT_APP_SYKEFRAVAER_CONTEXT_ROOT) > -1
+        ? getSykefravaerUrl()
+        : sti;
+    const root = sti && sti.indexOf(process.env.REACT_APP_SYKEFRAVAER_CONTEXT_ROOT) > -1
+        ? ''
+        : getContextRoot();
+    const link = root === ''
+        ? <a className="js-smule js-smule-a brodsmuler__smule" href={nySti}>{tittel}</a>
+        : <Link className="js-smule brodsmuler__smule" to={root + nySti}>{tittel}</Link>;
     if (sisteSmule) {
         return (<span className="js-smuletekst">
             <span className="vekk">Du er her:</span> <span className="brodsmule">{tittel}</span>
         </span>);
     } else if (erKlikkbar) {
         return (<span className="js-smuletekst">
-            <Link className="js-smule brodsmuler__smule" to={getContextRoot() + sti}>{tittel}</Link>
+            {link}
             <span className="brodsmule__skille"> / </span>
         </span>);
     }

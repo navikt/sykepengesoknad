@@ -1,9 +1,10 @@
+import { getLedetekst } from '@navikt/digisyfo-npm';
 import beregnSteg, { KVITTERING } from './beregnSteg';
 
 const beregnBrodsmulesti = (sti, id) => {
     const dittSykefravaerSmule = {
-        tittel: 'Ditt sykefravær',
-        sti: '/',
+        tittel: getLedetekst('landingsside.sidetittel'),
+        sti: '/sykefravaer',
         erKlikkbar: true,
     };
     const soknaderSmule = {
