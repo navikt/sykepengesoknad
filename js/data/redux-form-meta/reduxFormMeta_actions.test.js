@@ -1,7 +1,7 @@
 import { expect } from 'chai';
 
-import * as actions from '../../js/data/redux-form-meta/reduxFormMeta_actions';
-import * as actiontyper from '../../js/data/actiontyper';
+import * as actions from './reduxFormMeta_actions';
+import * as actiontyper from '../actiontyper';
 
 describe('reduxFormMeta_actions', () => {
     it('Har nødvendige actiontyper', () => {

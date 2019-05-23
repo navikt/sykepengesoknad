@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { fieldPropTypes } from '../../../propTypes';
 import Feilmelding from '../Feilmelding';
-import { Vis } from '../../../utils';
+import { Vis } from '../../../utils/utils';
 import PeriodeDatoinput from './PeriodeDatoinput';
 import { PeriodevelgerContext } from './Periodevelger';
 import { onDatoChange } from './PeriodeTom';

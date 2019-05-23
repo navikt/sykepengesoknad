@@ -1,7 +1,7 @@
 import deepFreeze from 'deep-freeze';
-import unleashToggles from '../../js/data/unleashToggles/unleashToggles';
-import * as actions from '../../js/data/unleashToggles/unleashToggles_actions';
-import expect from '../expect';
+import unleashToggles from './unleashToggles';
+import * as actions from './unleashToggles_actions';
+import expect from '../../../test/expect';
 
 describe('toggles', () => {
     it('Håndterer TOGGLES_HENTET ', () => {

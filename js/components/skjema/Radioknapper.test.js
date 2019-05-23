@@ -3,7 +3,7 @@ import React from 'react';
 import { mount, shallow } from 'enzyme';
 import Hjelpetekst from 'nav-frontend-hjelpetekst';
 import chaiEnzyme from 'chai-enzyme';
-import Radioknapper, { Radioknapp } from '../../../js/components/skjema/Radioknapper';
+import Radioknapper, { Radioknapp } from './Radioknapper';
 
 chai.use(chaiEnzyme());
 const expect = chai.expect;

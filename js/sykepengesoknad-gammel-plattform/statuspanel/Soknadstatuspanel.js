@@ -3,7 +3,7 @@ import { tilLesbarDatoMedArstall, getLedetekst, getHtmlLedetekst, sykepengesokna
 import Hjelpetekst from 'nav-frontend-hjelpetekst';
 import { sykepengesoknad as sykepengesoknadPt } from '../../propTypes/index';
 import { erSendtTilBeggeMenIkkeSamtidig, getSendtTilSuffix } from '../utils/sykepengesoknadUtils';
-import { formaterOrgnr } from '../../utils/index';
+import { formaterOrgnr } from '../../utils/utils';
 import Statuspanel, { StatusNokkelopplysning, Statusopplysninger } from '../../components/Statuspanel';
 import KnapperadStatuspanel from './KnapperadStatuspanel';
 

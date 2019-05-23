@@ -1,7 +1,7 @@
 import chai from 'chai';
 import chaiEnzyme from 'chai-enzyme';
-import * as actiontyper from '../../js/data/actiontyper';
-import * as actions from '../../js/data/vedlikehold/vedlikehold_actions';
+import * as actiontyper from '../actiontyper';
+import * as actions from './vedlikehold_actions';
 
 chai.use(chaiEnzyme());
 const expect = chai.expect;

@@ -2,7 +2,7 @@ import chai from 'chai';
 import React from 'react';
 import { mount, shallow } from 'enzyme';
 import chaiEnzyme from 'chai-enzyme';
-import Brodsmuler from '../../js/components/Brodsmuler';
+import Brodsmuler from './Brodsmuler';
 
 chai.use(chaiEnzyme());
 const expect = chai.expect;

@@ -5,7 +5,7 @@ import { Field } from 'redux-form';
 import Radioknapper from './Radioknapper';
 import SporsmalMedTillegg from './SporsmalMedTillegg';
 import { fieldPropTypes, childEllerChildren } from '../../propTypes';
-import { Vis } from '../../utils';
+import { Vis } from '../../utils/utils';
 import JaEllerNeiRadiopanelgruppe from './JaEllerNeiRadiopanelgruppe';
 
 export const jaEllerNeiAlternativer = [{

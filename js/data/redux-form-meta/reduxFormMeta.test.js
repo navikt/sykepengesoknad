@@ -1,7 +1,7 @@
 import deepFreeze from 'deep-freeze';
 import { expect } from 'chai';
-import * as actions from '../../js/data/redux-form-meta/reduxFormMeta_actions';
-import reduxFormMeta from '../../js/data/redux-form-meta/reduxFormMeta';
+import * as actions from './reduxFormMeta_actions';
+import reduxFormMeta from './reduxFormMeta';
 
 describe('reduxFormMeta', () => {
     it('Returnerer initielt et tomt objekt', () => {

@@ -2,7 +2,7 @@ import chai from 'chai';
 import React from 'react';
 import { mount } from 'enzyme';
 import chaiEnzyme from 'chai-enzyme';
-import { lagDesimaltall, lagHeltall, Vis } from '../../js/utils';
+import { lagDesimaltall, lagHeltall, Vis } from './utils';
 
 chai.use(chaiEnzyme());
 const expect = chai.expect;

@@ -4,7 +4,7 @@ import { shallow } from 'enzyme';
 import chaiEnzyme from 'chai-enzyme';
 import sinon from 'sinon';
 import DayPicker from 'react-day-picker';
-import DaypickerDato from '../../../../js/components/skjema/datovelger/DayPickerDato';
+import DaypickerDato from './DayPickerDato';
 
 chai.use(chaiEnzyme());
 const expect = chai.expect;

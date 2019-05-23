@@ -9,7 +9,7 @@ import {
 } from '@navikt/digisyfo-npm';
 import Hjelpetekst from 'nav-frontend-hjelpetekst';
 import { sykmelding as sykmeldingPt } from '../../propTypes';
-import { Vis } from '../../utils/index';
+import { Vis } from '../../utils/utils';
 import { StatusNokkelopplysning } from '../../components/Statuspanel';
 
 const { BEKREFTET, AVBRUTT, TIL_SENDING } = sykmeldingstatuser;

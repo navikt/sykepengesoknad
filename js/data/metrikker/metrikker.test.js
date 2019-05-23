@@ -1,10 +1,10 @@
 import deepFreeze from 'deep-freeze';
 import { expect } from 'chai';
 import sinon from 'sinon';
-import metrikker from '../../js/data/metrikker/metrikker';
-import { utfyllingStartet } from '../../js/data/metrikker/metrikker_actions';
-import { UTFYLLING_STARTET } from '../../js/enums/metrikkerEnums';
-import { soknadSendt } from '../../js/sykepengesoknad/data/soknader/soknaderActions';
+import metrikker from './metrikker';
+import { utfyllingStartet } from './metrikker_actions';
+import { UTFYLLING_STARTET } from '../../enums/metrikkerEnums';
+import { soknadSendt } from '../../sykepengesoknad/data/soknader/soknaderActions';
 
 describe('metrikker', () => {
     let clock;

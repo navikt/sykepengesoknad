@@ -8,7 +8,7 @@ import { sykepengesoknad as sykepengesoknadPt, soknadPt } from '../../propTypes/
 import { sorterEtterPerioder, sorterEtterOpprettetDato } from '../utils/sorterSoknader';
 import FremtidigSoknadTeaser from './FremtidigSoknadTeaser';
 import UtbetalingerLenke from './UtbetalingerLenke';
-import { Vis } from '../../utils/index';
+import { Vis } from '../../utils/utils';
 
 const { SENDT, TIL_SENDING, UTGAATT, NY, UTKAST_TIL_KORRIGERING, FREMTIDIG, AVBRUTT } = sykepengesoknadstatuser;
 

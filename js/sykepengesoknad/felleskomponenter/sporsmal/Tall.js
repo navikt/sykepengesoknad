@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import TekstfeltMedEnhet from '../../../components/skjema/TekstfeltMedEnhet';
 import Sporsmalstekst from './Sporsmalstekst';
 import { formaterEnkeltverdi, genererParseForEnkeltverdi } from './fieldUtils';
-import { lagDesimaltall, lagHeltall } from '../../../utils/index';
+import { lagDesimaltall, lagHeltall } from '../../../utils/utils';
 
 const Tall = ({ sporsmalstekst, name, label, undertekst, kunHeltall }) => {
     const parse = genererParseForEnkeltverdi();

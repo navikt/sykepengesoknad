@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { getLedetekst } from '@navikt/digisyfo-npm';
 import PropTypes from 'prop-types';
 import { Field } from 'redux-form';
-import { Vis } from '../../../utils';
+import { Vis } from '../../../utils/utils';
 import validerDatoField from '../datovelger/validerDatoField';
 import DayPickerPeriode from './DayPickerPeriode';
 import FomFieldComponent from './PeriodeFom';

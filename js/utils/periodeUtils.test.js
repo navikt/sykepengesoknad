@@ -7,7 +7,7 @@ import {
     harOverlappendePerioder,
     antallVirkedagerIPeriode,
     antallVirkedagerIPerioder,
-} from '../../js/utils/periodeUtils';
+} from './periodeUtils';
 
 const expect = chai.expect;
 

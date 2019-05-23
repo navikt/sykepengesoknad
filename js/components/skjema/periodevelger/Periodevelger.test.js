@@ -3,8 +3,8 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import chaiEnzyme from 'chai-enzyme';
 import sinon from 'sinon';
-import PeriodeFields from '../../../../js/components/skjema/periodevelger/PeriodeFields';
-import { PeriodelisteComponent } from '../../../../js/components/skjema/periodevelger/Periodeliste';
+import PeriodeFields from './PeriodeFields';
+import { PeriodelisteComponent } from './Periodeliste';
 
 chai.use(chaiEnzyme());
 const expect = chai.expect;

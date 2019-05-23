@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import cn from 'classnames';
-import { Vis } from '../utils';
+import { Vis } from '../utils/utils';
 
 const Sidetopp = ({ tittel, htmlTekst = null, className }) => {
     const classNames = cn('sidetopp', className);

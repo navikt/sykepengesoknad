@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { scrollTo, erSynligIViewport } from '@navikt/digisyfo-npm';
-import { Vis } from '../../utils';
+import { Vis } from '../../utils/utils';
 
 class SporsmalMedTillegg extends Component {
     constructor(props) {

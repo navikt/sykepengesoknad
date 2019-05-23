@@ -1,5 +1,5 @@
 import chai from 'chai';
-import validerDatoField from '../../../../js/components/skjema/datovelger/validerDatoField';
+import validerDatoField from './validerDatoField';
 
 const expect = chai.expect;
 

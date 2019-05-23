@@ -1,12 +1,10 @@
 import deepFreeze from 'deep-freeze';
 import { expect } from 'chai';
 import sinon from 'sinon';
-import { UTFYLLING_STARTET } from '../../js/enums/metrikkerEnums';
-import { hentEvent, hentEvents, hentMetrikk } from '../../js/data/metrikker/metrikkerSelectors';
-import { soknadSendt } from '../../js/sykepengesoknad/data/soknader/soknaderActions';
-import { SELVSTENDIGE_OG_FRILANSERE } from '../../js/sykepengesoknad/enums/soknadtyper';
+import { beregnVarighet } from './metrikkerUtils';
+import { TID_INNSENDING_SYKEPENGESOKNAD_SELVSTENDIG, TID_INNSENDING_SYKMELDING, UTFYLLING_STARTET } from '../enums/metrikkerEnums';
 
-describe('metrikkerSelectors', () => {
+describe('metrikkerUtils', () => {
     let state;
     let event1;
     let event2;
@@ -80,45 +78,29 @@ describe('metrikkerSelectors', () => {
         clock.restore();
     });
 
-    describe('hentEvents', () => {
-        it('Skal returnere alle event for en gitt ressursId i sortert rekkefølge', () => {
-            const events = hentEvents(deepFreeze(state), 'min-sykmelding-id');
-            expect(events).to.deep.equal([event1, event3, event4]);
-        });
-    });
-
-    describe('hentEvent', () => {
-        it('Skal returnere siste event med type/ressursId', () => {
-            const event = hentEvent(deepFreeze(state), {
+    describe('beregnVarighet', () => {
+        it('Skal returnere riktig tid for innsending av sykmeldinger', () => {
+            const tid = beregnVarighet(deepFreeze(state), {
+                type: TID_INNSENDING_SYKMELDING,
                 ressursId: 'min-sykmelding-id',
-                type: UTFYLLING_STARTET,
             });
-            expect(event).to.deep.equal(event3);
-        });
-    });
-
-    describe('hentMetrikk', () => {
-        it('Skal returnere riktig metrikk ved SOKNAD_SENDT når søknaden er for selvstendig næringsdrivende', () => {
-            const action = soknadSendt({
-                id: 'min-selvstendig-soknadPt-id',
-                soknadstype: SELVSTENDIGE_OG_FRILANSERE,
-            });
-            const metrikk = hentMetrikk(state, action);
-            expect(metrikk).to.deep.equal({
-                type: 'SYKEFRAVAER_METRIKK__SYKEPENGESOKNAD_SENDT_SELVSTENDIG/FRILANSER/1SPM-PER-SIDE',
-                data: {
-                    tid: 1401,
-                },
-            });
+            expect(tid).to.equal(45632);
         });
 
-        it('Skal ikke tryne hvis søknadstypen er av ukjent type', () => {
-            const action = soknadSendt({
-                id: 'min-selvstendig-soknadPt-id-ukjent',
-                soknadstype: 'UKJENT-TYPE',
+        it('Skal returnere riktig tid for innsending av sykmeldinger ved race-conditions', () => {
+            const tid = beregnVarighet(deepFreeze(state), {
+                type: TID_INNSENDING_SYKMELDING,
+                ressursId: 'min-sykmelding-id-2',
             });
-            const metrikk = hentMetrikk(state, action);
-            expect(metrikk).to.deep.equal(null);
+            expect(tid).to.equal(45632 + 500 + 1401 + 800);
+        });
+
+        it('Skal returnere riktig tid for innsending av søknad for selvstendig næringsdrivende', () => {
+            const tid = beregnVarighet(deepFreeze(state), {
+                type: TID_INNSENDING_SYKEPENGESOKNAD_SELVSTENDIG,
+                ressursId: 'min-selvstendig-soknadPt-id',
+            });
+            expect(tid).to.equal(tid6.getTime() - tid5.getTime());
         });
     });
 });

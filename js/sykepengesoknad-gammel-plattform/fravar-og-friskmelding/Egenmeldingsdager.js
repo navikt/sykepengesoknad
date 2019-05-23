@@ -8,7 +8,7 @@ import Periodevelger from '../../components/skjema/periodevelger/Periodevelger';
 import { sykepengesoknad as sykepengesoknadPt } from '../../propTypes/index';
 import { getTidligsteStartdatoSykeforloep } from '../../utils/sykmeldingUtils';
 import { finnEgenmeldingsdagerSporsmal } from '../utils/finnSykepengesoknadSporsmal';
-import { Vis } from '../../utils/index';
+import { Vis } from '../../utils/utils';
 import { tilLesbarDatoMedArstall } from '../../utils/datoUtils';
 
 export const PreutfyltBjorn = ({ vis }) => {

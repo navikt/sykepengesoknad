@@ -5,7 +5,7 @@ import { getLedetekst, sykepengesoknad as sykepengesoknadPt } from '@navikt/digi
 import { connect } from 'react-redux';
 import { Radio } from 'nav-frontend-skjema';
 import TekstfeltMedEnhet from '../../components/skjema/TekstfeltMedEnhet';
-import { lagDesimaltall, getObjectValueByString, lagHeltall } from '../../utils/index';
+import { lagDesimaltall, getObjectValueByString, lagHeltall } from '../../utils/utils';
 import BeregnetArbeidsgrad, { getStillingsprosent } from './BeregnetArbeidsgrad';
 import { soknadperiode, fieldPropTypes } from '../../propTypes/index';
 import { getFeriePermisjonPerioder } from '../utils/sykepengesoknadUtils';

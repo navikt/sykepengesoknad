@@ -1,9 +1,9 @@
 import { expect } from 'chai';
 import { put, call } from 'redux-saga/effects';
-import { hentUnleashToggles } from '../../js/data/unleashToggles/unleashTogglesSagas';
-import { henterUnleashToggles, unleashTogglesHentet } from '../../js/data/unleashToggles/unleashToggles_actions';
-import { post } from '../../js/gateway-api';
-import * as toggles from '../../js/enums/unleashToggles';
+import { hentUnleashToggles } from './unleashTogglesSagas';
+import { henterUnleashToggles, unleashTogglesHentet } from './unleashToggles_actions';
+import { post } from '../../gateway-api/index';
+import * as toggles from '../../enums/unleashToggles';
 
 describe('togglesSagas', () => {
     const generator = hentUnleashToggles();

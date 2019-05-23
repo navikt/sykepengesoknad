@@ -3,9 +3,9 @@ import React from 'react';
 import chaiEnzyme from 'chai-enzyme';
 import sinon from 'sinon';
 import { shallow } from 'enzyme';
-import TidligSoknad from '../../../js/components/soknad-felles/TidligSoknad';
-import { getNySoknadSelvstendig } from '../../mock/mockSoknadSelvstendig';
-import IllustrertInnhold from '../../../js/components/IllustrertInnhold';
+import TidligSoknad from './TidligSoknad';
+import { getNySoknadSelvstendig } from '../../../test/mock/mockSoknadSelvstendig';
+import IllustrertInnhold from '../IllustrertInnhold';
 
 chai.use(chaiEnzyme());
 const expect = chai.expect;

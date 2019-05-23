@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { fieldPropTypes } from '../../../propTypes';
 import Feilmelding from '../Feilmelding';
 import PeriodeDatoinput from './PeriodeDatoinput';
-import { Vis } from '../../../utils';
+import { Vis } from '../../../utils/utils';
 import { PeriodevelgerContext } from './Periodevelger';
 
 export const onDatoChange = (props, prevProps) => {

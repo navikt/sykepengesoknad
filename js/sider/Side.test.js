@@ -4,9 +4,9 @@ import { shallow } from 'enzyme';
 import { TimeoutBox } from '@navikt/digisyfo-npm';
 import chaiEnzyme from 'chai-enzyme';
 import sinon from 'sinon';
-import Feilmelding from '../../js/components/Feilmelding';
-import { SideComponent, Utlogget } from '../../js/sider/Side';
-import Brodsmuler from '../../js/components/Brodsmuler';
+import Feilmelding from '../components/Feilmelding';
+import { SideComponent, Utlogget } from './Side';
+import Brodsmuler from '../components/Brodsmuler';
 
 const DocumentTitle = require('react-document-title');
 

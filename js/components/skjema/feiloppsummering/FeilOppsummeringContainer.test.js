@@ -1,6 +1,6 @@
 import chaiEnzyme from 'chai-enzyme';
 import chai from 'chai';
-import { mapStateToProps, getNestedKeys } from '../../../js/components/skjema/feiloppsummering/FeiloppsummeringContainer';
+import { mapStateToProps, getNestedKeys } from './FeiloppsummeringContainer';
 
 chai.use(chaiEnzyme());
 const expect = chai.expect;

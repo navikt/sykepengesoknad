@@ -1,5 +1,5 @@
 import { getLedetekst, tilLesbarDatoMedArstall } from '@navikt/digisyfo-npm';
-import { formaterOrgnr } from '../../utils/index';
+import { formaterOrgnr } from '../../utils/utils';
 import { KORRIGERT } from '../enums/soknadstatuser';
 
 const hentSoknadStatustekst = (soknad) => {

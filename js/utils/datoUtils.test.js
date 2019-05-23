@@ -3,7 +3,7 @@ import chaiEnzyme from 'chai-enzyme';
 import {
     datoMedKlokkeslett,
     erGyldigDato,
-} from '../../js/utils/datoUtils';
+} from './datoUtils';
 
 chai.use(chaiEnzyme());
 const expect = chai.expect;

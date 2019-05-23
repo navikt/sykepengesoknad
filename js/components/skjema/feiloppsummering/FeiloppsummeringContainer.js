@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import { touch } from 'redux-form';
-import { getObjectValueByString } from '../../../utils/index';
+import { getObjectValueByString } from '../../../utils/utils';
 import * as actions from '../../../data/redux-form-meta/reduxFormMeta_actions';
 import Feiloppsummering from './Feiloppsummering';
 import { SEND_SKJEMA_FEILET } from '../../../enums/reduxFormMetaEnums';
