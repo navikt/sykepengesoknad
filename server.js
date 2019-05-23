@@ -92,7 +92,7 @@ const startServer = (html) => {
         require('./mock/mockEndepunkter')(server, env === 'local');
     }
 
-    const port = process.env.PORT || 8085;
+    const port = env !== 'local' ? process.env.PORT : 8085;
     server.listen(port, () => {
         console.log(`App listening on port: ${port}`);
     });
