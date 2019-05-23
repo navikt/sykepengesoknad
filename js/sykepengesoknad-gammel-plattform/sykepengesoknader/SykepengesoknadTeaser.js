@@ -7,7 +7,6 @@ import {
     tilLesbarDatoMedArstall,
     tilLesbarPeriodeMedArstall,
 } from '@navikt/digisyfo-npm';
-import getContextRoot from '../../utils/getContextRoot';
 import { sykepengesoknad as sykepengesoknadPt, soknadPt } from '../../propTypes/index';
 import { getSendtTilSuffix, erSendtTilBeggeMenIkkeSamtidig } from '../utils/sykepengesoknadUtils';
 import { OPPHOLD_UTLAND, SELVSTENDIGE_OG_FRILANSERE } from '../../sykepengesoknad/enums/soknadtyper';
