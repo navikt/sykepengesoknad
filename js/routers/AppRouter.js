@@ -6,9 +6,9 @@ import SykepengesoknadContainer from '../sykepengesoknad/sider/SoknadSide';
 
 const AppRouter = ({ history }) => {
     return (<Router history={history}>
-        <Route path={`${process.env.REACT_APP_CONTEXT_ROOT}/soknader`} component={SoknaderSide} />
         <Route path={`${process.env.REACT_APP_CONTEXT_ROOT}/soknader/:sykepengesoknadId`} component={SykepengesoknadContainer} />
         <Route path={`${process.env.REACT_APP_CONTEXT_ROOT}/soknader/:sykepengesoknadId/:steg`} component={SykepengesoknadContainer} />
+        <Route path="*" component={SoknaderSide} />
     </Router>);
 };
 

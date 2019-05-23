@@ -20,6 +20,7 @@ import {
     InngangspanelTekst,
     InngangspanelUndertekst,
 } from '../../components/Inngangspanel';
+import { getUrlTilSoknad } from '../../utils/urlUtils';
 
 const { NY, SENDT, TIL_SENDING, UTKAST_TIL_KORRIGERING, AVBRUTT } = sykepengesoknadstatuser;
 
@@ -157,7 +158,7 @@ const SykepengesoknadTeaser = ({ soknad }) => {
     return (<article aria-labelledby={`soknader-header-${soknad.id}`}>
         <Inngangspanel
             className={`js-panel js-soknad-${status}`}
-            to={`${getContextRoot()}/soknader/${soknad.id}`}>
+            to={getUrlTilSoknad(soknad.id)}>
             <InngangspanelIkon
                 ikon={hentIkon(soknad.soknadstype)}
                 ikonHover={hentIkonHover(soknad.soknadstype)}

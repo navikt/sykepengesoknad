@@ -8,6 +8,7 @@ import TidligSoknad from '../../../components/soknad-felles/TidligSoknad';
 import { soknadPt } from '../../prop-types/soknadProptype';
 import StegindikatorEttSporsmalPerSide from './StegindikatorEttSporsmalPerSide';
 import SykmeldingUtdrag from '../sykmelding-utdrag/SykmeldingUtdrag';
+import { getUrlTilSoknad } from '../../../utils/urlUtils';
 
 class Soknadskjema extends Component {
     componentDidMount() {
@@ -18,7 +19,7 @@ class Soknadskjema extends Component {
 
     render() {
         const { children, sidenummer = null, tittel, soknad, intro = null } = this.props;
-        const forrigeUrl = `/sykepengesoknad/soknader/${soknad.id}/${(sidenummer - 1)}`;
+        const forrigeUrl = getUrlTilSoknad(soknad.id, sidenummer - 1);
 
         return (<div>
             {

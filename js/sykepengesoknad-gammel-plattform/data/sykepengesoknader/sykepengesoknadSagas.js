@@ -7,9 +7,10 @@ import history from '../../../history';
 import { finnSoknad } from './sykepengesoknader';
 import logger from '../../../logging';
 import { skalHenteSykepengesoknader } from './sykepengesoknaderSelectors';
+import { getUrlTilKvittering, getUrlTilSoknad } from '../../../utils/urlUtils';
 
 const gaTilKvittering = (sykepengesoknadsId) => {
-    browserHistory.push(`${process.env.REACT_APP_CONTEXT_ROOT}/soknader/${sykepengesoknadsId}/kvittering`);
+    browserHistory.push(getUrlTilKvittering(sykepengesoknadsId));
 };
 
 export function* oppdaterSykepengesoknader() {
@@ -71,7 +72,7 @@ export function* startEndring(action) {
     try {
         const sykepengesoknad = yield call(post, `${process.env.REACT_APP_SYFOREST_ROOT}/soknader/${action.sykepengesoknadsId}/actions/korriger`);
         yield put(actions.endringStartet(sykepengesoknad));
-        yield history.push(`${process.env.REACT_APP_CONTEXT_ROOT}/soknader/${sykepengesoknad.id}`);
+        yield history.push(getUrlTilSoknad(sykepengesoknad.id));
     } catch (e) {
         log(e);
         yield put(actions.startEndringFeilet());

@@ -3,9 +3,10 @@ import { browserHistory } from 'react-router';
 import { post, log } from '@navikt/digisyfo-npm';
 import * as actions from './dinSykmeldingActions';
 import * as actiontyper from '../actiontyper';
+import { getUrlTilSykmelding } from '../../utils/urlUtils';
 
 const gaTilSykmelding = (sykmeldingId) => {
-    browserHistory.push(`${process.env.REACT_APP_SYKEFRAVAER_CONTEXT_ROOT}/sykmeldinger/${sykmeldingId}/`);
+    browserHistory.push(getUrlTilSykmelding(sykmeldingId));
 };
 
 export function* angreBekreftSykmelding(action) {

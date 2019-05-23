@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router';
 import { sykepengesoknad as sykepengesoknadPt, soknadPt } from '../../propTypes';
 import logger from '../../logging';
+import { getUrlTilSoknad } from '../../utils/urlUtils';
 
 class StartIgjen extends Component {
     componentDidMount() {
@@ -23,7 +24,7 @@ class StartIgjen extends Component {
                 <p className="hode__melding">
                     Derfor må du dessverre <Link
                         className="lenke"
-                        to={`${process.env.REACT_APP_CONTEXT_ROOT}/soknader/${soknad.id}`}>fylle ut søknaden på nytt</Link>.
+                        to={getUrlTilSoknad(soknad.id)}>fylle ut søknaden på nytt</Link>.
                 </p>
             </div>
         </div>);

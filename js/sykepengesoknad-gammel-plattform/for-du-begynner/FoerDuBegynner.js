@@ -16,13 +16,14 @@ import KorrigerVarsel from '../../components/soknad-felles/KorrigerVarsel';
 import ForsteSoknadIntro from './ForsteSoknadIntro';
 import SoknadIntro from './SoknadIntro';
 import TidligSoknad from '../../components/soknad-felles/TidligSoknad';
+import { getUrlTilFravaerOgFriskmelding } from '../../utils/urlUtils';
 
 const { UTKAST_TIL_KORRIGERING } = sykepengesoknadstatuser;
 
 export const FoerDuBegynnerSkjema = (props) => {
     const { handleSubmit, sykepengesoknad } = props;
     const onSubmit = () => {
-        history.push(`${process.env.REACT_APP_CONTEXT_ROOT}/soknader/${sykepengesoknad.id}/fravaer-og-friskmelding`);
+        history.push(getUrlTilFravaerOgFriskmelding(sykepengesoknad.id));
     };
     return (<form className="soknadskjema" id="foer-du-begynner-skjema" onSubmit={handleSubmit(onSubmit)}>
         <div className="redaksjonelt-innhold">

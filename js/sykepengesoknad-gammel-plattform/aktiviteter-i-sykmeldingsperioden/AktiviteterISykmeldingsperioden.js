@@ -19,6 +19,7 @@ import { filtrerAktuelleAktiviteter } from '../utils/sykepengesoknadUtils';
 import { PreutfyltBjorn } from '../fravar-og-friskmelding/Egenmeldingsdager';
 import FeiloppsummeringContainer from '../../components/skjema/feiloppsummering/FeiloppsummeringContainer';
 import { getSoknadSkjemanavn } from '../../enums/skjemanavn';
+import { getUrlTilFravaerOgFriskmelding, getUrlTilOppsummering } from '../../utils/urlUtils';
 
 export const UtdanningStartDato = ({ senesteTom }) => {
     return (<div className="blokk">
@@ -44,7 +45,7 @@ export class AktiviteterISykmeldingsperiodenSkjema extends Component {
         const { handleSubmit, sykepengesoknad, autofill, untouch, gjenopptattArbeidFulltUtDato, erUtdanningPreutfylt, erInntektskilderPreutfylt } = this.props;
 
         const onSubmit = () => {
-            history.push(`${process.env.REACT_APP_CONTEXT_ROOT}/soknader/${sykepengesoknad.id}/oppsummering`);
+            history.push(getUrlTilOppsummering(sykepengesoknad.id));
         };
 
         const _aktiviteter = filtrerAktuelleAktiviteter(sykepengesoknad.aktiviteter, gjenopptattArbeidFulltUtDato);
@@ -93,7 +94,7 @@ export class AktiviteterISykmeldingsperiodenSkjema extends Component {
                             </JaEllerNei>
                 }
             </div>
-            <KnapperadSoknad forrigeUrl={`${process.env.REACT_APP_CONTEXT_ROOT}/soknader/${sykepengesoknad.id}/fravaer-og-friskmelding`} />
+            <KnapperadSoknad forrigeUrl={getUrlTilFravaerOgFriskmelding(sykepengesoknad.id)} />
             <AvbrytSoknadContainer sykepengesoknad={sykepengesoknad} />
         </form>);
     }

@@ -17,7 +17,6 @@ import { populerSoknadMedSvarUtenKonvertertePerioder } from '../../utils/populer
 import fraBackendsoknadTilInitiellSoknad from '../../utils/fraBackendsoknadTilInitiellSoknad';
 import { hentSkjemaVerdier } from '../../../data/redux-form/reduxFormSelectors';
 import { getSkjemanavnFraSoknad } from '../../utils/getSkjemanavnFraSoknad';
-import getContextRoot from '../../../utils/getContextRoot';
 import { soknadUtland1 } from '../../../../test/mock/mockSoknadUtland';
 import { UTKAST_TIL_KORRIGERING } from '../../enums/soknadstatuser';
 import { toggleNyArbeidstakerSoknad } from '../../../data/unleashToggles/unleashTogglesSelectors';
@@ -42,9 +41,10 @@ import {
     SOKNAD_ETTERSENDT_ARBG,
 } from '../ettersending/ettersendingArbeidsgiver';
 import history from '../../../history';
+import { getUrlTilKvittering, getUrlTilSoknad, getUrlTilSoknader } from '../../../utils/urlUtils';
 
 const gaTilKvittering = (soknadId) => {
-    browserHistory.push(`${process.env.REACT_APP_CONTEXT_ROOT}/soknader/${soknadId}/kvittering`);
+    browserHistory.push(getUrlTilKvittering(soknadId));
 };
 
 export function* oppdaterSoknader() {
@@ -127,10 +127,10 @@ export function* avbrytSoknad(action) {
             yield put(actions.soknadAvbrutt(action.soknad));
             if (action.soknad.soknadstype === OPPHOLD_UTLAND ||
                 action.soknad.status === UTKAST_TIL_KORRIGERING) {
-                browserHistory.push(`${getContextRoot()}/soknader`);
+                browserHistory.push(getUrlTilSoknader());
             } else if (action.soknad.soknadstype === ARBEIDSTAKERE
                 || action.soknad.soknadstype === SELVSTENDIGE_OG_FRILANSERE) {
-                browserHistory.push(`${getContextRoot()}/soknader/${action.soknad.id}`);
+                browserHistory.push(getUrlTilSoknad(action.soknad.id));
             }
         } catch (e) {
             log(e);
@@ -163,7 +163,7 @@ export function* lagreSoknad(action) {
         const oppdatertSoknad = yield call(post, `${hentApiUrl()}/oppdaterSporsmal`, populertSoknad);
         yield put(actions.soknadOppdatert(oppdatertSoknad));
         yield put(initialize(skjemanavn, fraBackendsoknadTilInitiellSoknad(oppdatertSoknad)));
-        history.push(`${process.env.REACT_APP_CONTEXT_ROOT}/soknader/${soknad.id}/${action.sidenummer + 1}`);
+        history.push(getUrlTilSoknad(soknad.id, action.sidenummer + 1));
     } catch (e) {
         log(e);
         yield put(actions.oppdaterSoknadFeilet(action.soknad));
@@ -188,7 +188,7 @@ export function* oppdaterSporsmalForUtlandssoknad(action) {
 }
 
 const gaTilSkjemaUtland = (soknadUtlandId) => {
-    browserHistory.push(`${process.env.REACT_APP_CONTEXT_ROOT}/soknader/${soknadUtlandId}`);
+    browserHistory.push(getUrlTilSoknad(soknadUtlandId));
 };
 
 export function* opprettSoknadUtland() {
@@ -214,7 +214,7 @@ export function* opprettUtkastTilKorrigering(action) {
     try {
         const data = yield call(post, `${hentApiUrl()}/soknader/${action.sykepengesoknadsId}/korriger`);
         yield put(actions.korrigeringOpprettet(data));
-        browserHistory.push(`${process.env.REACT_APP_CONTEXT_ROOT}/soknader/${data.id}`);
+        browserHistory.push(getUrlTilSoknad(data.id));
     } catch (e) {
         log(e);
         logger.error(`Kunne ikke opprette utkast til korrigering. URL: ${window.location.href} - ${e.message}`);

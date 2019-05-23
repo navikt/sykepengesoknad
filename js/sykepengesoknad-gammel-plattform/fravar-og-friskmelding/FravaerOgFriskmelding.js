@@ -13,6 +13,7 @@ import { sykepengesoknad as sykepengesoknadPt } from '../../propTypes/index';
 import AvbrytSoknadContainer from '../avbryt-soknad/AvbrytSoknadContainer';
 import FeiloppsummeringContainer from '../../components/skjema/feiloppsummering/FeiloppsummeringContainer';
 import { getSoknadSkjemanavn } from '../../enums/skjemanavn';
+import { getUrlTilAktiviteterISykmeldingsperioden, getUrlTilSoknad } from '../../utils/urlUtils';
 
 export class FravaerOgFriskmeldingSkjema extends Component {
     componentDidMount() {
@@ -24,7 +25,7 @@ export class FravaerOgFriskmeldingSkjema extends Component {
     render() {
         const { handleSubmit, sykepengesoknad, erEgenmeldingsperioderPreutfylt } = this.props;
         const onSubmit = () => {
-            history.push(`${process.env.REACT_APP_CONTEXT_ROOT}/soknader/${sykepengesoknad.id}/aktiviteter-i-sykmeldingsperioden`);
+            history.push(getUrlTilAktiviteterISykmeldingsperioden(sykepengesoknad.id));
         };
         return (<form
             className="soknadskjema"
@@ -39,7 +40,7 @@ export class FravaerOgFriskmeldingSkjema extends Component {
                 <GjenopptattArbeidFulltUt sykepengesoknad={sykepengesoknad} />
                 <FeriePermisjonEllerUtenlandsopphold sykepengesoknad={sykepengesoknad} />
             </div>
-            <KnapperadSoknad forrigeUrl={`${process.env.REACT_APP_CONTEXT_ROOT}/soknader/${sykepengesoknad.id}/`} />
+            <KnapperadSoknad forrigeUrl={getUrlTilSoknad(sykepengesoknad.id)} />
             <AvbrytSoknadContainer sykepengesoknad={sykepengesoknad} />
         </form>);
     }
