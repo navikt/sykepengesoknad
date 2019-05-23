@@ -4,7 +4,7 @@ import { Provider } from 'react-redux';
 import configureMockStore from 'redux-mock-store';
 import { timeout } from '@navikt/digisyfo-npm';
 import createSagaMiddleware from 'redux-saga';
-import dineSykmeldinger from '../js/sykmeldinger/data/dine-sykmeldinger/dineSykmeldinger';
+import dineSykmeldinger from '../js/data/dine-sykmeldinger/dineSykmeldinger';
 import brukerinfo from '../js/data/brukerinfo/brukerinfo';
 import unleashToggles from '../js/data/unleashToggles/unleashToggles';
 

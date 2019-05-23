@@ -1,5 +1,5 @@
-import { sykmeldingHarBehandletSoknad } from '../../../sykepengesoknad/data/soknader/soknaderSelectors';
-import { toggleSykmeldingEndreArbeidssituasjon } from '../../../data/unleashToggles/unleashTogglesSelectors';
+import { sykmeldingHarBehandletSoknad } from '../../sykepengesoknad/data/soknader/soknaderSelectors';
+import { toggleSykmeldingEndreArbeidssituasjon } from '../unleashToggles/unleashTogglesSelectors';
 
 export const selectDineSykmeldingerSlice = (state) => {
     return state.dineSykmeldinger;

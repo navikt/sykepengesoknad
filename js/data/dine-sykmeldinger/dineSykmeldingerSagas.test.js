@@ -2,7 +2,7 @@ import { expect } from 'chai';
 import { get } from '@navikt/digisyfo-npm';
 import { put, call } from 'redux-saga/effects';
 import { oppdaterDineSykmeldinger } from './dineSykmeldingerSagas';
-import * as actiontyper from '../../../data/actiontyper';
+import * as actiontyper from '../actiontyper';
 
 describe('dineSykmeldingerSagas', () => {
     const generator = oppdaterDineSykmeldinger();

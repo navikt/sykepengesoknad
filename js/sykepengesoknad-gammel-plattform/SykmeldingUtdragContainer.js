@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { SykmeldingUtdrag, sykmelding as sykmeldingPt } from '@navikt/digisyfo-npm';
 import AppSpinner from '../components/AppSpinner';
-import { hentDineSykmeldinger as hentDineSykmeldingerAction } from '../sykmeldinger/data/dine-sykmeldinger/dineSykmeldingerActions';
+import { hentDineSykmeldinger as hentDineSykmeldingerAction } from '../data/dine-sykmeldinger/dineSykmeldingerActions';
 import getContextRoot from '../utils/getContextRoot';
 
 class Container extends Component {

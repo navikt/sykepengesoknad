@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import { getLedetekst, sykmelding as sykmeldingPt } from '@navikt/digisyfo-npm';
-import { connectAngreArbeidssituasjon } from '../../../sykmeldinger/angre-bekreftet-sykmelding/AngreBekreftSykmeldingContainer';
 import EndreArbeidssituasjonLightbox from './EndreArbeidssituasjonLightbox';
+import { selectKanEndreSykmeldingArbeidssituasjon } from '../../../data/dine-sykmeldinger/dineSykmeldingerSelectors';
+import { angreBekreftSykmelding as angreBekreftSykmeldingAction } from '../../../data/din-sykmelding/dinSykmeldingActions';
 
 class EndreArbeidssituasjonLenke extends Component {
     constructor(props) {
@@ -48,6 +50,17 @@ EndreArbeidssituasjonLenke.propTypes = {
     vis: PropTypes.bool,
 };
 
-const EndreArbeidssituasjon = connectAngreArbeidssituasjon(EndreArbeidssituasjonLenke);
+const mapStateToProps = (state, ownProps) => {
+    const vis = selectKanEndreSykmeldingArbeidssituasjon(state, ownProps.sykmelding);
+    return {
+        vis,
+        angreBekreftSykmeldingFeilet: state.dineSykmeldinger.angreBekreftSykmeldingFeilet,
+        angrerBekreftSykmelding: state.dineSykmeldinger.angrerBekreftSykmelding,
+    };
+};
+
+const EndreArbeidssituasjon = connect(mapStateToProps, {
+    angreBekreftSykmelding: angreBekreftSykmeldingAction,
+})(EndreArbeidssituasjonLenke);
 
 export default EndreArbeidssituasjon;

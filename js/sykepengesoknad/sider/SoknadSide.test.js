@@ -8,7 +8,7 @@ import SoknadSide, { Container, mapStateToProps } from './SoknadSide';
 import AppSpinner from '../../components/AppSpinner';
 import sykepengesoknader from '../../sykepengesoknad-gammel-plattform/data/sykepengesoknader/sykepengesoknader';
 import soknader from '../data/soknader/soknader';
-import dineSykmeldinger from '../../sykmeldinger/data/dine-sykmeldinger/dineSykmeldinger';
+import dineSykmeldinger from '../../data/dine-sykmeldinger/dineSykmeldinger';
 import SendtSoknadSelvstendig from '../soknad-selvstendig-frilanser/SendtSoknadSelvstendig';
 import mountWithStore from '../../../test/mountWithStore';
 import { getSendtSoknadSelvstendig } from '../../../test/mock/mockSoknadSelvstendig';

@@ -5,7 +5,7 @@ import soknader from './soknader';
 import * as actions from './soknaderActions';
 import mockSoknader, { getNySoknadSelvstendig, soknadrespons } from '../../../../test/mock/mockSoknadSelvstendig';
 import { ANSVARSERKLARING } from '../../enums/tagtyper';
-import { bekreftSykmeldingAngret } from '../../../sykmeldinger/data/din-sykmelding/dinSykmeldingActions';
+import { bekreftSykmeldingAngret } from '../../../data/din-sykmelding/dinSykmeldingActions';
 import { AVBRUTT, NY, SENDT, FREMTIDIG, UTKAST_TIL_KORRIGERING } from '../../enums/soknadstatuser';
 import { OPPHOLD_UTLAND, SELVSTENDIGE_OG_FRILANSERE } from '../../enums/soknadtyper';
 

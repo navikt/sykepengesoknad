@@ -5,7 +5,7 @@ import { bindActionCreators } from 'redux';
 import { sykepengesoknad as sykepengesoknadPt } from '@navikt/digisyfo-npm';
 import * as soknaderActions from '../data/soknader/soknaderActions';
 import * as sykepengesoknaderActions from '../../sykepengesoknad-gammel-plattform/data/sykepengesoknader/sykepengesoknader_actions';
-import * as dineSykmeldingerActions from '../../sykmeldinger/data/dine-sykmeldinger/dineSykmeldingerActions';
+import * as dineSykmeldingerActions from '../../data/dine-sykmeldinger/dineSykmeldingerActions';
 import Feilmelding from '../../components/Feilmelding';
 import SideHvit from '../../sider/SideHvit';
 import Side from '../../sider/Side';

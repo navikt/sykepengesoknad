@@ -3,14 +3,57 @@ import PropTypes from 'prop-types';
 import {
     Bjorn,
     getLedetekst,
-    sykmelding as sykmeldingPt,
     SykmeldingNokkelOpplysning,
     SykmeldingPerioder,
     tilLesbarDatoMedArstall,
+    tilLesbarPeriodeMedArstall,
     Utvidbar,
 } from '@navikt/digisyfo-npm';
-import { SykmeldingopplysningForsikring, SykmeldingopplysningFravaersperioder } from '../../../sykmeldinger/statuspanel/SykmeldingStatuspanelOpplysning';
 import EndreArbeidssituasjon from '../endre-arbeidssituasjon/EndreArbeidssituasjon';
+import { sykmelding as sykmeldingPt } from '../../../propTypes';
+
+export const SykmeldingopplysningForsikring = ({ sykmelding, className }) => {
+    const nokkel = sykmelding.sporsmal.harForsikring
+        ? 'sykepengesoknad.sykmelding-utdrag.forsikring-ja-2'
+        : 'sykepengesoknad.sykmelding-utdrag.forsikring-nei';
+    return sykmelding.sporsmal.harForsikring !== null
+        ? (<SykmeldingNokkelOpplysning
+            className={className}
+            tittel={getLedetekst('sykepengesoknad.sykmelding-utdrag.forsikring')}>
+            <p>{getLedetekst(nokkel)}</p>
+        </SykmeldingNokkelOpplysning>)
+        : null;
+};
+
+SykmeldingopplysningForsikring.propTypes = {
+    sykmelding: sykmeldingPt,
+    className: PropTypes.string,
+};
+
+export const SykmeldingopplysningFravaersperioder = ({ sykmelding, className }) => {
+    return sykmelding.sporsmal.harAnnetFravaer !== null
+        ? (<SykmeldingNokkelOpplysning
+            className={className}
+            tittel={getLedetekst('sykepengesoknad.sykmelding-utdrag.egenmelding-papir')}>
+            {
+                sykmelding.sporsmal.fravaersperioder.length > 0
+                    ? (<ul className="nokkelopplysning__liste">
+                        {
+                            sykmelding.sporsmal.fravaersperioder.map((p) => {
+                                return <li key={tilLesbarDatoMedArstall(p.fom)}>{tilLesbarPeriodeMedArstall(p.fom, p.tom)}</li>;
+                            })
+                        }
+                    </ul>)
+                    : (<p>{getLedetekst('sykepengesoknad.sykmelding-utdrag.egenmelding-papir-nei')}</p>)
+            }
+        </SykmeldingNokkelOpplysning>)
+        : null;
+};
+
+SykmeldingopplysningFravaersperioder.propTypes = {
+    sykmelding: sykmeldingPt,
+    className: PropTypes.string,
+};
 
 const SykmeldingUtdragForSelvstendige = ({ erApen, sykmelding, erOppdelt }) => {
     return (<Utvidbar

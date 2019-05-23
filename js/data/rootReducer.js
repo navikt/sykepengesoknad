@@ -2,7 +2,7 @@ import { ledetekster, timeout } from '@navikt/digisyfo-npm';
 import { reducer as formReducer } from 'redux-form';
 import arbeidsgiverperiodeberegning from '../sykepengesoknad-gammel-plattform/data/arbeidsgiverperiodeberegning/arbeidsgiverperiodeberegning';
 import brukerinfo from './brukerinfo/brukerinfo';
-import dineSykmeldinger from '../sykmeldinger/data/dine-sykmeldinger/dineSykmeldinger';
+import dineSykmeldinger from './dine-sykmeldinger/dineSykmeldinger';
 import sykepengesoknader from '../sykepengesoknad-gammel-plattform/data/sykepengesoknader/sykepengesoknader';
 import reduxFormMeta from './redux-form-meta/reduxFormMeta';
 import soknader from '../sykepengesoknad/data/soknader/soknader';

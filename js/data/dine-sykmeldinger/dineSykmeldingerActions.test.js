@@ -1,7 +1,7 @@
 import chai from 'chai';
 import chaiEnzyme from 'chai-enzyme';
 import * as actions from './dineSykmeldingerActions';
-import * as actiontyper from '../../../data/actiontyper';
+import * as actiontyper from '../actiontyper';
 
 chai.use(chaiEnzyme());
 const expect = chai.expect;

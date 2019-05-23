@@ -1,4 +1,4 @@
-import * as actiontyper from '../../../data/actiontyper';
+import * as actiontyper from '../actiontyper';
 
 export function henterDineSykmeldinger() {
     return {
