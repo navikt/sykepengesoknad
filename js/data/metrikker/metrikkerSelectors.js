@@ -1,10 +1,9 @@
-import { SYKEPENGESOKNAD_SENDT, SYKMELDING_BEKREFTET, SYKMELDING_SENDT } from '../actiontyper';
+import { SYKEPENGESOKNAD_SENDT } from '../actiontyper';
 import { beregnVarighet } from '../../utils/metrikkerUtils';
 import {
     TID_INNSENDING_SYKEPENGESOKNAD_ARBEIDSTAKER,
     TID_INNSENDING_SYKEPENGESOKNAD_ARBEIDSTAKER_NY_PLATTFORM,
     TID_INNSENDING_SYKEPENGESOKNAD_SELVSTENDIG,
-    TID_INNSENDING_SYKMELDING,
 } from '../../enums/metrikkerEnums';
 import { ARBEIDSTAKERE, SELVSTENDIGE_OG_FRILANSERE } from '../../sykepengesoknad/enums/soknadtyper';
 import { SOKNAD_SENDT } from '../../sykepengesoknad/data/soknader/soknaderActiontyper';
@@ -33,19 +32,6 @@ export const hentMetrikk = (state, action) => {
     };
 
     switch (action.type) {
-        case SYKMELDING_BEKREFTET:
-        case SYKMELDING_SENDT: {
-            const tid = beregnVarighet(state, {
-                ressursId: action.sykmeldingId,
-                type: TID_INNSENDING_SYKMELDING,
-            });
-            return {
-                type: hentMetrikktype(SYKMELDING_SENDT),
-                data: {
-                    tid,
-                },
-            };
-        }
         case SOKNAD_SENDT: {
             if (action.soknad.soknadstype === SELVSTENDIGE_OG_FRILANSERE) {
                 const tid = beregnVarighet(state, {

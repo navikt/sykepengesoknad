@@ -2,7 +2,7 @@ import deepFreeze from 'deep-freeze';
 import { expect } from 'chai';
 import sinon from 'sinon';
 import { beregnVarighet } from './metrikkerUtils';
-import { TID_INNSENDING_SYKEPENGESOKNAD_SELVSTENDIG, TID_INNSENDING_SYKMELDING, UTFYLLING_STARTET } from '../enums/metrikkerEnums';
+import { TID_INNSENDING_SYKEPENGESOKNAD_SELVSTENDIG, UTFYLLING_STARTET } from '../enums/metrikkerEnums';
 
 describe('metrikkerUtils', () => {
     let state;
@@ -79,22 +79,6 @@ describe('metrikkerUtils', () => {
     });
 
     describe('beregnVarighet', () => {
-        it('Skal returnere riktig tid for innsending av sykmeldinger', () => {
-            const tid = beregnVarighet(deepFreeze(state), {
-                type: TID_INNSENDING_SYKMELDING,
-                ressursId: 'min-sykmelding-id',
-            });
-            expect(tid).to.equal(45632);
-        });
-
-        it('Skal returnere riktig tid for innsending av sykmeldinger ved race-conditions', () => {
-            const tid = beregnVarighet(deepFreeze(state), {
-                type: TID_INNSENDING_SYKMELDING,
-                ressursId: 'min-sykmelding-id-2',
-            });
-            expect(tid).to.equal(45632 + 500 + 1401 + 800);
-        });
-
         it('Skal returnere riktig tid for innsending av søknad for selvstendig næringsdrivende', () => {
             const tid = beregnVarighet(deepFreeze(state), {
                 type: TID_INNSENDING_SYKEPENGESOKNAD_SELVSTENDIG,
