@@ -1,18 +1,20 @@
 import { getLedetekst } from '@navikt/digisyfo-npm';
 import beregnSteg, { KVITTERING } from './beregnSteg';
-import { getUrlTilSoknad, getUrlTilSoknader } from '../../utils/urlUtils';
+import { getSykefravaerUrl, getUrlTilSoknad, getUrlTilSoknader } from '../../utils/urlUtils';
 
 const beregnBrodsmulesti = (sti, id) => {
     const dittSykefravaerSmule = {
         tittel: getLedetekst('landingsside.sidetittel'),
-        sti: '/sykefravaer',
+        sti: getSykefravaerUrl(),
         erKlikkbar: true,
     };
+
     const soknaderSmule = {
         tittel: 'Søknader om sykepenger',
         sti: getUrlTilSoknader(),
         erKlikkbar: true,
     };
+
     switch (beregnSteg(sti)) {
         case KVITTERING: {
             return [dittSykefravaerSmule, soknaderSmule, {

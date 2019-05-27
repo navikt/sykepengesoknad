@@ -1,24 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router';
-import getContextRoot from '../utils/getContextRoot';
 import { brodsmule as brodsmuleProptype } from '../propTypes';
-
-const erHerokuApp = () => {
-    const url = window
-    && window.location
-    && window.location.href
-        ? window.location.href
-        : '';
-
-    return url.indexOf('herokuapp') > -1;
-};
-
-export const getSykefravaerUrl = () => {
-    return erHerokuApp()
-        ? 'https://sykefravaer.herokuapp.com'
-        : process.env.REACT_APP_SYKEFRAVAER_CONTEXT_ROOT;
-};
 
 const Brodsmule = ({ sti, tittel, sisteSmule, erKlikkbar }) => {
     const erEkstern = sti && sti.indexOf(process.env.REACT_APP_SYKEFRAVAER_CONTEXT_ROOT) > -1;
