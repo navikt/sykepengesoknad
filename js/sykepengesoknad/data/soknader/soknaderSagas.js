@@ -4,10 +4,6 @@ import { browserHistory } from 'react-router';
 import { initialize } from 'redux-form';
 import { get, hentApiUrl, post } from '../../../gateway-api';
 import * as actions from './soknaderActions';
-import {
-    SYKMELDING_BEKREFTET,
-    SYKMELDING_SENDT,
-} from '../../../data/actiontyper';
 import { soknadrespons } from '../../../../test/mock/mockSoknadSelvstendig';
 import { toggleBrukMockDataSelvstendigSoknad, toggleBrukMockdataUtland } from '../../../toggles';
 import logger from '../../../logging';
