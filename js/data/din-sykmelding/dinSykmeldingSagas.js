@@ -1,12 +1,11 @@
 import { call, put, fork, takeEvery, all } from 'redux-saga/effects';
-import { browserHistory } from 'react-router';
 import { post, log } from '@navikt/digisyfo-npm';
 import * as actions from './dinSykmeldingActions';
 import * as actiontyper from '../actiontyper';
 import { getUrlTilSykmelding } from '../../utils/urlUtils';
 
 const gaTilSykmelding = (sykmeldingId) => {
-    browserHistory.push(getUrlTilSykmelding(sykmeldingId));
+    window.location.href = getUrlTilSykmelding(sykmeldingId);
 };
 
 export function* angreBekreftSykmelding(action) {
