@@ -1,6 +1,6 @@
 import { getLedetekst } from '@navikt/digisyfo-npm';
 import beregnSteg, { KVITTERING } from './beregnSteg';
-import { getUrlTilSoknad } from '../../utils/urlUtils';
+import { getUrlTilSoknad, getUrlTilSoknader } from '../../utils/urlUtils';
 
 const beregnBrodsmulesti = (sti, id) => {
     const dittSykefravaerSmule = {
@@ -10,7 +10,7 @@ const beregnBrodsmulesti = (sti, id) => {
     };
     const soknaderSmule = {
         tittel: 'Søknader om sykepenger',
-        sti: '/',
+        sti: getUrlTilSoknader(),
         erKlikkbar: true,
     };
     switch (beregnSteg(sti)) {

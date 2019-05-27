@@ -21,15 +21,10 @@ export const getSykefravaerUrl = () => {
 };
 
 const Brodsmule = ({ sti, tittel, sisteSmule, erKlikkbar }) => {
-    const nySti = sti && sti.indexOf(process.env.REACT_APP_SYKEFRAVAER_CONTEXT_ROOT) > -1
-        ? getSykefravaerUrl()
-        : sti;
-    const root = sti && sti.indexOf(process.env.REACT_APP_SYKEFRAVAER_CONTEXT_ROOT) > -1
-        ? ''
-        : getContextRoot();
-    const link = root === ''
-        ? <a className="js-smule js-smule-a brodsmuler__smule" href={nySti}>{tittel}</a>
-        : <Link className="js-smule brodsmuler__smule" to={root + nySti}>{tittel}</Link>;
+    const erEkstern = sti && sti.indexOf(process.env.REACT_APP_SYKEFRAVAER_CONTEXT_ROOT) > -1;
+    const link = erEkstern
+        ? <a className="js-smule js-smule-a brodsmuler__smule" href={sti}>{tittel}</a>
+        : <Link className="js-smule brodsmuler__smule" to={sti}>{tittel}</Link>;
     if (sisteSmule) {
         return (<span className="js-smuletekst">
             <span className="vekk">Du er her:</span> <span className="brodsmule">{tittel}</span>
