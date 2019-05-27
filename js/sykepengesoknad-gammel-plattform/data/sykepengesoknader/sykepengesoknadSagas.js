@@ -141,10 +141,6 @@ function* watchSendSykepengesoknadTilArbeidsgiver() {
     yield takeEvery(actiontyper.SEND_SYKEPENGESOKNAD_TIL_ARBEIDSGIVER_FORESPURT, sendSykepengesoknadTilArbeidsgiver);
 }
 
-function* watchSykmeldingSendt() {
-    yield takeEvery(actiontyper.SYKMELDING_SENDT, oppdaterSykepengesoknader);
-}
-
 function* watchEndreSykepengesoknad() {
     yield takeEvery(actiontyper.START_ENDRING_SYKEPENGESOKNAD_FORESPURT, startEndring);
 }
@@ -161,7 +157,6 @@ export default function* sykepengesoknadSagas() {
     yield all([
         fork(watchHentSykepengesoknader),
         fork(watchSendSykepengesoknad),
-        fork(watchSykmeldingSendt),
         fork(watchSendSykepengesoknadTilNAV),
         fork(watchSendSykepengesoknadTilArbeidsgiver),
         fork(watchEndreSykepengesoknad),

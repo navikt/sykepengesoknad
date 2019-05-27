@@ -228,8 +228,6 @@ function* watchHentSoknader() {
 
 function* watchOppdaterSoknader() {
     yield takeEvery([
-        SYKMELDING_BEKREFTET,
-        SYKMELDING_SENDT,
         SOKNAD_SENDT,
         SOKNAD_ETTERSENDT_NAV,
         SOKNAD_ETTERSENDT_ARBG,
