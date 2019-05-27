@@ -34,26 +34,12 @@ describe('brukerinfo', () => {
                 henter: false,
                 hentet: true,
             },
-            innstillinger: {},
             innlogging: {},
-            oppfolging: {
-                data: {},
-                hentingFeilet: false,
-                henter: false,
-                hentet: false,
-            },
-            sykmeldtinfodata: {
-                data: {},
-                hentingFeilet: false,
-                henter: false,
-                hentet: false,
-            },
         });
     });
 
     it('Håndterer henterBrukerinfo', () => {
         initiellState = deepFreeze({
-            innstillinger: {},
             innlogging: {},
         });
         const nextState = brukerinfo(initiellState, brukerinfoActions.henterBrukerinfo());
@@ -64,33 +50,7 @@ describe('brukerinfo', () => {
                 data: {},
                 hentet: false,
             },
-            innstillinger: {},
             innlogging: {},
-            oppfolging: {
-                data: {},
-                hentingFeilet: false,
-                henter: false,
-                hentet: false,
-            },
-            sykmeldtinfodata: {
-                data: {},
-                hentingFeilet: false,
-                henter: false,
-                hentet: false,
-            },
-        });
-    });
-
-    it('Håndterer setArbeidssituasjon', () => {
-        initiellState = deepFreeze({
-            innstillinger: {},
-            bruker: {},
-        });
-        const nyState = brukerinfo(initiellState, brukerinfoActions.setArbeidssituasjon('MED_ARBEIDSGIVER'));
-        expect(nyState).to.deep.include({
-            innstillinger: {
-                arbeidssituasjon: 'MED_ARBEIDSGIVER',
-            },
         });
     });
 
