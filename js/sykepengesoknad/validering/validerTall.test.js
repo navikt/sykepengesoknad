@@ -15,8 +15,10 @@ describe('validerTall', () => {
         setLedetekster({
             'soknad.feilmelding.tall-min-max': 'Vennligst fyll ut et tall mellom %MIN% og %MAX%',
             'soknad.feilmelding.mitt_felt': 'Husk å fylle ut dette',
-            'soknad.feilmelding.tall-prosent-min-max': 'Prosenten du skrev inn tyder på at du ikke har jobbet mer enn 0 %.\n' +
-                'Du må enten svare nei på spørsmålet over eller endre prosenten til et tall mellom 1 og 99.'
+            'soknad.feilmelding.tall-prosent-min-max': 'Prosenten du skrev inn tyder på at du ikke har jobbet mer enn %MIN% %.\n' +
+                'Du må enten svare nei på spørsmålet over eller endre prosenten til et tall mellom %MIN% og %MAX%.',
+            'soknad.feilmelding.tall-prosent-100': 'Prosenten du skrev inn tyder på at du ikke har jobbet.\n' +
+                'Du må enten svare nei på spørsmålet over eller endre prosenten til et tall mellom %MIN% og %MAX%.',
         });
     });
 
@@ -48,8 +50,15 @@ describe('validerTall', () => {
         it('Skal klage hvis angitt prosent er lavere enn 1 og tag=HVOR_MYE_PROSENT_VERDI', () => {
             const verdi = parse('0');
             const feilmelding = validerTall(1, 99, 'HVOR_MYE_PROSENT_VERDI', verdi);
-            expect(feilmelding).to.equal('Prosenten du skrev inn tyder på at du ikke har jobbet mer enn 0 %.\n' +
+            expect(feilmelding).to.equal('Prosenten du skrev inn tyder på at du ikke har jobbet.\n' +
                 'Du må enten svare nei på spørsmålet over eller endre prosenten til et tall mellom 1 og 99.');
+        });
+
+        it('Skal klage hvis angitt prosent er lavere enn 40 og tag=HVOR_MYE_PROSENT_VERDI', () => {
+            const verdi = parse('23');
+            const feilmelding = validerTall(40, 99, 'HVOR_MYE_PROSENT_VERDI', verdi);
+            expect(feilmelding).to.equal('Prosenten du skrev inn tyder på at du ikke har jobbet mer enn 40 %.\n' +
+                'Du må enten svare nei på spørsmålet over eller endre prosenten til et tall mellom 40 og 99.');
         });
     });
 });

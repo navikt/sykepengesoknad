@@ -10,7 +10,14 @@ const validerTall = (min, max, tag, verdi, undertekst) => {
     const parsetVerdi = parseInt(formatertVerdi, 10);
     if (parsetVerdi > max || parsetVerdi < min) {
         if (tagUtenIndex === HVOR_MYE_PROSENT_VERDI && parsetVerdi < min) {
-            return getLedetekst('soknad.feilmelding.tall-prosent-min-max', {
+            if (min > 1) {
+                return getLedetekst('soknad.feilmelding.tall-prosent-min-max', {
+                    '%MIN%': min,
+                    '%MAX%': max,
+                    '%ANDEL%': min - 1,
+                });
+            }
+            return getLedetekst('soknad.feilmelding.tall-prosent-100', {
                 '%MIN%': min,
                 '%MAX%': max,
                 '%ANDEL%': min - 1,
