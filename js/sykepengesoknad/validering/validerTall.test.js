@@ -15,6 +15,8 @@ describe('validerTall', () => {
         setLedetekster({
             'soknad.feilmelding.tall-min-max': 'Vennligst fyll ut et tall mellom %MIN% og %MAX%',
             'soknad.feilmelding.mitt_felt': 'Husk å fylle ut dette',
+            'soknad.feilmelding.tall-prosent-min-max': 'Prosenten du skrev inn tyder på at du ikke har jobbet mer enn 0 %.\n' +
+                'Du må enten svare nei på spørsmålet over eller endre prosenten til et tall mellom 1 og 99.'
         });
     });
 
@@ -41,6 +43,13 @@ describe('validerTall', () => {
             const verdi = parse('3');
             const okmelding = validerTall(1, 20, 'MITT_FELT', verdi);
             expect(okmelding).to.equal(undefined);
+        });
+
+        it('Skal klage hvis angitt prosent er lavere enn 1 og tag=HVOR_MYE_PROSENT_VERDI', () => {
+            const verdi = parse('0');
+            const feilmelding = validerTall(1, 99, 'HVOR_MYE_PROSENT_VERDI', verdi);
+            expect(feilmelding).to.equal('Prosenten du skrev inn tyder på at du ikke har jobbet mer enn 0 %.\n' +
+                'Du må enten svare nei på spørsmålet over eller endre prosenten til et tall mellom 1 og 99.');
         });
     });
 });
