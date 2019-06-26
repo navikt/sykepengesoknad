@@ -57,7 +57,9 @@
         "max": null,
         "pavirkerAndreSporsmal": false,
         "kriterieForVisningAvUndersporsmal": "JA",
-        "svar": [],
+        "svar": [{
+            "verdi": "JA"
+        }],
         "undersporsmal": [
           {
             "id": "200142",
@@ -69,7 +71,12 @@
             "max": "2019-03-21",
             "pavirkerAndreSporsmal": false,
             "kriterieForVisningAvUndersporsmal": null,
-            "svar": [],
+              "svar": [
+                  {
+                      "verdi": "{\"fom\": \"2019-06-25\", \"tom\": \"2019-06-25\"}",
+                      "avgittAv": "TIDLIGERE_SOKNAD"
+                  }
+              ],
             "undersporsmal": []
           }
         ]

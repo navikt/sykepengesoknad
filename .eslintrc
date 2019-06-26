@@ -31,6 +31,8 @@
         "import/prefer-default-export": 0,
         "jsx-a11y/href-no-hash": "off",
         "jsx-a11y/label-has-for": 0,
+        "react/jsx-first-prop-new-line": 0,
+        "react/jsx-max-props-per-line": 0,
         "func-names": [0],
         "no-underscore-dangle": 0,
         "no-nested-ternary": "off",

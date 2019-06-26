@@ -1,5 +1,5 @@
 import React from 'react';
-import { getLedetekst } from '@navikt/digisyfo-npm';
+import { getLedetekst, Bjorn } from '@navikt/digisyfo-npm';
 import PropTypes from 'prop-types';
 import { Field } from 'redux-form';
 import Radioknapper from '../../../components/skjema/Radioknapper';
@@ -17,19 +17,21 @@ import JaEllerNeiRadiopanelgruppe from './JaEllerNeiRadiopanelgruppe';
 export const jaEllerNeiAlternativer = [JA, NEI];
 
 export const JaEllerNeiRadioknapper = (props) => {
-    return (<Radioknapper {...props} name={props.input.name} spoersmal={props.sporsmalstekst}>
-        {
-            jaEllerNeiAlternativer
+    return (
+        <Radioknapper {...props} name={props.input.name} spoersmal={props.sporsmalstekst}>
+            {jaEllerNeiAlternativer
                 .map((alternativ, index) => {
-                    return (<i
-                        value={alternativ}
-                        label={getLedetekst(`soknad.${alternativ.toLowerCase()}`)}
-                        key={index}>
-                        <JaEllerNeiPresisering tag={props.tag} value={props.input.value} soknad={props.soknad} />
-                    </i>);
+                    return (
+                        <i value={alternativ}
+                            label={getLedetekst(`soknad.${alternativ.toLowerCase()}`)}
+                            key={index}>
+                            <JaEllerNeiPresisering tag={props.tag} value={props.input.value} soknad={props.soknad} />
+                        </i>
+                    );
                 })
-        }
-    </Radioknapper>);
+            }
+        </Radioknapper>
+    );
 };
 
 JaEllerNeiRadioknapper.propTypes = {
@@ -44,25 +46,29 @@ export const RendreJaEllerNei = (props) => {
     const classNames = props.hovedsporsmal ? 'hovedsporsmal' : null;
     const classNamesTilleggssporsmal = props.hovedsporsmal ? 'hovedsporsmal__tilleggssporsmal' : null;
     const hjelpetekst = <SporsmalHjelpetekst tag={props.tag} />;
+
     const Sporsmal = props.hovedsporsmal
-        ? (<JaEllerNeiRadiopanelgruppe
-            {...props}
-            hjelpetekst={hjelpetekst} />)
-        : (<JaEllerNeiRadioknapper
-            {...props}
-            hjelpetekst={hjelpetekst} />);
+        ? (<JaEllerNeiRadiopanelgruppe {...props} hjelpetekst={hjelpetekst} />)
+        : (<JaEllerNeiRadioknapper {...props} hjelpetekst={hjelpetekst} />);
+
     return props.undersporsmal.length === 0
         ? (<div className={classNames}>{Sporsmal}</div>)
-        : (<SporsmalMedTillegg
-            {...props}
-            Sporsmal={Sporsmal}
-            className={classNames}
-            visTillegg={(_props) => {
-                return _props.input.value === _props.kriterieForVisningAvUndersporsmal;
-            }}>
-            <div className={classNamesTilleggssporsmal}>{props.children}</div>
-            <SporsmalBjorn tag={props.tag} soknad={props.soknad} className="press" />
-        </SporsmalMedTillegg>);
+        : (
+            <React.Fragment>
+                <SporsmalMedTillegg
+                    {...props}
+                    Sporsmal={Sporsmal}
+                    className={classNames}
+                    visTillegg={(_props) => {
+                        return _props.input.value === _props.kriterieForVisningAvUndersporsmal;
+                    }}
+                >
+                    <Bjorn className="press" nokkel="sykepengesoknad.egenmeldingsdager.preutfylt-melding" />
+                    <div className={classNamesTilleggssporsmal}>{props.children}</div>
+                    <SporsmalBjorn tag={props.tag} soknad={props.soknad} className="press" />
+                </SporsmalMedTillegg>
+            </React.Fragment>
+        );
 };
 
 RendreJaEllerNei.propTypes = {
@@ -81,11 +87,14 @@ const JaEllerNei = (props) => {
             format={formaterEnkeltverdi}
             parse={genererParseForEnkeltverdi()}
             component={RendreJaEllerNei}
-            {...props} />,
+            {...props}
+        />,
         <SporsmalBjornKondisjonell
             soknad={props.soknad}
             key={`${props.tag}-sporsmalbjorn`}
-            tag={props.tag} />]);
+            tag={props.tag}
+        />,
+    ]);
 };
 
 JaEllerNei.propTypes = {

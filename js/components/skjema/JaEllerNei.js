@@ -17,20 +17,24 @@ export const jaEllerNeiAlternativer = [{
 }];
 
 export const JaEllerNeiRadioknapper = (props) => {
-    return (<div>
-        <Vis
-            hvis={props.intro}
-            render={() => {
-                return (<p className="skjema__sporsmal blokk--s js-intro">{props.intro}</p>);
-            }} />
-        <Radioknapper {...props} name={props.input.name}>
-            {
-                jaEllerNeiAlternativer.map((alternativ, index) => {
-                    return <input {...alternativ} key={index} />;
-                })
-            }
-        </Radioknapper>
-    </div>);
+    return (
+        <div>
+            <Vis hvis={props.intro}
+                render={() => {
+                    return (
+                        <p className="skjema__sporsmal blokk--s js-intro">{props.intro}</p>
+                    );
+                }}
+            />
+            <Radioknapper {...props} name={props.input.name}>
+                {
+                    jaEllerNeiAlternativer.map((alternativ, index) => {
+                        return <input {...alternativ} key={index} />;
+                    })
+                }
+            </Radioknapper>
+        </div>
+    );
 };
 
 JaEllerNeiRadioknapper.propTypes = {
@@ -42,17 +46,22 @@ export const RendreJaEllerNei = (props) => {
     const Sporsmal = props.hovedsporsmal
         ? <JaEllerNeiRadiopanelgruppe {...props} />
         : <JaEllerNeiRadioknapper {...props} />;
+
     const className = cn('hovedsporsmal', props.className);
-    return (<SporsmalMedTillegg
-        {...props}
-        Sporsmal={Sporsmal}
-        className={className}
-        visTillegg={(_props) => {
-            const { input, children, verdiMedTilleggssporsmal = true } = _props;
-            return !!((input.value === verdiMedTilleggssporsmal) && children);
-        }}>
-        <div className="hovedsporsmal__tilleggssporsmal">{props.children}</div>
-    </SporsmalMedTillegg>);
+
+    return (
+        <SporsmalMedTillegg
+            {...props}
+            Sporsmal={Sporsmal}
+            className={className}
+            visTillegg={(_props) => {
+                const { input, children, verdiMedTilleggssporsmal = true } = _props;
+                return !!((input.value === verdiMedTilleggssporsmal) && children);
+            }}
+        >
+            <div className="hovedsporsmal__tilleggssporsmal">{props.children}</div>
+        </SporsmalMedTillegg>
+    );
 };
 
 RendreJaEllerNei.propTypes = {
