@@ -12,28 +12,32 @@ const RadioPanelGruppeComponent = (props) => {
         : undefined;
 
     const legend = props.hjelpetekst
-        ? (<div className="medHjelpetekst">
-            <h3>{props.spoersmal}</h3>
-            {props.hjelpetekst}
-        </div>)
+        ? (
+            <div className="medHjelpetekst">
+                <h3>{props.spoersmal}</h3>
+                {props.hjelpetekst}
+            </div>
+        )
         : <h3>{props.spoersmal}</h3>;
 
-    return (<RadioPanelGruppe
-        className="inputPanelGruppe--horisontal"
-        name={props.input.name}
-        legend={legend}
-        radios={jaEllerNeiAlternativer.map((alternativ) => {
-            return {
-                ...alternativ,
-                id: `${props.input.name}-${alternativ.value}`,
-            };
-        })}
-        checked={props.input.value}
-        onChange={(event, value) => {
-            props.doChange(props.meta.form, props.input.name, value);
-        }}
-        feil={feil}
-    />);
+    return (
+        <RadioPanelGruppe
+            className="inputPanelGruppe--horisontal"
+            name={props.input.name}
+            legend={legend}
+            radios={jaEllerNeiAlternativer.map((alternativ) => {
+                return {
+                    ...alternativ,
+                    id: `${props.input.name}-${alternativ.value}`,
+                };
+            })}
+            checked={props.input.value}
+            onChange={(event, value) => {
+                props.doChange(props.meta.form, props.input.name, value);
+            }}
+            feil={feil}
+        />
+    );
 };
 
 RadioPanelGruppeComponent.propTypes = {

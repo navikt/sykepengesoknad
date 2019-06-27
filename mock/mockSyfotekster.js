@@ -1,8 +1,7 @@
-// const request = require('request');
+const request = require('request');
 const mockData = require('./mockData');
 const enums = require('./mockDataEnums');
 
-/*
 let teksterFraProd;
 
 function hentTeksterFraProd() {
@@ -16,19 +15,15 @@ function hentTeksterFraProd() {
         }
     });
 }
-*/
 
 function mockTekster(server) {
-/*
     const HVERT_FEMTE_MINUTT = 1000 * 60 * 5;
     hentTeksterFraProd();
     setInterval(hentTeksterFraProd, HVERT_FEMTE_MINUTT);
-*/
 
     server.get('/syfotekster/api/tekster', (req, res) => {
         res.setHeader('Content-Type', 'application/json');
-        // res.send(JSON.stringify(teksterFraProd || mockData[enums.TEKSTER]));
-        res.send(JSON.stringify(mockData[enums.TEKSTER]));
+        res.send(JSON.stringify(teksterFraProd || mockData[enums.TEKSTER]));
     });
 }
 

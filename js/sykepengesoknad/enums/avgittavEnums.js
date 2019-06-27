@@ -1,0 +1,1 @@
+export const TIDLIGERE_SOKNAD = 'TIDLIGERE_SOKNAD';

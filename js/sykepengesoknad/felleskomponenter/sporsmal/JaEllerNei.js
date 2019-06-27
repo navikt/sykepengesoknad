@@ -13,6 +13,7 @@ import { getOnChange } from '../../utils/getOnChange';
 import SporsmalHjelpetekst from './SporsmalHjelpetekst';
 import JaEllerNeiPresisering from './JaEllerNeiPresisering';
 import JaEllerNeiRadiopanelgruppe from './JaEllerNeiRadiopanelgruppe';
+import { TIDLIGERE_SOKNAD } from '../../enums/avgittavEnums';
 
 export const jaEllerNeiAlternativer = [JA, NEI];
 
@@ -42,6 +43,36 @@ JaEllerNeiRadioknapper.propTypes = {
     soknad: soknadPt,
 };
 
+const visAvgittAvBjorn = (props) => {
+    props.soknad.sporsmal.forEach((spm) => {
+        if (spm.undersporsmal.length > 0) {
+            spm.undersporsmal.forEach((uspm) => {
+                if (uspm.tag === 'EGENMELDINGER_NAR') {
+                    uspm.svar.forEach((svar, i) => {
+                        if (svar.avgittAv === TIDLIGERE_SOKNAD) {
+                            console.log('svar'+i, svar); // eslint-disable-line
+                            return true;
+                        }
+                    });
+                }
+            });
+        }
+    });
+    return false;
+/*
+    const spml = props.soknad.sporsmal.filter(s => s.tag === 'EGENMELDINGER');
+    let uspm;
+    if (spml && spml.undersporsmal) {
+        uspm = spml.undersporsmal.filter(u => u.tag === 'EGENMELDINGER_NAR');
+    }
+    let svar;
+    if (uspm && uspm.svar) {
+        svar = uspm.svar.filter(s => s.avgittAv === TIDLIGERE_SOKNAD);
+    }
+    return svar && svar.length > 0;
+*/
+};
+
 export const RendreJaEllerNei = (props) => {
     const classNames = props.hovedsporsmal ? 'hovedsporsmal' : null;
     const classNamesTilleggssporsmal = props.hovedsporsmal ? 'hovedsporsmal__tilleggssporsmal' : null;
@@ -63,7 +94,10 @@ export const RendreJaEllerNei = (props) => {
                         return _props.input.value === _props.kriterieForVisningAvUndersporsmal;
                     }}
                 >
-                    <Bjorn className="press" nokkel="sykepengesoknad.egenmeldingsdager.preutfylt-melding" />
+                    {visAvgittAvBjorn(props)
+                        ? <Bjorn className="press" nokkel="sykepengesoknad.egenmeldingsdager.preutfylt-melding" />
+                        : null
+                    }
                     <div className={classNamesTilleggssporsmal}>{props.children}</div>
                     <SporsmalBjorn tag={props.tag} soknad={props.soknad} className="press" />
                 </SporsmalMedTillegg>
