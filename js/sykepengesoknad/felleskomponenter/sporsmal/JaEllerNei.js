@@ -43,29 +43,10 @@ JaEllerNeiRadioknapper.propTypes = {
     soknad: soknadPt,
 };
 
-const visAvgittAvBjorn = (undersporsmal) => {
-    console.log('undersporsmal', undersporsmal); // eslint-disable-line
-    undersporsmal.forEach((uspm) => {
-        if (uspm.tag === 'EGENMELDINGER_NAR') {
-            uspm.svar.forEach((svar, i) => {
-                console.log('svar' + i, svar); // eslint-disable-line
-                if (svar.avgittAv === TIDLIGERE_SOKNAD) {
-                    console.log('svar' + i, svar); // eslint-disable-line
-                    return true;
-                }
-            });
-        }
-    });
-    return false;
-
-    /*
-        const usp = undersporsmal.filter(u => u.tag === 'EGENMELDINGER_NAR');
-        if (usp && usp.svar) {
-            const svar = usp.svar.filter(s => s.avgittAv === TIDLIGERE_SOKNAD);
-            return svar && svar.length > 0;
-        }
-        return false;
-    */
+const visAvgittAvBjorn = (props) => {
+    return props.undersporsmal.filter((uspm) => {
+        return uspm.tag === 'EGENMELDINGER_NAR' && uspm.svarAvgittAv === TIDLIGERE_SOKNAD;
+    }).length > 0;
 };
 
 export const RendreJaEllerNei = (props) => {
@@ -90,7 +71,7 @@ export const RendreJaEllerNei = (props) => {
                     }}
                 >
                     {
-                        visAvgittAvBjorn(props.undersporsmal)
+                        visAvgittAvBjorn(props)
                             ? <Bjorn className="press" nokkel="sykepengesoknad.egenmeldingsdager.preutfylt-melding" />
                             : null
                     }

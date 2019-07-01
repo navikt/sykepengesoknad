@@ -73,10 +73,10 @@
                         "max": "2019-03-21",
                         "pavirkerAndreSporsmal": false,
                         "kriterieForVisningAvUndersporsmal": null,
+                        "svarAvgittAv": "TIDLIGERE_SOKNAD",
                         "svar": [
                             {
-                                "verdi": "{\"fom\": \"2019-06-25\", \"tom\": \"2019-06-25\"}",
-                                "avgittAv": "TIDLIGERE_SOKNAD"
+                                "verdi": "{\"fom\": \"2019-06-25\", \"tom\": \"2019-06-25\"}"
                             }
                         ],
                         "undersporsmal": []
