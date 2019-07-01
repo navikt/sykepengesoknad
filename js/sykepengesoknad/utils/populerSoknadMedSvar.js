@@ -24,6 +24,7 @@ const tilPeriodesvar = (perioder, konverterPerioder) => {
                     fom: konverterPerioder ? fraInputDatoTilBackendDato(p.fom) : p.fom,
                     tom: konverterPerioder ? fraInputDatoTilBackendDato(p.tom) : p.tom,
                 }),
+                avgittAv: p.avgittAv
             };
         });
 };
