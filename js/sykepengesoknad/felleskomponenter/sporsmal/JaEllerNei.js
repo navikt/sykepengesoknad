@@ -44,9 +44,9 @@ JaEllerNeiRadioknapper.propTypes = {
 };
 
 const visAvgittAvBjorn = (props) => {
-    const uspms = props.undersporsmal.find(uspm => uspm.tag === 'EGENMELDINGER_NAR');
-    if (uspms) {
-        return uspms.svar.some(sv => sv.avgittAv === TIDLIGERE_SOKNAD);
+    const underspprsmal = props.undersporsmal.find(usporsmal => usporsmal.tag === 'EGENMELDINGER_NAR');
+    if (underspprsmal) {
+        return underspprsmal.svar.some(svaret => svaret.avgittAv === TIDLIGERE_SOKNAD);
     }
     return false;
 };
