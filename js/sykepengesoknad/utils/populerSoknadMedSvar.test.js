@@ -132,11 +132,13 @@ describe('populerSoknadMedSvar', () => {
                 fom: '2018-03-20',
                 tom: '2018-03-21',
             }),
+            avgittAv: undefined,
         }, {
             verdi: JSON.stringify({
                 fom: '2018-03-23',
                 tom: '2018-03-23',
             }),
+            avgittAv: undefined,
         }]);
         expect(periodesporsmal.min).to.equal('2018-05-20');
         expect(periodesporsmal.max).to.equal('2018-05-28');
@@ -278,11 +280,13 @@ describe('populerSoknadMedSvar', () => {
                     fom: '20.03.2018',
                     tom: '21.03.2018',
                 }),
+                avgittAv: undefined,
             }, {
                 verdi: JSON.stringify({
                     fom: '23.03.2018',
                     tom: '23.03.2018',
                 }),
+                avgittAv: undefined,
             }]);
             expect(periodesporsmal.min).to.equal('2018-05-20');
             expect(periodesporsmal.max).to.equal('2018-05-28');
@@ -301,6 +305,7 @@ describe('populerSoknadMedSvar', () => {
                 verdi: JSON.stringify({
                     fom: '20.03.2018',
                 }),
+                avgittAv: undefined,
             }]);
             expect(periodesporsmal.min).to.equal('2018-05-20');
             expect(periodesporsmal.max).to.equal('2018-05-28');

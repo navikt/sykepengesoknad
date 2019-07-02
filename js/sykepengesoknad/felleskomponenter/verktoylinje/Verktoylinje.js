@@ -13,25 +13,29 @@ const Verktoylinje = ({ feilmelding, vis, soknad }) => {
         'blokk--mini': feilmelding,
     });
     return vis
-        ? (<div>
-            <div className={verktoylinjeClassName}>
-                <EndreSoknadContainer soknad={soknad} />
-                <ConnectedEttersending
-                    manglendeDato="sendtTilNAVDato"
-                    ledetekstKeySuffix="send-til-nav"
-                    sykepengesoknad={soknad} />
-                <ConnectedEttersending
-                    manglendeDato="sendtTilArbeidsgiverDato"
-                    ledetekstKeySuffix="send-til-arbeidsgiver"
-                    sykepengesoknad={soknad} />
-            </div>
-            <div aria-live="polite">
-                {
-                    feilmelding &&
-                    <p className="skjemaelement__feilmelding">{feilmelding}</p>
-                }
-            </div>
-        </div>)
+        ? (
+            <React.Fragment>
+                <div className={verktoylinjeClassName}>
+                    <EndreSoknadContainer soknad={soknad} />
+                    <ConnectedEttersending
+                        manglendeDato="sendtTilNAVDato"
+                        ledetekstKeySuffix="send-til-nav"
+                        sykepengesoknad={soknad}
+                    />
+                    <ConnectedEttersending
+                        manglendeDato="sendtTilArbeidsgiverDato"
+                        ledetekstKeySuffix="send-til-arbeidsgiver"
+                        sykepengesoknad={soknad}
+                    />
+                </div>
+                <div aria-live="polite">
+                    {
+                        feilmelding &&
+                        <p className="skjemaelement__feilmelding">{feilmelding}</p>
+                    }
+                </div>
+            </React.Fragment>
+        )
         : null;
 };
 

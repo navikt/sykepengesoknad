@@ -13,17 +13,18 @@ const fraInputDatoTilBackendDato = (inputdato) => {
 
 const tilPeriodesvar = (perioder, konverterPerioder) => {
     return perioder
-        .filter((p) => {
+        .filter((periode) => {
             return konverterPerioder
-                ? p.tom && p.tom
+                ? periode.tom && periode.tom
                 : true;
         })
-        .map((p) => {
+        .map((periode) => {
             return {
                 verdi: JSON.stringify({
-                    fom: konverterPerioder ? fraInputDatoTilBackendDato(p.fom) : p.fom,
-                    tom: konverterPerioder ? fraInputDatoTilBackendDato(p.tom) : p.tom,
+                    fom: konverterPerioder ? fraInputDatoTilBackendDato(periode.fom) : periode.fom,
+                    tom: konverterPerioder ? fraInputDatoTilBackendDato(periode.tom) : periode.tom,
                 }),
+                avgittAv: periode.avgittAv,
             };
         });
 };

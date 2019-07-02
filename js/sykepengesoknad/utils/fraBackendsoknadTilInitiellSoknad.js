@@ -19,14 +19,15 @@ const tilInitielleSvarverder = ({ svar, svartype, undersporsmal }) => {
                 ? [{}]
                 : svar.map((s) => {
                     const periode = JSON.parse(s.verdi);
-                    const returPeriode = {};
+                    const periodeSvar = {};
                     if (periode.fom) {
-                        returPeriode.fom = tilPeriodedato(periode.fom);
+                        periodeSvar.fom = tilPeriodedato(periode.fom);
                     }
                     if (periode.tom) {
-                        returPeriode.tom = tilPeriodedato(periode.tom);
+                        periodeSvar.tom = tilPeriodedato(periode.tom);
                     }
-                    return returPeriode;
+                    periodeSvar.avgittAv = s.avgittAv;
+                    return periodeSvar;
                 });
         }
         case LAND: {

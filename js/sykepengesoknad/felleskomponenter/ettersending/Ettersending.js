@@ -111,7 +111,8 @@ export class Ettersending extends Component {
         return (
             <div className="verktoylinje__element">
                 {
-                    !sykepengesoknad[manglendeDato] && <Knapp
+                    !sykepengesoknad[manglendeDato] &&
+                    <Knapp
                         type="standard"
                         mini
                         onClick={(e) => {
@@ -125,7 +126,8 @@ export class Ettersending extends Component {
                     </Knapp>
                 }
                 {
-                    this.state.visLightbox && <EttersendLightboxConnected
+                    this.state.visLightbox &&
+                    <EttersendLightboxConnected
                         sykepengesoknad={sykepengesoknad}
                         ledetekstKeySuffix={ledetekstKeySuffix}
                         manglendeDato={manglendeDato}
@@ -139,7 +141,8 @@ export class Ettersending extends Component {
                                 visLightbox: false,
                                 visKvittering: false,
                             });
-                        }} />
+                        }}
+                    />
                 }
             </div>
         );

@@ -9,17 +9,21 @@ const GjenopptattArbeidFulltUt = ({ sykepengesoknad }) => {
     const perioder = sykepengesoknad.aktiviteter.map((aktivitet) => {
         return aktivitet.periode;
     });
-    return (<JaEllerNei
-        hovedsporsmal
-        spoersmal={finnGjenopptattArbeidFulltUtSporsmal(sykepengesoknad)}
-        name="harGjenopptattArbeidFulltUt">
-        <div>
-            <label htmlFor="gjenopptattArbeidFulltUtDato" className="skjema__sporsmal">
-                {getLedetekst('sykepengesoknad.gjenopptatt-arbeid-fullt-ut.dato.sporsmal')}
-            </label>
-            <Datovelger id="gjenopptattArbeidFulltUtDato" name="gjenopptattArbeidFulltUtDato" tidligsteFom={tidligsteFom(perioder)} senesteTom={senesteTom(perioder)} />
-        </div>
-    </JaEllerNei>);
+    return (
+        <JaEllerNei
+            hovedsporsmal
+            spoersmal={finnGjenopptattArbeidFulltUtSporsmal(sykepengesoknad)}
+            name="harGjenopptattArbeidFulltUt">
+            <div>
+                <label htmlFor="gjenopptattArbeidFulltUtDato" className="skjema__sporsmal">
+                    {getLedetekst('sykepengesoknad.gjenopptatt-arbeid-fullt-ut.dato.sporsmal')}
+                </label>
+                <Datovelger id="gjenopptattArbeidFulltUtDato" name="gjenopptattArbeidFulltUtDato"
+                    tidligsteFom={tidligsteFom(perioder)} senesteTom={senesteTom(perioder)}
+                />
+            </div>
+        </JaEllerNei>
+    );
 };
 
 GjenopptattArbeidFulltUt.propTypes = {

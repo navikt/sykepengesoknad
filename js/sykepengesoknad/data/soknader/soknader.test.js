@@ -8,6 +8,7 @@ import { ANSVARSERKLARING } from '../../enums/tagtyper';
 import { bekreftSykmeldingAngret } from '../../../data/din-sykmelding/dinSykmeldingActions';
 import { AVBRUTT, NY, SENDT, FREMTIDIG, UTKAST_TIL_KORRIGERING } from '../../enums/soknadstatuser';
 import { OPPHOLD_UTLAND, SELVSTENDIGE_OG_FRILANSERE } from '../../enums/soknadtyper';
+import mockNySoknadArbeidstakerUtfylt from '../../../../test/mock/mockNySoknadArbeidstakerUtfylt';
 
 describe('soknader', () => {
     let getStateMedDataHentet;
@@ -24,6 +25,34 @@ describe('soknader', () => {
 
     afterEach(() => {
         clock.restore();
+    });
+
+    it('SetterSendtTilNAVDato til null når den er null fra backend', () => {
+        const data = [mockNySoknadArbeidstakerUtfylt({ sendtTilNAVDato: null })];
+        const action = actions.soknaderHentet(data);
+        const state = soknader(soknader(), action);
+        expect(state.data[0].sendtTilNAVDato).to.equal(null);
+    });
+
+    it('SetterSendtTilNAVDato til null når den er tom streng fra backend', () => {
+        const data = [mockNySoknadArbeidstakerUtfylt({ sendtTilNAVDato: '' })];
+        const action = actions.soknaderHentet(data);
+        const state = soknader(soknader(), action);
+        expect(state.data[0].sendtTilNAVDato).to.equal(null);
+    });
+
+    it('SetterSendtTilNAVDato til null når den er undefined fra backend', () => {
+        const data = [mockNySoknadArbeidstakerUtfylt({ sendtTilNAVDato: undefined })];
+        const action = actions.soknaderHentet(data);
+        const state = soknader(soknader(), action);
+        expect(state.data[0].sendtTilNAVDato).to.equal(null);
+    });
+
+    it('SetterSendtTilNAVDato til dato når den er en dato fra backend', () => {
+        const data = [mockNySoknadArbeidstakerUtfylt({ sendtTilNAVDato: '2019-06-15' })];
+        const action = actions.soknaderHentet(data);
+        const state = soknader(soknader(), action);
+        expect(state.data[0].sendtTilNAVDato).to.deep.equal(new Date('2019-06-15'));
     });
 
     it('Håndterer henter', () => {
@@ -168,7 +197,7 @@ describe('soknader', () => {
     it('Fjerner ikke SENDTE søknader ved bekreftSykmeldingAngret()', () => {
         const initState = getStateMedDataHentet();
         initState.data[0].status = SENDT;
-        const action = bekreftSykmeldingAngret('14e78e84-50a5-45bb-9919-191c54f99691');
+        const action = bekreftSykmeldingAngret('-=14e78e84-50a5-45bb-9919-191c54f99691');
         const state = soknader(deepFreeze(initState), action);
         expect(state.data).to.deep.equal(initState.data);
     });
