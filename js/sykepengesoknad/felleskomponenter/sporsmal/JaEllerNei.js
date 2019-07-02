@@ -1,3 +1,4 @@
+/* eslint arrow-body-style: ["error", "as-needed"] */
 import React from 'react';
 import { getLedetekst, Bjorn } from '@navikt/digisyfo-npm';
 import PropTypes from 'prop-types';
@@ -17,23 +18,19 @@ import { TIDLIGERE_SOKNAD } from '../../enums/avgittavEnums';
 
 export const jaEllerNeiAlternativer = [JA, NEI];
 
-export const JaEllerNeiRadioknapper = (props) => {
-    return (
-        <Radioknapper {...props} name={props.input.name} spoersmal={props.sporsmalstekst}>
-            {jaEllerNeiAlternativer
-                .map((alternativ, index) => {
-                    return (
-                        <i value={alternativ}
-                            label={getLedetekst(`soknad.${alternativ.toLowerCase()}`)}
-                            key={index}>
-                            <JaEllerNeiPresisering tag={props.tag} value={props.input.value} soknad={props.soknad} />
-                        </i>
-                    );
-                })
-            }
-        </Radioknapper>
-    );
-};
+export const JaEllerNeiRadioknapper = props => (
+    <Radioknapper {...props} name={props.input.name} spoersmal={props.sporsmalstekst}>
+        {jaEllerNeiAlternativer
+            .map((alternativ, index) => (
+                <i value={alternativ}
+                    label={getLedetekst(`soknad.${alternativ.toLowerCase()}`)}
+                    key={index}>
+                    <JaEllerNeiPresisering tag={props.tag} value={props.input.value} soknad={props.soknad} />
+                </i>
+            ))
+        }
+    </Radioknapper>
+);
 
 JaEllerNeiRadioknapper.propTypes = {
     input: fieldPropTypes.input,
@@ -61,27 +58,23 @@ export const RendreJaEllerNei = (props) => {
         : (<JaEllerNeiRadioknapper {...props} hjelpetekst={hjelpetekst} />);
 
     return props.undersporsmal.length === 0
-        ? (<div className={classNames}>{Sporsmal}</div>)
-        : (
-            <React.Fragment>
-                <SporsmalMedTillegg
-                    {...props}
-                    Sporsmal={Sporsmal}
-                    className={classNames}
-                    visTillegg={(_props) => {
-                        return _props.input.value === _props.kriterieForVisningAvUndersporsmal;
-                    }}
-                >
-                    {
-                        visAvgittAvBjorn(props)
-                            ? <Bjorn className="press" nokkel="sykepengesoknad.egenmeldingsdager.preutfylt-melding" />
-                            : null
-                    }
-                    <div className={classNamesTilleggssporsmal}>{props.children}</div>
-                    <SporsmalBjorn tag={props.tag} soknad={props.soknad} className="press" />
-                </SporsmalMedTillegg>
-            </React.Fragment>
-        );
+        ? <div className={classNames}>{Sporsmal}</div>
+        : <React.Fragment>
+            <SporsmalMedTillegg
+                {...props}
+                Sporsmal={Sporsmal}
+                className={classNames}
+                visTillegg={_props => _props.input.value === _props.kriterieForVisningAvUndersporsmal}
+            >
+                {
+                    visAvgittAvBjorn(props)
+                        ? <Bjorn className="press" nokkel="sykepengesoknad.egenmeldingsdager.preutfylt-melding" />
+                        : null
+                }
+                <div className={classNamesTilleggssporsmal}>{props.children}</div>
+                <SporsmalBjorn tag={props.tag} soknad={props.soknad} className="press" />
+            </SporsmalMedTillegg>
+        </React.Fragment>;
 };
 
 RendreJaEllerNei.propTypes = {
@@ -92,23 +85,21 @@ RendreJaEllerNei.propTypes = {
     soknad: soknadPt,
 };
 
-const JaEllerNei = (props) => {
-    return ([
-        <Field
-            onChange={getOnChange(props)}
-            key={`${props.tag}-field`}
-            format={formaterEnkeltverdi}
-            parse={genererParseForEnkeltverdi()}
-            component={RendreJaEllerNei}
-            {...props}
-        />,
-        <SporsmalBjornKondisjonell
-            soknad={props.soknad}
-            key={`${props.tag}-sporsmalbjorn`}
-            tag={props.tag}
-        />,
-    ]);
-};
+const JaEllerNei = props => ([
+    <Field
+        onChange={getOnChange(props)}
+        key={`${props.tag}-field`}
+        format={formaterEnkeltverdi}
+        parse={genererParseForEnkeltverdi()}
+        component={RendreJaEllerNei}
+        {...props}
+    />,
+    <SporsmalBjornKondisjonell
+        soknad={props.soknad}
+        key={`${props.tag}-sporsmalbjorn`}
+        tag={props.tag}
+    />,
+]);
 
 JaEllerNei.propTypes = {
     tag: PropTypes.string,

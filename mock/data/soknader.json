@@ -75,7 +75,7 @@
                         "kriterieForVisningAvUndersporsmal": null,
                         "svar": [
                             {
-                                "verdi": "{\"fom\": \"2019-06-25\", \"tom\": \"2019-06-25\"}",
+                                "verdi": "{\"fom\": \"2019-02-25\", \"tom\": \"2019-02-25\"}",
                                 "avgittAv": "TIDLIGERE_SOKNAD"
                             }
                         ],
