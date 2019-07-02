@@ -13,9 +13,11 @@ describe('fraBackendsoknadTilInitiellSoknad', () => {
     it('Skal mappe perioder på norsk format', () => {
         const initiellSoknad = fraBackendsoknadTilInitiellSoknad(mockLagretSoknad());
         expect(initiellSoknad[PERIODEUTLAND]).to.deep.equal([{
+            avgittAv: undefined,
             fom: '01.09.2018',
             tom: '01.10.2018',
         }, {
+            avgittAv: undefined,
             fom: '12.08.207_',
             tom: '12.08.2017',
         }]);
@@ -43,6 +45,7 @@ describe('fraBackendsoknadTilInitiellSoknad', () => {
         expect(initiellSoknad[PERIODEUTLAND]).to.deep.equal([{
             fom: '01.02.20__',
             tom: '01.03.2017',
+            avgittAv: undefined,
         }]);
     });
 
@@ -65,10 +68,13 @@ describe('fraBackendsoknadTilInitiellSoknad', () => {
                 undersporsmal: [],
             }],
         }));
-        expect(initiellSoknad[PERIODEUTLAND]).to.deep.equal([{
-            fom: '10.09.2018',
-            tom: '20.09.2018',
-        }]);
+        expect(initiellSoknad[PERIODEUTLAND]).to.deep.equal([
+            {
+                fom: '10.09.2018',
+                tom: '20.09.2018',
+                avgittAv: undefined,
+            },
+        ]);
     });
 
     it('Skal opprette en tom periode når det ikke finnes perioder', () => {
