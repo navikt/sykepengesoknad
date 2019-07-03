@@ -1,5 +1,8 @@
 import { toDatePrettyPrint } from '@navikt/digisyfo-npm';
-import { CHECKBOX, CHECKBOX_PANEL, DATO, FRITEKST, JA_NEI, PERIODER, PROSENT, TIMER, TALL, RADIO_GRUPPE, RADIO_GRUPPE_TIMER_PROSENT, RADIO, LAND } from '../enums/svartyper';
+import {
+    CHECKBOX, CHECKBOX_PANEL, DATO, FRITEKST, JA_NEI, PERIODER, PROSENT, TIMER,
+    TALL, RADIO_GRUPPE, RADIO_GRUPPE_TIMER_PROSENT, RADIO, LAND,
+} from '../enums/svartyper';
 import { genererParseForEnkeltverdi } from '../felleskomponenter/sporsmal/fieldUtils';
 import { CHECKED } from '../enums/svarEnums';
 
@@ -11,11 +14,15 @@ const tilPeriodedato = (datoEllerStreng) => {
 
 const tilInitielleSvarverder = ({ svar, svartype, undersporsmal }) => {
     const parse = genererParseForEnkeltverdi();
+
+    let svarverdier;
     switch (svartype) {
         case DATO:
-            return parse(toDatePrettyPrint(new Date(svar[0].verdi)));
-        case PERIODER: {
-            return svar.length === 0
+            svarverdier = parse(toDatePrettyPrint(new Date(svar[0].verdi)));
+            break;
+
+        case PERIODER:
+            svarverdier = svar.length === 0
                 ? [{}]
                 : svar.map((s) => {
                     const periode = JSON.parse(s.verdi);
@@ -26,17 +33,20 @@ const tilInitielleSvarverder = ({ svar, svartype, undersporsmal }) => {
                     if (periode.tom) {
                         periodeSvar.tom = tilPeriodedato(periode.tom);
                     }
-                    periodeSvar.avgittAv = s.avgittAv;
                     return periodeSvar;
                 });
-        }
-        case LAND: {
-            return {
-                svarverdier: svar,
-            };
-        }
+            break;
+
+        case LAND:
+            svarverdier = svar;
+            break;
+
         case CHECKBOX:
-            return parse(svar.map((_svar) => { return (_svar.verdi ? 'CHECKED' : 'UNCHECKED'); })[0]);
+            svarverdier = parse(svar.map((_svar) => {
+                return (_svar.verdi ? 'CHECKED' : 'UNCHECKED');
+            })[0]);
+            break;
+
         case JA_NEI:
         case CHECKBOX_PANEL:
         case TIMER:
@@ -44,31 +54,46 @@ const tilInitielleSvarverder = ({ svar, svartype, undersporsmal }) => {
         case FRITEKST:
         case TALL:
         case RADIO:
-            return parse(svar[0].verdi);
+            svarverdier = parse(svar[0].verdi);
+            break;
+
         case RADIO_GRUPPE:
-        case RADIO_GRUPPE_TIMER_PROSENT: {
+        case RADIO_GRUPPE_TIMER_PROSENT:
             const aktivtUndersporsmal = undersporsmal.find((uspm) => {
                 return uspm.svar[0] && uspm.svar[0].verdi === CHECKED;
             });
-            return aktivtUndersporsmal
+            svarverdier = aktivtUndersporsmal
                 ? parse(aktivtUndersporsmal.sporsmalstekst)
                 : null;
-        }
-        default: {
-            return null;
-        }
+            break;
+
+        default:
+            svarverdier = null;
+            break;
     }
+
+    if (svarverdier) {
+        svarverdier.forEach((s, idx) => {
+            s.avgittAv = svar[idx].avgittAv;
+        });
+    }
+
+    return svarverdier;
 };
 
 const fraBackendsoknadTilInitiellSoknad = (soknad) => {
     const flatten = (sporsmal, accumulator = []) => {
         accumulator.push(sporsmal);
-        sporsmal.undersporsmal.forEach((undersporsmal) => { return flatten(undersporsmal, accumulator); });
+        sporsmal.undersporsmal.forEach((undersporsmal) => {
+            return flatten(undersporsmal, accumulator);
+        });
         return accumulator;
     };
 
     const alleSporsmal = soknad.sporsmal
-        .map((sporsmal) => { return flatten(sporsmal); })
+        .map((sporsmal) => {
+            return flatten(sporsmal);
+        })
         .flatten()
         .filter((spm) => {
             return spm.svar.length > 0
