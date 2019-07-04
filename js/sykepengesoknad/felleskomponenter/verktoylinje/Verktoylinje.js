@@ -7,35 +7,40 @@ import ConnectedEttersending from '../ettersending/Ettersending';
 import { soknadPt } from '../../prop-types/soknadProptype';
 import { ARBEIDSTAKERE } from '../../enums/soknadtyper';
 import { SENDT } from '../../enums/soknadstatuser';
+import logger from '../../../logging';
 
 const Verktoylinje = ({ feilmelding, vis, soknad }) => {
     const verktoylinjeClassName = cn('verktoylinje', {
         'blokk--mini': feilmelding,
     });
+
+    logger.info(`Verktoylinje-1 - sykepengesoknad.id: ${soknad.id} - vis: ${vis}`);
+
     return vis
-        ? (
-            <React.Fragment>
-                <div className={verktoylinjeClassName}>
-                    <EndreSoknadContainer soknad={soknad} />
-                    <ConnectedEttersending
-                        manglendeDato="sendtTilNAVDato"
-                        ledetekstKeySuffix="send-til-nav"
-                        sykepengesoknad={soknad}
-                    />
-                    <ConnectedEttersending
-                        manglendeDato="sendtTilArbeidsgiverDato"
-                        ledetekstKeySuffix="send-til-arbeidsgiver"
-                        sykepengesoknad={soknad}
-                    />
-                </div>
-                <div aria-live="polite">
-                    {
-                        feilmelding &&
-                        <p className="skjemaelement__feilmelding">{feilmelding}</p>
-                    }
-                </div>
-            </React.Fragment>
-        )
+        ? <React.Fragment>
+            <div className={verktoylinjeClassName}>
+                <EndreSoknadContainer soknad={soknad} />
+                <ConnectedEttersending
+                    manglendeDato="sendtTilNAVDato"
+                    ledetekstKeySuffix="send-til-nav"
+                    sykepengesoknad={soknad}
+                />
+                <ConnectedEttersending
+                    manglendeDato="sendtTilArbeidsgiverDato"
+                    ledetekstKeySuffix="send-til-arbeidsgiver"
+                    sykepengesoknad={soknad}
+                />
+            </div>
+            {
+                logger.info(`Verktoylinje-2 - sykepengesoknad.id: ${soknad.id} - vis: ${vis}`)
+            }
+            <div aria-live="polite">
+                {
+                    feilmelding &&
+                    <p className="skjemaelement__feilmelding">{feilmelding}</p>
+                }
+            </div>
+        </React.Fragment>
         : null;
 };
 
