@@ -14,18 +14,14 @@ const tilPeriodedato = (datoEllerStreng) => {
 
 const tilInitielleSvarverder = ({ svar, svartype, undersporsmal }) => {
     const parse = genererParseForEnkeltverdi();
-
-    let svarverdier;
     switch (svartype) {
         case DATO:
-            svarverdier = parse(toDatePrettyPrint(new Date(svar[0].verdi)));
-            break;
-
-        case PERIODER:
-            svarverdier = svar.length === 0
+            return parse(toDatePrettyPrint(new Date(svar[0].verdi)), svar[0]);
+        case PERIODER: {
+            return svar.length === 0
                 ? [{}]
                 : svar.map((s) => {
-                    const periode = JSON.parse(s.verdi);
+                    const periode = JSON.parse(s.verdi, s);
                     const periodeSvar = {};
                     if (periode.fom) {
                         periodeSvar.fom = tilPeriodedato(periode.fom);
@@ -33,20 +29,17 @@ const tilInitielleSvarverder = ({ svar, svartype, undersporsmal }) => {
                     if (periode.tom) {
                         periodeSvar.tom = tilPeriodedato(periode.tom);
                     }
+                    periodeSvar.avgittAv = s.avgittAv;
                     return periodeSvar;
                 });
-            break;
-
-        case LAND:
-            svarverdier = svar;
-            break;
-
+        }
+        case LAND: {
+            return {
+                svarverdier: svar,
+            };
+        }
         case CHECKBOX:
-            svarverdier = parse(svar.map((_svar) => {
-                return (_svar.verdi ? 'CHECKED' : 'UNCHECKED');
-            })[0]);
-            break;
-
+            return parse(svar.map((_svar) => { return (_svar.verdi ? 'CHECKED' : 'UNCHECKED'); })[0], _svar);
         case JA_NEI:
         case CHECKBOX_PANEL:
         case TIMER:
@@ -54,31 +47,20 @@ const tilInitielleSvarverder = ({ svar, svartype, undersporsmal }) => {
         case FRITEKST:
         case TALL:
         case RADIO:
-            svarverdier = parse(svar[0].verdi);
-            break;
-
+            return parse(svar[0].verdi, svar[0]);
         case RADIO_GRUPPE:
-        case RADIO_GRUPPE_TIMER_PROSENT:
+        case RADIO_GRUPPE_TIMER_PROSENT: {
             const aktivtUndersporsmal = undersporsmal.find((uspm) => {
                 return uspm.svar[0] && uspm.svar[0].verdi === CHECKED;
             });
-            svarverdier = aktivtUndersporsmal
-                ? parse(aktivtUndersporsmal.sporsmalstekst)
+            return aktivtUndersporsmal
+                ? parse(aktivtUndersporsmal.sporsmalstekst, aktivtUndersporsmal.svar[0])
                 : null;
-            break;
-
-        default:
-            svarverdier = null;
-            break;
+        }
+        default: {
+            return null;
+        }
     }
-
-    if (svarverdier) {
-        svarverdier.forEach((s, idx) => {
-            s.avgittAv = svar[idx].avgittAv;
-        });
-    }
-
-    return svarverdier;
 };
 
 const fraBackendsoknadTilInitiellSoknad = (soknad) => {
