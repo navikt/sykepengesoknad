@@ -39,7 +39,7 @@ const tilInitielleSvarverder = ({ svar, svartype, undersporsmal }) => {
             };
         }
         case CHECKBOX:
-            return parse(svar.map((_svar) => { return (_svar.verdi ? 'CHECKED' : 'UNCHECKED'); })[0], _svar);
+            return parse(svar.map((_svar) => { return (_svar.verdi ? 'CHECKED' : 'UNCHECKED'); })[0], svar);
         case JA_NEI:
         case CHECKBOX_PANEL:
         case TIMER:
