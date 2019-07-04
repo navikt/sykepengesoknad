@@ -10,7 +10,6 @@ const GjenapneSoknad = (
         sykepengesoknad, gjenapneSoknad, gjenapner, gjenapneFeilet,
         tekst = getLedetekst('sykepengesoknad.gjenapne.knapp'), vis,
     }) => {
-
     logger.info(`GjenapneSoknad-1 - sykepengesoknad.id: ${sykepengesoknad.id} - vis: ${vis}`);
 
     return vis
