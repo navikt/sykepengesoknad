@@ -16,12 +16,12 @@ const tilInitielleSvarverder = ({ svar, svartype, undersporsmal }) => {
     const parse = genererParseForEnkeltverdi();
     switch (svartype) {
         case DATO:
-            return parse(toDatePrettyPrint(new Date(svar[0].verdi)), svar[0]);
+            return parse(toDatePrettyPrint(new Date(svar[0].verdi)));
         case PERIODER: {
             return svar.length === 0
                 ? [{}]
                 : svar.map((s) => {
-                    const periode = JSON.parse(s.verdi, s);
+                    const periode = JSON.parse(s.verdi);
                     const periodeSvar = {};
                     if (periode.fom) {
                         periodeSvar.fom = tilPeriodedato(periode.fom);
@@ -39,7 +39,7 @@ const tilInitielleSvarverder = ({ svar, svartype, undersporsmal }) => {
             };
         }
         case CHECKBOX:
-            return parse(svar.map((_svar) => { return (_svar.verdi ? 'CHECKED' : 'UNCHECKED'); })[0], svar);
+            return parse(svar.map((_svar) => { return (_svar.verdi ? 'CHECKED' : 'UNCHECKED'); })[0]);
         case JA_NEI:
         case CHECKBOX_PANEL:
         case TIMER:
@@ -47,14 +47,14 @@ const tilInitielleSvarverder = ({ svar, svartype, undersporsmal }) => {
         case FRITEKST:
         case TALL:
         case RADIO:
-            return parse(svar[0].verdi, svar[0]);
+            return parse(svar[0].verdi);
         case RADIO_GRUPPE:
         case RADIO_GRUPPE_TIMER_PROSENT: {
             const aktivtUndersporsmal = undersporsmal.find((uspm) => {
                 return uspm.svar[0] && uspm.svar[0].verdi === CHECKED;
             });
             return aktivtUndersporsmal
-                ? parse(aktivtUndersporsmal.sporsmalstekst, aktivtUndersporsmal.svar[0])
+                ? parse(aktivtUndersporsmal.sporsmalstekst)
                 : null;
         }
         default: {
