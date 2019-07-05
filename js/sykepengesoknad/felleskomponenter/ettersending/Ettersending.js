@@ -134,7 +134,7 @@ export class Ettersending extends Component {
                             {getLedetekst(`sykepengesoknad.ettersending.knapp.${ledetekstKeySuffix}`)}
                         </Knapp>
                         {
-                            logger.info(`Ettersending-2 - sykepengesoknad.id: ${sykepengesoknad.id} - manglendeDato: ${manglendeDato}
+                            logger.info(`Ettersending-3 - sykepengesoknad.id: ${sykepengesoknad.id} - manglendeDato: ${manglendeDato}
         - sendtTilNAVDato: ${sykepengesoknad.sendtTilNAVDato !== null} - visKvittering: ${this.state.visKvittering}
         - sendtTilArbeidsgiverDato: ${sykepengesoknad.sendtTilArbeidsgiverDato !== null}`)
                         }
