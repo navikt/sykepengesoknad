@@ -105,13 +105,13 @@ export class Ettersending extends Component {
 
     render() {
         const { sykepengesoknad, manglendeDato, ledetekstKeySuffix } = this.props;
-        logger.info(`Ettersending-1 - sykepengesoknad.id: ${sykepengesoknad.id} - manglendeDato: ${manglendeDato}
+        logger.info(`EttersendingV2-1 - sykepengesoknad.id: ${sykepengesoknad.id} - manglendeDato: ${manglendeDato}
         - sendtTilNAVDato: ${sykepengesoknad.sendtTilNAVDato !== null} 
         - sendtTilArbeidsgiverDato: ${sykepengesoknad.sendtTilArbeidsgiverDato !== null}`);
 
         if (sykepengesoknad.soknadstype !== ARBEIDSTAKERE
             || (sykepengesoknad[manglendeDato] && !this.state.visKvittering)) {
-            logger.info(`Ettersending-2 - sykepengesoknad.id: ${sykepengesoknad.id} - manglendeDato: ${manglendeDato}
+            logger.info(`EttersendingV2-2 - sykepengesoknad.id: ${sykepengesoknad.id} - manglendeDato: ${manglendeDato}
         - sendtTilNAVDato: ${sykepengesoknad.sendtTilNAVDato !== null} - visKvittering: ${this.state.visKvittering}
         - sendtTilArbeidsgiverDato: ${sykepengesoknad.sendtTilArbeidsgiverDato !== null}`);
             return null;
@@ -134,7 +134,7 @@ export class Ettersending extends Component {
                             {getLedetekst(`sykepengesoknad.ettersending.knapp.${ledetekstKeySuffix}`)}
                         </Knapp>
                         {
-                            logger.info(`Ettersending-3 - sykepengesoknad.id: ${sykepengesoknad.id} - manglendeDato: ${manglendeDato}
+                            logger.info(`EttersendingV2-3 - sykepengesoknad.id: ${sykepengesoknad.id} - manglendeDato: ${manglendeDato}
         - sendtTilNAVDato: ${sykepengesoknad.sendtTilNAVDato !== null} - visKvittering: ${this.state.visKvittering}
         - sendtTilArbeidsgiverDato: ${sykepengesoknad.sendtTilArbeidsgiverDato !== null}`)
                         }
