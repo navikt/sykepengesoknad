@@ -9,7 +9,7 @@ import { toggleBrukMockDataSelvstendigSoknad, toggleBrukMockdataUtland } from '.
 import logger from '../../../logging';
 import { ARBEIDSTAKERE, OPPHOLD_UTLAND, SELVSTENDIGE_OG_FRILANSERE } from '../../enums/soknadtyper';
 import { hentSoknad, skalHenteSoknader, skalHenteSoknaderHvisIkkeHenter } from './soknaderSelectors';
-import { populerSoknadMedSvarUtenKonvertertePerioder } from '../../utils/populerSoknadMedSvar';
+import populerSoknadMedSvar from '../../utils/populerSoknadMedSvar';
 import fraBackendsoknadTilInitiellSoknad from '../../utils/fraBackendsoknadTilInitiellSoknad';
 import { hentSkjemaVerdier } from '../../../data/redux-form/reduxFormSelectors';
 import { getSkjemanavnFraSoknad } from '../../utils/getSkjemanavnFraSoknad';
@@ -153,7 +153,7 @@ export function* lagreSoknad(action) {
     const soknad = yield select(hentSoknad, action.soknad);
     const skjemanavn = getSkjemanavnFraSoknad(action.soknad);
     const verdier = yield select(hentSkjemaVerdier, skjemanavn);
-    const populertSoknad = populerSoknadMedSvarUtenKonvertertePerioder(soknad, verdier);
+    const populertSoknad = populerSoknadMedSvar(soknad, verdier);
     try {
         yield put(actions.oppdatererSoknad(action.soknad));
         const oppdatertSoknad = yield call(post, `${hentApiUrl()}/oppdaterSporsmal`, populertSoknad);
@@ -171,7 +171,7 @@ export function* oppdaterSporsmalForUtlandssoknad(action) {
     if (soknad.soknadstype === OPPHOLD_UTLAND) {
         const skjemanavn = getSkjemanavnFraSoknad(action.soknad);
         const gamleVerdierISkjema = yield select(hentSkjemaVerdier, skjemanavn);
-        const populertSoknad = populerSoknadMedSvarUtenKonvertertePerioder(soknad, gamleVerdierISkjema);
+        const populertSoknad = populerSoknadMedSvar(soknad, gamleVerdierISkjema);
         try {
             const oppdatertSoknad = yield call(post, `${hentApiUrl()}/oppdaterSporsmal`, populertSoknad);
             yield put(actions.soknadOppdatert(oppdatertSoknad));
