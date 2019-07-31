@@ -158,10 +158,4 @@ const populerSoknadMedSvar = (soknad, values, optionsParam = {}) => {
     };
 };
 
-export const populerSoknadMedSvarUtenKonvertertePerioder = (soknad, values) => {
-    return populerSoknadMedSvar(soknad, values, {
-        konverterPerioder: false,
-    });
-};
-
 export default populerSoknadMedSvar;
