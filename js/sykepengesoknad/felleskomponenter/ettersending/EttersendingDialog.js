@@ -4,11 +4,13 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { getHtmlLedetekst, getLedetekst } from '@navikt/digisyfo-npm';
 import { Hovedknapp } from 'nav-frontend-knapper';
+import Alertstripe from 'nav-frontend-alertstriper';
 import { soknadPt } from '../../../propTypes/index';
 import { ettersendSoknadTilNav } from '../../data/ettersending/ettersendingNav';
 import { ettersendSoknadTilArbeidsgiver } from '../../data/ettersending/ettersendingArbeidsgiver';
 import Feilstripe from '../../../components/Feilstripe';
 import { ETTERSEND_SOKNAD_FEILET, ETTERSEND_SOKNAD_SENDER, selectEttersendSoknadStatus } from '../../data/ettersending/ettersendingSelectors';
+import logger from '../../../logging';
 
 const sendtTilNAVDato = 'sendtTilNAVDato';
 const sendtTilArbeidsgiverDato = 'sendtTilArbeidsgiverDato';
@@ -27,9 +29,19 @@ export const EttersendingDialog = (props) => {
     } = props;
 
     const sender = status === ETTERSEND_SOKNAD_SENDER;
+    const senderPaNyttSuffix = sykepengesoknad[manglendeDato]
+        ? '-igjen'
+        : '';
     return (<div className="ettersending">
-        <h3 className="modal__tittel">{getLedetekst(`sykepengesoknad.ettersending.info.tittel.${ledetekstKeySuffix}`)}</h3>
-        <div dangerouslySetInnerHTML={getHtmlLedetekst(`sykepengesoknad.ettersending.info.tekst.${ledetekstKeySuffix}`)} />
+        <h3 className="modal__tittel">{getLedetekst(`sykepengesoknad.ettersending.info.tittel.${ledetekstKeySuffix}${senderPaNyttSuffix}`)}</h3>
+        {
+            (() => {
+                if (sykepengesoknad[manglendeDato]) {
+                    return <Alertstripe type="info">{getLedetekst('sykepengesoknad.ettersending.info.tekst.allerede-sendt')}</Alertstripe>;
+                }
+                return <div dangerouslySetInnerHTML={getHtmlLedetekst(`sykepengesoknad.ettersending.info.tekst.${ledetekstKeySuffix}`)} />;
+            })()
+        }
         <Feilstripe vis={status === ETTERSEND_SOKNAD_FEILET} />
         <div className="knapperad">
             <Hovedknapp
@@ -38,13 +50,16 @@ export const EttersendingDialog = (props) => {
                 className="blokk--s"
                 onClick={(e) => {
                     e.preventDefault();
+                    if (sykepengesoknad[manglendeDato]) {
+                        logger.info(`Forsøker å sende søknad ${sykepengesoknad.id} på nytt`);
+                    }
                     if (manglendeDato === sendtTilNAVDato) {
                         doEttersendSoknadTilNav(sykepengesoknad.id);
                     } else {
                         doEttersendSoknadTilArbeidsgiver(sykepengesoknad.id);
                     }
                 }}>
-                {getLedetekst(`sykepengesoknad.ettersending.knapp.bekreft.${ledetekstKeySuffix}`)}
+                {getLedetekst(`sykepengesoknad.ettersending.knapp.bekreft.${ledetekstKeySuffix}${senderPaNyttSuffix}`)}
             </Hovedknapp>
             <p>
                 <a

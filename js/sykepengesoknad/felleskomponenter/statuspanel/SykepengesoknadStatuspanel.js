@@ -9,7 +9,7 @@ import VerktoylinjeContainer from '../verktoylinje/Verktoylinje';
 const StatusOgSykepengeopplysninger = ({ soknad }) => {
     return (<Statusopplysninger>
         <StatusNokkelopplysning tittel={getLedetekst('statuspanel.status')}>
-            <p>{hentSoknadStatustekst(soknad)}</p>
+            <p dangerouslySetInnerHTML={hentSoknadStatustekst(soknad)} />
         </StatusNokkelopplysning>
         <StatusNokkelopplysning tittel={getLedetekst('sykepengesoknad.sykepengeinfo.tittel')}>
             <p dangerouslySetInnerHTML={hentSykepengetekst(soknad)} />
