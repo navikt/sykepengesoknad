@@ -42,7 +42,7 @@ export const EttersendingDialog = (props) => {
                 return <div dangerouslySetInnerHTML={getHtmlLedetekst(`sykepengesoknad.ettersending.info.tekst.${ledetekstKeySuffix}`)} />;
             })()
         }
-        <Feilstripe vis={status === ETTERSEND_SOKNAD_FEILET} />
+        <Feilstripe vis={status === ETTERSEND_SOKNAD_FEILET && !sykepengesoknad[manglendeDato]} />
         <div className="knapperad">
             <Hovedknapp
                 disabled={sender}
@@ -52,6 +52,7 @@ export const EttersendingDialog = (props) => {
                     e.preventDefault();
                     if (sykepengesoknad[manglendeDato]) {
                         logger.info(`Forsøker å sende søknad ${sykepengesoknad.id} på nytt`);
+                        onClose();
                     }
                     if (manglendeDato === sendtTilNAVDato) {
                         doEttersendSoknadTilNav(sykepengesoknad.id);
