@@ -1,5 +1,5 @@
 /* eslint arrow-body-style: ["error", "as-needed"] */
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { getHtmlLedetekst, getLedetekst } from '@navikt/digisyfo-npm';
@@ -9,7 +9,12 @@ import { soknadPt } from '../../../propTypes/index';
 import { ettersendSoknadTilNav } from '../../data/ettersending/ettersendingNav';
 import { ettersendSoknadTilArbeidsgiver } from '../../data/ettersending/ettersendingArbeidsgiver';
 import Feilstripe from '../../../components/Feilstripe';
-import { ETTERSEND_SOKNAD_FEILET, ETTERSEND_SOKNAD_SENDER, selectEttersendSoknadStatus } from '../../data/ettersending/ettersendingSelectors';
+import {
+    ETTERSEND_SOKNAD_FEILET,
+    ETTERSEND_SOKNAD_SENDER,
+    ALLEREDE_ETTERSENDT,
+    selectEttersendSoknadStatus,
+} from '../../data/ettersending/ettersendingSelectors';
 import logger from '../../../logging';
 
 const sendtTilNAVDato = 'sendtTilNAVDato';
@@ -17,63 +22,77 @@ const sendtTilArbeidsgiverDato = 'sendtTilArbeidsgiverDato';
 const ledetekstKeySuffixPt = PropTypes.oneOf(['send-til-nav', 'send-til-arbeidsgiver']);
 const manglendeDatoPt = PropTypes.oneOf([sendtTilNAVDato, sendtTilArbeidsgiverDato]);
 
-export const EttersendingDialog = (props) => {
-    const {
-        onClose,
-        sykepengesoknad,
-        status,
-        ledetekstKeySuffix,
-        manglendeDato,
-        doEttersendSoknadTilNav,
-        doEttersendSoknadTilArbeidsgiver,
-    } = props;
-
-    const sender = status === ETTERSEND_SOKNAD_SENDER;
-    const senderPaNyttSuffix = sykepengesoknad[manglendeDato]
-        ? '-igjen'
-        : '';
-    return (<div className="ettersending">
-        <h3 className="modal__tittel">{getLedetekst(`sykepengesoknad.ettersending.info.tittel.${ledetekstKeySuffix}${senderPaNyttSuffix}`)}</h3>
-        {
-            (() => {
-                if (sykepengesoknad[manglendeDato]) {
-                    return <Alertstripe type="info">{getLedetekst('sykepengesoknad.ettersending.info.tekst.allerede-sendt')}</Alertstripe>;
-                }
-                return <div dangerouslySetInnerHTML={getHtmlLedetekst(`sykepengesoknad.ettersending.info.tekst.${ledetekstKeySuffix}`)} />;
-            })()
+export class EttersendingDialog extends Component {
+    componentDidUpdate() {
+        const {
+            onClose,
+            sykepengesoknad,
+            status,
+        } = this.props;
+        if (status === ALLEREDE_ETTERSENDT) {
+            logger.info(`Forsøkte å sende søknad ${sykepengesoknad.id}`);
+            onClose();
         }
-        <Feilstripe vis={status === ETTERSEND_SOKNAD_FEILET && !sykepengesoknad[manglendeDato]} />
-        <div className="knapperad">
-            <Hovedknapp
-                disabled={sender}
-                spinner={sender}
-                className="blokk--s"
-                onClick={(e) => {
-                    e.preventDefault();
+    }
+    render() {
+        const {
+            onClose,
+            sykepengesoknad,
+            status,
+            ledetekstKeySuffix,
+            manglendeDato,
+            doEttersendSoknadTilNav,
+            doEttersendSoknadTilArbeidsgiver,
+        } = this.props;
+
+        const sender = status === ETTERSEND_SOKNAD_SENDER;
+        const senderPaNyttSuffix = sykepengesoknad[manglendeDato]
+            ? '-igjen'
+            : '';
+        return (<div className="ettersending">
+            <h3 className="modal__tittel">{getLedetekst(`sykepengesoknad.ettersending.info.tittel.${ledetekstKeySuffix}${senderPaNyttSuffix}`)}</h3>
+            {
+                (() => {
                     if (sykepengesoknad[manglendeDato]) {
-                        logger.info(`Forsøker å sende søknad ${sykepengesoknad.id} på nytt`);
-                        onClose();
+                        return (<Alertstripe
+                            type="info">{getLedetekst('sykepengesoknad.ettersending.info.tekst.allerede-sendt')}</Alertstripe>);
                     }
-                    if (manglendeDato === sendtTilNAVDato) {
-                        doEttersendSoknadTilNav(sykepengesoknad.id);
-                    } else {
-                        doEttersendSoknadTilArbeidsgiver(sykepengesoknad.id);
-                    }
-                }}>
-                {getLedetekst(`sykepengesoknad.ettersending.knapp.bekreft.${ledetekstKeySuffix}${senderPaNyttSuffix}`)}
-            </Hovedknapp>
-            <p>
-                <a
+                    return (<div
+                        dangerouslySetInnerHTML={getHtmlLedetekst(`sykepengesoknad.ettersending.info.tekst.${ledetekstKeySuffix}`)} />);
+                })()
+            }
+            <Feilstripe vis={status === ETTERSEND_SOKNAD_FEILET} />
+            <div className="knapperad">
+                <Hovedknapp
+                    disabled={sender}
+                    spinner={sender}
+                    className="blokk--s"
                     onClick={(e) => {
                         e.preventDefault();
-                        onClose();
-                    }}
-                    href="#"
-                    className="lenke">Avbryt</a>
-            </p>
-        </div>
-    </div>);
-};
+                        if (sykepengesoknad[manglendeDato]) {
+                            logger.info(`Forsøker å sende søknad ${sykepengesoknad.id} på nytt (${manglendeDato})`);
+                        }
+                        if (manglendeDato === sendtTilNAVDato) {
+                            doEttersendSoknadTilNav(sykepengesoknad.id);
+                        } else {
+                            doEttersendSoknadTilArbeidsgiver(sykepengesoknad.id);
+                        }
+                    }}>
+                    {getLedetekst(`sykepengesoknad.ettersending.knapp.bekreft.${ledetekstKeySuffix}${senderPaNyttSuffix}`)}
+                </Hovedknapp>
+                <p>
+                    <a
+                        onClick={(e) => {
+                            e.preventDefault();
+                            onClose();
+                        }}
+                        href="#"
+                        className="lenke">Avbryt</a>
+                </p>
+            </div>
+        </div>);
+    }
+}
 
 EttersendingDialog.propTypes = {
     onClose: PropTypes.func,
