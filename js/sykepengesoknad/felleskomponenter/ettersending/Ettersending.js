@@ -1,8 +1,8 @@
 /* eslint arrow-body-style: ["error", "as-needed"] */
 
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import {getLedetekst, scrollTo} from '@navikt/digisyfo-npm';
+import { getLedetekst, scrollTo } from '@navikt/digisyfo-npm';
 import Knapp from 'nav-frontend-knapper';
 import { connect } from 'react-redux';
 import Lightbox from '../../../components/Lightbox';
