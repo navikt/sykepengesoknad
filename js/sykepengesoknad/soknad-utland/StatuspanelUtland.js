@@ -1,7 +1,5 @@
 import React from 'react';
-import {
-    getLedetekst,
-} from '@navikt/digisyfo-npm';
+import { getLedetekst } from '@navikt/digisyfo-npm';
 import { soknadPt } from '../../propTypes/index';
 import Statuspanel, { StatusNokkelopplysning, Statusopplysninger } from '../../components/Statuspanel';
 import hentSoknadStatustekst from '../utils/hentSoknadStatustekst';
@@ -10,7 +8,7 @@ const StatuspanelUtland = ({ soknad }) => {
     return (<Statuspanel>
         <Statusopplysninger>
             <StatusNokkelopplysning tittel={getLedetekst('statuspanel.status')}>
-                <p>{hentSoknadStatustekst(soknad)}</p>
+                <p dangerouslySetInnerHTML={hentSoknadStatustekst(soknad)} />
             </StatusNokkelopplysning>
         </Statusopplysninger>
     </Statuspanel>);

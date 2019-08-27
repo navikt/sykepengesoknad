@@ -1,8 +1,8 @@
 /* eslint arrow-body-style: ["error", "as-needed"] */
 
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import { getLedetekst, scrollTo } from '@navikt/digisyfo-npm';
+import {getLedetekst, scrollTo} from '@navikt/digisyfo-npm';
 import Knapp from 'nav-frontend-knapper';
 import { connect } from 'react-redux';
 import Lightbox from '../../../components/Lightbox';
@@ -10,6 +10,7 @@ import { soknadPt } from '../../../propTypes/index';
 import { EttersendDialogConnected } from './EttersendingDialog';
 import { ettersendSoknadTilNavNullstill } from '../../data/ettersending/ettersendingNav';
 import { ettersendSoknadTilArbeidsgiverNullstill } from '../../data/ettersending/ettersendingArbeidsgiver';
+import { SELVSTENDIGE_OG_FRILANSERE } from '../../enums/soknadtyper';
 
 const sendtTilNAVDato = 'sendtTilNAVDato';
 const sendtTilArbeidsgiverDato = 'sendtTilArbeidsgiverDato';
@@ -106,6 +107,7 @@ export class Ettersending extends Component {
         return (
             <div className="verktoylinje__element">
                 {
+                    !(sykepengesoknad.soknadstype === SELVSTENDIGE_OG_FRILANSERE && manglendeDato === sendtTilArbeidsgiverDato) &&
                     <React.Fragment>
                         <Knapp
                             type="standard"
