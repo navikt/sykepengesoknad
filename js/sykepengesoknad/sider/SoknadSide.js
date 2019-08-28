@@ -9,9 +9,15 @@ import * as dineSykmeldingerActions from '../../data/dine-sykmeldinger/dineSykme
 import Feilmelding from '../../components/Feilmelding';
 import SideHvit from '../../sider/SideHvit';
 import Side from '../../sider/Side';
-import { ARBEIDSTAKERE, OPPHOLD_UTLAND, SELVSTENDIGE_OG_FRILANSERE } from '../enums/soknadtyper';
+import { ARBEIDSTAKERE, OPPHOLD_UTLAND, SELVSTENDIGE_OG_FRILANSERE, ARBEIDSLEDIG } from '../enums/soknadtyper';
 import SykepengesoknadUtlandSkjemaContainer from '../soknad-utland/skjema/SoknadUtlandSkjemaContainer';
-import { ArbeidstakerSoknadHotjarTrigger, FrilanserSoknadHotjarTrigger, NyArbeidstakerSoknadHotjarTrigger, SykepengerUtlandSoknadTrigger } from '../../components/HotjarTrigger';
+import {
+    ArbeidsledigSoknadTrigger,
+    ArbeidstakerSoknadHotjarTrigger,
+    FrilanserSoknadHotjarTrigger,
+    NyArbeidstakerSoknadHotjarTrigger,
+    SykepengerUtlandSoknadTrigger
+} from '../../components/HotjarTrigger';
 import beregnBrodsmulesti from '../utils/beregnBrodsmulesti';
 import SoknadSelvstendigNaeringsdrivendeSkjema from '../soknad-selvstendig-frilanser/SoknadSelvstendigNaeringsdrivende';
 import SoknadController from '../../sykepengesoknad-gammel-plattform/soknad/SoknadController';
@@ -20,6 +26,7 @@ import { NY, UTKAST_TIL_KORRIGERING } from '../enums/soknadstatuser';
 import SykepengesoknadBanner from '../../components/soknad-felles/SykepengersoknadBanner';
 import { soknadPt } from '../prop-types/soknadProptype';
 import { brodsmule } from '../../propTypes';
+import SoknadArbeidsledig from '../soknad-arbeidsledig/SoknadArbeidsledig';
 import { selectSykepengesoknaderData } from '../../sykepengesoknad-gammel-plattform/data/sykepengesoknader/sykepengesoknaderSelectors';
 import { selectSoknaderData } from '../data/soknader/soknaderSelectors';
 
@@ -29,12 +36,14 @@ const soknadSkalUtfylles = (soknad) => {
 
 const SoknadWrapper = ({ soknad, children, brodsmuler }) => {
     return soknadSkalUtfylles(soknad)
-        ? (<React.Fragment>
-            <SykepengesoknadBanner soknad={soknad} brodsmuler={brodsmuler} />
-            <div className="begrensning begrensning--soknad">
-                {children}
-            </div>
-        </React.Fragment>)
+        ? (
+            <React.Fragment>
+                <SykepengesoknadBanner soknad={soknad} brodsmuler={brodsmuler} />
+                <div className="begrensning begrensning--soknad">
+                    {children}
+                </div>
+            </React.Fragment>
+        )
         : children;
 };
 
@@ -61,6 +70,7 @@ export class Container extends Component {
             erSelvstendigNaeringsdrivendeSoknad,
             erSoknadOmUtenlandsopphold,
             erNyArbeidstakersoknad,
+            erArbeidsledigsoknad,
             skalHenteSykmeldinger,
             henter,
             sti,
@@ -70,33 +80,49 @@ export class Container extends Component {
 
         const brodsmuler = beregnBrodsmulesti(sti, this.props.soknadId);
         const SoknadSide = soknadSkalUtfylles(soknad || sykepengesoknad) ? SideHvit : Side;
-        return (<SoknadSide brodsmuler={brodsmuler} tittel="Søknad om sykepenger" laster={skalHenteSykmeldinger || henter}>
-            <SoknadWrapper soknad={erArbeidstakersoknad ? sykepengesoknad : soknad} brodsmuler={brodsmuler}>
-                {(() => {
-                    if (henter) {
-                        return <div />;
-                    }
-                    if (erArbeidstakersoknad) {
-                        return (<ArbeidstakerSoknadHotjarTrigger>
-                            <SoknadController {...this.props} />
-                        </ArbeidstakerSoknadHotjarTrigger>);
-                    } else if (erSelvstendigNaeringsdrivendeSoknad) {
-                        return (<FrilanserSoknadHotjarTrigger>
-                            <SoknadSelvstendigNaeringsdrivendeSkjema {...this.props} />
-                        </FrilanserSoknadHotjarTrigger>);
-                    } else if (erSoknadOmUtenlandsopphold) {
-                        return (<SykepengerUtlandSoknadTrigger>
-                            <SykepengesoknadUtlandSkjemaContainer {...this.props} />
-                        </SykepengerUtlandSoknadTrigger>);
-                    } else if (erNyArbeidstakersoknad) {
-                        return (<NyArbeidstakerSoknadHotjarTrigger>
-                            <NySoknadArbeidstaker {...this.props} />
-                        </NyArbeidstakerSoknadHotjarTrigger>);
-                    }
-                    return <Feilmelding />;
-                })()}
-            </SoknadWrapper>
-        </SoknadSide>);
+        return (
+            <SoknadSide brodsmuler={brodsmuler} tittel="Søknad om sykepenger" laster={skalHenteSykmeldinger || henter}>
+                <SoknadWrapper soknad={erArbeidstakersoknad ? sykepengesoknad : soknad} brodsmuler={brodsmuler}>
+                    {(() => {
+                        if (henter) {
+                            return <div />;
+                        }
+                        if (erArbeidstakersoknad) {
+                            return (
+                                <ArbeidstakerSoknadHotjarTrigger>
+                                    <SoknadController {...this.props} />
+                                </ArbeidstakerSoknadHotjarTrigger>
+                            );
+                        } else if (erSelvstendigNaeringsdrivendeSoknad) {
+                            return (
+                                <FrilanserSoknadHotjarTrigger>
+                                    <SoknadSelvstendigNaeringsdrivendeSkjema {...this.props} />
+                                </FrilanserSoknadHotjarTrigger>
+                            );
+                        } else if (erSoknadOmUtenlandsopphold) {
+                            return (
+                                <SykepengerUtlandSoknadTrigger>
+                                    <SykepengesoknadUtlandSkjemaContainer {...this.props} />
+                                </SykepengerUtlandSoknadTrigger>
+                            );
+                        } else if (erNyArbeidstakersoknad) {
+                            return (
+                                <NyArbeidstakerSoknadHotjarTrigger>
+                                    <NySoknadArbeidstaker {...this.props} />
+                                </NyArbeidstakerSoknadHotjarTrigger>
+                            );
+                        } else if (erArbeidsledigsoknad) {
+                            return (
+                                <ArbeidsledigSoknadTrigger>
+                                    <SoknadArbeidsledig {...this.props} />
+                                </ArbeidsledigSoknadTrigger>
+                            );
+                        }
+                        return <Feilmelding />;
+                    })()}
+                </SoknadWrapper>
+            </SoknadSide>
+        );
     }
 }
 
@@ -114,6 +140,7 @@ Container.propTypes = {
     erSelvstendigNaeringsdrivendeSoknad: PropTypes.bool,
     erSoknadOmUtenlandsopphold: PropTypes.bool,
     erNyArbeidstakersoknad: PropTypes.bool,
+    erArbeidsledigsoknad: PropTypes.bool,
     sti: PropTypes.string,
     henter: PropTypes.bool,
     soknadId: PropTypes.string,
@@ -141,6 +168,7 @@ export const mapStateToProps = (state, ownProps) => {
     const erSelvstendigNaeringsdrivendeSoknad = soknad !== undefined && soknad.soknadstype === SELVSTENDIGE_OG_FRILANSERE;
     const erSoknadOmUtenlandsopphold = soknad !== undefined && soknad.soknadstype === OPPHOLD_UTLAND;
     const erNyArbeidstakersoknad = soknad !== undefined && soknad.soknadstype === ARBEIDSTAKERE;
+    const erArbeidsledigsoknad = soknad !== undefined && soknad.soknadstype === ARBEIDSLEDIG;
     const erArbeidstakersoknad = sykepengesoknad !== undefined;
     const skalHenteSykmeldinger = !state.dineSykmeldinger.hentet && !state.dineSykmeldinger.henter;
     const henter = state.soknader.henter
@@ -150,7 +178,7 @@ export const mapStateToProps = (state, ownProps) => {
     const hentingFeilet = state.soknader.hentingFeilet || state.sykepengesoknader.hentingFeilet || state.ledetekster.hentingFeilet;
     const sti = ownProps.location.pathname;
     const stegSomNummer = parseInt(ownProps.params.steg, 10);
-    const sidenummer = erNyArbeidstakersoknad || erSelvstendigNaeringsdrivendeSoknad
+    const sidenummer = erNyArbeidstakersoknad || erSelvstendigNaeringsdrivendeSoknad || erArbeidsledigsoknad
         ? (
             isNaN(stegSomNummer)
                 ? 1
@@ -163,6 +191,7 @@ export const mapStateToProps = (state, ownProps) => {
         erSoknadOmUtenlandsopphold,
         erArbeidstakersoknad,
         erNyArbeidstakersoknad,
+        erArbeidsledigsoknad,
         henter,
         hentingFeilet,
         sti,

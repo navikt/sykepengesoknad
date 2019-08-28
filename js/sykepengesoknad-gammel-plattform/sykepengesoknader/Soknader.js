@@ -32,43 +32,47 @@ const Soknader = ({ sykepengesoknader = [], soknader = [], visFeil }) => {
         .sort(sorterEtterPerioder)
         .reverse();
 
-    return (<div>
-        <Sidetopp
-            tittel={getLedetekst('soknader.sidetittel')}
-        />
-        <Vis
-            hvis={visFeil}
-            render={() => {
-                return (<Alertstripe type="advarsel" className="blokk">
-                    <p className="sist"><strong>Oops! </strong> Vi kunne ikke hente alle dine sykepengesøknader.</p>
-                </Alertstripe>);
-            }} />
-        <SoknadTeasere
-            soknader={nyeSoknader}
-            tittel={getLedetekst('soknader.venter-paa-behandling.tittel')}
-            tomListeTekst={getLedetekst('soknader.venter-paa-behandling.ingen-soknader')}
-            className="js-til-behandling"
-            id="soknader-list-til-behandling"
-        />
-        {
-            fremtidigeSoknader.length > 0 && <SoknadTeasere
-                Child={FremtidigSoknadTeaser}
-                soknader={fremtidigeSoknader}
-                tittel={getLedetekst('soknader.planlagt.tittel')}
-                className="js-planlagt"
-                id="soknader-planlagt"
+    return (
+        <React.Fragment>
+            <Sidetopp tittel={getLedetekst('soknader.sidetittel')} />
+            <Vis hvis={visFeil}
+                render={() => {
+                    return (
+                        <Alertstripe type="advarsel" className="blokk">
+                            <p className="sist"><strong>Oops! </strong> Vi kunne ikke hente alle dine sykepengesøknader.</p>
+                        </Alertstripe>
+                    );
+                }} />
+            <SoknadTeasere
+                soknader={nyeSoknader}
+                tittel={getLedetekst('soknader.venter-paa-behandling.tittel')}
+                tomListeTekst={getLedetekst('soknader.venter-paa-behandling.ingen-soknader')}
+                className="js-til-behandling"
+                id="soknader-list-til-behandling"
             />
-        }
-        <UtbetalingerLenke />
-        {
-            tidligereSoknader.length > 0 && (<SoknadTeasere
-                soknader={tidligereSoknader}
-                tittel={getLedetekst('soknader.sendt.tittel')}
-                className="js-sendt"
-                id="soknader-sendt"
-            />)
-        }
-    </div>);
+            {
+                fremtidigeSoknader.length > 0 &&
+                <SoknadTeasere
+                    Child={FremtidigSoknadTeaser}
+                    soknader={fremtidigeSoknader}
+                    tittel={getLedetekst('soknader.planlagt.tittel')}
+                    className="js-planlagt"
+                    id="soknader-planlagt"
+                />
+            }
+            <UtbetalingerLenke />
+            {
+                tidligereSoknader.length > 0 && (
+                    <SoknadTeasere
+                        soknader={tidligereSoknader}
+                        tittel={getLedetekst('soknader.sendt.tittel')}
+                        className="js-sendt"
+                        id="soknader-sendt"
+                    />
+                )
+            }
+        </React.Fragment>
+    );
 };
 
 Soknader.propTypes = {
