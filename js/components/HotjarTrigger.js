@@ -70,3 +70,13 @@ export const SykepengerUtlandSoknadTrigger = ({ children }) => {
 SykepengerUtlandSoknadTrigger.propTypes = {
     children: node,
 };
+
+export const ArbeidsledigSoknadTrigger = ({ children }) => {
+    return (<HotjarTrigger hotjarTrigger="SOKNAD_ARBEIDSLEDIG">
+        {children}
+    </HotjarTrigger>);
+};
+
+ArbeidsledigSoknadTrigger.propTypes = {
+    children: node,
+};

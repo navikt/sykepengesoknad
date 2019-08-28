@@ -22,7 +22,10 @@ const hentSoknadStatustekst = (soknad) => {
         '%SENDTTILARBEIDSGIVERDATO%': soknadSendtTilArbeidsgiver ? tilLesbarDatoMedArstall(soknad.sendtTilArbeidsgiverDato) : null,
         '%SENDTTILNAVDATO%': soknadSendtTilNav ? tilLesbarDatoMedArstall(soknad.sendtTilNAVDato || soknad.innsendtDato) : null,
     };
-    return getLedetekst(nokkel, args);
+    const lede = getLedetekst(nokkel, args);
+    console.log('soknad.sendtTilNAVDato', soknad.sendtTilNAVDato); // eslint-disable-line
+    console.log('nokkel', nokkel); // eslint-disable-line
+    return lede;
 };
 
 export default hentSoknadStatustekst;

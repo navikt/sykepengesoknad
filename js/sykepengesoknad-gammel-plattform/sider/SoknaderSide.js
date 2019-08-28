@@ -15,7 +15,6 @@ import { skalHenteSoknader } from '../../sykepengesoknad/data/soknader/soknaderS
 import { selectSkalHenteDineSykmeldinger } from '../../data/dine-sykmeldinger/dineSykmeldingerSelectors';
 import { hentDineSykmeldinger } from '../../data/dine-sykmeldinger/dineSykmeldingerActions';
 import { ARBEIDSTAKERE } from '../../sykepengesoknad/enums/soknadtyper';
-import { toggleNyArbeidstakerSoknad } from '../../data/unleashToggles/unleashTogglesSelectors';
 
 export class Container extends Component {
     componentWillMount() {
@@ -31,7 +30,8 @@ export class Container extends Component {
             hentingFeilet,
             sykepengesoknader,
             soknader,
-            visFeil } = this.props;
+            visFeil
+        } = this.props;
 
         return (
             <Side tittel={getLedetekst('soknader.sidetittel')} brodsmuler={brodsmuler} laster={henter}>
@@ -75,21 +75,17 @@ export function mapDispatchToProps(dispatch) {
 export function mapStateToProps(state) {
     const sykepengesoknader = state.sykepengesoknader.data;
     const dineSykmeldinger = state.dineSykmeldinger.data;
-    const soknader = toggleNyArbeidstakerSoknad(state)
-        ? state.soknader.data.map((soknad) => {
-            const sykmelding = dineSykmeldinger.find((sykmld) => {
-                return sykmld.id === soknad.sykmeldingId;
-            });
-            return soknad.soknadstype === ARBEIDSTAKERE
-                ? {
-                    ...soknad,
-                    sykmelding,
-                }
-                : soknad;
-        })
-        : state.soknader.data.filter((s) => {
-            return s.soknadstype !== ARBEIDSTAKERE;
+    const soknader = state.soknader.data.map((soknad) => {
+        const sykmelding = dineSykmeldinger.find((sykmld) => {
+            return sykmld.id === soknad.sykmeldingId;
         });
+        return soknad.soknadstype === ARBEIDSTAKERE
+            ? {
+                ...soknad,
+                sykmelding,
+            }
+            : soknad;
+    });
 
     return {
         sykepengesoknader,

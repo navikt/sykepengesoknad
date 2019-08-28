@@ -7,7 +7,7 @@ import * as actions from './soknaderActions';
 import { soknadrespons } from '../../../../test/mock/mockSoknadSelvstendig';
 import { toggleBrukMockDataSelvstendigSoknad, toggleBrukMockdataUtland } from '../../../toggles';
 import logger from '../../../logging';
-import { ARBEIDSTAKERE, OPPHOLD_UTLAND, SELVSTENDIGE_OG_FRILANSERE } from '../../enums/soknadtyper';
+import { ARBEIDSTAKERE, OPPHOLD_UTLAND, SELVSTENDIGE_OG_FRILANSERE, ARBEIDSLEDIG } from '../../enums/soknadtyper';
 import { hentSoknad, skalHenteSoknader, skalHenteSoknaderHvisIkkeHenter } from './soknaderSelectors';
 import populerSoknadMedSvar from '../../utils/populerSoknadMedSvar';
 import fraBackendsoknadTilInitiellSoknad from '../../utils/fraBackendsoknadTilInitiellSoknad';
@@ -15,7 +15,6 @@ import { hentSkjemaVerdier } from '../../../data/redux-form/reduxFormSelectors';
 import { getSkjemanavnFraSoknad } from '../../utils/getSkjemanavnFraSoknad';
 import { soknadUtland1 } from '../../../../test/mock/mockSoknadUtland';
 import { UTKAST_TIL_KORRIGERING } from '../../enums/soknadstatuser';
-import { toggleNyArbeidstakerSoknad } from '../../../data/unleashToggles/unleashTogglesSelectors';
 import { MANGLER_OIDC_TOKEN } from '../../../enums/exceptionMessages';
 import {
     AVBRYT_SOKNAD_FORESPURT,
@@ -68,7 +67,8 @@ export function* oppdaterSoknaderVedLagringFeilet(action) {
         const data = yield call(get, `${hentApiUrl()}/soknader`);
         yield put(actions.soknaderHentet(data));
         const soknad = yield select(hentSoknad, action.soknad);
-        logger.info(`Søknader oppdatert etter at lagring feilet. Status for søknad med ID ${soknad.id} var ${action.soknad.status}, og er nå ${soknad.status}`);
+        logger.info('Søknader oppdatert etter at lagring feilet. Status for søknad med ID ' +
+            `${soknad.id} var ${action.soknad.status}, og er nå ${soknad.status}`);
     } catch (e) {
         log(e);
         if (e.message === MANGLER_OIDC_TOKEN) {
@@ -96,10 +96,10 @@ export function* oppdaterSoknaderHvisIkkeHenter() {
 
 export function* sendSoknad(action) {
     try {
-        const toggle = yield select(toggleNyArbeidstakerSoknad);
         if (action.soknad.soknadstype === SELVSTENDIGE_OG_FRILANSERE
             || action.soknad.soknadstype === OPPHOLD_UTLAND
-            || (action.soknad.soknadstype === ARBEIDSTAKERE && toggle)) {
+            || action.soknad.soknadstype === ARBEIDSLEDIG
+            || (action.soknad.soknadstype === ARBEIDSTAKERE)) {
             yield put(actions.senderSoknad(action.soknadId));
             yield call(post, `${hentApiUrl()}/sendSoknad`, action.soknad);
             yield put(actions.soknadSendt(action.soknad));
@@ -116,6 +116,7 @@ export function* sendSoknad(action) {
 export function* avbrytSoknad(action) {
     if (action.soknad.soknadstype === SELVSTENDIGE_OG_FRILANSERE
         || action.soknad.soknadstype === OPPHOLD_UTLAND
+        || action.soknad.soknadstype === ARBEIDSLEDIG
         || action.soknad.soknadstype === ARBEIDSTAKERE) {
         try {
             yield put(actions.avbryterSoknad());
@@ -125,7 +126,8 @@ export function* avbrytSoknad(action) {
                 action.soknad.status === UTKAST_TIL_KORRIGERING) {
                 browserHistory.push(getUrlTilSoknader());
             } else if (action.soknad.soknadstype === ARBEIDSTAKERE
-                || action.soknad.soknadstype === SELVSTENDIGE_OG_FRILANSERE) {
+                || action.soknad.soknadstype === SELVSTENDIGE_OG_FRILANSERE
+                || action.soknad.soknadstype === ARBEIDSLEDIG) {
                 browserHistory.push(getUrlTilSoknad(action.soknad.id));
             }
         } catch (e) {
@@ -137,7 +139,8 @@ export function* avbrytSoknad(action) {
 
 export function* gjenapneSoknad(action) {
     if (action.soknad.soknadstype === SELVSTENDIGE_OG_FRILANSERE
-    || action.soknad.soknadstype === ARBEIDSTAKERE) {
+        || action.soknad.soknadstype === ARBEIDSTAKERE
+        || action.soknad.soknadstype === ARBEIDSLEDIG) {
         try {
             yield put(actions.gjenapnerSoknad(action.soknad));
             yield call(post, `${hentApiUrl()}/soknader/${action.soknad.id}/gjenapne`);

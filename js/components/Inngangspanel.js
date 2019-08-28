@@ -4,14 +4,16 @@ import { Link } from 'react-router';
 import cn from 'classnames';
 
 export const InngangspanelIkon = ({ ikon, ikonHover }) => {
-    return (<React.Fragment>
-        <span className="inngangspanel__ikon inngangspanel__ikon--normal">
-            <img alt="" src={ikon} />
-        </span>
-        <span className="inngangspanel__ikon inngangspanel__ikon--hover">
-            <img alt="" src={ikonHover || ikon} />
-        </span>
-    </React.Fragment>);
+    return (
+        <React.Fragment>
+            <span className="inngangspanel__ikon inngangspanel__ikon--normal">
+                <img alt="" src={ikon} />
+            </span>
+            <span className="inngangspanel__ikon inngangspanel__ikon--hover">
+                <img alt="" src={ikonHover || ikon} />
+            </span>
+        </React.Fragment>
+    );
 };
 
 InngangspanelIkon.propTypes = {
@@ -20,9 +22,11 @@ InngangspanelIkon.propTypes = {
 };
 
 export const Inngangspanel = ({ children, className, ...rest }) => {
-    return (<Link className={cn('inngangspanel', className)} {...rest}>
-        {children}
-    </Link>);
+    return (
+        <Link className={cn('inngangspanel', className)} {...rest}>
+            {children}
+        </Link>
+    );
 };
 
 Inngangspanel.propTypes = {
@@ -31,9 +35,11 @@ Inngangspanel.propTypes = {
 };
 
 export const InngangspanelInnhold = ({ children }) => {
-    return (<div className="inngangspanel__innhold">
-        {children}
-    </div>);
+    return (
+        <div className="inngangspanel__innhold">
+            {children}
+        </div>
+    );
 };
 
 InngangspanelInnhold.propTypes = {
@@ -41,21 +47,23 @@ InngangspanelInnhold.propTypes = {
 };
 
 export const InngangspanelHeader = ({ meta, tittel, status, id }) => {
-    return (<header className="inngangspanel__header">
-        <h3 className="js-title" id={id}>
-            <small className="inngangspanel__meta">
-                {meta}
-            </small>
-            <span className="inngangspanel__tittel">
-                {tittel}
-            </span>
-        </h3>
-        {
-            status
-                ? <p className="inngangspanel__status js-status">{status}</p>
-                : null
-        }
-    </header>);
+    return (
+        <header className="inngangspanel__header">
+            <h3 className="js-title" id={id}>
+                <small className="inngangspanel__meta">
+                    {meta}
+                </small>
+                <span className="inngangspanel__tittel">
+                    {tittel}
+                </span>
+            </h3>
+            {
+                status
+                    ? <p className="inngangspanel__status js-status">{status}</p>
+                    : null
+            }
+        </header>
+    );
 };
 
 InngangspanelHeader.propTypes = {
@@ -75,7 +83,10 @@ InngangspanelTekst.propTypes = {
 };
 
 export const InngangspanelUndertekst = ({ children, className }) => {
-    return (<p className={cn('inngangspanel__undertekst js-undertekst mute', className)}>{children}</p>);
+    if (children !== 'null') {
+        return <p className={cn('inngangspanel__undertekst js-undertekst mute', className)}>{children}</p>;
+    }
+    return null;
 };
 
 InngangspanelUndertekst.propTypes = {

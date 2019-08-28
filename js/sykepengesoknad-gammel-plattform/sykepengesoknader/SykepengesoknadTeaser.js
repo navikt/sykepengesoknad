@@ -36,20 +36,22 @@ const finnArbeidsgivernavn = (soknad) => {
 };
 
 export const SendtUlikt = ({ soknad }) => {
-    return (<span>
-        {
-            getLedetekst('soknad.teaser.status.SENDT.til-arbeidsgiver', {
-                '%DATO%': toDatePrettyPrint(soknad.sendtTilArbeidsgiverDato),
-                '%ARBEIDSGIVER%': soknad.arbeidsgiver.navn,
-            })
-        }
-        <br />
-        {
-            getLedetekst('soknad.teaser.status.SENDT.til-nav', {
-                '%DATO%': toDatePrettyPrint(soknad.sendtTilNAVDato),
-            })
-        }
-    </span>);
+    return (
+        <span>
+            {
+                getLedetekst('soknad.teaser.status.SENDT.til-arbeidsgiver', {
+                    '%DATO%': toDatePrettyPrint(soknad.sendtTilArbeidsgiverDato),
+                    '%ARBEIDSGIVER%': soknad.arbeidsgiver.navn,
+                })
+            }
+            <br />
+            {
+                getLedetekst('soknad.teaser.status.SENDT.til-nav', {
+                    '%DATO%': toDatePrettyPrint(soknad.sendtTilNAVDato),
+                })
+            }
+        </span>
+    );
 };
 
 SendtUlikt.propTypes = {
