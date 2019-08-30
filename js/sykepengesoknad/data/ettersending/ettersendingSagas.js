@@ -6,10 +6,11 @@ import { hentApiUrl, post } from '../../../gateway-api';
 import {
     ETTERSEND_SOKNAD_ARBG_FORESPURT,
     ettersenderSoknadTilArbeidsgiver, ettersendSoknadTilArbeidsgiverFeilet, soknadEttersendtTilArbeidsgiver,
+    soknadAlleredeEttersendtTilArbeidsgiver,
 } from './ettersendingArbeidsgiver';
 import {
     ETTERSEND_SOKNAD_NAV_FORESPURT,
-    ettersenderSoknadTilNav, ettersendSoknadTilNavFeilet, soknadEttersendtTilNav,
+    ettersenderSoknadTilNav, ettersendSoknadTilNavFeilet, soknadEttersendtTilNav, soknadAlleredeEttersendtTilNav,
 } from './ettersendingNav';
 
 
@@ -20,6 +21,10 @@ export function* ettersendSoknadNav(action) {
         yield put(soknadEttersendtTilNav());
     } catch (e) {
         log(e);
+        if (e.toString().endsWith('409')) {
+            yield put(soknadAlleredeEttersendtTilNav());
+            return;
+        }
         yield put(ettersendSoknadTilNavFeilet());
     }
 }
@@ -31,6 +36,10 @@ export function* ettersendSoknadArbeidsgiver(action) {
         yield put(soknadEttersendtTilArbeidsgiver());
     } catch (e) {
         log(e);
+        if (e.toString().endsWith('409')) {
+            yield put(soknadAlleredeEttersendtTilArbeidsgiver());
+            return;
+        }
         yield put(ettersendSoknadTilArbeidsgiverFeilet());
     }
 }

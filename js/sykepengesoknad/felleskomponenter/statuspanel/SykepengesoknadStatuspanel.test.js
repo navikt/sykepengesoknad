@@ -19,6 +19,8 @@ describe('SykepengesoknadStatuspanel', () => {
             'statuspanel.status': 'Status',
             'sykepengesoknad.status-2.SENDT.til-arbeidsgiver': 'Sendt til %ARBEIDSGIVER% (org. nr. %ORGNR%): %SENDTTILARBEIDSGIVERDATO%',
             'sykepengesoknad.status-2.SENDT.til-nav': 'Sendt til NAV: %SENDTTILNAVDATO%',
+            'sykepengesoknad.status-2.SENDT.til-arbeidsgiver-og-nav-forskjellig-dato':
+                'Sendt til NAV: %SENDTTILNAVDATO% <br />Sendt til %ARBEIDSGIVER% (org. nr. %ORGNR%): %SENDTTILARBEIDSGIVERDATO%',
             'sykepengesoknad.status-2.SENDT.til-arbeidsgiver-og-nav': 'Sendt til NAV og %ARBEIDSGIVER% (org. nr. %ORGNR%): %SENDTTILNAVDATO%',
             'sykepengesoknad.status-2.KORRIGERT': 'Korrigert',
             'sykepengesoknad.sykepengeinfo.tittel': 'Utbetaling av sykepenger',
@@ -75,6 +77,21 @@ describe('SykepengesoknadStatuspanel', () => {
         expect(component.text()).to.contain('Sendt til NAV og Testbedrift (org. nr. 123 456 789): 16. januar 2019');
         expect(component.text()).to.contain('Les om sykepenger og saksbehandlingstider');
     });
+
+    it('Skal vise status når søknad er sendt til både NAV og arbeidsgiver på forskjellig dag', () => {
+        const soknad = getSendtSoknadArbeidstaker({
+            sendtTilNAVDato: new Date('2019-01-16'),
+            sendtTilArbeidsgiverDato: new Date('2019-01-17'),
+            arbeidsgiver: {
+                navn: 'Testbedrift',
+                orgnummer: '123456789',
+            },
+        });
+        const component = mountWithStore(<SykepengesoknadStatuspanel soknad={soknad} />, state);
+        expect(component.text()).to.contain('Sendt til NAV: 16. januar 2019');
+        expect(component.text()).to.contain('Sendt til Testbedrift (org. nr. 123 456 789): 17. januar 2019');
+    });
+
 
     it('Skal vise status når søknad er korrigert', () => {
         const soknad = getSendtSoknadArbeidstaker({

@@ -11,7 +11,6 @@ import { EttersendDialogConnected } from './EttersendingDialog';
 import { ettersendSoknadTilNavNullstill } from '../../data/ettersending/ettersendingNav';
 import { ettersendSoknadTilArbeidsgiverNullstill } from '../../data/ettersending/ettersendingArbeidsgiver';
 import { ARBEIDSTAKERE } from '../../enums/soknadtyper';
-import logger from '../../../logging';
 
 const sendtTilNAVDato = 'sendtTilNAVDato';
 const sendtTilArbeidsgiverDato = 'sendtTilArbeidsgiverDato';
@@ -105,21 +104,10 @@ export class Ettersending extends Component {
 
     render() {
         const { sykepengesoknad, manglendeDato, ledetekstKeySuffix } = this.props;
-        logger.info(`EttersendingV2-1 - sykepengesoknad.id: ${sykepengesoknad.id} - manglendeDato: ${manglendeDato}
-        - sendtTilNAVDato: ${sykepengesoknad.sendtTilNAVDato !== null} 
-        - sendtTilArbeidsgiverDato: ${sykepengesoknad.sendtTilArbeidsgiverDato !== null}`);
-
-        if (sykepengesoknad.soknadstype !== ARBEIDSTAKERE
-            || (sykepengesoknad[manglendeDato] && !this.state.visKvittering)) {
-            logger.info(`EttersendingV2-2 - sykepengesoknad.id: ${sykepengesoknad.id} - manglendeDato: ${manglendeDato}
-        - sendtTilNAVDato: ${sykepengesoknad.sendtTilNAVDato !== null} - visKvittering: ${this.state.visKvittering}
-        - sendtTilArbeidsgiverDato: ${sykepengesoknad.sendtTilArbeidsgiverDato !== null}`);
-            return null;
-        }
         return (
             <div className="verktoylinje__element">
                 {
-                    !sykepengesoknad[manglendeDato] &&
+                    (sykepengesoknad.soknadstype === ARBEIDSTAKERE || manglendeDato === sendtTilNAVDato) &&
                     <React.Fragment>
                         <Knapp
                             type="standard"
@@ -133,11 +121,6 @@ export class Ettersending extends Component {
                             className="js-trigger">
                             {getLedetekst(`sykepengesoknad.ettersending.knapp.${ledetekstKeySuffix}`)}
                         </Knapp>
-                        {
-                            logger.info(`EttersendingV2-3 - sykepengesoknad.id: ${sykepengesoknad.id} - manglendeDato: ${manglendeDato}
-        - sendtTilNAVDato: ${sykepengesoknad.sendtTilNAVDato !== null} - visKvittering: ${this.state.visKvittering}
-        - sendtTilArbeidsgiverDato: ${sykepengesoknad.sendtTilArbeidsgiverDato !== null}`)
-                        }
                     </React.Fragment>
                 }
                 {

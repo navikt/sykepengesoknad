@@ -4,12 +4,12 @@
         "aktorId": "12345678",
         "sykmeldingId": "ddaff965-f514-400e-8e61-3f7b2c753a4b",
         "soknadstype": "ARBEIDSTAKERE",
-        "status": "NY",
+        "status": "SENDT",
         "fom": "2019-03-22",
         "tom": "2019-04-08",
         "opprettetDato": "2019-04-09",
-        "innsendtDato": null,
-        "sendtTilNAVDato": null,
+        "innsendtDato": "2019-07-04",
+        "sendtTilNAVDato": "2019-07-04",
         "sendtTilArbeidsgiverDato": null,
         "avbruttDato": null,
         "startSykeforlop": "2019-03-22",
@@ -44,7 +44,11 @@
                 "max": null,
                 "pavirkerAndreSporsmal": false,
                 "kriterieForVisningAvUndersporsmal": null,
-                "svar": [],
+                "svar": [
+                    {
+                        "verdi": "CHECKED"
+                    }
+                ],
                 "undersporsmal": []
             },
             {
@@ -59,7 +63,7 @@
                 "kriterieForVisningAvUndersporsmal": "JA",
                 "svar": [
                     {
-                        "verdi": "JA"
+                        "verdi": "NEI"
                     }
                 ],
                 "undersporsmal": [
@@ -93,7 +97,11 @@
                 "max": null,
                 "pavirkerAndreSporsmal": true,
                 "kriterieForVisningAvUndersporsmal": "JA",
-                "svar": [],
+                "svar": [
+                    {
+                        "verdi": "NEI"
+                    }
+                ],
                 "undersporsmal": [
                     {
                         "id": "200144",
@@ -120,7 +128,10 @@
                 "max": null,
                 "pavirkerAndreSporsmal": false,
                 "kriterieForVisningAvUndersporsmal": "JA",
-                "svar": [],
+                "svar": [
+                    {
+                        "verdi": "NEI"
+                    }],
                 "undersporsmal": [
                     {
                         "id": "200146",
@@ -219,7 +230,10 @@
                 "max": null,
                 "pavirkerAndreSporsmal": false,
                 "kriterieForVisningAvUndersporsmal": "JA",
-                "svar": [],
+                "svar": [
+                    {
+                        "verdi": "NEI"
+                    }],
                 "undersporsmal": [
                     {
                         "id": "200153",
@@ -318,7 +332,10 @@
                 "max": null,
                 "pavirkerAndreSporsmal": true,
                 "kriterieForVisningAvUndersporsmal": "JA",
-                "svar": [],
+                "svar": [
+                    {
+                        "verdi": "NEI"
+                    }],
                 "undersporsmal": [
                     {
                         "id": "200160",
@@ -427,7 +444,10 @@
                 "max": null,
                 "pavirkerAndreSporsmal": false,
                 "kriterieForVisningAvUndersporsmal": "JA",
-                "svar": [],
+                "svar": [
+                    {
+                        "verdi": "NEI"
+                    }],
                 "undersporsmal": [
                     {
                         "id": "200168",
@@ -603,7 +623,10 @@
                 "max": null,
                 "pavirkerAndreSporsmal": false,
                 "kriterieForVisningAvUndersporsmal": "JA",
-                "svar": [],
+                "svar": [
+                    {
+                        "verdi": "NEI"
+                    }],
                 "undersporsmal": [
                     {
                         "id": "200181",
@@ -656,7 +679,10 @@
                 "max": null,
                 "pavirkerAndreSporsmal": false,
                 "kriterieForVisningAvUndersporsmal": null,
-                "svar": [],
+                "svar": [
+                    {
+                        "verdi": "CHECKED"
+                    }],
                 "undersporsmal": []
             }
         ]
