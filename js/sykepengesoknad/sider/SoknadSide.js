@@ -16,7 +16,7 @@ import {
     ArbeidstakerSoknadHotjarTrigger,
     FrilanserSoknadHotjarTrigger,
     NyArbeidstakerSoknadHotjarTrigger,
-    SykepengerUtlandSoknadTrigger
+    SykepengerUtlandSoknadTrigger,
 } from '../../components/HotjarTrigger';
 import beregnBrodsmulesti from '../utils/beregnBrodsmulesti';
 import SoknadSelvstendigNaeringsdrivendeSkjema from '../soknad-selvstendig-frilanser/SoknadSelvstendigNaeringsdrivende';
