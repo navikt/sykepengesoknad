@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { erSynligIViewport, getHtmlLedetekst, getLedetekst, scrollTo } from '@navikt/digisyfo-npm';
 import Sidetopp from '../../components/Sidetopp';
 import { sykepengesoknad as sykepengesoknadPt } from '../../propTypes/index';
-import { getSendtTilSuffix } from '../utils/sykepengesoknadUtils';
+import { getSendtTilSuffix } from '../../sykepengesoknad-gammel-plattform/utils/sykepengesoknadUtils';
 import { LenkeTilSoknader } from '../../sykepengesoknad/felleskomponenter/LenkeTilSoknader';
 import { IllustrertInnholdGronnHake } from '../../components/IllustrertInnhold';
 

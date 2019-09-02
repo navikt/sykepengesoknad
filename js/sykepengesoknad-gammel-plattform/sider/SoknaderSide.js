@@ -30,7 +30,7 @@ export class Container extends Component {
             hentingFeilet,
             sykepengesoknader,
             soknader,
-            visFeil
+            visFeil,
         } = this.props;
 
         return (
