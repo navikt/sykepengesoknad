@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
 import PropTypes from 'prop-types';
-import { scrollTo } from '@navikt/digisyfo-npm';
+import { Bjorn, scrollTo, getLedetekst } from '@navikt/digisyfo-npm';
 import { UTKAST_TIL_KORRIGERING } from '../../enums/soknadstatuser';
 import KorrigerVarsel from '../../../components/soknad-felles/KorrigerVarsel';
 import TidligSoknad from '../../../components/soknad-felles/TidligSoknad';
@@ -9,6 +9,7 @@ import { soknadPt } from '../../prop-types/soknadProptype';
 import StegindikatorEttSporsmalPerSide from './StegindikatorEttSporsmalPerSide';
 import SykmeldingUtdrag from '../sykmelding-utdrag/SykmeldingUtdrag';
 import { getUrlTilSoknad } from '../../../utils/urlUtils';
+import { ARBEIDSTAKERE } from '../../enums/soknadtyper';
 
 class Soknadskjema extends Component {
     componentDidMount() {
@@ -41,7 +42,9 @@ class Soknadskjema extends Component {
             <TidligSoknad soknad={soknad} />
             {intro}
             <SykmeldingUtdrag soknad={soknad} erApen={sidenummer === 1} />
-            {tittel && <h2 className="soknad__stegtittel">{tittel}</h2>}
+            {tittel && <h2 className="soknad__stegtittel">{getLedetekst(tittel)}</h2>}
+            { tittel === 'sykepengesoknad.ferie_v2.tittel' && soknad.soknadstype === ARBEIDSTAKERE && (<Bjorn
+                className="blokk--s">{getLedetekst('sykepengesoknad.ferie_v2.bjorn')}</Bjorn>) }
             {children}
         </div>);
     }
