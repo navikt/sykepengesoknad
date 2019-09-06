@@ -1,4 +1,3 @@
-import { getLedetekst } from '@navikt/digisyfo-npm';
 import { BEKREFT_OPPLYSNINGER, VAER_KLAR_OVER_AT } from '../../enums/tagtyper';
 import { fjernIndexFraTag } from '../sporsmal/fieldUtils';
 
@@ -20,7 +19,7 @@ export const erSisteSide = (soknad, sidenummer) => {
     return [VAER_KLAR_OVER_AT, BEKREFT_OPPLYSNINGER].indexOf(tag) > -1;
 };
 
-export const hentTittel = (soknad, sidenummer) => {
+export const hentNokkel = (soknad, sidenummer) => {
     const sporsmal = hentSporsmalForDenneSiden(soknad, sidenummer)[0];
     const nokkel = sidenummer === 1
         ? 'sykepengesoknad.for-du-begynner.tittel'
@@ -28,5 +27,5 @@ export const hentTittel = (soknad, sidenummer) => {
             ? 'sykepengesoknad.til-slutt.tittel'
             : `sykepengesoknad.${fjernIndexFraTag(sporsmal.tag)
                 .toLowerCase()}.tittel`;
-    return getLedetekst(nokkel);
+    return nokkel;
 };

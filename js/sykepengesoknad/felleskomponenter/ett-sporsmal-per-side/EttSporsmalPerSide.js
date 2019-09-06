@@ -4,7 +4,7 @@ import { sykmelding as sykmeldingPt } from '@navikt/digisyfo-npm';
 import Soknadskjema from './Soknadskjema';
 import { skjemasvar as skjemasvarPt, soknadMetaReducerPt, soknadPt } from '../../../propTypes/index';
 import AppSpinner from '../../../components/AppSpinner';
-import { erSisteSide, hentTittel } from './ettSporsmalPerSideUtils';
+import { erSisteSide, hentNokkel } from './ettSporsmalPerSideUtils';
 import { SykepengesoknadArbeidstakerOppsummeringSkjema } from '../../soknad-arbeidstaker/oppsummering/Oppsummering';
 import { ForDuBegynnerSkjema } from './ForDuBegynnerSkjema';
 import { GenereltEttSporsmalPerSideSkjema } from './GenereltEttSporsmalPerSideSkjema';
@@ -30,11 +30,12 @@ const EttSporsmalPerSide = (props) => {
     const Sporsmalsvisning = hentSporsmalsvisning(soknad, sidenummer);
     const intro = sidenummer === 1 ? <SoknadIntro soknad={soknad} /> : null;
     const scroll = sidenummer !== 1 && !erSisteSide(soknad, sidenummer);
+    const tittel = hentNokkel(soknad, sidenummer);
 
     return (<Soknadskjema
         scroll={scroll}
         sidenummer={sidenummer}
-        tittel={hentTittel(soknad, sidenummer)}
+        tittel={tittel}
         intro={intro}
         soknad={soknad}>
         {
