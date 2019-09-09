@@ -1,7 +1,7 @@
 import { getLedetekst } from '@navikt/digisyfo-npm';
 import { fjernIndexFraTag, formaterEnkeltverdi, formaterFlereVerdier } from '../felleskomponenter/sporsmal/fieldUtils';
 import { CHECKED } from '../enums/svarEnums';
-import { CHECKBOX_GRUPPE, FRITEKST, IKKE_RELEVANT, PERIODER, TALL } from '../enums/svartyper';
+import { CHECKBOX_GRUPPE, FRITEKST, IKKE_RELEVANT, PERIODER, PROSENT, TALL, TIMER } from '../enums/svartyper';
 import { validerPerioder } from '../../sykepengesoknad-gammel-plattform/utils/valideringUtils';
 import validerTall from './validerTall';
 import {
@@ -73,7 +73,9 @@ const validerUndersporsmalsliste = (sporsmalsliste = [], values = {}, feilmeldin
                         }
                         break;
                     }
-                    case TALL: {
+                    case TALL:
+                    case PROSENT:
+                    case TIMER: {
                         const feilmelding = validerTall(
                             undersporsmal.min,
                             undersporsmal.max,
