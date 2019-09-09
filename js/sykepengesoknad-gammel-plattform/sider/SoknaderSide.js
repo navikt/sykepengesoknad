@@ -10,7 +10,10 @@ import Feilmelding from '../../components/Feilmelding';
 import { sykepengesoknad as sykepengesoknadPt, brodsmule as brodsmulePt, soknadPt } from '../../propTypes/index';
 import { hentSykepengesoknader } from '../data/sykepengesoknader/sykepengesoknader_actions';
 import { hentSoknader } from '../../sykepengesoknad/data/soknader/soknaderActions';
-import { skalHenteSykepengesoknader } from '../data/sykepengesoknader/sykepengesoknaderSelectors';
+import {
+    skalHenteSykepengesoknader,
+    selectSykepengesoknaderData,
+} from '../data/sykepengesoknader/sykepengesoknaderSelectors';
 import { skalHenteSoknader } from '../../sykepengesoknad/data/soknader/soknaderSelectors';
 import { selectSkalHenteDineSykmeldinger } from '../../data/dine-sykmeldinger/dineSykmeldingerSelectors';
 import { hentDineSykmeldinger } from '../../data/dine-sykmeldinger/dineSykmeldingerActions';
@@ -73,7 +76,7 @@ export function mapDispatchToProps(dispatch) {
 }
 
 export function mapStateToProps(state) {
-    const sykepengesoknader = state.sykepengesoknader.data;
+    const sykepengesoknader = selectSykepengesoknaderData(state);
     const dineSykmeldinger = state.dineSykmeldinger.data;
     const soknader = toggleNyArbeidstakerSoknad(state)
         ? state.soknader.data.map((soknad) => {

@@ -13,7 +13,9 @@ import { sykepengesoknad as sykepengesoknadPt } from '../../propTypes/index';
 import { hentBerikelse } from '../data/sykepengesoknader/sykepengesoknader_actions';
 import SoknadAvbrutt from '../soknad/soknad-avbrutt/SoknadAvbrutt';
 import { filtrerOgSorterNyeSoknader } from '../sykepengesoknader/Soknader';
-import { erForsteSykepengesoknad } from '../data/sykepengesoknader/sykepengesoknaderSelectors';
+import {
+    erForsteSykepengesoknad, selectSykepengesoknaderData,
+} from '../data/sykepengesoknader/sykepengesoknaderSelectors';
 import { utfyllingStartet as utfyllingStartetAction } from '../../data/metrikker/metrikker_actions';
 
 const { NY, SENDT, UTGAATT, TIL_SENDING, UTKAST_TIL_KORRIGERING, KORRIGERT, AVBRUTT, SLETTET_UTKAST } = sykepengesoknadstatuser;
@@ -103,11 +105,11 @@ Container.propTypes = {
 export const mapStateToProps = (state, ownProps) => {
     const henter = state.vedlikehold.henter || state.sykepengesoknader.henterBerikelse;
     const sykepengesoknadId = ownProps.params.sykepengesoknadId;
-    const skalHenteBerikelse = state.sykepengesoknader.data.some((s) => {
+    const skalHenteBerikelse = selectSykepengesoknaderData(state).some((s) => {
         return s.id === sykepengesoknadId;
     });
 
-    const soknader = filtrerOgSorterNyeSoknader(state.sykepengesoknader.data);
+    const soknader = filtrerOgSorterNyeSoknader(selectSykepengesoknaderData(state));
     const eldsteSoknadId = soknader[0] ? soknader[0].id : '';
     const detFinnesEldreSoknader = eldsteSoknadId !== sykepengesoknadId;
 

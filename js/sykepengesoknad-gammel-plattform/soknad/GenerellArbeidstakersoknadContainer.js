@@ -6,6 +6,7 @@ import Feilmelding from '../../components/Feilmelding';
 import { sykepengesoknad as sykepengesoknadPt } from '../../propTypes/index';
 import * as soknadActions from '../data/sykepengesoknader/sykepengesoknader_actions';
 import { getSoknadSkjemanavn } from '../../enums/skjemanavn';
+import { selectSykepengesoknaderData } from '../data/sykepengesoknader/sykepengesoknaderSelectors';
 
 const GenerellArbeidstakersoknadContainer = (props) => {
     const { Component, sykepengesoknad, hentingFeilet } = props;
@@ -43,7 +44,7 @@ export function mapDispatchToProps(dispatch) {
 }
 
 export const mapStateToProps = (state, ownProps) => {
-    const sykepengesoknad = state.sykepengesoknader.data.filter((soknad) => {
+    const sykepengesoknad = selectSykepengesoknaderData(state).filter((soknad) => {
         return soknad.id === ownProps.params.sykepengesoknadId;
     })[0];
     const skjemanavn = getSoknadSkjemanavn(ownProps.params.sykepengesoknadId);

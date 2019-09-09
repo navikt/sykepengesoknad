@@ -1,5 +1,6 @@
 import { parseSykepengesoknad, tidligsteFom, senesteTom, sykepengesoknadstatuser } from '@navikt/digisyfo-npm';
 import * as actiontyper from '../../../data/actiontyper';
+import { selectSykepengesoknaderData } from './sykepengesoknaderSelectors';
 
 const { KORRIGERT, AVBRUTT, NY, UTKAST_TIL_KORRIGERING, SLETTET_UTKAST } = sykepengesoknadstatuser;
 
@@ -58,7 +59,7 @@ export const settErOppdelt = (soknad) => {
 };
 
 export const finnSoknad = (state, id) => {
-    return state.sykepengesoknader.data.filter((s) => {
+    return selectSykepengesoknaderData(state).filter((s) => {
         return `${s.id}` === id;
     })[0] || {};
 };

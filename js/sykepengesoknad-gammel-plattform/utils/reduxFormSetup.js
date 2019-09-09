@@ -8,6 +8,7 @@ import { mapAktiviteter } from './sykepengesoknadUtils';
 import mapBackendsoknadToSkjemasoknad from '../mappers/mapBackendsoknadToSkjemasoknad';
 import { getSoknadSkjemanavn } from '../../enums/skjemanavn';
 import { getTidligsteSendtDato } from './sorterSoknader';
+import { selectSykepengesoknaderData } from '../data/sykepengesoknader/sykepengesoknaderSelectors';
 
 const sendTilFoerDuBegynner = (sykepengesoknad) => {
     history.replace(`${process.env.REACT_APP_CONTEXT_ROOT}/soknader/${sykepengesoknad.id}`);
@@ -113,7 +114,7 @@ export const mapToInitialValues = (soknad, soknader = []) => {
 export const getInitialValuesSykepengesoknad = (sykepengesoknad, state) => {
     return sykepengesoknad.status === sykepengesoknadstatuser.UTKAST_TIL_KORRIGERING
         ? mapBackendsoknadToSkjemasoknad(sykepengesoknad)
-        : mapToInitialValues(sykepengesoknad, state.sykepengesoknader.data);
+        : mapToInitialValues(sykepengesoknad, selectSykepengesoknaderData(state));
 };
 
 export const mapStateToProps = (state, ownProps) => {
