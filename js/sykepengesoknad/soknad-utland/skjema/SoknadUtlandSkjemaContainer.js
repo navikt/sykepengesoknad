@@ -13,6 +13,7 @@ import { JA } from '../../enums/svarEnums';
 import OppsummeringUtland from '../oppsummering/OppsummeringUtland';
 import KvitteringUtland from '../KvitteringUtland';
 import { FERIE } from '../../enums/tagtyper';
+import { selectSoknaderData } from '../../data/soknader/soknaderSelectors';
 
 
 export const UtlandSkjemaContainer = (props) => {
@@ -56,7 +57,7 @@ UtlandSkjemaContainer.propTypes = {
 };
 
 export const finnSoknad = (state, ownProps) => {
-    return state.soknader.data.find((s) => {
+    return selectSoknaderData(state).find((s) => {
         return (s.id === ownProps.params.sykepengesoknadId) && (s.status === NY || s.status === TIL_SENDING || s.status === SENDT);
     });
 };

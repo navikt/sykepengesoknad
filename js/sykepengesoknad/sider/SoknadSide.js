@@ -20,6 +20,8 @@ import { NY, UTKAST_TIL_KORRIGERING } from '../enums/soknadstatuser';
 import SykepengesoknadBanner from '../../components/soknad-felles/SykepengersoknadBanner';
 import { soknadPt } from '../prop-types/soknadProptype';
 import { brodsmule } from '../../propTypes';
+import { selectSykepengesoknaderData } from '../../sykepengesoknad-gammel-plattform/data/sykepengesoknader/sykepengesoknaderSelectors';
+import { selectSoknaderData } from '../data/soknader/soknaderSelectors';
 
 const soknadSkalUtfylles = (soknad) => {
     return soknad && (soknad.status === NY || soknad.status === UTKAST_TIL_KORRIGERING);
@@ -134,8 +136,8 @@ export const mapStateToProps = (state, ownProps) => {
     const finnSoknad = (s) => {
         return s.id === soknadId;
     };
-    const soknad = state.soknader.data.find(finnSoknad);
-    const sykepengesoknad = state.sykepengesoknader.data.find(finnSoknad);
+    const soknad = selectSoknaderData(state).find(finnSoknad);
+    const sykepengesoknad = selectSykepengesoknaderData(state).find(finnSoknad);
     const erSelvstendigNaeringsdrivendeSoknad = soknad !== undefined && soknad.soknadstype === SELVSTENDIGE_OG_FRILANSERE;
     const erSoknadOmUtenlandsopphold = soknad !== undefined && soknad.soknadstype === OPPHOLD_UTLAND;
     const erNyArbeidstakersoknad = soknad !== undefined && soknad.soknadstype === ARBEIDSTAKERE;

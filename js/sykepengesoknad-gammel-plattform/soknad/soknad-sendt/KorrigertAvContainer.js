@@ -5,6 +5,8 @@ import { getLedetekst, tilLesbarDatoMedArstall } from '@navikt/digisyfo-npm';
 import Alertstripe from 'nav-frontend-alertstriper';
 import { sykepengesoknad as sykepengesoknadPt } from '../../../propTypes/index';
 import { getTidligsteSendtDato } from '../../utils/sorterSoknader';
+import { selectSykepengesoknaderData } from '../../data/sykepengesoknader/sykepengesoknaderSelectors';
+import { selectSoknaderData } from '../../../sykepengesoknad/data/soknader/soknaderSelectors';
 
 export const KorrigertAv = ({ korrigertAvSoknad }) => {
     return (<Alertstripe className="blokk" type="info">
@@ -26,8 +28,8 @@ KorrigertAv.propTypes = {
 export const mapStateToProps = (state, ownProps) => {
     const id = ownProps.sykepengesoknad.id;
     const sykepengesoknader = [
-        ...state.sykepengesoknader.data,
-        ...state.soknader.data,
+        ...selectSykepengesoknaderData(state),
+        ...selectSoknaderData(state),
     ];
     let korrigertAvSoknad = { id };
 
