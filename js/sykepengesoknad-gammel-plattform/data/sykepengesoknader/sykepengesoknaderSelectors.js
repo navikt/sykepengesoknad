@@ -1,11 +1,13 @@
 /* eslint arrow-body-style: ["error", "as-needed"] */
 import { sykepengesoknadstatuser } from '@navikt/digisyfo-npm';
+import { selectSoknaderData } from '../../../sykepengesoknad/data/soknader/soknaderSelectors';
 
 const { NY, FREMTIDIG } = sykepengesoknadstatuser;
 
 const selectSlice = state => state.sykepengesoknader;
 
-export const selectSykepengesoknaderData = state => selectSlice(state).data;
+export const selectSykepengesoknaderData = state => selectSlice(state).data
+    .filter(soknad => !selectSoknaderData(state).map(s => s.id).includes(soknad.id));
 
 const selectHenter = state => selectSlice(state).henter;
 const selectHentet = state => selectSlice(state).hentet;
