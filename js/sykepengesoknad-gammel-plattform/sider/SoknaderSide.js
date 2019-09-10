@@ -34,7 +34,8 @@ export class Container extends Component {
             hentingFeilet,
             sykepengesoknader,
             soknader,
-            visFeil } = this.props;
+            visFeil,
+        } = this.props;
 
         return (
             <Side tittel={getLedetekst('soknader.sidetittel')} brodsmuler={brodsmuler} laster={henter}>

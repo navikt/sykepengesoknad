@@ -144,8 +144,10 @@ function mockSyfosoknadLokalt(server) {
             if (soknad.id === id) {
                 _soknad.status = 'SENDT';
                 _soknad.sporsmal = sporsmal;
-                _soknad.sendtTilArbeidsgiverDato = new Date().toJSON()
-                    .substr(0, 10);
+                if (_soknad.soknadstype === 'ARBEIDSTAKERE') {
+                    _soknad.sendtTilArbeidsgiverDato = new Date().toJSON().substr(0, 10);
+                }
+                _soknad.sendtTilNAVDato = new Date().toJSON().substr(0, 10);
             }
 
             if (soknad.id === soknadTilInnsending.korrigerer) {
