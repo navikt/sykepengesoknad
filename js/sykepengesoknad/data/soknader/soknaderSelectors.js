@@ -3,9 +3,9 @@ import { ARBEIDSTAKERE, SELVSTENDIGE_OG_FRILANSERE } from '../../enums/soknadtyp
 import { SENDT } from '../../enums/soknadstatuser';
 import { selectSykepengesoknaderData } from '../../../sykepengesoknad-gammel-plattform/data/sykepengesoknader/sykepengesoknaderSelectors';
 
-const selectSlice = state => state.soknader;
+const selectSlice = state => state.soknader || {};
 
-export const selectSoknaderData = state => selectSlice(state).data;
+export const selectSoknaderData = state => selectSlice(state).data || [];
 
 export const erForsteSoknad = (state) => {
     const sendteSoknader = selectSoknaderData(state)
