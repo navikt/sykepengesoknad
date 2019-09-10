@@ -14,7 +14,7 @@ import {
     skalHenteSykepengesoknader,
     selectSykepengesoknaderData,
 } from '../data/sykepengesoknader/sykepengesoknaderSelectors';
-import { skalHenteSoknader } from '../../sykepengesoknad/data/soknader/soknaderSelectors';
+import { selectSoknaderData, skalHenteSoknader } from '../../sykepengesoknad/data/soknader/soknaderSelectors';
 import { selectSkalHenteDineSykmeldinger } from '../../data/dine-sykmeldinger/dineSykmeldingerSelectors';
 import { hentDineSykmeldinger } from '../../data/dine-sykmeldinger/dineSykmeldingerActions';
 import { ARBEIDSTAKERE } from '../../sykepengesoknad/enums/soknadtyper';
@@ -79,7 +79,7 @@ export function mapStateToProps(state) {
     const sykepengesoknader = selectSykepengesoknaderData(state);
     const dineSykmeldinger = state.dineSykmeldinger.data;
     const soknader = toggleNyArbeidstakerSoknad(state)
-        ? state.soknader.data.map((soknad) => {
+        ? selectSoknaderData(state).map((soknad) => {
             const sykmelding = dineSykmeldinger.find((sykmld) => {
                 return sykmld.id === soknad.sykmeldingId;
             });
@@ -90,7 +90,7 @@ export function mapStateToProps(state) {
                 }
                 : soknad;
         })
-        : state.soknader.data.filter((s) => {
+        : selectSoknaderData(state).filter((s) => {
             return s.soknadstype !== ARBEIDSTAKERE;
         });
 

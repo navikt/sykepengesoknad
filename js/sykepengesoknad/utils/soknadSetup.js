@@ -6,9 +6,10 @@ import { sendSoknad, lagreSoknad, oppdaterSoknader } from '../data/soknader/sokn
 import { getSoknadSkjemanavn } from '../../enums/skjemanavn';
 import { utfyllingStartet } from '../../data/metrikker/metrikker_actions';
 import fraBackendsoknadTilInitiellSoknad from './fraBackendsoknadTilInitiellSoknad';
+import { selectSoknaderData } from '../data/soknader/soknaderSelectors';
 
 export const finnSoknad = (state, ownProps) => {
-    const soknader = state.soknader.data.filter((s) => {
+    const soknader = selectSoknaderData(state).filter((s) => {
         return s.id === ownProps.params.sykepengesoknadId;
     });
     return soknader.length === 1 ? soknader[0] : undefined;

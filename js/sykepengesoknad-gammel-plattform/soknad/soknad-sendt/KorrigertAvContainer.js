@@ -6,6 +6,7 @@ import Alertstripe from 'nav-frontend-alertstriper';
 import { sykepengesoknad as sykepengesoknadPt } from '../../../propTypes/index';
 import { getTidligsteSendtDato } from '../../utils/sorterSoknader';
 import { selectSykepengesoknaderData } from '../../data/sykepengesoknader/sykepengesoknaderSelectors';
+import { selectSoknaderData } from '../../../sykepengesoknad/data/soknader/soknaderSelectors';
 
 export const KorrigertAv = ({ korrigertAvSoknad }) => {
     return (<Alertstripe className="blokk" type="info">
@@ -28,7 +29,7 @@ export const mapStateToProps = (state, ownProps) => {
     const id = ownProps.sykepengesoknad.id;
     const sykepengesoknader = [
         ...selectSykepengesoknaderData(state),
-        ...state.soknader.data,
+        ...selectSoknaderData(state),
     ];
     let korrigertAvSoknad = { id };
 

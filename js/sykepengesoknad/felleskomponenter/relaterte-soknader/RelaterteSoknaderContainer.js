@@ -1,11 +1,12 @@
 import { connect } from 'react-redux';
 import { soknadPt as sykepengesoknadPt } from '../../../propTypes/index';
 import { RelaterteSoknader } from './RelaterteSoknader';
+import { selectSoknaderData } from '../../data/soknader/soknaderSelectors';
 
 export const mapStateToProps = (state, ownProps) => {
     const relaterteSoknader = [];
     const sykepengesoknadId = ownProps.soknad.id;
-    const sykepengesoknader = state.soknader.data;
+    const sykepengesoknader = selectSoknaderData(state);
 
     let sykepengesoknad = sykepengesoknader.filter((s) => {
         return s.id === sykepengesoknadId;
