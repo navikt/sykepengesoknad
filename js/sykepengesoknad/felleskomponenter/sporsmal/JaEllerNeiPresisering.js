@@ -1,7 +1,7 @@
 import React from 'react';
 import { getHtmlLedetekst } from '@navikt/digisyfo-npm';
 import PropTypes from 'prop-types';
-import { ARBEIDSTAKERE } from '../../enums/soknadtyper';
+import { ARBEIDSTAKERE, SELVSTENDIGE_OG_FRILANSERE, ARBEIDSLEDIG } from '../../enums/soknadtyper';
 import {
     INNTEKTSKILDE_ANDRE_ARBEIDSFORHOLD_ER_DU_SYKMELDT,
     INNTEKTSKILDE_ARBEIDSFORHOLD_ER_DU_SYKMELDT,
@@ -25,6 +25,20 @@ const visPresisering = (tag, value, soknadstype) => {
             [INNTEKTSKILDE_FRILANSER_ER_DU_SYKMELDT]: [JA],
             [UTLANDSOPPHOLD_SOKT_SYKEPENGER]: [JA, NEI],
         },
+        [SELVSTENDIGE_OG_FRILANSERE]: {
+            [INNTEKTSKILDE_ARBEIDSFORHOLD_ER_DU_SYKMELDT]: [JA],
+            [INNTEKTSKILDE_JORDBRUKER_ER_DU_SYKMELDT]: [JA],
+            [INNTEKTSKILDE_SELVSTENDIG_ER_DU_SYKMELDT]: [JA],
+            [INNTEKTSKILDE_FRILANSER_ER_DU_SYKMELDT]: [JA],
+        },
+        [ARBEIDSLEDIG]: {
+            [INNTEKTSKILDE_ANDRE_ARBEIDSFORHOLD_ER_DU_SYKMELDT]: [JA],
+            [INNTEKTSKILDE_SELVSTENDIG_DAGMAMMA_ER_DU_SYKMELDT]: [JA],
+            [INNTEKTSKILDE_ARBEIDSFORHOLD_ER_DU_SYKMELDT]: [JA],
+            [INNTEKTSKILDE_SELVSTENDIG_ER_DU_SYKMELDT]: [JA],
+            [INNTEKTSKILDE_JORDBRUKER_ER_DU_SYKMELDT]: [JA],
+            [INNTEKTSKILDE_FRILANSER_ER_DU_SYKMELDT]: [JA],
+        }
     };
     return tagsMedPresisering[soknadstype]
         && tagsMedPresisering[soknadstype][fjernIndexFraTag(tag)]
