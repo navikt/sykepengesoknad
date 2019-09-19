@@ -65,6 +65,7 @@ export const SykepengesoknadArbeidstakerOppsummeringSkjema = (props) => {
     });
 
     const onSubmit = () => {
+        console.log('populertSoknad', populertSoknad); // eslint-disable-line
         actions.sendSoknad(populertSoknad);
     };
 

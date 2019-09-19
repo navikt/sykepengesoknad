@@ -9,12 +9,14 @@ const IllustrertInnhold = ({ ikon, ikonAlt, children, liten, revers }) => {
     const classNamesBoks = cn('illustrertInnhold', {
         'illustrertInnhold--revers': revers,
     });
-    return (<div className={classNamesBoks}>
-        <div className={classnamesIkon}>
-            <img src={ikon} alt={ikonAlt} />
+    return (
+        <div className={classNamesBoks}>
+            <div className={classnamesIkon}>
+                <img src={ikon} alt={ikonAlt} />
+            </div>
+            <div className="illustrertInnhold__innhold">{children}</div>
         </div>
-        <div className="illustrertInnhold__innhold">{children}</div>
-    </div>);
+    );
 };
 
 IllustrertInnhold.propTypes = {

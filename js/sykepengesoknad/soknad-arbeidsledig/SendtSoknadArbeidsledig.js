@@ -15,7 +15,7 @@ import { settErOppdelt } from '../utils/settErOppdelt';
 const SendtSoknadArbeidsledig = ({ sykmelding, soknad }) => {
     const { _erOppdelt } = settErOppdelt(soknad, sykmelding);
     return (
-        <div>
+        <React.Fragment>
             <SoknadHeader soknad={soknad} />
             {soknad.status === KORRIGERT && <KorrigertAvContainer sykepengesoknad={soknad} />}
 
@@ -48,7 +48,7 @@ const SendtSoknadArbeidsledig = ({ sykmelding, soknad }) => {
                 soknad.status === SENDT
                 && <RelaterteSoknaderContainer soknad={soknad} />
             }
-        </div>
+        </React.Fragment>
     );
 };
 
