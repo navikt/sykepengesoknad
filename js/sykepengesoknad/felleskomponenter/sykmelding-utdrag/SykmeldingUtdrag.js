@@ -3,8 +3,9 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { SykmeldingUtdrag as SykmeldingUtdragForArbeidstakere, sykmelding as sykmeldingPt } from '@navikt/digisyfo-npm';
 import { settErOppdelt } from '../../utils/settErOppdelt';
-import { ARBEIDSTAKERE, SELVSTENDIGE_OG_FRILANSERE } from '../../enums/soknadtyper';
+import { ARBEIDSTAKERE, SELVSTENDIGE_OG_FRILANSERE, ARBEIDSLEDIG } from '../../enums/soknadtyper';
 import SykmeldingUtdragForSelvstendige from '../../soknad-selvstendig-frilanser/sykmelding-utdrag/SykmeldingUtdragForSelvstendige';
+import SykmeldingUtdragForArbeidsledige from '../../soknad-arbeidsledig/sykmelding-utdrag/SykmeldingUtdragForArbeidsledige';
 import { soknadPt } from '../../prop-types/soknadProptype';
 
 const Utdrag = ({ sykmelding, soknad, erApen, erOppdelt }) => {
@@ -15,12 +16,18 @@ const Utdrag = ({ sykmelding, soknad, erApen, erOppdelt }) => {
             sykmelding={sykmelding}
             sykepengesoknad={{ _erOppdelt: erOppdelt }} />
         : soknad.soknadstype === SELVSTENDIGE_OG_FRILANSERE
-            && sykmelding
+        && sykmelding
             ? <SykmeldingUtdragForSelvstendige
                 erApen={erApen}
                 sykmelding={sykmelding}
                 erOppdelt={erOppdelt} />
-            : null;
+            : soknad.soknadstype === ARBEIDSLEDIG
+            && sykmelding
+                ? <SykmeldingUtdragForArbeidsledige
+                    erApen={erApen}
+                    sykmelding={sykmelding}
+                    erOppdelt={erOppdelt} />
+                : null;
 };
 
 Utdrag.propTypes = {
