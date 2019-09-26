@@ -1104,5 +1104,91 @@
       "sykmelder": "Helen Flood",
       "sykmelderTlf": "113"
     }
+  },
+  {
+    "id": "289148ba-4c3c-4b3f-b7a3-385b7e7c927d",
+    "startLegemeldtFravaer": "2019-08-08",
+    "skalViseSkravertFelt": true,
+    "identdato": "2019-08-08",
+    "status": "NY",
+    "naermesteLederStatus": null,
+    "innsendtArbeidsgivernavn": null,
+    "valgtArbeidssituasjon": "ARBEIDSLEDIG",
+    "mottakendeArbeidsgiver": null,
+    "orgnummer": null,
+    "sendtdato": "2019-08-27T10:49:03",
+    "sporsmal": null,
+    "pasient": {
+      "fnr": "110110110110",
+      "fornavn": "Samuel \"Sam\"",
+      "mellomnavn": "Peyton",
+      "etternavn": "Jones"
+    },
+    "arbeidsgiver": null,
+    "stillingsprosent": 100,
+    "diagnose": {
+      "hoveddiagnose": null,
+      "bidiagnoser": [],
+      "fravaersgrunnLovfestet": null,
+      "fravaerBeskrivelse": null,
+      "svangerskap": null,
+      "yrkesskade": null,
+      "yrkesskadeDato": null
+    },
+    "mulighetForArbeid": {
+      "perioder": [
+        {
+          "fom": "2019-08-08",
+          "tom": "2019-08-17",
+          "grad": 100,
+          "behandlingsdager": null,
+          "reisetilskudd": null,
+          "avventende": null
+        }
+      ],
+      "aktivitetIkkeMulig433": [],
+      "aktivitetIkkeMulig434": [
+        "Annet"
+      ],
+      "aarsakAktivitetIkkeMulig433": null,
+      "aarsakAktivitetIkkeMulig434": "andre årsaker til sykefravær"
+    },
+    "friskmelding": {
+      "arbeidsfoerEtterPerioden": true,
+      "hensynPaaArbeidsplassen": "Må ta det pent",
+      "antarReturSammeArbeidsgiver": true,
+      "antattDatoReturSammeArbeidsgiver": "2019-08-17",
+      "antarReturAnnenArbeidsgiver": true,
+      "tilbakemeldingReturArbeid": null,
+      "utenArbeidsgiverAntarTilbakeIArbeid": false,
+      "utenArbeidsgiverAntarTilbakeIArbeidDato": null,
+      "utenArbeidsgiverTilbakemelding": null
+    },
+    "utdypendeOpplysninger": {
+      "sykehistorie": null,
+      "paavirkningArbeidsevne": null,
+      "resultatAvBehandling": null,
+      "henvisningUtredningBehandling": null,
+      "grupper": []
+    },
+    "arbeidsevne": {
+      "tilretteleggingArbeidsplass": "Fortsett som sist.",
+      "tiltakNAV": "Pasienten har plager som er kommet tilbake etter operasjon. Det er nylig tatt MR bildet som viser forandringer i hånd som mulig må opereres. Venter på time. Det er mulig sykemledingen vil vare utover aktuell sm periode. ",
+      "tiltakAndre": null
+    },
+    "meldingTilNav": {
+      "navBoerTaTakISaken": false,
+      "navBoerTaTakISakenBegrunnelse": null
+    },
+    "innspillTilArbeidsgiver": null,
+    "tilbakedatering": {
+      "dokumenterbarPasientkontakt": null,
+      "tilbakedatertBegrunnelse": null
+    },
+    "bekreftelse": {
+      "utstedelsesdato": "2019-08-08",
+      "sykmelder": "Helen Flood",
+      "sykmelderTlf": "113"
+    }
   }
 ]
