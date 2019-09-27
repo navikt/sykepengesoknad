@@ -27,7 +27,7 @@ class ArbeidsledigKvittering extends Component {
                     </Innholdstittel>
                     <div className="redaksjonelt-innhold"
                         dangerouslySetInnerHTML={getHtmlLedetekst('sykepengesoknad.kvittering.til-nav-arbeidsledig.tekst', {
-                            '%DATO%': dayjs(soknad.sendtTilNAVDato).format('DD. MMMM YYYY, kl hh:mm'), '%TELEFON%': '55 55 33 33',
+                            '%DATO%': dayjs(soknad.sendtTilNAVDato).format('DD. MMMM YYYY, kl HH:mm'), '%TELEFON%': '55 55 33 33',
                         })}
                     />
                     <Bjorn className="press">
