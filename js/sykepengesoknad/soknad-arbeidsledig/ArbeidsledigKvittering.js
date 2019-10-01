@@ -1,4 +1,5 @@
 import dayjs from 'dayjs';
+import 'dayjs/locale/nb';
 import React, { Component } from 'react';
 import { Innholdstittel } from 'nav-frontend-typografi';
 import { erSynligIViewport, getHtmlLedetekst, scrollTo, getLedetekst, Bjorn } from '@navikt/digisyfo-npm';
@@ -27,7 +28,7 @@ class ArbeidsledigKvittering extends Component {
                     </Innholdstittel>
                     <div className="redaksjonelt-innhold"
                         dangerouslySetInnerHTML={getHtmlLedetekst('sykepengesoknad.kvittering.til-nav-arbeidsledig.tekst', {
-                            '%DATO%': dayjs(soknad.sendtTilNAVDato).format('DD. MMMM YYYY, kl HH:mm'), '%TELEFON%': '55 55 33 33',
+                            '%DATO%': dayjs(soknad.sendtTilNAVDato).locale('nb').format('D. MMMM YYYY, kl HH:mm'), '%TELEFON%': '55 55 33 33',
                         })}
                     />
                     <Bjorn className="press">
