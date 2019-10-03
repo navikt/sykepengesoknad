@@ -180,9 +180,18 @@
 
 .verktoylinje {
     padding-top: 2rem;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-row-gap: 2rem;
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+}
+
+.verktoylinje__element {
+    margin-right: 1rem;
+    margin-bottom: 1rem;
+
+    &:last-child {
+        margin-bottom: 0;
+    }
 }
 
 .verktoylinje--liten {
