@@ -13,6 +13,8 @@ import {
     JOBBET_DU_GRADERT,
     PERMISJON_NAR_V2,
     PERMISJON_V2,
+    TILBAKE_I_ARBEID,
+    TILBAKE_NAR,
 } from '../enums/tagtyper';
 import { getStillingsprosent } from '../../sykepengesoknad-gammel-plattform/aktiviteter-i-sykmeldingsperioden/BeregnetArbeidsgrad';
 import { JA } from '../enums/svarEnums';
@@ -36,6 +38,22 @@ export const hentFerieOgPermisjonperioder = (skjemaverdier) => {
             tom: fraInputdatoTilJSDato(periode.tom),
         };
     });
+};
+
+const hentSoknadPeriode = (skjemaverdier, soknad, index) => {
+    const periode = soknad.soknadPerioder[index];
+    const varTidligTilbake = formaterEnkeltverdi(skjemaverdier[TILBAKE_I_ARBEID]) === JA;
+    if (varTidligTilbake) {
+        const tilbakeNar = formaterEnkeltverdi(skjemaverdier[TILBAKE_NAR]);
+        const datoTilbake = fraInputdatoTilJSDato(tilbakeNar);
+        const tomSyk = new Date(datoTilbake);
+        tomSyk.setDate(tomSyk.getDate() - 1);
+
+        if (periode.fom < tomSyk && periode.tom > tomSyk) {
+            periode.tom = tomSyk;
+        }
+    }
+    return periode;
 };
 
 const validerGraderteArbeidssporsmal = (sporsmalsliste, skjemaverdier, soknad) => {
@@ -62,13 +80,14 @@ const validerGraderteArbeidssporsmal = (sporsmalsliste, skjemaverdier, soknad) =
                 : !feriePermUtlandsporsmal;
             return harSvartPaFeriesporsmal;
         });
+
     graderteArbeidssporsmal.forEach((gradertArbeidssporsmal) => {
         const index = parseInt(gradertArbeidssporsmal.tag.split(`${JOBBET_DU_GRADERT}_`)[1], 10);
         const erSvarOppgittITimer = formaterEnkeltverdi(skjemaverdier[leggIndexPaTag(HVOR_MYE_TIMER, index)]);
         if (erSvarOppgittITimer) {
             const antallTimerPerNormalUke = formaterEnkeltverdi(skjemaverdier[leggIndexPaTag(HVOR_MANGE_TIMER_PER_UKE, index)]);
             const antallTimerJobbet = formaterEnkeltverdi(skjemaverdier[leggIndexPaTag(HVOR_MYE_TIMER_VERDI, index)]);
-            const periode = soknad.soknadPerioder[index];
+            const periode = hentSoknadPeriode(skjemaverdier, soknad, index);
             const minsteArbeidsgrad = gradertArbeidssporsmal.undersporsmal
                 .find((underspm) => {
                     return fjernIndexFraTag(underspm.tag) === HVOR_MYE_HAR_DU_JOBBET;
