@@ -40,7 +40,7 @@ export const hentFerieOgPermisjonperioder = (skjemaverdier) => {
     });
 };
 
-const hentSoknadPeriode = (skjemaverdier, soknad, index) => {
+const periodenSykmeldtHarVartBorteFraJobb = (skjemaverdier, soknad, index) => {
     const periode = soknad.soknadPerioder[index];
     const varTidligTilbake = formaterEnkeltverdi(skjemaverdier[TILBAKE_I_ARBEID]) === JA;
     if (varTidligTilbake) {
@@ -87,7 +87,7 @@ const validerGraderteArbeidssporsmal = (sporsmalsliste, skjemaverdier, soknad) =
         if (erSvarOppgittITimer) {
             const antallTimerPerNormalUke = formaterEnkeltverdi(skjemaverdier[leggIndexPaTag(HVOR_MANGE_TIMER_PER_UKE, index)]);
             const antallTimerJobbet = formaterEnkeltverdi(skjemaverdier[leggIndexPaTag(HVOR_MYE_TIMER_VERDI, index)]);
-            const periode = hentSoknadPeriode(skjemaverdier, soknad, index);
+            const periode = periodenSykmeldtHarVartBorteFraJobb(skjemaverdier, soknad, index);
             const minsteArbeidsgrad = gradertArbeidssporsmal.undersporsmal
                 .find((underspm) => {
                     return fjernIndexFraTag(underspm.tag) === HVOR_MYE_HAR_DU_JOBBET;
