@@ -25,17 +25,3 @@ resources:
     memory: 256Mi
 ingress:
   enabled: true
-fasitResources:
-  used:
-  - alias: appres.cms
-    resourceType: baseurl
-  - alias: loginservice
-    resourceType: restservice
-  - alias: syfoapi-syfoteksterapi
-    resourceType: restservice
-  - alias: syfoapi-syfosoknadapi
-    resourceType: restservice
-  - alias: sykefravaerapi
-    resourceType: restservice
-  - alias: syfounleashapi
-    resourceType: restservice
