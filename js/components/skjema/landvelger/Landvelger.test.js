@@ -30,28 +30,28 @@ describe('Landvelger', () => {
 
         it('Skal fylle ut felt når felt ikke har noe verdi fra før', () => {
             const handleAddition = genererHandleAddition(meta, input, doAutofill, doTouch, landliste);
-            handleAddition(new Forslag('Sverige'));
+            handleAddition(new Forslag('Togo'));
             expect(doAutofill.getCall(0).args).to.deep.equal([
                 form,
                 name,
-                parse(['Sverige']),
+                parse(['Togo']),
             ]);
         });
 
         it('Skal ikke fylle ut felt når det ikke finnes innsendt tag-liste', () => {
             const handleAddition = genererHandleAddition(meta, input, doAutofill, doTouch, landliste);
-            handleAddition(new Forslag('Sveriges'));
+            handleAddition(new Forslag('Togos'));
             expect(doAutofill.called).to.equal(false);
         });
 
         it('Skal fylle ut felt når felt har verdi fra før', () => {
-            input.value = parse(['Sverige']);
+            input.value = parse(['Togo']);
             const handleAddition = genererHandleAddition(meta, input, doAutofill, doTouch, landliste);
-            handleAddition(new Forslag('Danmark'));
+            handleAddition(new Forslag('USA'));
             expect(doAutofill.getCall(0).args).to.deep.equal([
                 form,
                 name,
-                parse(['Sverige', 'Danmark']),
+                parse(['Togo', 'USA']),
             ]);
         });
     });
