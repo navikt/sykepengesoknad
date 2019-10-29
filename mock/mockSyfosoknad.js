@@ -13,7 +13,7 @@ function mockOppdaterSporsmalLokal(server) {
     const tilNyId = (sporsmal) => {
         return {
             ...sporsmal,
-            id: Math.round(Math.random() * 100000) + '',
+            id: `${Math.round(Math.random() * 100000)}`,
             undersporsmal: sporsmal.undersporsmal.map(tilNyId),
         };
     };
@@ -24,6 +24,24 @@ function mockOppdaterSporsmalLokal(server) {
             ...soknad,
             sporsmal: soknad.sporsmal.map(tilNyId),
         };
+        if (soknadMedNyeSporsmalIder.soknadstype === 'ARBEIDSTAKERE'
+            && soknadMedNyeSporsmalIder.sporsmal[5].svar.length > 0
+            && soknadMedNyeSporsmalIder.sporsmal[5].svar[0].verdi === 'JA'
+            && soknadMedNyeSporsmalIder.sporsmal[6].svar.length === 0) {
+            soknadMedNyeSporsmalIder.sporsmal.splice(6, 0, {
+                id: null,
+                tag: 'UTLANDSOPPHOLD_SOKT_SYKEPENGER',
+                sporsmalstekst: 'Har du søkt om å beholde sykepengene for de dagene du var utenfor EØS?',
+                undertekst: null,
+                svartype: 'JA_NEI',
+                min: null,
+                max: null,
+                pavirkerAndreSporsmal: false,
+                kriterieForVisningAvUndersporsmal: null,
+                svar: [],
+                undersporsmal: [],
+            });
+        }
 
         mockData[enums.SOKNADER] = mockData[enums.SOKNADER].map((s) => {
             return s.id === soknad.id
@@ -34,12 +52,29 @@ function mockOppdaterSporsmalLokal(server) {
         res.setHeader('Content-Type', 'application/json');
         res.send(JSON.stringify(soknadMedNyeSporsmalIder));
     });
-
 }
 
 function mockOppdaterSporsmalOpplaeringsmiljo(server) {
     server.post('/syfoapi/syfosoknad/api/oppdaterSporsmal', (req, res) => {
         const soknad = req.body;
+        if (soknad.soknadstype === 'ARBEIDSTAKERE'
+            && soknad.sporsmal[5].svar.length > 0
+            && soknad.sporsmal[5].svar[0].verdi === 'JA'
+            && soknad.sporsmal[6].svar.length === 0) {
+            soknad.sporsmal.splice(6, 0, {
+                id: null,
+                tag: 'UTLANDSOPPHOLD_SOKT_SYKEPENGER',
+                sporsmalstekst: 'Har du søkt om å beholde sykepengene for de dagene du var utenfor EØS?',
+                undertekst: null,
+                svartype: 'JA_NEI',
+                min: null,
+                max: null,
+                pavirkerAndreSporsmal: false,
+                kriterieForVisningAvUndersporsmal: null,
+                svar: [],
+                undersporsmal: [],
+            });
+        }
         res.setHeader('Content-Type', 'application/json');
         res.send(JSON.stringify(soknad));
     });
