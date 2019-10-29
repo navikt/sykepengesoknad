@@ -42,6 +42,12 @@ function mockOppdaterSporsmalLokal(server) {
                 undersporsmal: [],
             });
         }
+        if (soknadMedNyeSporsmalIder.soknadstype === 'ARBEIDSTAKERE'
+            && soknadMedNyeSporsmalIder.sporsmal[5].svar.length > 0
+            && soknadMedNyeSporsmalIder.sporsmal[5].svar[0].verdi === 'NEI'
+            && soknadMedNyeSporsmalIder.sporsmal.length === 13) {
+            soknadMedNyeSporsmalIder.sporsmal.splice(6, 1);
+        }
 
         mockData[enums.SOKNADER] = mockData[enums.SOKNADER].map((s) => {
             return s.id === soknad.id
@@ -74,6 +80,12 @@ function mockOppdaterSporsmalOpplaeringsmiljo(server) {
                 svar: [],
                 undersporsmal: [],
             });
+        }
+        if (soknad.soknadstype === 'ARBEIDSTAKERE'
+            && soknad.sporsmal[5].svar.length > 0
+            && soknad.sporsmal[5].svar[0].verdi === 'NEI'
+            && soknad.sporsmal.length === 13) {
+            soknad.sporsmal.splice(6, 1);
         }
         res.setHeader('Content-Type', 'application/json');
         res.send(JSON.stringify(soknad));
