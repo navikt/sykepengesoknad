@@ -21,6 +21,7 @@ const AppRouter = ({ history }) => {
             },
         },
     )}>
+        console.log(process.env);
         <Router history={history}>
             <Route path={`${process.env.REACT_APP_CONTEXT_ROOT}/soknader/:sykepengesoknadId`} component={SykepengesoknadContainer} />
             <Route path={`${process.env.REACT_APP_CONTEXT_ROOT}/soknader/:sykepengesoknadId/:steg`} component={SykepengesoknadContainer} />

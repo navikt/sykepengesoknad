@@ -1,43 +1,43 @@
-apiVersion: "nais.io/v1alpha1"
-kind: "Application"
-metadata:
-  name: sykepengesoknad
-  namespace: default
-  labels:
-    team: flex
-spec:
-  image: repo.adeo.no:5443/digisyfo/sykepengesoknad
+name: sykepengesoknad
+team: digisyfo
+image: repo.adeo.no:5443/digisyfo/sykepengesoknad
+replicas:
+  min: 2
+  max: 2
+  cpuThresholdPercentage: 50
+port: 8080
+healthcheck:
   liveness:
     path: /health/isAlive
     initialDelay: 60
   readiness:
     path: /health/isReady
     initialDelay: 60
-  prometheus:
-    enabled: true
-    path: /actuator/metrics
-  resources:
-    limits:
-      cpu: 500m
-      memory: 512Mi
-    requests:
-      cpu: 200m
-      memory: 256Mi
-  ingresses:
-    - "https://tjenester-q1.nav.no/sykepengesoknad"
-  vault:
-    enabled: true
-  env:
-    - name: sykefravaerapi
-      value: "https://tjenester-q1.nav.no/syforest"
-    - name: loginservice
-      value: "https://loginservice-q.nav.no/login"
-    - name: syfounleashapi
-      value: "https://syfounleash.nais.oera-q.local"
-    - name: appres.cms
-      value: "https://appres-q1.nav.no"
-    - name: syfoapi-syfoteksterapi
-      value: "https://syfoapi.nais.oera-q.local/syfotekster/api/tekster"
-    - name: syfoapi-syfosoknadapi
-      value: "https://syfoapi.nais.oera-q.local/syfosoknad/api"
-
+prometheus:
+  enabled: true
+  path: /actuator/metrics
+resources:
+  limits:
+    cpu: 500m
+    memory: 512Mi
+  requests:
+    cpu: 200m
+    memory: 256Mi
+ingress:
+  enabled: true
+fasitResources:
+  used:
+    - alias: appres.cms
+      resourceType: baseurl
+    - alias: loginservice
+      resourceType: restservice
+    - alias: syfoapi-syfoteksterapi
+      resourceType: restservice
+    - alias: syfoapi-syfosoknadapi
+      resourceType: restservice
+    - alias: sykefravaerapi
+      resourceType: restservice
+    - alias: syfounleashapi
+      resourceType: restservice
+    - alias: amplitude-apikey
+      resourceType: applicationproperties
