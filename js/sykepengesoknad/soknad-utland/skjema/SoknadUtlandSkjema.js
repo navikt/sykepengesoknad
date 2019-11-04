@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { reduxForm } from 'redux-form';
-import { getLedetekst } from '@navikt/digisyfo-npm';
+import { Bjorn, getLedetekst } from '@navikt/digisyfo-npm';
 import { Fareknapp, Hovedknapp } from 'nav-frontend-knapper';
 import Sporsmal from '../../felleskomponenter/sporsmal/Sporsmal';
 import { soknadPt } from '../../../propTypes/index';
@@ -16,6 +16,7 @@ import { PERIODEUTLAND } from '../../enums/tagtyper';
 import fraBackendsoknadTilInitiellSoknad from '../../utils/fraBackendsoknadTilInitiellSoknad';
 import Feilstripe from '../../../components/Feilstripe';
 import AvbrytSoknadContainer from '../../felleskomponenter/avbryt-soknad/AvbrytSoknadContainer';
+import SporsmalBjorn from "../../felleskomponenter/sporsmal/SporsmalBjorn";
 
 export const SoknadUtlandSkjema = ({ soknad, handleSubmit, sender, sendSoknad, avbryter, avbrytSoknad, harFerie, avbrytSoknadFeilet, sendingFeilet }) => {
     const sporsmallisteSkjema = () => {
@@ -60,6 +61,9 @@ export const SoknadUtlandSkjema = ({ soknad, handleSubmit, sender, sendSoknad, a
     };
 
     return (<form autoComplete="off" className="soknadskjema" id="sykepengesoknad-utland-skjema" onSubmit={handleSubmit(onSubmit)}>
+        <Bjorn className="blokk"><strong>Er du statsborger i et land utenfor EU/EØS?</strong><br />
+            Skal du reise <strong>innenfor</strong> EU/EØS, må du benytte <a
+                href="https://www.nav.no/soknader/nb/person/til-eller-fra-norge/opphold-eller-arbeid-utenfor-norge/NAV%2008-09.07/brev">søknaden på papir.</a></Bjorn>
         <FeiloppsummeringContainer skjemanavn={OPPHOLD_UTLAND_SKJEMA} />
         <div className={sendingFeilet || avbrytSoknadFeilet ? 'blokk' : null}>
             {sporsmalsliste}
