@@ -16,7 +16,6 @@ import { PERIODEUTLAND } from '../../enums/tagtyper';
 import fraBackendsoknadTilInitiellSoknad from '../../utils/fraBackendsoknadTilInitiellSoknad';
 import Feilstripe from '../../../components/Feilstripe';
 import AvbrytSoknadContainer from '../../felleskomponenter/avbryt-soknad/AvbrytSoknadContainer';
-import SporsmalBjorn from "../../felleskomponenter/sporsmal/SporsmalBjorn";
 
 export const SoknadUtlandSkjema = ({ soknad, handleSubmit, sender, sendSoknad, avbryter, avbrytSoknad, harFerie, avbrytSoknadFeilet, sendingFeilet }) => {
     const sporsmallisteSkjema = () => {
