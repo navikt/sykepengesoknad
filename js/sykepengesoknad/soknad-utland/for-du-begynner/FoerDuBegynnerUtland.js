@@ -9,7 +9,7 @@ export const FoerDuBegynnerUtland = ({ opprettSoknad, opprettFeilet, oppretterSo
         <div className="sidebanner sidebanner--utenramme">
             <div className="sidebanner__innhold blokk--xl">
                 <Bjorn stor hvit vertikal>
-                    <p>{ getLedetekst('sykepengesoknad-utland.bjorn') }</p>
+                    <p dangerouslySetInnerHTML={getHtmlLedetekst('sykepengesoknad-utland.bjorn')} />
                 </Bjorn>
             </div>
         </div>
