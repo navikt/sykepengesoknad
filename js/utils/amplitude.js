@@ -27,7 +27,7 @@ const mockAmplitude = {
     },
     init: () => {
         // eslint-disable-next-line no-console
-        console.log(`Initialiserer mockAmplitude`);
+        console.log('Initialiserer mockAmplitude');
     },
 };
 
