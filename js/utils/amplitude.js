@@ -31,7 +31,7 @@ const mockAmplitude = {
     },
 };
 
-const amplitudeInstance = (url.indexOf('localhost') > -1 && unleash === true)
+const amplitudeInstance = (url.indexOf('tjenester') > -1 && unleash === true)
     ? amplitude.getInstance() // test/prod
     : mockAmplitude; // lokalt
 amplitudeInstance.init(
