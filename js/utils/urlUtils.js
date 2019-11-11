@@ -1,5 +1,9 @@
 import getContextRoot from './getContextRoot';
 
+const url = window && window.location && window.location.href
+    ? window.location.href
+    : '';
+
 export const getUrlTilSoknader = () => {
     return getContextRoot();
 };
@@ -31,14 +35,25 @@ export const getUrlTilSykmelding = (sykmeldingId) => {
     return `${process.env.REACT_APP_SYKEFRAVAER_CONTEXT_ROOT}/sykmeldinger/${sykmeldingId}/`;
 };
 export const erHerokuApp = () => {
-    const url = window
-    && window.location
-    && window.location.href
-        ? window.location.href
-        : '';
-
     return url.indexOf('herokuapp') > -1;
 };
+
+export const erLocalhost = () => {
+    return url.indexOf('localhost') > -1;
+};
+
+export const erProduksjon = () => {
+    return url.indexOf('tjenester.nav') > -1;
+};
+
+export const erQ1 = () => {
+    return url.indexOf('tjenester-q1') > -1;
+};
+
+export const erProduksjonEllerQ1 = () => {
+    return erProduksjon() || erQ1();
+};
+
 export const getSykefravaerUrl = () => {
     return erHerokuApp()
         ? 'https://sykefravaer.herokuapp.com'
