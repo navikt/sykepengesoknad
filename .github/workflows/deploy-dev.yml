@@ -34,4 +34,5 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           cluster: dev-sbs
+          team: flex
           resources: nais-dev.yaml
