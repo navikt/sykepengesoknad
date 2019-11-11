@@ -18,7 +18,7 @@ import {
     NyArbeidstakerSoknadHotjarTrigger,
     SykepengerUtlandSoknadTrigger,
 } from '../../components/HotjarTrigger';
-import Amplitude from '../../utils/amplitude';
+import { logEvent } from '../../utils/amplitude';
 import beregnBrodsmulesti from '../utils/beregnBrodsmulesti';
 import SoknadSelvstendigNaeringsdrivendeSkjema from '../soknad-selvstendig-frilanser/SoknadSelvstendigNaeringsdrivende';
 import SoknadController from '../../sykepengesoknad-gammel-plattform/soknad/SoknadController';
@@ -60,7 +60,7 @@ export class Container extends Component {
         this.props.actions.oppdaterSoknader();
         this.props.actions.hentDineSykmeldinger();
         if (this.props.soknad && this.props.sidenummer) {
-            Amplitude.logEvent('Vis side', {
+            logEvent('Vis side', {
                 soknadstype: this.props.soknad.soknadstype,
                 sporsmalstag: this.props.soknad.sporsmal[this.props.sidenummer - 1].tag,
             });

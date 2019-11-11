@@ -1,15 +1,5 @@
 import amplitude from 'amplitude-js';
-import { post } from '../gateway-api';
-
-function hentUnleashToggle() {
-    try {
-        return post('/syfounleash/', Object.values(['syfo.amplitude']));
-    } catch (e) {
-        return { 'syfo.amplitude': false };
-    }
-}
-
-const unleash = hentUnleashToggle()['syfo.amplitude'];
+import store from '../store';
 
 const url = window && window.location && window.location.href
     ? window.location.href
@@ -19,10 +9,10 @@ const apiKey = (url.indexOf('tjenester.nav') > -1)
     : '7a887ba3e5a07c755526c6591810101a'; // test
 
 const mockAmplitude = {
-    logEvent: (logEvent, eventProperties) => {
+    logEvent: (eventName, eventProperties) => {
         if (url.indexOf('localhost') > -1) {
             // eslint-disable-next-line no-console
-            console.log(`Logger ${logEvent} - Event properties: ${JSON.stringify(eventProperties)}!`);
+            console.log(`Logger ${eventName} - Event properties: ${JSON.stringify(eventProperties)}!`);
         }
     },
     init: () => {
@@ -31,7 +21,7 @@ const mockAmplitude = {
     },
 };
 
-const amplitudeInstance = (url.indexOf('tjenester') > -1 && unleash === true)
+const amplitudeInstance = (url.indexOf('tjenester') > -1)
     ? amplitude.getInstance() // test/prod
     : mockAmplitude; // lokalt
 amplitudeInstance.init(
@@ -54,5 +44,9 @@ amplitudeInstance.init(
 
 amplitudeInstance._userAgent = '';
 
-
-export default amplitudeInstance;
+export function logEvent(eventName, eventProperties) {
+    const state = store.getState();
+    if (state.unleashToggles.data['syfo.amplitude'] === true) {
+        amplitudeInstance.logEvent(eventName, eventProperties);
+    }
+}

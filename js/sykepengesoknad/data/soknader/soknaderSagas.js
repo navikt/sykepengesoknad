@@ -6,7 +6,7 @@ import { get, hentApiUrl, post } from '../../../gateway-api';
 import * as actions from './soknaderActions';
 import { soknadrespons } from '../../../../test/mock/mockSoknadSelvstendig';
 import { toggleBrukMockDataSelvstendigSoknad, toggleBrukMockdataUtland } from '../../../toggles';
-import Amplitude from '../../../utils/amplitude';
+import { logEvent } from '../../../utils/amplitude';
 import logger from '../../../logging';
 import { ARBEIDSTAKERE, OPPHOLD_UTLAND, SELVSTENDIGE_OG_FRILANSERE, ARBEIDSLEDIG } from '../../enums/soknadtyper';
 import { hentSoknad, skalHenteSoknader, skalHenteSoknaderHvisIkkeHenter } from './soknaderSelectors';
@@ -96,7 +96,7 @@ export function* oppdaterSoknaderHvisIkkeHenter() {
 }
 
 const loggSendtSoknad = (soknadstype) => {
-    Amplitude.logEvent('Sendt søknad', {
+    logEvent('Sendt søknad', {
         soknadstype,
     });
 };
@@ -122,7 +122,7 @@ export function* sendSoknad(action) {
 }
 
 const loggAvbrytSoknad = (soknadstype) => {
-    Amplitude.logEvent('Avbryt søknad', {
+    logEvent('Avbryt søknad', {
         soknadstype,
     });
 };
@@ -168,7 +168,7 @@ export function* gjenapneSoknad(action) {
 }
 
 const loggLagreSoknad = (soknadstype, sporsmalstag) => {
-    Amplitude.logEvent('Vis side', {
+    logEvent('Vis side', {
         soknadstype,
         sporsmalstag,
     });
@@ -214,7 +214,7 @@ const gaTilSkjemaUtland = (soknadUtlandId) => {
 };
 
 const loggOpprettSoknadUtland = () => {
-    Amplitude.logEvent('Opprett søknad', {
+    logEvent('Opprett søknad', {
         soknadstype: OPPHOLD_UTLAND,
     });
 };
