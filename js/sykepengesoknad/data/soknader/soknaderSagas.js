@@ -6,6 +6,7 @@ import { get, hentApiUrl, post } from '../../../gateway-api';
 import * as actions from './soknaderActions';
 import { soknadrespons } from '../../../../test/mock/mockSoknadSelvstendig';
 import { toggleBrukMockDataSelvstendigSoknad, toggleBrukMockdataUtland } from '../../../toggles';
+import Amplitude from '../../../utils/amplitude';
 import logger from '../../../logging';
 import { ARBEIDSTAKERE, OPPHOLD_UTLAND, SELVSTENDIGE_OG_FRILANSERE, ARBEIDSLEDIG } from '../../enums/soknadtyper';
 import { hentSoknad, skalHenteSoknader, skalHenteSoknaderHvisIkkeHenter } from './soknaderSelectors';
@@ -94,6 +95,12 @@ export function* oppdaterSoknaderHvisIkkeHenter() {
     }
 }
 
+const loggSendtSoknad = (soknadstype) => {
+    Amplitude.logEvent('Sendt søknad', {
+        soknadstype,
+    });
+};
+
 export function* sendSoknad(action) {
     try {
         if (action.soknad.soknadstype === SELVSTENDIGE_OG_FRILANSERE
@@ -104,6 +111,7 @@ export function* sendSoknad(action) {
             yield call(post, `${hentApiUrl()}/sendSoknad`, action.soknad);
             yield put(actions.soknadSendt(action.soknad));
             gaTilKvittering(action.soknad.id);
+            loggSendtSoknad(action.soknad.soknadstype);
         } else {
             log('Ukjent søknadstype - kan ikke sende.');
         }
@@ -112,6 +120,12 @@ export function* sendSoknad(action) {
         yield put(actions.sendSoknadFeilet());
     }
 }
+
+const loggAvbrytSoknad = (soknadstype) => {
+    Amplitude.logEvent('Avbryt søknad', {
+        soknadstype,
+    });
+};
 
 export function* avbrytSoknad(action) {
     if (action.soknad.soknadstype === SELVSTENDIGE_OG_FRILANSERE
@@ -130,6 +144,7 @@ export function* avbrytSoknad(action) {
                 || action.soknad.soknadstype === ARBEIDSLEDIG) {
                 browserHistory.push(getUrlTilSoknad(action.soknad.id));
             }
+            loggAvbrytSoknad(action.soknad.soknadstype);
         } catch (e) {
             log(e);
             yield put(actions.avbrytSoknadFeilet());
@@ -152,6 +167,13 @@ export function* gjenapneSoknad(action) {
     }
 }
 
+const loggLagreSoknad = (soknadstype, sporsmalstag) => {
+    Amplitude.logEvent('Vis side', {
+        soknadstype,
+        sporsmalstag,
+    });
+};
+
 export function* lagreSoknad(action) {
     const soknad = yield select(hentSoknad, action.soknad);
     const skjemanavn = getSkjemanavnFraSoknad(action.soknad);
@@ -163,6 +185,7 @@ export function* lagreSoknad(action) {
         yield put(actions.soknadOppdatert(oppdatertSoknad));
         yield put(initialize(skjemanavn, fraBackendsoknadTilInitiellSoknad(oppdatertSoknad)));
         history.push(getUrlTilSoknad(soknad.id, action.sidenummer + 1));
+        loggLagreSoknad(action.soknad.soknadstype, action.soknad.sporsmal[action.sidenummer].tag);
     } catch (e) {
         log(e);
         yield put(actions.oppdaterSoknadFeilet(action.soknad));
@@ -190,12 +213,19 @@ const gaTilSkjemaUtland = (soknadUtlandId) => {
     browserHistory.push(getUrlTilSoknad(soknadUtlandId));
 };
 
+const loggOpprettSoknadUtland = () => {
+    Amplitude.logEvent('Opprett søknad', {
+        soknadstype: OPPHOLD_UTLAND,
+    });
+};
+
 export function* opprettSoknadUtland() {
     yield put(actions.oppretterSoknadUtland());
     try {
         const data = yield call(post, `${hentApiUrl()}/opprettSoknadUtland`);
         yield put(actions.soknadUtlandOpprettet(data));
         gaTilSkjemaUtland(data.id);
+        loggOpprettSoknadUtland();
     } catch (e) {
         log(e);
         if (toggleBrukMockdataUtland()) {
