@@ -18,6 +18,7 @@ import {
     NyArbeidstakerSoknadHotjarTrigger,
     SykepengerUtlandSoknadTrigger,
 } from '../../components/HotjarTrigger';
+import { logEvent } from '../../utils/amplitude';
 import beregnBrodsmulesti from '../utils/beregnBrodsmulesti';
 import SoknadSelvstendigNaeringsdrivendeSkjema from '../soknad-selvstendig-frilanser/SoknadSelvstendigNaeringsdrivende';
 import SoknadController from '../../sykepengesoknad-gammel-plattform/soknad/SoknadController';
@@ -58,6 +59,12 @@ export class Container extends Component {
         this.props.actions.hentSykepengesoknader();
         this.props.actions.oppdaterSoknader();
         this.props.actions.hentDineSykmeldinger();
+        if (this.props.soknad && this.props.sidenummer) {
+            logEvent('Vis side', {
+                soknadstype: this.props.soknad.soknadstype,
+                sporsmalstag: this.props.soknad.sporsmal[this.props.sidenummer - 1].tag,
+            });
+        }
     }
 
     componentDidUpdate() {
@@ -146,6 +153,11 @@ Container.propTypes = {
     soknadId: PropTypes.string,
     soknad: soknadPt,
     sykepengesoknad: sykepengesoknadPt,
+    sidenummer: PropTypes.number,
+    params: PropTypes.shape({
+        sykepengesoknadId: PropTypes.string,
+        steg: PropTypes.string,
+    }),
 };
 
 export function mapDispatchToProps(dispatch) {
