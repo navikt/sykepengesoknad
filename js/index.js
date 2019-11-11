@@ -9,7 +9,6 @@ import '../styles/styles.less';
 import './logging';
 import store from './store';
 
-
 if (window.location.href.indexOf('visLedetekster=true') > -1) {
     window.VIS_LEDETEKSTNOKLER = true;
 } else if (window.location.href.indexOf('visLedetekster=false') > -1) {

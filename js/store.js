@@ -1,11 +1,11 @@
-import {applyMiddleware, combineReducers, compose, createStore} from "redux";
-import reducers from "./data/rootReducer";
-import createSagaMiddleware from "@redux-saga/core";
-import rootSaga from "./data/rootSaga";
-import {forlengInnloggetSesjon, hentLedetekster, setPerformOnHttpCalls, sjekkInnloggingssesjon} from "@navikt/digisyfo-npm";
-import {hentVedlikehold} from "./data/vedlikehold/vedlikehold_actions";
-import {hentUnleashToggles} from "./data/unleashToggles/unleashToggles_actions";
-import {hentSoknader} from "./sykepengesoknad/data/soknader/soknaderActions";
+import { applyMiddleware, combineReducers, compose, createStore } from 'redux';
+import createSagaMiddleware from '@redux-saga/core';
+import { forlengInnloggetSesjon, hentLedetekster, setPerformOnHttpCalls, sjekkInnloggingssesjon } from '@navikt/digisyfo-npm';
+import rootSaga from './data/rootSaga';
+import reducers from './data/rootReducer';
+import { hentVedlikehold } from './data/vedlikehold/vedlikehold_actions';
+import { hentUnleashToggles } from './data/unleashToggles/unleashToggles_actions';
+import { hentSoknader } from './sykepengesoknad/data/soknader/soknaderActions';
 
 const rootReducer = combineReducers(reducers);
 
