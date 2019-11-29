@@ -1,14 +1,14 @@
 import validerSporsmal from '../../validering/validerSporsmal';
 import { erSisteSide, hentSporsmalForOppsummering } from './ettSporsmalPerSideUtils';
 import validerGraderteArbeidssporsmal from '../../validering/validerGraderteArbeidssporsmal';
-import { ARBEIDSTAKERE } from '../../enums/soknadtyper';
+import { ARBEIDSTAKERE, SELVSTENDIGE_OG_FRILANSERE } from '../../enums/soknadtyper';
 
 export const validerDenneSiden = (values, props) => {
     const sporsmal = erSisteSide(props.soknad, props.sidenummer)
         ? hentSporsmalForOppsummering(props.soknad)
         : [props.soknad.sporsmal[props.sidenummer - 1]];
     const resultat = validerSporsmal(sporsmal, values);
-    const arbeidssporsmalFeilmeldinger = props.soknad.soknadstype === ARBEIDSTAKERE
+    const arbeidssporsmalFeilmeldinger = (props.soknad.soknadstype === ARBEIDSTAKERE || props.soknad.soknadstype === SELVSTENDIGE_OG_FRILANSERE)
         ? validerGraderteArbeidssporsmal(sporsmal, values, props.soknad)
         : {};
     return {
