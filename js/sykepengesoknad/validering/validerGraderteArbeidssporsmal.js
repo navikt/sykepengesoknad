@@ -18,6 +18,7 @@ import {
 } from '../enums/tagtyper';
 import { getStillingsprosent } from '../../sykepengesoknad-gammel-plattform/aktiviteter-i-sykmeldingsperioden/BeregnetArbeidsgrad';
 import { JA } from '../enums/svarEnums';
+import { ARBEIDSTAKERE } from '../enums/soknadtyper';
 
 const leggIndexPaTag = (tag, index) => {
     return `${tag}_${index}`;
@@ -56,8 +57,72 @@ const periodenSykmeldtHarVartBorteFraJobb = (skjemaverdier, soknad, index) => {
     return periode;
 };
 
-const validerGraderteArbeidssporsmal = (sporsmalsliste, skjemaverdier, soknad) => {
+const hentArbeidsgradGrense = (gradertArbeidssporsmal, erMin) => {
+    const prosentSporsmal = gradertArbeidssporsmal.undersporsmal
+        .find((underspm) => {
+            return fjernIndexFraTag(underspm.tag) === HVOR_MYE_HAR_DU_JOBBET;
+        })
+        .undersporsmal.find((underspm) => {
+            return fjernIndexFraTag(underspm.tag) === HVOR_MYE_PROSENT;
+        })
+        .undersporsmal.find((underspm) => {
+            return fjernIndexFraTag(underspm.tag) === HVOR_MYE_PROSENT_VERDI;
+        });
+    const grense = (erMin) ? prosentSporsmal.min : prosentSporsmal.max;
+    return parseInt(grense, 10);
+};
+
+const validerArbeidstaker = (graderteArbeidssporsmal, skjemaverdier, soknad) => {
     const feilmeldinger = {};
+    graderteArbeidssporsmal.forEach((gradertArbeidssporsmal) => {
+        const index = parseInt(gradertArbeidssporsmal.tag.split(`${JOBBET_DU_GRADERT}_`)[1], 10);
+        const erSvarOppgittITimer = formaterEnkeltverdi(skjemaverdier[leggIndexPaTag(HVOR_MYE_TIMER, index)]);
+        const minsteArbeidsgrad = hentArbeidsgradGrense(gradertArbeidssporsmal, true);
+
+        if (erSvarOppgittITimer) {
+            const antallTimerPerNormalUke = formaterEnkeltverdi(skjemaverdier[leggIndexPaTag(HVOR_MANGE_TIMER_PER_UKE, index)]);
+            const antallTimerJobbet = formaterEnkeltverdi(skjemaverdier[leggIndexPaTag(HVOR_MYE_TIMER_VERDI, index)]);
+            const periode = periodenSykmeldtHarVartBorteFraJobb(skjemaverdier, soknad, index);
+            const arbeidsgrad = getStillingsprosent(antallTimerJobbet, antallTimerPerNormalUke, periode, hentFerieOgPermisjonperioder(skjemaverdier));
+            if (arbeidsgrad < minsteArbeidsgrad) {
+                feilmeldinger[leggIndexPaTag(HVOR_MYE_TIMER_VERDI, index)] = getLedetekst(`soknad.feilmelding.${HVOR_MYE_TIMER_VERDI.toLowerCase()}.min`, {
+                    '%MIN%': minsteArbeidsgrad - 1,
+                });
+            }
+        } else {
+            const antallProsentJobbet = formaterEnkeltverdi(skjemaverdier[leggIndexPaTag(HVOR_MYE_PROSENT_VERDI, index)]);
+            const maxArbeidsgrad = hentArbeidsgradGrense(gradertArbeidssporsmal, false);
+            if (antallProsentJobbet < minsteArbeidsgrad) {
+                feilmeldinger[leggIndexPaTag(HVOR_MYE_PROSENT_VERDI, index)] = getLedetekst(`soknad.feilmelding.${HVOR_MYE_PROSENT_VERDI.toLowerCase()}.min`, {
+                    '%ARBEIDSGRAD%': minsteArbeidsgrad - 1, '%MIN%': minsteArbeidsgrad, '%MAX%': maxArbeidsgrad,
+                });
+            }
+        }
+    });
+    return feilmeldinger;
+};
+
+const validerSelvstendigOgFrilanser = (graderteArbeidssporsmal, skjemaverdier) => {
+    const feilmeldinger = {};
+    graderteArbeidssporsmal.forEach((gradertArbeidssporsmal) => {
+        const index = parseInt(gradertArbeidssporsmal.tag.split(`${JOBBET_DU_GRADERT}_`)[1], 10);
+        const antallProsentJobbet = formaterEnkeltverdi(skjemaverdier[leggIndexPaTag(HVOR_MYE_HAR_DU_JOBBET, index)]);
+        const minsteArbeidsgrad = gradertArbeidssporsmal.undersporsmal.find((underspm) => {
+            return fjernIndexFraTag(underspm.tag) === HVOR_MYE_HAR_DU_JOBBET;
+        }).min;
+        const maxArbeidsgrad = gradertArbeidssporsmal.undersporsmal.find((underspm) => {
+            return fjernIndexFraTag(underspm.tag) === HVOR_MYE_HAR_DU_JOBBET;
+        }).max;
+        if (antallProsentJobbet < minsteArbeidsgrad) {
+            feilmeldinger[leggIndexPaTag(HVOR_MYE_HAR_DU_JOBBET, index)] = getLedetekst(`soknad.feilmelding.${HVOR_MYE_PROSENT_VERDI.toLowerCase()}.min`, {
+                '%ARBEIDSGRAD%': minsteArbeidsgrad - 1, '%MIN%': minsteArbeidsgrad, '%MAX%': maxArbeidsgrad,
+            });
+        }
+    });
+    return feilmeldinger;
+};
+
+const validerGraderteArbeidssporsmal = (sporsmalsliste, skjemaverdier, soknad) => {
     const graderteArbeidssporsmal = sporsmalsliste
         .filter((sporsmal) => {
             return fjernIndexFraTag(sporsmal.tag) === JOBBET_DU_GRADERT;
@@ -81,33 +146,10 @@ const validerGraderteArbeidssporsmal = (sporsmalsliste, skjemaverdier, soknad) =
             return harSvartPaFeriesporsmal;
         });
 
-    graderteArbeidssporsmal.forEach((gradertArbeidssporsmal) => {
-        const index = parseInt(gradertArbeidssporsmal.tag.split(`${JOBBET_DU_GRADERT}_`)[1], 10);
-        const erSvarOppgittITimer = formaterEnkeltverdi(skjemaverdier[leggIndexPaTag(HVOR_MYE_TIMER, index)]);
-        if (erSvarOppgittITimer) {
-            const antallTimerPerNormalUke = formaterEnkeltverdi(skjemaverdier[leggIndexPaTag(HVOR_MANGE_TIMER_PER_UKE, index)]);
-            const antallTimerJobbet = formaterEnkeltverdi(skjemaverdier[leggIndexPaTag(HVOR_MYE_TIMER_VERDI, index)]);
-            const periode = periodenSykmeldtHarVartBorteFraJobb(skjemaverdier, soknad, index);
-            const minsteArbeidsgrad = gradertArbeidssporsmal.undersporsmal
-                .find((underspm) => {
-                    return fjernIndexFraTag(underspm.tag) === HVOR_MYE_HAR_DU_JOBBET;
-                })
-                .undersporsmal.find((underspm) => {
-                    return fjernIndexFraTag(underspm.tag) === HVOR_MYE_PROSENT;
-                })
-                .undersporsmal.find((underspm) => {
-                    return fjernIndexFraTag(underspm.tag) === HVOR_MYE_PROSENT_VERDI;
-                }).min;
-            const arbeidsgrad = getStillingsprosent(antallTimerJobbet, antallTimerPerNormalUke, periode, hentFerieOgPermisjonperioder(skjemaverdier));
-            if (arbeidsgrad < parseInt(minsteArbeidsgrad, 10)) {
-                feilmeldinger[leggIndexPaTag(HVOR_MYE_TIMER_VERDI, index)] = getLedetekst(`soknad.feilmelding.${HVOR_MYE_TIMER_VERDI.toLowerCase()}.min`, {
-                    '%MIN%': minsteArbeidsgrad - 1,
-                });
-            }
-        }
-    });
-
-    return feilmeldinger;
+    if (soknad.soknadstype === ARBEIDSTAKERE) {
+        return validerArbeidstaker(graderteArbeidssporsmal, skjemaverdier, soknad);
+    }
+    return validerSelvstendigOgFrilanser(graderteArbeidssporsmal, skjemaverdier);
 };
 
 export default validerGraderteArbeidssporsmal;

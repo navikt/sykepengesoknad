@@ -4,14 +4,16 @@ import { parseSoknad } from '../data/soknader/soknader';
 import expect from '../../../test/expect';
 import validerGraderteArbeidssporsmal from './validerGraderteArbeidssporsmal';
 import {
-    soknadMedOppgittArbeidsgradMindreEnnArbeidsgradISykmelding,
-    soknadMedOppgittArbeidsgradMerEnnArbeidsgradISykmelding,
+    selvstendigSoknadMedOppgittArbeidsgradMerEnnArbeidsgradISykmelding,
+    selvstendigSoknadMedOppgittArbeidsgradMindreEnnArbeidsgradISykmelding,
     soknadMedOppgittArbeidsgradIProsent,
+    soknadMedOppgittArbeidsgradMerEnnArbeidsgradISykmelding,
+    soknadMedOppgittArbeidsgradMindreEnnArbeidsgradISykmelding,
     soknadMedOppgittFerieOgPermisjon,
-    soknadUtenFerieOgPermisjon,
     soknadMedOppgittFeriePermisjonUtland,
     soknadMedOppgittTilbakeNar,
     soknadMedOppgittTilbakeNarIManedskifte,
+    soknadUtenFerieOgPermisjon,
 } from './validerGraderteArbeidssporsmalMock.test';
 
 /* eslint-disable max-len */
@@ -20,6 +22,7 @@ describe('validerGraderteArbeidssporsmal', () => {
     beforeEach(() => {
         setLedetekster({
             'soknad.feilmelding.hvor_mye_timer_verdi.min': 'Timene du skrev inn tyder på at du har jobbet mindre enn %MIN% %. Du må enten svare nei på spørsmålet over eller endre antall timer her.',
+            'soknad.feilmelding.hvor_mye_prosent_verdi.min': 'Prosenten du skrev inn tyder på at du har jobbet mindre enn %ARBEIDSGRAD% %. Du må enten svare nei på spørsmålet over eller endre prosenten til et tall mellom %MIN% og %MAX%.',
         });
     });
 
@@ -28,6 +31,20 @@ describe('validerGraderteArbeidssporsmal', () => {
         const values = fraBackendsoknadTilInitiellSoknad(soknad);
         const feilmeldinger = validerGraderteArbeidssporsmal(soknad.sporsmal, values, parseSoknad(soknad));
         expect(feilmeldinger.HVOR_MYE_TIMER_VERDI_0).to.equal('Timene du skrev inn tyder på at du har jobbet mindre enn 60 %. Du må enten svare nei på spørsmålet over eller endre antall timer her.');
+    });
+
+    it('Skal klage når oppgitt timer i beregnet arbeidsgrad Frilanser/Selvstendig utgjør mindre enn arbeidsgrad i sykmeldingen', () => {
+        const soknad = selvstendigSoknadMedOppgittArbeidsgradMindreEnnArbeidsgradISykmelding;
+        const values = fraBackendsoknadTilInitiellSoknad(soknad);
+        const feilmeldinger = validerGraderteArbeidssporsmal(soknad.sporsmal, values, parseSoknad(soknad));
+        expect(feilmeldinger.HVOR_MYE_HAR_DU_JOBBET_1).to.equal('Prosenten du skrev inn tyder på at du har jobbet mindre enn 80 %. Du må enten svare nei på spørsmålet over eller endre prosenten til et tall mellom 81 og 99.');
+    });
+
+    it('Skal ikke klage når oppgitt timer i beregnet arbeidsgrad Frilanser/Selvstendig utgjør mer enn arbeidsgrad i sykmeldingen', () => {
+        const soknad = selvstendigSoknadMedOppgittArbeidsgradMerEnnArbeidsgradISykmelding;
+        const values = fraBackendsoknadTilInitiellSoknad(soknad);
+        const feilmeldinger = validerGraderteArbeidssporsmal(soknad.sporsmal, values, parseSoknad(soknad));
+        expect(feilmeldinger.HVOR_MYE_HAR_DU_JOBBET_1).to.equal(undefined);
     });
 
     it('Skal ikke klage når oppgitt timer i beregnet arbeidsgrad utgjør mer enn arbeidsgrad i sykmeldingen', () => {
