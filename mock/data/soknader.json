@@ -252,7 +252,7 @@
                     {
                         "id": null,
                         "tag": "HVOR_MANGE_TIMER_PER_UKE_0",
-                        "sporsmalstekst": "Hvor mange timer i uken jobber du vanligvis? Varierer det, kan du oppgi gjennomsnittet.",
+                        "sporsmalstekst": "Hvor mange timer i uken jobber du vanligvis når du er frisk? Varierer det, kan du oppgi gjennomsnittet.",
                         "undertekst": "timer per uke",
                         "svartype": "TALL",
                         "min": "1",
@@ -352,7 +352,7 @@
                     {
                         "id": null,
                         "tag": "HVOR_MANGE_TIMER_PER_UKE_1",
-                        "sporsmalstekst": "Hvor mange timer i uken jobber du vanligvis? Varierer det, kan du oppgi gjennomsnittet.",
+                        "sporsmalstekst": "Hvor mange timer i uken jobber du vanligvis når du er frisk? Varierer det, kan du oppgi gjennomsnittet.",
                         "undertekst": "timer per uke",
                         "svartype": "TALL",
                         "min": "1",
