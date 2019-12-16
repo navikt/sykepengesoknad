@@ -1,0 +1,73 @@
+.soknad__undersporsmal {
+  .ukedager {
+    display: none;
+  }
+  &:first-child {
+    .ukedager {
+      width: 300px;
+      display: block;
+
+      span {
+        display: inline-block;
+        text-align: center;
+        border-bottom: 1px solid @navGra40;
+        padding: 0.5rem 0;
+        min-width: 45px;
+      }
+    }
+  }
+}
+
+.soknad__undersporsmal + .soknad__undersporsmal {
+  .ukekalender {
+    margin-top: -1.5rem;
+  }
+}
+
+.ukekalender {
+  width: 300px;
+}
+
+.kalenderdag {
+  display: inline-block;
+
+  .skjemaelement--horisontal {
+    margin-bottom: 0;
+  }
+
+  &.fjern {
+    float: right;
+
+    input {
+      &:checked + .skjemaelement__label {
+        visibility: hidden;
+      }
+    }
+
+    .skjemaelement__label:hover {
+      background-color: transparent;
+      text-decoration: underline;
+    }
+  }
+
+  input {
+    &:checked + .skjemaelement__label {
+      background-color: @navBla;
+      color: @white;
+    }
+  }
+
+  .skjemaelement__label {
+    color: @navBla;
+    text-align: center;
+    padding: 0.5rem 0;
+    min-width: 45px;
+
+    &:hover {
+      background-color: @navLysGra;
+    }
+    &:before {
+      content: none;
+    }
+  }
+}
