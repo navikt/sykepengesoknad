@@ -13,7 +13,9 @@ import {
     CHECKBOX_PANEL,
     IKKE_RELEVANT,
     TALL,
-    RADIO_GRUPPE, RADIO_GRUPPE_TIMER_PROSENT,
+    RADIO_GRUPPE,
+    RADIO_GRUPPE_TIMER_PROSENT,
+    RADIO_GRUPPE_UKEKALENDER,
 } from '../../enums/svartyper';
 import Sporsmal from './Sporsmal';
 import UkjentSporsmal from './UkjentSporsmal';
@@ -40,6 +42,7 @@ const Undersporsmal = ({ sporsmal, soknad }) => {
         case CHECKBOX_GRUPPE:
         case TALL:
         case RADIO_GRUPPE:
+        case RADIO_GRUPPE_UKEKALENDER:
         case RADIO_GRUPPE_TIMER_PROSENT:
         case FRITEKST: {
             return (<SoknadUndersporsmal>

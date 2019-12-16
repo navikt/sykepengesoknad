@@ -80,3 +80,13 @@ export const ArbeidsledigSoknadTrigger = ({ children }) => {
 ArbeidsledigSoknadTrigger.propTypes = {
     children: node,
 };
+
+export const BehandlingsdagerSoknadTrigger = ({ children }) => {
+    return (<HotjarTrigger hotjarTrigger="SOKNAD_BEHANDLINGSDAGER">
+        {children}
+    </HotjarTrigger>);
+};
+
+BehandlingsdagerSoknadTrigger.propTypes = {
+    children: node,
+};

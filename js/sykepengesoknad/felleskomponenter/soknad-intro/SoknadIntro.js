@@ -5,11 +5,14 @@ import ForsteSoknadIntro from '../../../sykepengesoknad-gammel-plattform/for-du-
 import SoknadIntro from '../../../sykepengesoknad-gammel-plattform/for-du-begynner/SoknadIntro';
 import { erForsteSoknad as erForsteSoknadSelector } from '../../data/soknader/soknaderSelectors';
 import { soknadPt } from '../../prop-types/soknadProptype';
-import { ARBEIDSTAKERE, SELVSTENDIGE_OG_FRILANSERE, ARBEIDSLEDIG } from '../../enums/soknadtyper';
+import { ARBEIDSTAKERE, SELVSTENDIGE_OG_FRILANSERE, ARBEIDSLEDIG, BEHANDLINGSDAGER } from '../../enums/soknadtyper';
 import ForsteSelvstendigFrilanserSoknadIntro from '../../soknad-selvstendig-frilanser/for-du-begynner/ForsteSelvstendigFrilanserSoknadIntro';
 import SelvstendigFrilanserSoknadIntro from '../../soknad-selvstendig-frilanser/for-du-begynner/SelvstendigFrilanserSoknadIntro';
 import ForsteArbeidsledigSoknadIntro from '../../soknad-arbeidsledig/for-du-begynner/ForsteArbeidsledigSoknadIntro';
 import ArbeidsledigSoknadIntro from '../../soknad-arbeidsledig/for-du-begynner/ArbeidsledigSoknadIntro';
+import ForsteBehandlingsdagerSoknadIntro from '../../soknad-behandlingsdager/for-du-begynner/ForsteBehandlingsdagerSoknadIntro';
+import BehandlingsdagerSoknadIntro from '../../soknad-behandlingsdager/for-du-begynner/BehandlingsdagerSoknadIntro';
+
 
 const Intro = ({ erForsteSoknad, soknad }) => {
     switch (soknad.soknadstype) {
@@ -27,6 +30,11 @@ const Intro = ({ erForsteSoknad, soknad }) => {
             return erForsteSoknad
                 ? <ForsteArbeidsledigSoknadIntro />
                 : <ArbeidsledigSoknadIntro />;
+        }
+        case BEHANDLINGSDAGER: {
+            return erForsteSoknad
+                ? <ForsteBehandlingsdagerSoknadIntro />
+                : <BehandlingsdagerSoknadIntro />;
         }
         default: {
             return null;
