@@ -1643,7 +1643,7 @@
                     {
                         "id": "2",
                         "tag": "ENKELTSTAENDE_BEHANDLINGSDAGER_UKE_0",
-                        "sporsmalstekst": null,
+                        "sporsmalstekst": "1. januar - 5. januar 2018",
                         "undertekst": null,
                         "svartype": "RADIO_GRUPPE_UKEKALENDER",
                         "min": null,
@@ -1720,7 +1720,7 @@
                             {
                                 "id": "8",
                                 "tag": "ENKELTSTAENDE_BEHANDLINGSDAGER_DAG_NAR_0_7",
-                                "sporsmalstekst": "INGEN",
+                                "sporsmalstekst": "Ikke til behandling",
                                 "undertekst": null,
                                 "svartype": "RADIO",
                                 "min": null,
@@ -1735,7 +1735,7 @@
                     {
                         "id": "9",
                         "tag": "ENKELTSTAENDE_BEHANDLINGSDAGER_UKE_1",
-                        "sporsmalstekst": null,
+                        "sporsmalstekst": "8. januar - 10. januar 2018",
                         "undertekst": null,
                         "svartype": "RADIO_GRUPPE_UKEKALENDER",
                         "min": null,
@@ -1786,7 +1786,7 @@
                             {
                                 "id": "13",
                                 "tag": "ENKELTSTAENDE_BEHANDLINGSDAGER_DAG_NAR_1_3",
-                                "sporsmalstekst": "INGEN",
+                                "sporsmalstekst": "Ikke til behandling",
                                 "undertekst": null,
                                 "svartype": "RADIO",
                                 "min": null,
