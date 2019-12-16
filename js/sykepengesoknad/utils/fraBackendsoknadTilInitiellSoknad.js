@@ -1,7 +1,7 @@
 import { toDatePrettyPrint } from '@navikt/digisyfo-npm';
 import {
     CHECKBOX, CHECKBOX_PANEL, DATO, FRITEKST, JA_NEI, PERIODER, PROSENT, TIMER,
-    TALL, RADIO_GRUPPE, RADIO_GRUPPE_TIMER_PROSENT, RADIO, LAND,
+    TALL, RADIO_GRUPPE, RADIO_GRUPPE_TIMER_PROSENT, RADIO_GRUPPE_UKEKALENDER, RADIO, LAND,
 } from '../enums/svartyper';
 import { genererParseForEnkeltverdi } from '../felleskomponenter/sporsmal/fieldUtils';
 import { CHECKED } from '../enums/svarEnums';
@@ -49,6 +49,7 @@ const tilInitielleSvarverder = ({ svar, svartype, undersporsmal }) => {
         case RADIO:
             return parse(svar[0].verdi);
         case RADIO_GRUPPE:
+        case RADIO_GRUPPE_UKEKALENDER:
         case RADIO_GRUPPE_TIMER_PROSENT: {
             const aktivtUndersporsmal = undersporsmal.find((uspm) => {
                 return uspm.svar[0] && uspm.svar[0].verdi === CHECKED;
@@ -80,6 +81,7 @@ const fraBackendsoknadTilInitiellSoknad = (soknad) => {
         .filter((spm) => {
             return spm.svar.length > 0
                 || spm.svartype === RADIO_GRUPPE
+                || spm.svartype === RADIO_GRUPPE_UKEKALENDER
                 || spm.svartype === RADIO_GRUPPE_TIMER_PROSENT
                 || spm.svartype === PERIODER;
         });

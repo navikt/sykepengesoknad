@@ -17,7 +17,7 @@ import {
     IKKE_RELEVANT,
     CHECKBOX_PANEL,
     TALL,
-    RADIO_GRUPPE, RADIO_GRUPPE_TIMER_PROSENT,
+    RADIO_GRUPPE, RADIO_GRUPPE_TIMER_PROSENT, RADIO_GRUPPE_UKEKALENDER,
 } from '../../enums/svartyper';
 import Perioder from './Perioder';
 import Checkbox from './Checkbox';
@@ -99,6 +99,7 @@ export const SporsmalComponent = ({ sporsmal, name, hovedsporsmal, ekstraProps, 
             </Checkboxpanel>);
         }
         case RADIO_GRUPPE:
+        case RADIO_GRUPPE_UKEKALENDER:
         case RADIO_GRUPPE_TIMER_PROSENT: {
             return (<RadioGruppe
                 {...sporsmal}

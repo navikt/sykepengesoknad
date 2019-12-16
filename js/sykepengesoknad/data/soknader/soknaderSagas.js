@@ -8,7 +8,7 @@ import { soknadrespons } from '../../../../test/mock/mockSoknadSelvstendig';
 import { toggleBrukMockDataSelvstendigSoknad, toggleBrukMockdataUtland } from '../../../toggles';
 import { logEvent } from '../../../utils/amplitude';
 import logger from '../../../logging';
-import { ARBEIDSTAKERE, OPPHOLD_UTLAND, SELVSTENDIGE_OG_FRILANSERE, ARBEIDSLEDIG } from '../../enums/soknadtyper';
+import { ARBEIDSTAKERE, OPPHOLD_UTLAND, SELVSTENDIGE_OG_FRILANSERE, ARBEIDSLEDIG, BEHANDLINGSDAGER } from '../../enums/soknadtyper';
 import { hentSoknad, skalHenteSoknader, skalHenteSoknaderHvisIkkeHenter } from './soknaderSelectors';
 import populerSoknadMedSvar from '../../utils/populerSoknadMedSvar';
 import fraBackendsoknadTilInitiellSoknad from '../../utils/fraBackendsoknadTilInitiellSoknad';
@@ -106,6 +106,7 @@ export function* sendSoknad(action) {
         if (action.soknad.soknadstype === SELVSTENDIGE_OG_FRILANSERE
             || action.soknad.soknadstype === OPPHOLD_UTLAND
             || action.soknad.soknadstype === ARBEIDSLEDIG
+            || action.soknad.soknadstype === BEHANDLINGSDAGER
             || (action.soknad.soknadstype === ARBEIDSTAKERE)) {
             yield put(actions.senderSoknad(action.soknadId));
             yield call(post, `${hentApiUrl()}/sendSoknad`, action.soknad);
@@ -131,6 +132,7 @@ export function* avbrytSoknad(action) {
     if (action.soknad.soknadstype === SELVSTENDIGE_OG_FRILANSERE
         || action.soknad.soknadstype === OPPHOLD_UTLAND
         || action.soknad.soknadstype === ARBEIDSLEDIG
+        || action.soknad.soknadstype === BEHANDLINGSDAGER
         || action.soknad.soknadstype === ARBEIDSTAKERE) {
         try {
             yield put(actions.avbryterSoknad());
@@ -141,7 +143,8 @@ export function* avbrytSoknad(action) {
                 browserHistory.push(getUrlTilSoknader());
             } else if (action.soknad.soknadstype === ARBEIDSTAKERE
                 || action.soknad.soknadstype === SELVSTENDIGE_OG_FRILANSERE
-                || action.soknad.soknadstype === ARBEIDSLEDIG) {
+                || action.soknad.soknadstype === ARBEIDSLEDIG
+                || action.soknad.soknadstype === BEHANDLINGSDAGER) {
                 browserHistory.push(getUrlTilSoknad(action.soknad.id));
             }
             loggAvbrytSoknad(action.soknad.soknadstype);
@@ -155,7 +158,8 @@ export function* avbrytSoknad(action) {
 export function* gjenapneSoknad(action) {
     if (action.soknad.soknadstype === SELVSTENDIGE_OG_FRILANSERE
         || action.soknad.soknadstype === ARBEIDSTAKERE
-        || action.soknad.soknadstype === ARBEIDSLEDIG) {
+        || action.soknad.soknadstype === ARBEIDSLEDIG
+        || action.soknad.soknadstype === BEHANDLINGSDAGER) {
         try {
             yield put(actions.gjenapnerSoknad(action.soknad));
             yield call(post, `${hentApiUrl()}/soknader/${action.soknad.id}/gjenapne`);
