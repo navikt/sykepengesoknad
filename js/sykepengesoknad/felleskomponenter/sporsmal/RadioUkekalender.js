@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 import { formaterEnkeltverdi, genererParseForEnkeltverdi } from './fieldUtils';
 import { getSkjemanavnFraSoknad } from '../../utils/getSkjemanavnFraSoknad';
 import { hentSkjemaVerdier } from '../../../data/redux-form/reduxFormSelectors';
-import { CHECKED, UNCHECKED } from '../../enums/svarEnums';
+import { CHECKED } from '../../enums/svarEnums';
 import Undersporsmalsliste from './Undersporsmalsliste';
 import Feilomrade from '../../../components/skjema/Feilomrade';
 import { fieldPropTypes, soknadPt, sporsmal as sporsmalPt } from '../../../propTypes/index';
@@ -20,8 +20,8 @@ const lagLabel = (sporsmalstekst) => {
 
 const Radioknapp = ({ input, label, children, id }) => {
     const checked = input.value === label;
-    return (<div role={label === 'fjern' ? 'link' : 'button'} className={`kalenderdag${label === 'fjern' ? ' fjern' : ''}`}>
-        <Radio {...input} label={label} value={label} checked={checked} id={id} />
+    return (<div role={label === 'fjern' ? 'link' : 'button'} className={`kalenderdag${lagLabel(label) === 'fjern' ? ' fjern' : ''}`}>
+        <Radio {...input} label={lagLabel(label)} value={label} checked={checked} id={id} />
         {checked && children}
     </div>);
 };
@@ -46,7 +46,7 @@ const RadioUkekalenderComponent = ({ meta, tag, undersporsmal, autofill, soknad,
                         <Field
                             component={Radioknapp}
                             key={lagLabel(sporsmal.sporsmalstekst)}
-                            label={lagLabel(sporsmal.sporsmalstekst)}
+                            label={sporsmal.sporsmalstekst}
                             id={sporsmal.tag}
                             name={tag}
                             onChange={() => {
@@ -87,8 +87,10 @@ RadioUkekalender.propTypes = {
 const mapStateToProps = (state, ownProps) => {
     const verdier = hentSkjemaVerdier(state, getSkjemanavnFraSoknad(ownProps.soknad));
 
+    const verdi = verdier[ownProps.tag] !== null ? verdier[ownProps.tag] : { svarverdier: [{ verdi: 'Ikke til behandling' }] };
+
     return {
-        verdi: formaterEnkeltverdi(verdier),
+        verdi: formaterEnkeltverdi(verdi),
     };
 };
 
