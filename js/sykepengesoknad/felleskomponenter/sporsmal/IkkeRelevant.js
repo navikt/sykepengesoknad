@@ -2,11 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const IkkeRelevant = ({ sporsmalstekst, undertekst, children }) => {
-    return (<div>
+    return (<React.Fragment>
         { sporsmalstekst && <h3 className="skjema__sporsmal">{sporsmalstekst}</h3> }
         <div className="redaksjonelt-innhold" dangerouslySetInnerHTML={{ __html: undertekst }} />
-        { children }
-    </div>);
+        <div>
+            { children }
+        </div>
+    </React.Fragment>);
 };
 
 IkkeRelevant.propTypes = {

@@ -18,6 +18,10 @@ const lagLabel = (sporsmalstekst) => {
     return new Date(sporsmalstekst).getDate().toString();
 };
 
+const dagerSidenMandag = (sporsmal) => {
+    return (((new Date(sporsmal.sporsmalstekst).getDay() - 1) % 7) + 7) % 7;
+};
+
 const Radioknapp = ({ input, label, children, id }) => {
     const checked = input.value === label;
     return (<div role={label === 'fjern' ? 'link' : 'button'} className={`kalenderdag${lagLabel(label) === 'fjern' ? ' fjern' : ''}`}>
@@ -40,6 +44,13 @@ const RadioUkekalenderComponent = ({ meta, tag, undersporsmal, autofill, soknad,
     return (<Feilomrade {...meta}>
         <div className={'ukedager'}><span>Man</span><span>Tir</span><span>Ons</span><span>Tor</span><span>Fre</span></div>
         <div className={'ukekalender'}>
+            {
+                Array(dagerSidenMandag(undersporsmal[0])).fill(0).map(() => {
+                    return (
+                        <div className={'kalenderdag'}><div className={'ikkedag'} /></div>
+                    );
+                })
+            }
             {
                 undersporsmal.map((sporsmal) => {
                     return (
