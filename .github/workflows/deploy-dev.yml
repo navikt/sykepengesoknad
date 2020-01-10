@@ -4,35 +4,30 @@ on:
     branches:
       - '*'
       - '!master'
+env:
+  IMAGE: docker.pkg.github.com/${{ github.repository }}/sykepengesoknad:${{ github.sha }}
 jobs:
-  build-push-deploy:
-    name: Checkout code and create docker tag
+  build:
+    name: Build and push Docker image
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v1
-      - name: Create Docker tag
+      - name: Build and publish Docker image
         env:
           NAME: sykepengesoknad
+          GITHUB_TOKEN: ${{ secrets.GITHUB_ACCESS_TOKEN }}
         run: |
-          echo "docker.pkg.github.com"/"$GITHUB_REPOSITORY"/"$NAME" > .docker_image
-          echo "$(date "+%Y.%m.%d")-$(git rev-parse --short HEAD)" > .docker_tag
-      - name: Build Docker image
-        run: |
-          docker build -t $(cat .docker_image):$(cat .docker_tag) .
-      - name: Login to Github Package Registry
+          docker build -t ${IMAGE} .
+          docker login docker.pkg.github.com -u ${GITHUB_REPOSITORY} -p ${GITHUB_TOKEN}
+          docker push ${IMAGE}
+  deploy:
+    name: deploy to dev-sbs
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - uses: nais/deploy/actions/deploy@v1
         env:
-          DOCKER_USERNAME: x-access-token
-          DOCKER_PASSWORD: ${{ secrets.GITHUB_ACCESS_TOKEN }}
-        run: |
-          echo "$DOCKER_PASSWORD" | docker login --username "$DOCKER_USERNAME" --password-stdin docker.pkg.github.com
-      - name: Push Docker image
-        run: "docker push $(cat .docker_image):$(cat .docker_tag)"
-      - name: deploy to dev-sbs
-        uses: navikt/deployment-cli/action@0.4.0
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          cluster: dev-sbs
-          team: flex
-          resources: nais-dev.yaml
+          APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
+          CLUSTER: dev-sbs
+          RESOURCE: nais-dev.yaml
