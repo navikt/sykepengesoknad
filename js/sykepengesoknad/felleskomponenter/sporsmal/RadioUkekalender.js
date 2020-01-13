@@ -97,7 +97,6 @@ RadioUkekalender.propTypes = {
 
 const mapStateToProps = (state, ownProps) => {
     const verdier = hentSkjemaVerdier(state, getSkjemanavnFraSoknad(ownProps.soknad));
-
     const verdi = verdier[ownProps.tag] !== null ? verdier[ownProps.tag] : { svarverdier: [{ verdi: 'Ikke til behandling' }] };
 
     return {
