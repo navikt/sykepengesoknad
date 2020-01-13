@@ -3,11 +3,12 @@ import PropTypes from 'prop-types';
 import beregnSteg, { KVITTERING } from '../utils/beregnSteg';
 import SoknadKvitteringSjekker from '../felleskomponenter/SoknadKvitteringSjekker';
 import { soknadPt } from '../../propTypes';
-import { AVBRUTT, KORRIGERT, NY, SENDT, UTKAST_TIL_KORRIGERING } from '../enums/soknadstatuser';
+import { AVBRUTT, KORRIGERT, NY, SENDT, UTKAST_TIL_KORRIGERING, UTGAATT } from '../enums/soknadstatuser';
 import NySendtSoknadArbeidstaker from './NySendtSoknadArbeidstaker';
 import Feilmelding from '../../components/Feilmelding';
 import AvbruttSoknadArbeidstaker from './AvbruttSoknadArbeidstaker';
 import EttSporsmalPerSideContainer from '../felleskomponenter/ett-sporsmal-per-side/EttSporsmalPerSideContainer';
+import UtgaattSoknad from '../felleskomponenter/utgaatt-soknad/UtgaattSoknad';
 
 const NySoknadArbeidstakerSkjema = (props) => {
     const { sti } = props;
@@ -43,6 +44,9 @@ const NySoknadArbeidstaker = (props) => {
         }
         case AVBRUTT: {
             return <AvbruttSoknadArbeidstaker {...props} />;
+        }
+        case UTGAATT: {
+            return <UtgaattSoknad />;
         }
         default: {
             return <Feilmelding melding="Søknaden har ukjent status" />;
