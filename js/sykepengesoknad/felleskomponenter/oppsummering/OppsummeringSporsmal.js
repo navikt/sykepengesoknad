@@ -21,6 +21,7 @@ import { svartypePt } from '../../../propTypes/index';
 import OppsummeringFritekst from './OppsummeringFritekst';
 import OppsummeringUndertekst from './OppsummeringUndertekst';
 import OppsummeringRadioGruppe from './OppsummeringRadioGruppe';
+import OppsummeringGruppeRadioUkekalender from './OppsummeringGruppeRadioUkekalender';
 import { LAND } from '../../enums/tagtyper';
 import OppsummeringLand from './OppsummeringLand';
 
@@ -57,10 +58,11 @@ const OppsummeringSporsmal = (props) => {
             return <OppsummeringTall {...props} />;
         }
         case RADIO_GRUPPE_TIMER_PROSENT:
-        case RADIO_GRUPPE_UKEKALENDER:
         case RADIO_GRUPPE: {
             return <OppsummeringRadioGruppe {...props} />;
         }
+        case RADIO_GRUPPE_UKEKALENDER:
+            return <OppsummeringGruppeRadioUkekalender {...props} />;
         default: {
             return null;
         }
