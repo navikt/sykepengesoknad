@@ -6,10 +6,11 @@ import beregnSteg, {
 import { soknadPt } from '../../propTypes';
 import SoknadKvitteringSjekker from '../felleskomponenter/SoknadKvitteringSjekker';
 import EttSporsmalPerSideContainer from '../felleskomponenter/ett-sporsmal-per-side/EttSporsmalPerSideContainer';
-import { AVBRUTT, KORRIGERT, NY, SENDT, UTKAST_TIL_KORRIGERING } from '../enums/soknadstatuser';
+import { AVBRUTT, KORRIGERT, NY, SENDT, UTGAATT, UTKAST_TIL_KORRIGERING } from '../enums/soknadstatuser';
 import Feilmelding from '../../components/Feilmelding';
 import SendtSoknadSelvstendig from './SendtSoknadSelvstendig';
 import AvbruttSoknadSelvstendig from './AvbruttSoknadSelvstendig';
+import UtgaattSoknad from '../felleskomponenter/utgaatt-soknad/UtgaattSoknad';
 
 const SoknadSelvstendigNaeringsdrivendeSkjema = (props) => {
     const { sti } = props;
@@ -45,6 +46,9 @@ const SoknadSelvstendigNaeringsdrivende = (props) => {
         }
         case AVBRUTT: {
             return <AvbruttSoknadSelvstendig {...props} />;
+        }
+        case UTGAATT: {
+            return <UtgaattSoknad />;
         }
         default: {
             return <Feilmelding melding="Søknaden har ukjent status" />;
