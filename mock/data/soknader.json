@@ -1714,7 +1714,7 @@
                                 "max": null,
                                 "pavirkerAndreSporsmal": false,
                                 "kriterieForVisningAvUndersporsmal": null,
-                                "svar": [ { "verdi":  "CHECKED" }],
+                                "svar": [],
                                 "undersporsmal": []
                             }
                         ]
@@ -1806,7 +1806,7 @@
                                 "max": null,
                                 "pavirkerAndreSporsmal": false,
                                 "kriterieForVisningAvUndersporsmal": null,
-                                "svar": [ { "verdi":  "CHECKED" }],
+                                "svar": [],
                                 "undersporsmal": []
                             }
                         ]
@@ -1872,7 +1872,7 @@
                                 "max": null,
                                 "pavirkerAndreSporsmal": false,
                                 "kriterieForVisningAvUndersporsmal": null,
-                                "svar": [ { "verdi":  "CHECKED" }],
+                                "svar": [],
                                 "undersporsmal": []
                             }
                         ]
