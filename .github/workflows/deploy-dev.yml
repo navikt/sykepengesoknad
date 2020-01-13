@@ -1,0 +1,29 @@
+name: Deploy to dev
+on:
+  push:
+    branches:
+      - '*'
+      - '!master'
+env:
+  IMAGE: docker.pkg.github.com/${{ github.repository }}/sykepengesoknad:${{ github.sha }}
+jobs:
+  build:
+    name: Build and push Docker image
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v1
+      - name: Build and publish Docker image
+        env:
+          NAME: sykepengesoknad
+          GITHUB_TOKEN: ${{ secrets.GITHUB_ACCESS_TOKEN }}
+        run: |
+          docker build -t ${IMAGE} .
+          docker login docker.pkg.github.com -u ${GITHUB_REPOSITORY} -p ${GITHUB_TOKEN}
+          docker push ${IMAGE}
+      - uses: nais/deploy/actions/deploy@v1
+        name: Deploy to dev-sbs
+        env:
+          APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
+          CLUSTER: dev-sbs
+          RESOURCE: nais-dev.yaml
