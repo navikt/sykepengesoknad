@@ -1631,7 +1631,7 @@
             {
                 "id": "1",
                 "tag": "ENKELTSTAENDE_BEHANDLINGSDAGER_0",
-                "sporsmalstekst": "Var du til behandling mellom 29. desember 2017 - 10. januar 2018?",
+                "sporsmalstekst": "Var du til behandling mellom 26. desember 2017 - 10. januar 2018?",
                 "undertekst": null,
                 "svartype": "IKKE_RELEVANT",
                 "min": null,
@@ -1643,7 +1643,7 @@
                     {
                         "id": "2",
                         "tag": "ENKELTSTAENDE_BEHANDLINGSDAGER_UKE_0",
-                        "sporsmalstekst": "29. desember 2017",
+                        "sporsmalstekst": "26. desember - 29. desember 2017",
                         "undertekst": null,
                         "svartype": "RADIO_GRUPPE_UKEKALENDER",
                         "min": null,
@@ -1654,7 +1654,46 @@
                         "undersporsmal": [
                             {
                                 "id": "3",
-                                "tag": "ENKELTSTAENDE_BEHANDLINGSDAGER_DAG_NAR_0_0",
+                                "tag": "ENKELTSTAENDE_BEHANDLINGSDAGER_DAG_NAR_0_1",
+                                "sporsmalstekst": "2017-12-26",
+                                "undertekst": null,
+                                "svartype": "RADIO",
+                                "min": null,
+                                "max": null,
+                                "pavirkerAndreSporsmal": false,
+                                "kriterieForVisningAvUndersporsmal": null,
+                                "svar": [],
+                                "undersporsmal": []
+                            },
+                            {
+                                "id": "3",
+                                "tag": "ENKELTSTAENDE_BEHANDLINGSDAGER_DAG_NAR_0_2",
+                                "sporsmalstekst": "2017-12-27",
+                                "undertekst": null,
+                                "svartype": "RADIO",
+                                "min": null,
+                                "max": null,
+                                "pavirkerAndreSporsmal": false,
+                                "kriterieForVisningAvUndersporsmal": null,
+                                "svar": [],
+                                "undersporsmal": []
+                            },
+                            {
+                                "id": "3",
+                                "tag": "ENKELTSTAENDE_BEHANDLINGSDAGER_DAG_NAR_0_3",
+                                "sporsmalstekst": "2017-12-28",
+                                "undertekst": null,
+                                "svartype": "RADIO",
+                                "min": null,
+                                "max": null,
+                                "pavirkerAndreSporsmal": false,
+                                "kriterieForVisningAvUndersporsmal": null,
+                                "svar": [],
+                                "undersporsmal": []
+                            },
+                            {
+                                "id": "3",
+                                "tag": "ENKELTSTAENDE_BEHANDLINGSDAGER_DAG_NAR_0_4",
                                 "sporsmalstekst": "2017-12-29",
                                 "undertekst": null,
                                 "svartype": "RADIO",
@@ -1667,7 +1706,7 @@
                             },
                             {
                                 "id": "8",
-                                "tag": "ENKELTSTAENDE_BEHANDLINGSDAGER_DAG_NAR_0_1",
+                                "tag": "ENKELTSTAENDE_BEHANDLINGSDAGER_DAG_NAR_0_5",
                                 "sporsmalstekst": "Ikke til behandling",
                                 "undertekst": null,
                                 "svartype": "RADIO",
