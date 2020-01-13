@@ -1,0 +1,48 @@
+apiVersion: "nais.io/v1alpha1"
+kind: "Application"
+metadata:
+  name: sykepengesoknad
+  namespace: default
+  labels:
+    team: flex
+spec:
+  image: {{ image }}
+  port: 8080
+  ingresses:
+    - "https://tjenester.nav.no/sykepengesoknad"
+  replicas:
+    min: 2
+    max: 2
+    cpuThresholdPercentage: 50
+  resources:
+    limits:
+      cpu: 500m
+      memory: 256Mi
+    requests:
+      cpu: 200m
+      memory: 256Mi
+  liveness:
+    path: /health/isAlive
+    intialDelay: 60
+  readiness:
+    path: /health/isReady
+    initialDelay: 60
+  prometheus:
+    enabled: true
+    path: /actuator/metrics
+  env:
+    - name: APPRES_CMS_URL
+      value: "https://appres.nav.no"
+    - name: LOGINSERVICE_URL
+      value: "https://loginservice.nav.no/login"
+    - name: SYFOAPI_SYFOTEKSTERAPI_URL
+      value: "https://syfoapi.nais.oera.no/syfotekster/api/tekster"
+    - name: SYFOAPI_SYFOSOKNADAPI_URL
+      value: "https://syfoapi.nais.oera.no/syfosoknad/api"
+    - name: SYKEFRAVAERAPI_DESCRIPTION
+      value: "DigiSyfo REST-API"
+    - name: SYKEFRAVAERAPI_URL
+      value: "https://itjenester.oera.no/syforest"
+    - name: SYFOUNLEASHAPI_URL
+      value: "https://syfounleash.nais.oera.no"
+
