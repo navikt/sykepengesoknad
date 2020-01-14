@@ -11,10 +11,13 @@ const OppsummeringGruppeRadioUkekalender = ({ sporsmalstekst, tag, overskriftsni
     const besvartUndersporsmal = undersporsmal.find((s) => {
         return s.svar.length > 0 && s.svar[0].verdi === CHECKED;
     });
+    const undersporsmalstekst = besvartUndersporsmal.sporsmalstekst === 'Ikke til behandling'
+        ? besvartUndersporsmal.sporsmalstekst
+        : toDatePrettyPrint(besvartUndersporsmal.sporsmalstekst);
     return besvartUndersporsmal
         ? (<OppsummeringSporsmalscontainer tag={tag}>
             <OppsummeringSporsmalstekst overskriftsnivaa={overskriftsnivaa}>{sporsmalstekst}</OppsummeringSporsmalstekst>
-            <OppsummeringAvkrysset id={id} tekst={toDatePrettyPrint(besvartUndersporsmal.sporsmalstekst)} />
+            <OppsummeringAvkrysset id={id} tekst={undersporsmalstekst} />
         </OppsummeringSporsmalscontainer>)
         : null;
 };
