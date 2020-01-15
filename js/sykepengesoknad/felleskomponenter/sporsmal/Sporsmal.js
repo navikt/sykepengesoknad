@@ -17,7 +17,7 @@ import {
     IKKE_RELEVANT,
     CHECKBOX_PANEL,
     TALL,
-    RADIO_GRUPPE, RADIO_GRUPPE_TIMER_PROSENT,
+    RADIO_GRUPPE, RADIO_GRUPPE_TIMER_PROSENT, RADIO_GRUPPE_UKEKALENDER,
 } from '../../enums/svartyper';
 import Perioder from './Perioder';
 import Checkbox from './Checkbox';
@@ -31,6 +31,7 @@ import { lagreSoknad, soknadEndret } from '../../data/soknader/soknaderActions';
 import UkjentSporsmal from './UkjentSporsmal';
 import Undersporsmalsliste from './Undersporsmalsliste';
 import RadioGruppe from './RadioGruppe';
+import RadioUkekalender from './RadioUkekalender';
 import { LAND } from '../../enums/tagtyper';
 import Land from './Land';
 
@@ -101,6 +102,13 @@ export const SporsmalComponent = ({ sporsmal, name, hovedsporsmal, ekstraProps, 
         case RADIO_GRUPPE:
         case RADIO_GRUPPE_TIMER_PROSENT: {
             return (<RadioGruppe
+                {...sporsmal}
+                name={name}
+                soknad={soknad} />);
+        }
+
+        case RADIO_GRUPPE_UKEKALENDER: {
+            return (<RadioUkekalender
                 {...sporsmal}
                 name={name}
                 soknad={soknad} />);

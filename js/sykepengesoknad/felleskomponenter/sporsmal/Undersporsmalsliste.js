@@ -23,7 +23,7 @@ const Undersporsmalsliste = ({ undersporsmal, soknad, parentValue }) => {
         });
 
     return sporsmalsliste.length > 0
-        ? <div>{sporsmalsliste}</div>
+        ? <React.Fragment>{sporsmalsliste}</React.Fragment>
         : null;
 };
 
