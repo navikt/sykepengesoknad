@@ -1,7 +1,7 @@
 name: Bygg, publish og deploy
 on: push
 env:
-  IMAGE: docker.pkg.github.com/${{ github.repository }}/sykepengesoknad:${{ github.sha }}
+  APP: sykepengesoknad
 jobs:
   build-and-publish:
     name: Bygg, test og push Docker image
@@ -9,6 +9,19 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v1
+      - name: Generer versjon og image navn
+        run: |
+          TIME=$(TZ="Europe/Oslo" date +%Y.%m.%d-%H.%M)
+          COMMIT=$(git rev-parse --short=8 HEAD)
+          VERSION=$TIME-$COMMIT
+          echo "::set-env name=IMAGE::"docker.pkg.github.com/${GITHUB_REPOSITORY}/$APP:$VERSION""
+          echo "::set-env name=VERSION::"$VERSION""
+      - run: echo $VERSION > VERSION.txt
+      - name: Last opp VERSION til neste job
+        uses: actions/upload-artifact@v1
+        with:
+          name: VERSION.txt
+          path: VERSION.txt
       - name: Cache NPM dependencies
         uses: actions/cache@v1
         with:
@@ -26,7 +39,6 @@ jobs:
         run: npm run nais-build
       - name: Build and publish Docker image
         env:
-          NAME: sykepengesoknad
           GITHUB_TOKEN: ${{ secrets.GITHUB_ACCESS_TOKEN }}
         run: |
           docker build -t ${IMAGE} .
@@ -40,6 +52,13 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v1
+      - name: Last ned versjon
+        uses: actions/download-artifact@v1
+        with:
+          name: VERSION.txt
+          path: .
+      - run: echo "::set-env name=VERSION::"`cat VERSION.txt`""
+      - run: echo "::set-env name=IMAGE::"docker.pkg.github.com/${GITHUB_REPOSITORY}/$APP:$VERSION""
       - uses: nais/deploy/actions/deploy@v1
         name: Deploy to dev-sbs
         env:
@@ -55,9 +74,22 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v1
+      - name: Last ned versjon
+        uses: actions/download-artifact@v1
+        with:
+          name: VERSION.txt
+          path: .
+      - run: echo "::set-env name=VERSION::"`cat VERSION.txt`""
+      - run: echo "::set-env name=IMAGE::"docker.pkg.github.com/${GITHUB_REPOSITORY}/$APP:$VERSION""
       - uses: nais/deploy/actions/deploy@v1
         name: Deploy to prod-sbs
         env:
           APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
           CLUSTER: prod-sbs
           RESOURCE: nais-prod.yaml
+      - uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ env.VERSION }}
+          release_name: ${{ env.VERSION }}
