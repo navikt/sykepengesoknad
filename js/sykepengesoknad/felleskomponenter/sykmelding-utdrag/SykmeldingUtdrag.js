@@ -3,31 +3,57 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { SykmeldingUtdrag as SykmeldingUtdragForArbeidstakere, sykmelding as sykmeldingPt } from '@navikt/digisyfo-npm';
 import { settErOppdelt } from '../../utils/settErOppdelt';
-import { ARBEIDSTAKERE, SELVSTENDIGE_OG_FRILANSERE, ARBEIDSLEDIG } from '../../enums/soknadtyper';
+import { ARBEIDSTAKERE, SELVSTENDIGE_OG_FRILANSERE, ARBEIDSLEDIG, BEHANDLINGSDAGER } from '../../enums/soknadtyper';
 import SykmeldingUtdragForSelvstendige from '../../soknad-selvstendig-frilanser/sykmelding-utdrag/SykmeldingUtdragForSelvstendige';
 import SykmeldingUtdragForArbeidsledige from '../../soknad-arbeidsledig/sykmelding-utdrag/SykmeldingUtdragForArbeidsledige';
 import { soknadPt } from '../../prop-types/soknadProptype';
+import SykmeldingUtdragForBehandlingsdager from '../../soknad-behandlingsdager/sykmelding-utdrag/SykmeldingUtdragForBehandlingsdager';
 
 const Utdrag = ({ sykmelding, soknad, erApen, erOppdelt }) => {
-    return soknad.soknadstype === ARBEIDSTAKERE
-        && sykmelding
-        ? <SykmeldingUtdragForArbeidstakere
-            erApen={erApen}
-            sykmelding={sykmelding}
-            sykepengesoknad={{ _erOppdelt: erOppdelt }} />
-        : soknad.soknadstype === SELVSTENDIGE_OG_FRILANSERE
-        && sykmelding
-            ? <SykmeldingUtdragForSelvstendige
-                erApen={erApen}
-                sykmelding={sykmelding}
-                erOppdelt={erOppdelt} />
-            : soknad.soknadstype === ARBEIDSLEDIG
-            && sykmelding
-                ? <SykmeldingUtdragForArbeidsledige
+    if (!sykmelding) {
+        return null;
+    }
+
+    switch (soknad.soknadstype) {
+        case ARBEIDSTAKERE:
+            return (
+                <SykmeldingUtdragForArbeidstakere
                     erApen={erApen}
                     sykmelding={sykmelding}
-                    erOppdelt={erOppdelt} />
-                : null;
+                    sykepengesoknad={{ _erOppdelt: erOppdelt }}
+                />
+            );
+
+        case SELVSTENDIGE_OG_FRILANSERE:
+            return (
+                <SykmeldingUtdragForSelvstendige
+                    erApen={erApen}
+                    sykmelding={sykmelding}
+                    erOppdelt={erOppdelt}
+                />
+            );
+
+        case ARBEIDSLEDIG:
+            return (
+                <SykmeldingUtdragForArbeidsledige
+                    erApen={erApen}
+                    sykmelding={sykmelding}
+                    erOppdelt={erOppdelt}
+                />
+            );
+
+        case BEHANDLINGSDAGER:
+            return (
+                <SykmeldingUtdragForBehandlingsdager
+                    erApen={erApen}
+                    sykmelding={sykmelding}
+                    erOppdelt={erOppdelt}
+                />
+            );
+
+        default:
+            return null;
+    }
 };
 
 Utdrag.propTypes = {
