@@ -15,34 +15,42 @@ const RadioPanelGruppeComponent = (props) => {
         : undefined;
 
     const legend = props.hjelpetekst
-        ? (<div className="medHjelpetekst">
-            <h3>{props.sporsmalstekst}</h3>
-            {props.hjelpetekst}
-        </div>)
-        : <h3>{props.sporsmalstekst}</h3>;
+        ? (
+            <div className="medHjelpetekst">
+                <h3>{props.sporsmalstekst}</h3>
+                {props.hjelpetekst}
+            </div>
+        )
+        : (
+            <React.Fragment>
+                <h3>{props.sporsmalstekst}</h3>
+            </React.Fragment>
+        );
 
-    return (<React.Fragment>
-        <RadioPanelGruppe
-            className="inputPanelGruppe--horisontal"
-            name={props.input.name}
-            legend={legend}
-            radios={jaEllerNeiAlternativer.map((alternativ) => {
-                return {
-                    label: getLedetekst(`soknad.${alternativ.toLowerCase()}`),
-                    value: alternativ,
-                    id: `${props.input.name}-${getLedetekst(`soknad.${alternativ.toLowerCase()}`)}`,
-                };
-            })}
-            checked={props.input.value}
-            onChange={(event, value) => {
-                const parsedValue = genererParseForEnkeltverdi(props.id)(value);
-                props.doChange(props.meta.form, props.input.name, parsedValue);
-                props.input.onChange(event, value);
-            }}
-            feil={feil}
-        />
-        <JaEllerNeiPresisering soknad={props.soknad} tag={props.tag} value={props.input.value} />
-    </React.Fragment>);
+    return (
+        <React.Fragment>
+            <RadioPanelGruppe
+                className="inputPanelGruppe--horisontal"
+                name={props.input.name}
+                legend={legend}
+                radios={jaEllerNeiAlternativer.map((alternativ) => {
+                    return {
+                        label: getLedetekst(`soknad.${alternativ.toLowerCase()}`),
+                        value: alternativ,
+                        id: `${props.input.name}-${getLedetekst(`soknad.${alternativ.toLowerCase()}`)}`,
+                    };
+                })}
+                checked={props.input.value}
+                onChange={(event, value) => {
+                    const parsedValue = genererParseForEnkeltverdi(props.id)(value);
+                    props.doChange(props.meta.form, props.input.name, parsedValue);
+                    props.input.onChange(event, value);
+                }}
+                feil={feil}
+            />
+            <JaEllerNeiPresisering soknad={props.soknad} tag={props.tag} value={props.input.value} />
+        </React.Fragment>
+    );
 };
 
 RadioPanelGruppeComponent.propTypes = {

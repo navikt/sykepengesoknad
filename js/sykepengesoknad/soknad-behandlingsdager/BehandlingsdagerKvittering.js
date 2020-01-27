@@ -31,9 +31,6 @@ class BehandlingsdagerKvittering extends Component {
                             '%DATO%': dayjs(soknad.sendtTilNAVDato).locale('nb').format('D. MMMM YYYY, kl HH:mm'), '%TELEFON%': '55 55 33 33',
                         })}
                     />
-                    <Bjorn className="press">
-                        <p dangerouslySetInnerHTML={getHtmlLedetekst('sykepengesoknad.kvittering.til-nav-behandlingsdager.bjorn')} />
-                    </Bjorn>
                 </div>
                 <p className="ikke-print blokk navigasjonsstripe">
                     <LenkeTilSoknader />

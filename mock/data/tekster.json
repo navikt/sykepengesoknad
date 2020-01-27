@@ -755,6 +755,8 @@
     "sykepengesoknad.forskutterer-arbeidsgiver.svar.JA": "Ja",
     "sykepengesoknad.forskutterer-arbeidsgiver.svar.NEI": "Nei",
     "sykepengesoknad.forskutterer-arbeidsgiver.svar.VET_IKKE": "Vet ikke",
+    "sykepengesoknad.fraver_for_behandling.tittel": "Fravær før behandlingsdager",
+    "sykepengesoknad.fraver_for_behandling.bjorn": "Vi trenger å vite om du har brukt egenmeldinger eller en papirsykmelding noen dager før denne sykmeldingen. Det er for å kunne beregne sykepengene dine riktig.",
     "sykepengesoknad.fraver-og-friskmelding.tittel": "Fravær og friskmelding",
     "sykepengesoknad.ga-videre": "Gå videre",
     "sykepengesoknad.gjenapne.knapp": "Gjenåpne søknad",
