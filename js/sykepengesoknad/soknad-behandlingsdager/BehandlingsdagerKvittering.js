@@ -2,7 +2,7 @@ import dayjs from 'dayjs';
 import 'dayjs/locale/nb';
 import React, { Component } from 'react';
 import { Innholdstittel } from 'nav-frontend-typografi';
-import { erSynligIViewport, getHtmlLedetekst, scrollTo, getLedetekst, Bjorn } from '@navikt/digisyfo-npm';
+import { erSynligIViewport, getHtmlLedetekst, scrollTo, getLedetekst } from '@navikt/digisyfo-npm';
 import { soknadPt } from '../../propTypes/index';
 import { LenkeTilSoknader } from '../../sykepengesoknad/felleskomponenter/LenkeTilSoknader';
 import './behandlingsdager-kvittering.less';
