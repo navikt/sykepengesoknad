@@ -9,7 +9,7 @@ import { soknadPt } from '../../prop-types/soknadProptype';
 import StegindikatorEttSporsmalPerSide from './StegindikatorEttSporsmalPerSide';
 import SykmeldingUtdrag from '../sykmelding-utdrag/SykmeldingUtdrag';
 import { getUrlTilSoknad } from '../../../utils/urlUtils';
-import { ARBEIDSTAKERE } from '../../enums/soknadtyper';
+import { ARBEIDSTAKERE, BEHANDLINGSDAGER } from '../../enums/soknadtyper';
 
 class Soknadskjema extends Component {
     componentDidMount() {
@@ -22,31 +22,45 @@ class Soknadskjema extends Component {
         const { children, sidenummer = null, tittel, soknad, intro = null } = this.props;
         const forrigeUrl = getUrlTilSoknad(soknad.id, sidenummer - 1);
 
-        return (<div>
-            {
-                sidenummer > 1 && (<div
-                    ref={(stegindikator) => {
-                        this.stegindikator = stegindikator;
-                    }}>
-                    <StegindikatorEttSporsmalPerSide soknad={soknad} sidenummer={sidenummer} />
-                </div>)
-            }
-            {
-                sidenummer > 1 && (<p>
-                    <Link to={forrigeUrl} className="tilbakelenke">
-                        Tilbake
-                    </Link>
-                </p>)
-            }
-            {soknad.status === UTKAST_TIL_KORRIGERING && <KorrigerVarsel />}
-            <TidligSoknad soknad={soknad} />
-            {intro}
-            <SykmeldingUtdrag soknad={soknad} erApen={sidenummer === 1} />
-            {tittel && <h2 className="soknad__stegtittel">{getLedetekst(tittel)}</h2>}
-            { tittel === 'sykepengesoknad.ferie_v2.tittel' && soknad.soknadstype === ARBEIDSTAKERE && (<Bjorn
-                className="blokk--s">{getLedetekst('sykepengesoknad.ferie_v2.bjorn')}</Bjorn>) }
-            {children}
-        </div>);
+        return (
+            <div>
+                {sidenummer > 1 && (
+                    <div
+                        ref={(stegindikator) => {
+                            this.stegindikator = stegindikator;
+                        }}>
+                        <StegindikatorEttSporsmalPerSide soknad={soknad} sidenummer={sidenummer} />
+                    </div>
+                )}
+                {sidenummer > 1 && (
+                    <p>
+                        <Link to={forrigeUrl} className="tilbakelenke">
+                            Tilbake
+                        </Link>
+                    </p>
+                )}
+
+                {soknad.status === UTKAST_TIL_KORRIGERING && <KorrigerVarsel />}
+                <TidligSoknad soknad={soknad} />
+                {intro}
+                <SykmeldingUtdrag soknad={soknad} erApen={sidenummer === 1} />
+                {tittel && <h2 className="soknad__stegtittel">{getLedetekst(tittel)}</h2>}
+
+                {tittel === 'sykepengesoknad.ferie_v2.tittel' && soknad.soknadstype === ARBEIDSTAKERE &&
+                <Bjorn className="blokk--s">{getLedetekst('sykepengesoknad.ferie_v2.bjorn')}</Bjorn>
+                }
+
+                {tittel === 'sykepengesoknad.fraver_for_behandling.tittel' && soknad.soknadstype === BEHANDLINGSDAGER &&
+                <Bjorn className="blokk--l">{getLedetekst('sykepengesoknad.fraver_for_behandling.bjorn')}</Bjorn>
+                }
+
+                {tittel === 'sykepengesoknad.enkeltstaende_behandlingsdager.tittel' && soknad.soknadstype === BEHANDLINGSDAGER &&
+                <Bjorn className="blokk--l">{getLedetekst('sykepengesoknad.enkeltstaende_behandlingsdager.bjorn')}</Bjorn>
+                }
+
+                {children}
+            </div>
+        );
     }
 }
 
