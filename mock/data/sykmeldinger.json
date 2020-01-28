@@ -1190,5 +1190,130 @@
       "sykmelder": "Helen Flood",
       "sykmelderTlf": "113"
     }
+  },
+  {
+    "id": "8f316709-0d73-4491-8721-c40b616038f8",
+    "startLegemeldtFravaer": "2020-01-20",
+    "skalViseSkravertFelt": true,
+    "identdato": "2020-01-03",
+    "status": "TIL_SENDING",
+    "naermesteLederStatus": null,
+    "innsendtArbeidsgivernavn": "LØNNS- OG REGNSKAPSSENTERET",
+    "valgtArbeidssituasjon": null,
+    "mottakendeArbeidsgiver": {
+      "navn": "LØNNS- OG REGNSKAPSSENTERET",
+      "virksomhetsnummer": "974739410",
+      "juridiskOrgnummer": "964338531"
+    },
+    "orgnummer": "974739410",
+    "sendtdato": "2020-01-27T11:56:06",
+    "sporsmal": {
+      "arbeidssituasjon": "ARBEIDSTAKER",
+      "harForsikring": null,
+      "fravaersperioder": [],
+      "harAnnetFravaer": null
+    },
+    "pasient": {
+      "fnr": "16086801683",
+      "fornavn": "Frida",
+      "mellomnavn": "Perma",
+      "etternavn": "Frost"
+    },
+    "arbeidsgiver": "LOMMEN BARNEHAVE",
+    "stillingsprosent": 100,
+    "diagnose": {
+      "hoveddiagnose": {
+        "diagnose": "TENDINITT INA",
+        "diagnosekode": "L87",
+        "diagnosesystem": "ICPC-2"
+      },
+      "bidiagnoser": [
+        {
+          "diagnose": "GANGLION SENE",
+          "diagnosekode": "L87",
+          "diagnosesystem": "ICPC-2"
+        }
+      ],
+      "fravaersgrunnLovfestet": null,
+      "fravaerBeskrivelse": null,
+      "svangerskap": false,
+      "yrkesskade": false,
+      "yrkesskadeDato": "2020-01-03"
+    },
+    "mulighetForArbeid": {
+      "perioder": [
+        {
+          "fom": "2020-01-03",
+          "tom": "2020-01-26",
+          "grad": null,
+          "behandlingsdager": 4,
+          "reisetilskudd": null,
+          "avventende": null
+        }
+      ],
+      "aktivitetIkkeMulig433": null,
+      "aktivitetIkkeMulig434": null,
+      "aarsakAktivitetIkkeMulig433": null,
+      "aarsakAktivitetIkkeMulig434": null
+    },
+    "friskmelding": {
+      "arbeidsfoerEtterPerioden": true,
+      "hensynPaaArbeidsplassen": "Må ta det pent",
+      "antarReturSammeArbeidsgiver": true,
+      "antattDatoReturSammeArbeidsgiver": "2020-01-01",
+      "antarReturAnnenArbeidsgiver": true,
+      "tilbakemeldingReturArbeid": "2020-01-01",
+      "utenArbeidsgiverAntarTilbakeIArbeid": false,
+      "utenArbeidsgiverAntarTilbakeIArbeidDato": null,
+      "utenArbeidsgiverTilbakemelding": null
+    },
+    "utdypendeOpplysninger": {
+      "sykehistorie": "Langvarig korsryggsmerter. Ømhet og smerte",
+      "paavirkningArbeidsevne": "Kan ikke utføre arbeidsoppgaver 100% som kreves fra yrket. Duplikatbuster: 8653b914-4aec-48ce-bdae-e9ac94536c37",
+      "resultatAvBehandling": "Nei",
+      "henvisningUtredningBehandling": "Henvist til fysio",
+      "grupper": [
+        {
+          "id": "6.2",
+          "sporsmal": [
+            {
+              "id": "6.2.1",
+              "svar": "Langvarig korsryggsmerter. Ømhet og smerte"
+            },
+            {
+              "id": "6.2.2",
+              "svar": "Kan ikke utføre arbeidsoppgaver 100% som kreves fra yrket. Duplikatbuster: 8653b914-4aec-48ce-bdae-e9ac94536c37"
+            },
+            {
+              "id": "6.2.3",
+              "svar": "Nei"
+            },
+            {
+              "id": "6.2.4",
+              "svar": "Henvist til fysio"
+            }
+          ]
+        }
+      ]
+    },
+    "arbeidsevne": {
+      "tilretteleggingArbeidsplass": "Fortsett som sist.",
+      "tiltakNAV": "Pasienten har plager som er kommet tilbake etter operasjon. Det er nylig tatt MR bildet som viser forandringer i hånd som mulig må opereres. Venter på time. Det er mulig sykemledingen vil vare utover aktuell sm periode. ",
+      "tiltakAndre": null
+    },
+    "meldingTilNav": {
+      "navBoerTaTakISaken": false,
+      "navBoerTaTakISakenBegrunnelse": null
+    },
+    "innspillTilArbeidsgiver": null,
+    "tilbakedatering": {
+      "dokumenterbarPasientkontakt": null,
+      "tilbakedatertBegrunnelse": null
+    },
+    "bekreftelse": {
+      "utstedelsesdato": "2019-12-31",
+      "sykmelder": "Frida Perma Frost",
+      "sykmelderTlf": "94431152"
+    }
   }
 ]
