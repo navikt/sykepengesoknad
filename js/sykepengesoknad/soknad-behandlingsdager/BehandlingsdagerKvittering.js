@@ -1,11 +1,12 @@
-import dayjs from 'dayjs';
 import 'dayjs/locale/nb';
 import React, { Component } from 'react';
-import { Innholdstittel } from 'nav-frontend-typografi';
 import { erSynligIViewport, getHtmlLedetekst, scrollTo, getLedetekst } from '@navikt/digisyfo-npm';
 import { soknadPt } from '../../propTypes/index';
 import { LenkeTilSoknader } from '../../sykepengesoknad/felleskomponenter/LenkeTilSoknader';
 import './behandlingsdager-kvittering.less';
+import Sidetopp from '../../components/Sidetopp';
+import { getSendtTilSuffix } from '../../sykepengesoknad-gammel-plattform/utils/sykepengesoknadUtils';
+import { IllustrertInnholdGronnHake } from '../../components/IllustrertInnhold';
 
 class BehandlingsdagerKvittering extends Component {
     componentDidMount() {
@@ -17,25 +18,24 @@ class BehandlingsdagerKvittering extends Component {
 
     render() {
         const { soknad } = this.props;
-        return (
-            <div ref={(c) => {
-                this.kvittering = c;
-            }}>
-                <div className="panel js-kvittering blokk behandlingsdager-kvittering">
-                    <img className="kvittering__ikon" src={`${process.env.REACT_APP_CONTEXT_ROOT}/img/svg/konvolutt-ok.svg`} alt="" />
-                    <Innholdstittel className="kvittering__tittel" tag="h2">
-                        {getLedetekst('sykepengesoknad.kvittering.til-nav-behandlingsdager.tittel')}
-                    </Innholdstittel>
-                    <div className="redaksjonelt-innhold"
-                        dangerouslySetInnerHTML={getHtmlLedetekst('sykepengesoknad.kvittering.til-nav-behandlingsdager.tekst', {
-                            '%DATO%': dayjs(soknad.sendtTilNAVDato).locale('nb').format('D. MMMM YYYY, kl HH:mm'), '%TELEFON%': '55 55 33 33',
-                        })}
-                    />
-                </div>
-                <p className="ikke-print blokk navigasjonsstripe">
-                    <LenkeTilSoknader />
-                </p>
+        return (<div ref={(c) => {
+            this.kvittering = c;
+        }}>
+            <Sidetopp tittel="Kvittering" />
+            <div className="panel js-kvittering blokk">
+                <IllustrertInnholdGronnHake>
+                    <h2 className="panel__tittel">{getLedetekst(`sykepengesoknad.kvittering${getSendtTilSuffix(soknad)}-behandlingsdager.tittel`)}</h2>
+                    <div
+                        className="redaksjonelt-innhold"
+                        dangerouslySetInnerHTML={getHtmlLedetekst(`sykepengesoknad.kvittering${getSendtTilSuffix(soknad)}-behandlingsdager.tekst`, {
+                            '%ARBEIDSGIVER%': soknad.arbeidsgiver ? soknad.arbeidsgiver.navn : '',
+                        })} />
+                </IllustrertInnholdGronnHake>
             </div>
+            <p className="ikke-print blokk navigasjonsstripe">
+                <LenkeTilSoknader />
+            </p>
+        </div>
         );
     }
 }
