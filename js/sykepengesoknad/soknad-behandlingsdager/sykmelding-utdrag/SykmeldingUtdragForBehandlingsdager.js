@@ -1,45 +1,46 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {
-    Bjorn,
-    getLedetekst,
-    SykmeldingNokkelOpplysning,
-    SykmeldingPerioder,
-    tilLesbarDatoMedArstall,
-    Utvidbar,
+    SykmeldingUtdrag as SykmeldingUtdragForArbeidstakere,
 } from '@navikt/digisyfo-npm';
-import { sykmelding as sykmeldingPt } from '../../../propTypes';
+import { soknadPt, sykmelding as sykmeldingPt } from '../../../propTypes';
+import SykmeldingUtdragForArbeidsledige from '../../soknad-arbeidsledig/sykmelding-utdrag/SykmeldingUtdragForArbeidsledige';
+import SykmeldingUtdragForSelvstendige from '../../soknad-selvstendig-frilanser/sykmelding-utdrag/SykmeldingUtdragForSelvstendige';
 
-const SykmeldingUtdragForBehandlingsdager = ({ erApen, sykmelding, erOppdelt }) => {
-    return (<div className="blokk">
-        <Utvidbar
-            Overskrift="h2"
-            erApen={erApen}
-            visLukklenke={!erApen}
-            tittel={getLedetekst('sykepengesoknad.sykmelding-utdrag.tittel')}
-            variant="lilla"
-            ikon="svg/plaster.svg"
-            ikonHover="svg/plaster_hover.svg"
-            ikonAltTekst="Plaster-ikon">
-            <div>
-                <SykmeldingPerioder perioder={sykmelding.mulighetForArbeid.perioder} />
-                {
-                    erOppdelt
-                    && <Bjorn className="blokk" nokkel="sykepengesoknad.sykmelding-utdrag.oppdelt.bjorn" />
-                }
-                <SykmeldingNokkelOpplysning
-                    tittel={getLedetekst('sykepengesoknad.sykmelding-utdrag.dato-sykmeldingen-ble-skrevet')}>
-                    <p className="js-utstedelsesdato">{tilLesbarDatoMedArstall(sykmelding.bekreftelse.utstedelsesdato)}</p>
-                </SykmeldingNokkelOpplysning>
-            </div>
-        </Utvidbar>
-    </div>);
+const SykmeldingUtdragForBehandlingsdager = ({ erApen, sykmelding, soknad, erOppdelt }) => {
+    switch (soknad.arbeidssituasjon) {
+        case 'ARBEIDSTAKER':
+            return (
+                <SykmeldingUtdragForArbeidstakere
+                    erApen={erApen}
+                    sykmelding={sykmelding}
+                    sykepengesoknad={{ _erOppdelt: erOppdelt }}
+                />);
+        case 'ARBEIDSLEDIG':
+            return (
+                <SykmeldingUtdragForArbeidsledige
+                    erApen={erApen}
+                    sykmelding={sykmelding}
+                    erOppdelt={erOppdelt}
+                />);
+        case 'NAERINGSDRIVENDE':
+        case 'FRILANSER':
+            return (
+                <SykmeldingUtdragForSelvstendige
+                    erApen={erApen}
+                    sykmelding={sykmelding}
+                    erOppdelt={erOppdelt}
+                />);
+        default:
+            return null;
+    }
 };
 
 SykmeldingUtdragForBehandlingsdager.propTypes = {
     erApen: PropTypes.bool,
     erOppdelt: PropTypes.bool,
     sykmelding: sykmeldingPt,
+    soknad: soknadPt,
 };
 
 export default SykmeldingUtdragForBehandlingsdager;

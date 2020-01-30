@@ -47,6 +47,7 @@ const Utdrag = ({ sykmelding, soknad, erApen, erOppdelt }) => {
                 <SykmeldingUtdragForBehandlingsdager
                     erApen={erApen}
                     sykmelding={sykmelding}
+                    soknad={soknad}
                     erOppdelt={erOppdelt}
                 />
             );
