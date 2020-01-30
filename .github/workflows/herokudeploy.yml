@@ -1,5 +1,8 @@
 name: Deploy til heroku
-on: push
+on:
+  push:
+    branches:
+      - 'master'
 env:
   HEROKU_APP: sykepengesoknad
   HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
