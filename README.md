@@ -18,13 +18,7 @@ Du må ha Node installert.
 * Lint JS-kode med `npm run lint` eller `npm run lint:fix`
 
 ## Deploy mock app til Heroku
-Installer heroku, på mac kan du bruke brew: `$ brew install heroku`.
-
-For å kunne deploye til Heroku må du først logge inn: 
-* `$ heroku login`
-* `$ heroku container:login`
-
-Deploy til heroku ved å kjøre deployscript: `$ sh deploy-heroku.sh`.
+Mock appen blir deployet av github actions automatisk når master blir oppdatert
 
 ## Logge på i Q1-miljø
 Se denne siden for [testdata](https://confluence.adeo.no/pages/viewpage.action?pageId=228580060) (NAV-intern lenke).
