@@ -8,32 +8,35 @@ import SykmeldingUtdragForArbeidsledige from '../../soknad-arbeidsledig/sykmeldi
 import SykmeldingUtdragForSelvstendige from '../../soknad-selvstendig-frilanser/sykmelding-utdrag/SykmeldingUtdragForSelvstendige';
 
 const SykmeldingUtdragForBehandlingsdager = ({ erApen, sykmelding, soknad, erOppdelt }) => {
-    switch (soknad.arbeidssituasjon) {
-        case 'ARBEIDSTAKER':
-            return (
-                <SykmeldingUtdragForArbeidstakere
-                    erApen={erApen}
-                    sykmelding={sykmelding}
-                    sykepengesoknad={{ _erOppdelt: erOppdelt }}
-                />);
-        case 'ARBEIDSLEDIG':
-            return (
-                <SykmeldingUtdragForArbeidsledige
-                    erApen={erApen}
-                    sykmelding={sykmelding}
-                    erOppdelt={erOppdelt}
-                />);
-        case 'NAERINGSDRIVENDE':
-        case 'FRILANSER':
-            return (
-                <SykmeldingUtdragForSelvstendige
-                    erApen={erApen}
-                    sykmelding={sykmelding}
-                    erOppdelt={erOppdelt}
-                />);
-        default:
-            return null;
+    if (soknad) {
+        switch (soknad.arbeidssituasjon) {
+            case 'ARBEIDSTAKER':
+                return (
+                    <SykmeldingUtdragForArbeidstakere
+                        erApen={erApen}
+                        sykmelding={sykmelding}
+                        sykepengesoknad={{ _erOppdelt: erOppdelt }}
+                    />);
+            case 'ARBEIDSLEDIG':
+                return (
+                    <SykmeldingUtdragForArbeidsledige
+                        erApen={erApen}
+                        sykmelding={sykmelding}
+                        erOppdelt={erOppdelt}
+                    />);
+            case 'NAERINGSDRIVENDE':
+            case 'FRILANSER':
+                return (
+                    <SykmeldingUtdragForSelvstendige
+                        erApen={erApen}
+                        sykmelding={sykmelding}
+                        erOppdelt={erOppdelt}
+                    />);
+            default:
+                return null;
+        }
     }
+    return null;
 };
 
 SykmeldingUtdragForBehandlingsdager.propTypes = {
