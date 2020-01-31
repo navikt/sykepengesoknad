@@ -6,11 +6,9 @@ const NAERMESTELEDERE = 'naermesteledere';
 const FORRIGE_LEDER = 'forrigeLeder';
 const MOTEBEHOV = 'motebehov';
 const OPPFOELGINGSDIALOGER = 'oppfoelgingsdialoger';
-const SOKNADER = 'soknader';
 const SYFOUNLEASH = 'syfounleash';
 const SYKEFORLOEAP = 'sykeforloep';
 const SYKEPENGESOKNADER = 'sykepengesoknader';
-const SYKMELDINGER = 'sykmeldinger';
 const TEKSTER = 'tekster';
 const VARSLER = 'varsler';
 const VEDLIKEHOLD = 'vedlikehold';
@@ -26,6 +24,8 @@ const VIRKSOMHET = 'virksomhet';
 const SISTE = 'siste';
 const HENDELSER = 'hendelser';
 const SM_SYKMELDINGER = 'smSykmeldinger';
+const SOKNADER = 'soknader';
+const SYKMELDINGER = 'sykmeldinger';
 
 module.exports = {
     ARBEIDSGIVERS_SYKMELDINGER,
@@ -36,11 +36,9 @@ module.exports = {
     FORRIGE_LEDER,
     MOTEBEHOV,
     OPPFOELGINGSDIALOGER,
-    SOKNADER,
     SYFOUNLEASH,
     SYKEFORLOEAP,
     SYKEPENGESOKNADER,
-    SYKMELDINGER,
     TEKSTER,
     VARSLER,
     VEDLIKEHOLD,
@@ -56,4 +54,6 @@ module.exports = {
     SISTE,
     HENDELSER,
     SM_SYKMELDINGER,
+    SOKNADER,
+    SYKMELDINGER,
 };

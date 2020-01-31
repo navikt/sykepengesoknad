@@ -1,13 +1,11 @@
 import React from 'react';
 import { getLedetekst } from '@navikt/digisyfo-npm';
 import { Link } from 'react-router';
-import KvitteringArbeidstakere from '../soknad-arbeidstaker/Kvittering';
-import KvitteringSelvstendige from '../soknad-selvstendig-frilanser/kvittering/Kvittering';
+import Kvittering from '../soknad-arbeidstaker/Kvittering';
 import { KORRIGERT, NY, SENDT, TIL_SENDING, UTKAST_TIL_KORRIGERING } from '../enums/soknadstatuser';
 import Feilmelding from '../../components/Feilmelding';
 import { soknadPt } from '../../propTypes/index';
 import Sidetopp from '../../components/Sidetopp';
-import { SELVSTENDIGE_OG_FRILANSERE } from '../enums/soknadtyper';
 
 const SoknadKvitteringSjekker = ({ soknad }) => {
     switch (soknad.status) {
@@ -27,9 +25,7 @@ const SoknadKvitteringSjekker = ({ soknad }) => {
         case KORRIGERT:
         case SENDT:
         case TIL_SENDING: {
-            return soknad.soknadstype === SELVSTENDIGE_OG_FRILANSERE
-                ? <KvitteringSelvstendige />
-                : <KvitteringArbeidstakere soknad={soknad} />;
+            return <Kvittering soknad={soknad} />;
         }
         default: {
             return <Feilmelding melding="feil status" />;
