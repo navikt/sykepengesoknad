@@ -8,14 +8,14 @@ import { erSisteSide, hentNokkel } from './ettSporsmalPerSideUtils';
 import { SykepengesoknadArbeidstakerOppsummeringSkjema } from '../../soknad-arbeidstaker/oppsummering/Oppsummering';
 import { ForDuBegynnerSkjema } from './ForDuBegynnerSkjema';
 import { GenereltEttSporsmalPerSideSkjema } from './GenereltEttSporsmalPerSideSkjema';
-import { ARBEIDSTAKERE } from '../../enums/soknadtyper';
+import { ARBEIDSTAKERE, BEHANDLINGSDAGER } from '../../enums/soknadtyper';
 import { SykepengesoknadSelvstendigOppsummeringSkjema } from '../../soknad-selvstendig-frilanser/oppsummering/SykepengesoknadSelvstendigOppsummeringSkjema';
 import SoknadIntro from '../soknad-intro/SoknadIntro';
 
 export const hentSporsmalsvisning = (soknad, sidenummer) => {
     return erSisteSide(soknad, sidenummer)
         ? (
-            soknad.soknadstype === ARBEIDSTAKERE
+            soknad.soknadstype === ARBEIDSTAKERE || soknad.soknadstype === BEHANDLINGSDAGER
                 ? SykepengesoknadArbeidstakerOppsummeringSkjema
                 : SykepengesoknadSelvstendigOppsummeringSkjema
         )
