@@ -19,6 +19,7 @@
     "nais-build": "npm-run-all clean deploy images",
     "start": "node ./server.js",
     "start-opplaering": "node ./server.js opplaering",
+    "start-devlocal": "node ./server.js local backend",
     "start-local": "node ./server.js local",
     "scripts:watch": "webpack-dev-server --inline --port 8086",
     "dev": "npm-run-all clean images scripts:watch",
@@ -90,9 +91,9 @@
     "whatwg-fetch": "0.11.0"
   },
   "devDependencies": {
-    "autoprefixer": "7.0.1",
     "@babel/cli": "^7.0.0",
     "@babel/core": "^7.0.0",
+    "autoprefixer": "7.0.1",
     "babel-eslint": "8.0.1",
     "babel-preset-env": "1.6.0",
     "babel-preset-react": "6.24.1",
@@ -114,6 +115,7 @@
     "fetch-mock": "5.5.0",
     "fs": "0.0.2",
     "has-ansi": "2.0.0",
+    "http-proxy-middleware": "^0.20.0",
     "ignore-styles": "5.0.1",
     "jsdom": "11.3.0",
     "less": "3.8.1",

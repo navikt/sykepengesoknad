@@ -11,7 +11,53 @@ const mockVeilarboppfolging = require('./mockVeilarboppfolging');
 const mockVeilarbregistrering = require('./mockVeilarbregistrering');
 const mockSmSykmeldinger = require('./mockSmSykmeldinger');
 
-function mockEndepunkter(server, erLokal) {
+
+function skapBackendProxy(server) {
+    // eslint-disable-next-line import/no-extraneous-dependencies,global-require
+    const proxy = require('http-proxy-middleware');
+    // eslint-disable-next-line global-require
+    const fs = require('fs');
+    const jwt = fs.readFileSync('mock/jsonwebtoken.txt', 'utf8')
+        .replace(/\n/g, '');
+
+    const addHeaders = (proxyReq) => {
+        proxyReq.setHeader('Authorization', `Bearer ${jwt}`);
+    };
+
+    server.use('/syfoapi/syfosoknad', proxy({
+        target: 'http://localhost:7070',
+        changeOrigin: true,
+        pathRewrite: { '^/syfoapi/syfosoknad': '/syfosoknad' },
+        onProxyReq: addHeaders,
+    }));
+
+    server.use('/syforest/sykmeldinger', proxy({
+        target: 'http://localhost:7070',
+        changeOrigin: true,
+        pathRewrite: { '^/syforest/sykmeldinger': '/syfosoknad/api/sykmeldingmockup' },
+        onProxyReq: addHeaders,
+    }));
+}
+
+function mockEndepunkter(server, erLokal, brukBackendproxy) {
+    const endepunkter = [
+        mockRestoppfolgingsdialog,
+        mockSyfomoteadmin,
+        mockSyfomotebehov,
+        mockSyforest,
+        mockSyfoservicestrangler,
+        mockSyfotekster,
+        mockSyfounleash,
+        mockVeilarboppfolging,
+        mockVeilarbregistrering,
+        mockSmSykmeldinger,
+    ];
+    if (brukBackendproxy) {
+        skapBackendProxy(server);
+    } else {
+        endepunkter.push(mockSyfosoknad);
+    }
+
     server.use(express.json());
     server.use(express.urlencoded());
 
@@ -22,20 +68,7 @@ function mockEndepunkter(server, erLokal) {
     server.get('/dittnav', (req, res) => {
         res.send('<p>Ditt Nav er ikke tilgjengelig - dette er en testside som kun viser Ditt sykefravær.</p><p><a href="/sykefravaer">Gå til Ditt sykefravær</a></p>');
     });
-
-    [
-        mockRestoppfolgingsdialog,
-        mockSyfomoteadmin,
-        mockSyfomotebehov,
-        mockSyforest,
-        mockSyfoservicestrangler,
-        mockSyfosoknad,
-        mockSyfotekster,
-        mockSyfounleash,
-        mockVeilarboppfolging,
-        mockVeilarbregistrering,
-        mockSmSykmeldinger,
-    ].forEach((func) => {
+    endepunkter.forEach((func) => {
         func(server, erLokal);
     });
 }
