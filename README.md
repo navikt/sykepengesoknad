@@ -4,7 +4,7 @@ Frontend for sykepengesøknader (DigiSYFO) http://tjenester.nav.no/sykepengesokn
 ## TL;DR
 React-app for den sykmeldte. Viser sykepengesøknader.
 
-## Kjøre lokalt
+## Kjøre lokalt mot node express mock
 Applikasjonen har en mock som kan brukes lokalt. Her mockes diverse endepunkter, dog ikke alle. 
 
 Du må ha Node installert.
@@ -13,9 +13,20 @@ Du må ha Node installert.
     - `$ npm install`
     - `$ npm run dev`
     - I et annet vindu `$ npm run start-local`
+    - Åpne `http://localhost:8085` i en nettleser
     - Eventuelt kan komandoene kjøres fra `package.json` i intellij.
 * Kjør tester med `npm test` eller `npm test:watch`
 * Lint JS-kode med `npm run lint` eller `npm run lint:fix`
+
+## Kjøre mot lokal backend
+Applikasjonen kan kjøre mot en lokal syfosoknad backend.
+Start lokal syfosoknad backend ved å kjøre main metoden i `no.nav.syfo.TestApplication.kt` i IntelliJ
+
+* For å kjøre frontend koden: 
+    - `$ npm install`
+    - `$ npm run dev`
+    - I et annet vindu `$ npm run start-devlocal`
+    - Åpne `http://localhost:8085` i en nettleser
 
 ## Deploy mock app til Heroku
 Mock appen blir deployet av github actions automatisk når master blir oppdatert

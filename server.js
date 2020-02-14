@@ -21,6 +21,7 @@ const httpRequestDurationMicroseconds = new prometheus.Histogram({
 const server = express();
 
 const env = process.argv[2];
+const localbackend = process.argv[3] === 'backend';
 const settings = env === 'local' ? {isProd: false} : require('./settings.json');
 
 server.set('views', `${__dirname}/dist`);
@@ -89,7 +90,7 @@ const startServer = (html) => {
     });
 
     if (env === 'opplaering' || env === 'local') {
-        require('./mock/mockEndepunkter')(server, env === 'local');
+        require('./mock/mockEndepunkter')(server, env === 'local', localbackend);
     }
 
     const port = env !== 'local' ? process.env.PORT : 8085;
