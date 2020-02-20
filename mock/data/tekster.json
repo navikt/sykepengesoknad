@@ -536,6 +536,7 @@
     "soknad.feilmelding.utdanning_start": "Du må svare på når du startet på utdanningen",
     "soknad.feilmelding.utland": "Du må svare på om du har oppholdt deg i utlandet i denne perioden",
     "soknad.feilmelding.utlandsopphold_sokt_sykepenger": "Du må svare på om du har søkt om å beholde sykepenger under dette oppholdet utenfor Norge",
+    "soknad.feilmelding.enkeltstaende_behandlingsdager": "Det feiler ved validering av behandlingsdager",
     "soknad.infotekst.betaler_arbeidsgiver.ja": "Arbeidsgiveren din mottar kopi av søknaden du sender til NAV.",
     "soknad.infotekst.betaler_arbeidsgiver.nei": "Søknaden sendes til NAV. Arbeidsgiveren din får ikke kopi.",
     "soknad.infotekst.betaler_arbeidsgiver.vet_ikke": "Siden du ikke vet svaret på dette spørsmålet, vil arbeidsgiveren din motta en kopi av søknaden du sender til NAV.",

@@ -15,7 +15,7 @@
     },
     "rules": {
         "indent": ["error", 4, {"SwitchCase": 1}],
-        "arrow-body-style": ["error", "always"],
+        "arrow-body-style": ["off"],
         "react/jsx-indent-props": ["error", 4],
         "react/jsx-closing-bracket-location": 0,
         "react/jsx-indent": ["error", 4],
@@ -38,6 +38,8 @@
         "no-nested-ternary": "off",
         "no-unneeded-ternary": "error",
         "no-param-reassign": ["error", { "props": false }],
-        "no-case-declarations": "off"
+        "no-case-declarations": "off",
+        "no-noninteractive-element-interactions": "off",
+        "jsx-a11y/no-noninteractive-element-interactions": 0
     }
 }

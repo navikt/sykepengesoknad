@@ -17,7 +17,10 @@ import {
     IKKE_RELEVANT,
     CHECKBOX_PANEL,
     TALL,
-    RADIO_GRUPPE, RADIO_GRUPPE_TIMER_PROSENT, RADIO_GRUPPE_UKEKALENDER,
+    RADIO_GRUPPE,
+    RADIO_GRUPPE_TIMER_PROSENT,
+    RADIO_GRUPPE_UKEKALENDER,
+    INFO_BEHANDLINGSDAGER,
 } from '../../enums/svartyper';
 import Perioder from './Perioder';
 import Checkbox from './Checkbox';
@@ -34,6 +37,7 @@ import RadioGruppe from './RadioGruppe';
 import RadioUkekalender from './RadioUkekalender';
 import { LAND } from '../../enums/tagtyper';
 import Land from './Land';
+import InfoBehandlingsdager from './InfoBehandlingsdager';
 
 export const SporsmalComponent = ({ sporsmal, name, hovedsporsmal, ekstraProps, actions, soknad }) => {
     const undersporsmalsliste = <Undersporsmalsliste undersporsmal={sporsmal.undersporsmal} soknad={soknad} />;
@@ -41,32 +45,32 @@ export const SporsmalComponent = ({ sporsmal, name, hovedsporsmal, ekstraProps, 
     switch (sporsmal.svartype) {
         case DATO: {
             return (<Dato {...sporsmal} name={name} soknad={soknad} actions={actions}>
-                { undersporsmalsliste }
+                {undersporsmalsliste}
             </Dato>);
         }
         case TIMER: {
             return (<Tall {...sporsmal} name={name} label={getLedetekst('soknad.timer-totalt')} soknad={soknad}>
-                { undersporsmalsliste }
+                {undersporsmalsliste}
             </Tall>);
         }
         case PROSENT: {
             return (<Tall {...sporsmal} name={name} label={getLedetekst('soknad.prosent')} soknad={soknad} kunHeltall>
-                { undersporsmalsliste }
+                {undersporsmalsliste}
             </Tall>);
         }
         case TALL: {
             return (<Tall {...sporsmal} name={name} label={sporsmal.undertekst} soknad={soknad}>
-                { undersporsmalsliste }
+                {undersporsmalsliste}
             </Tall>);
         }
         case CHECKBOX: {
             return (<Checkbox {...sporsmal} name={name} soknad={soknad} actions={actions}>
-                { undersporsmalsliste }
+                {undersporsmalsliste}
             </Checkbox>);
         }
         case PERIODER: {
             return (<Perioder {...sporsmal} {...ekstraProps} name={name} soknad={soknad} actions={actions}>
-                { undersporsmalsliste }
+                {undersporsmalsliste}
             </Perioder>);
         }
         case JA_NEI: {
@@ -76,27 +80,34 @@ export const SporsmalComponent = ({ sporsmal, name, hovedsporsmal, ekstraProps, 
                 hovedsporsmal={hovedsporsmal}
                 soknad={soknad}
                 actions={actions}>
-                { undersporsmalsliste }
+                {undersporsmalsliste}
             </JaEllerNei>);
         }
         case CHECKBOX_GRUPPE: {
             return (<CheckboxGruppe {...sporsmal} name={name} soknad={soknad} actions={actions}>
-                { undersporsmalsliste }
+                {undersporsmalsliste}
             </CheckboxGruppe>);
         }
         case FRITEKST: {
             return (<Tekstinput {...sporsmal} name={name} soknad={soknad}>
-                { undersporsmalsliste }
+                {undersporsmalsliste}
             </Tekstinput>);
         }
         case IKKE_RELEVANT: {
             return (<IkkeRelevant {...sporsmal} name={name} soknad={soknad}>
-                { undersporsmalsliste }
+                {undersporsmalsliste}
             </IkkeRelevant>);
+        }
+        case INFO_BEHANDLINGSDAGER: {
+            return (
+                <InfoBehandlingsdager {...sporsmal} name={name} soknad={soknad}>
+                    {undersporsmalsliste}
+                </InfoBehandlingsdager>
+            );
         }
         case CHECKBOX_PANEL: {
             return (<Checkboxpanel {...sporsmal} name={name} soknad={soknad}>
-                { undersporsmalsliste }
+                {undersporsmalsliste}
             </Checkboxpanel>);
         }
         case RADIO_GRUPPE:
@@ -108,10 +119,9 @@ export const SporsmalComponent = ({ sporsmal, name, hovedsporsmal, ekstraProps, 
         }
 
         case RADIO_GRUPPE_UKEKALENDER: {
-            return (<RadioUkekalender
-                {...sporsmal}
-                name={name}
-                soknad={soknad} />);
+            return (
+                <RadioUkekalender sporsmal={sporsmal} name={name} soknad={soknad} />
+            );
         }
         case LAND: {
             return (<Land {...sporsmal} name={name} soknad={soknad} />);

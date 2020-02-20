@@ -1,82 +1,89 @@
 .soknad__undersporsmal {
-  .ukedager {
-    display: none;
-  }
-  &:first-child {
+    &:first-child {
+        margin-bottom: 0;
+    }
+
+    &:not(:first-child) {
+        .skjema__beh-dager {
+            margin-top: 0;
+        }
+
+        .ukedager {
+            display: none;
+        }
+    }
+
+    .skjema__beh-dager {
+        .skjemaelement--horisontal {
+            margin-bottom: 0;
+        }
+    }
+}
+
+.skjema__beh-dager {
+    margin-top: 1.5rem;
+
     .ukedager {
-      width: 300px;
-      display: block;
+        width: 300px;
 
-      span {
-        display: inline-block;
-        text-align: center;
-        border-bottom: 1px solid @navGra40;
-        padding: 0.5rem 0;
+        span {
+            display: inline-block;
+            text-align: center;
+            border-bottom: 1px solid @navGra40;
+            padding: 0.5rem 0;
+            min-width: 40px;
+        }
+    }
+
+    .tomdag {
         min-width: 40px;
-      }
-    }
-  }
-}
-
-.soknad__undersporsmal + .soknad__undersporsmal {
-  .ukekalender {
-    margin-top: -1.5rem;
-  }
-}
-
-.ukekalender {
-  width: 300px;
-}
-
-.kalenderdag {
-  display: inline-block;
-
-  .skjemaelement--horisontal {
-    margin-bottom: 0;
-  }
-
-  &.fjern {
-    float: right;
-
-    input {
-      &:checked + .skjemaelement__label {
-        visibility: hidden;
-      }
     }
 
-    .skjemaelement__label:hover {
-      background-color: transparent;
-      text-decoration: underline;
-    }
+    .kalenderdag {
+        display: inline-block;
 
-    &:hover, .skjemaelement__label[hidden]:hover {
-      cursor: default;
-    }
-  }
+        label {
+            display: inline-block;
+            min-width: 40px;
+            padding: 0.5rem 0;
+            text-align: center;
+            color: @navBla;
 
-  input {
-    &:checked + .skjemaelement__label {
-      background-color: @navBla;
-      color: @white;
-    }
-  }
+            &:before {
+                content: none;
+            }
 
-  .skjemaelement__label {
-    color: @navBla;
-    text-align: center;
-    padding: 0.5rem 0;
-    min-width: 40px;
+            &:hover {
+                background-color: @navLysGra;
+                cursor: pointer;
+            }
 
-    &:hover {
-      background-color: @navLysGra;
-    }
-    &:before {
-      content: none;
-    }
-  }
+            &.fjern {
+                margin-left: 2rem;
 
-  .ikkedag {
-      padding: 0.5rem 0;
-      min-width: 40px;
-  }
+                &.skjul {
+                    display: none;
+                }
+
+                &:hover {
+                    background-color: transparent;
+                    text-decoration: underline;
+                }
+            }
+        }
+
+        .valgtDiv {
+            label {
+                background-color: @navBla;
+                color: @white;
+            }
+        }
+
+        input {
+            &.valgt + label {
+                background-color: @navBla;
+                color: @white;
+            }
+        }
+    }
 }
