@@ -1,7 +1,5 @@
 .soknad__undersporsmal {
-    &:first-child {
-        margin-bottom: 0;
-    }
+    margin-bottom: 0;
 
     &:not(:first-child) {
         .skjema__beh-dager {
@@ -11,6 +9,10 @@
         .ukedager {
             display: none;
         }
+    }
+
+    &:last-child {
+        margin-bottom: 2rem;
     }
 
     .skjema__beh-dager {

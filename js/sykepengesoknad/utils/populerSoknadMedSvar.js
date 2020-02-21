@@ -11,7 +11,7 @@ import {
     RADIO_GRUPPE_TIMER_PROSENT,
     RADIO_GRUPPE_UKEKALENDER,
 } from '../enums/svartyper';
-import { CHECKED } from '../enums/svarEnums';
+import { CHECKED, IKKETILBEHANDLING } from '../enums/svarEnums';
 import { HVOR_MYE_PROSENT, HVOR_MYE_TIMER } from '../enums/tagtyper';
 
 const fraJSDatoTilBackendDato = (jsDato) => {
@@ -71,7 +71,7 @@ const populerSporsmalMedSvar = (sporsmal, svarFraSkjema, options) => {
                 return [];
             }
             case RADIO_GRUPPE_UKEKALENDER: {
-                return svarFraSkjema ? svarFraSkjema.svarverdier : [];
+                return svarFraSkjema ? svarFraSkjema.svarverdier : [{ verdi: IKKETILBEHANDLING }];
             }
             case RADIO:
             case CHECKBOX: {

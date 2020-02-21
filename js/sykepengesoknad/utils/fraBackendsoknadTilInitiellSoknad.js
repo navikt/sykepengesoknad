@@ -4,7 +4,7 @@ import {
     TALL, RADIO_GRUPPE, RADIO_GRUPPE_TIMER_PROSENT, RADIO_GRUPPE_UKEKALENDER, RADIO, LAND,
 } from '../enums/svartyper';
 import { genererParseForEnkeltverdi } from '../felleskomponenter/sporsmal/fieldUtils';
-import { CHECKED } from '../enums/svarEnums';
+import { CHECKED, IKKETILBEHANDLING } from '../enums/svarEnums';
 
 const tilPeriodedato = (datoEllerStreng) => {
     return datoEllerStreng.split('.').length === 3
@@ -49,7 +49,7 @@ const tilInitielleSvarverder = ({ svar, svartype, undersporsmal }) => {
         case RADIO:
             return parse(svar[0].verdi);
         case RADIO_GRUPPE_UKEKALENDER:
-            return svar ? parse(svar[0].verdi) : [];
+            return svar ? parse(svar[0].verdi) : parse(IKKETILBEHANDLING);
         case RADIO_GRUPPE:
         case RADIO_GRUPPE_TIMER_PROSENT: {
             const aktivtUndersporsmal = undersporsmal.find((uspm) => {

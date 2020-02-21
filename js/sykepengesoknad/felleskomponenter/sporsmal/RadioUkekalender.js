@@ -9,6 +9,7 @@ import { getSkjemanavnFraSoknad } from '../../utils/getSkjemanavnFraSoknad';
 import { hentSkjemaVerdier } from '../../../data/redux-form/reduxFormSelectors';
 import Feilomrade from '../../../components/skjema/Feilomrade';
 import { fieldPropTypes, soknadPt, sporsmal as sporsmalPt } from '../../../propTypes/index';
+import { IKKETILBEHANDLING } from '../../enums/svarEnums';
 
 const lagLabel = (sporsmalstekst) => {
     if (sporsmalstekst === '') {
@@ -146,13 +147,13 @@ const RadioUkekalenderComponent = (props) => {
                         />
                         <label htmlFor={`${sporsmal.id}_fjern`}
                             id={`${sporsmal.id}_label`}
-                            className={`fjern ${sporsmal.svar[0] ? '' : 'skjul'}`}
+                            className={`fjern ${(sporsmal.svar[0] && sporsmal.svar[0].verdi !== IKKETILBEHANDLING) ? '' : 'skjul'}`}
                             onClick={() => {
                                 fjernKlikk(`${sporsmal.id}_label`);
                                 autofill(
                                     getSkjemanavnFraSoknad(soknad),
                                     sporsmal.tag,
-                                    genererParseForEnkeltverdi()(),
+                                    genererParseForEnkeltverdi()(IKKETILBEHANDLING),
                                 );
                             }}
                         >
@@ -184,7 +185,7 @@ RadioUkekalender.propTypes = {
 
 const mapStateToProps = (state, ownProps) => {
     const verdier = hentSkjemaVerdier(state, getSkjemanavnFraSoknad(ownProps.soknad));
-    const verdi = verdier[ownProps.name] !== null ? verdier[ownProps.name] : { svarverdier: [{ verdi: 'Ikke til behandling' }] };
+    const verdi = verdier[ownProps.name] !== undefined ? verdier[ownProps.name] : { verdi: IKKETILBEHANDLING };
     return {
         verdi: formaterEnkeltverdi(verdi),
     };
