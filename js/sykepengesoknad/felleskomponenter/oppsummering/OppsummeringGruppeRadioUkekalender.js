@@ -12,7 +12,7 @@ const OppsummeringGruppeRadioUkekalender = ({ tag, svar, sporsmalstekst, overskr
         : IKKETILBEHANDLING;
     return (
         <OppsummeringSporsmalscontainer tag={tag}>
-            <OppsummeringSporsmalstekst overskriftsnivaa={overskriftsnivaa}> {sporsmalstekst} </OppsummeringSporsmalstekst>
+            <OppsummeringSporsmalstekst overskriftsnivaa={overskriftsnivaa}>{sporsmalstekst}</OppsummeringSporsmalstekst>
             <OppsummeringAvkrysset id={id} tekst={oppsummertSvar} />
         </OppsummeringSporsmalscontainer>);
 };

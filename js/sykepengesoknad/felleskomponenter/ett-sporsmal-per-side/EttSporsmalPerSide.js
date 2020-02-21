@@ -12,10 +12,10 @@ import { ARBEIDSTAKERE, BEHANDLINGSDAGER } from '../../enums/soknadtyper';
 import { SykepengesoknadSelvstendigOppsummeringSkjema } from '../../soknad-selvstendig-frilanser/oppsummering/SykepengesoknadSelvstendigOppsummeringSkjema';
 import SoknadIntro from '../soknad-intro/SoknadIntro';
 
-export const hentSporsmalsvisning = (soknad, sidenummer) => {
+export const hentSporsmalsvisning = (soknad, sidenummer, sykmelding) => {
     return erSisteSide(soknad, sidenummer)
         ? (
-            soknad.soknadstype === ARBEIDSTAKERE || soknad.soknadstype === BEHANDLINGSDAGER
+            soknad.soknadstype === ARBEIDSTAKERE || (soknad.soknadstype === BEHANDLINGSDAGER && sykmelding.sporsmal.arbeidssituasjon === ARBEIDSTAKERE)
                 ? SykepengesoknadArbeidstakerOppsummeringSkjema
                 : SykepengesoknadSelvstendigOppsummeringSkjema
         )
@@ -26,8 +26,7 @@ export const hentSporsmalsvisning = (soknad, sidenummer) => {
 
 const EttSporsmalPerSide = (props) => {
     const { sykmelding, soknad, handleSubmit, actions, sidenummer, oppdaterer, skjemasvar, sendingFeilet, soknadMeta, sender } = props;
-
-    const Sporsmalsvisning = hentSporsmalsvisning(soknad, sidenummer);
+    const Sporsmalsvisning = hentSporsmalsvisning(soknad, sidenummer, sykmelding);
     const intro = sidenummer === 1 ? <SoknadIntro soknad={soknad} /> : null;
     const scroll = sidenummer !== 1 && !erSisteSide(soknad, sidenummer);
     const tittel = hentNokkel(soknad, sidenummer);
