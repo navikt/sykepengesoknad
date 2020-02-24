@@ -52,7 +52,7 @@ export const EttersendLightbox = (props) => {
             ledetekstKeySuffix={ledetekstKeySuffix}
             manglendeDato={manglendeDato}
         />}
-        {visKvittering && <EttersendKvittering {...props} onClose={onClose} ledetekstKeySuffix={ledetekstKeySuffix}/>}
+        {visKvittering && <EttersendKvittering {...props} onClose={onClose} ledetekstKeySuffix={ledetekstKeySuffix} />}
     </Lightbox>);
 };
 
