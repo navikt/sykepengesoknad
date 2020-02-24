@@ -6,14 +6,28 @@ import { ARBEIDSLEDIG, BEHANDLINGSDAGER, SELVSTENDIGE_OG_FRILANSERE } from '../e
 import BehandlingsdagerKvittering from '../soknad-behandlingsdager/BehandlingsdagerKvittering';
 import KvitteringSelvstendige from '../soknad-selvstendig-frilanser/kvittering/Kvittering';
 
+const selvstendigOgFrilanser = (soknad) => {
+    return (soknad.soknadstype === SELVSTENDIGE_OG_FRILANSERE) ||
+        (soknad.soknadstype === BEHANDLINGSDAGER && soknad.arbeidssituasjon === SELVSTENDIGE_OG_FRILANSERE);
+};
+
+const arbeidsledig = (soknad) => {
+    return (soknad.soknadstype === ARBEIDSLEDIG) ||
+        (soknad.soknadstype === BEHANDLINGSDAGER && soknad.arbeidssituasjon === ARBEIDSLEDIG);
+};
+
+const behandlingsdager = (soknad) => {
+    return soknad.soknadstype === BEHANDLINGSDAGER;
+};
+
 const Kvittering = ({ soknad }) => {
-    if (soknad.soknadstype === SELVSTENDIGE_OG_FRILANSERE) {
+    if (selvstendigOgFrilanser(soknad)) {
         return (<KvitteringSelvstendige />);
     }
-    if (soknad.soknadstype === ARBEIDSLEDIG) {
+    if (arbeidsledig(soknad)) {
         return (<ArbeidsledigKvittering soknad={soknad} />);
     }
-    if (soknad.soknadstype === BEHANDLINGSDAGER) {
+    if (behandlingsdager(soknad)) {
         return (<BehandlingsdagerKvittering soknad={soknad} />);
     }
 
