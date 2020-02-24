@@ -9,6 +9,7 @@ export const PERIODER = 'PERIODER';
 export const FRITEKST = 'FRITEKST';
 export const LAND = 'LAND';
 export const IKKE_RELEVANT = 'IKKE_RELEVANT';
+export const INFO_BEHANDLINGSDAGER = 'INFO_BEHANDLINGSDAGER';
 export const TALL = 'TALL';
 export const RADIO_GRUPPE = 'RADIO_GRUPPE';
 export const RADIO_GRUPPE_TIMER_PROSENT = 'RADIO_GRUPPE_TIMER_PROSENT';

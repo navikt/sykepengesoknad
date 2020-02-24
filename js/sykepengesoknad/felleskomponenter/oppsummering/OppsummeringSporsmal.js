@@ -6,6 +6,7 @@ import {
     DATO,
     FRITEKST,
     IKKE_RELEVANT,
+    INFO_BEHANDLINGSDAGER,
     JA_NEI,
     PERIODER,
     PROSENT, RADIO_GRUPPE, RADIO_GRUPPE_TIMER_PROSENT, RADIO_GRUPPE_UKEKALENDER, TALL,
@@ -46,6 +47,7 @@ const OppsummeringSporsmal = (props) => {
         case LAND: {
             return <OppsummeringLand {...props} />;
         }
+        case INFO_BEHANDLINGSDAGER:
         case IKKE_RELEVANT: {
             return <OppsummeringUndertekst {...props} />;
         }

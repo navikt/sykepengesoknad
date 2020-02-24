@@ -1,7 +1,7 @@
 import { getLedetekst } from '@navikt/digisyfo-npm';
 import { fjernIndexFraTag, formaterEnkeltverdi, formaterFlereVerdier } from '../felleskomponenter/sporsmal/fieldUtils';
 import { CHECKED } from '../enums/svarEnums';
-import { CHECKBOX_GRUPPE, FRITEKST, IKKE_RELEVANT, PERIODER, PROSENT, TALL, TIMER } from '../enums/svartyper';
+import { CHECKBOX_GRUPPE, FRITEKST, IKKE_RELEVANT, PERIODER, PROSENT, TALL, TIMER, INFO_BEHANDLINGSDAGER } from '../enums/svartyper';
 import { validerPerioder } from '../../sykepengesoknad-gammel-plattform/utils/valideringUtils';
 import validerTall from './validerTall';
 import {
@@ -41,7 +41,6 @@ const verdiErTom = (verdi) => {
 const validerUndersporsmalsliste = (sporsmalsliste = [], values = {}, feilmeldingerParam = {}) => {
     let feilmeldinger = { ...feilmeldingerParam };
     const sporsmalMedStilteUndersporsmal = hentSporsmalMedStilteUndersporsmal(sporsmalsliste, values);
-
     sporsmalMedStilteUndersporsmal
         .forEach((sporsmalMedUndersporsmal) => {
             const undersporsmalsliste = sporsmalMedUndersporsmal.undersporsmal;
@@ -122,7 +121,7 @@ export default function validerSporsmal(sporsmal = [], values = {}) {
                     || (s.svartype === FRITEKST && verdiErTom(verdi))
                     || (s.svartype === FRITEKST && s.max && verdi.length > s.max)
                     || (s.svartype === PERIODER))
-                        && s.svartype !== IKKE_RELEVANT
+                        && (s.svartype !== IKKE_RELEVANT && s.svartype !== INFO_BEHANDLINGSDAGER)
             );
         })
         .forEach((s) => {

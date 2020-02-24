@@ -1,6 +1,17 @@
 import { fraInputdatoTilJSDato } from '@navikt/digisyfo-npm';
-import { CHECKBOX, CHECKBOX_GRUPPE, DATO, IKKE_RELEVANT, PERIODER, RADIO, RADIO_GRUPPE, RADIO_GRUPPE_TIMER_PROSENT, RADIO_GRUPPE_UKEKALENDER } from '../enums/svartyper';
-import { CHECKED } from '../enums/svarEnums';
+import {
+    CHECKBOX,
+    CHECKBOX_GRUPPE,
+    DATO,
+    IKKE_RELEVANT,
+    INFO_BEHANDLINGSDAGER,
+    PERIODER,
+    RADIO,
+    RADIO_GRUPPE,
+    RADIO_GRUPPE_TIMER_PROSENT,
+    RADIO_GRUPPE_UKEKALENDER,
+} from '../enums/svartyper';
+import { CHECKED, IKKETILBEHANDLING } from '../enums/svarEnums';
 import { HVOR_MYE_PROSENT, HVOR_MYE_TIMER } from '../enums/tagtyper';
 
 const fraJSDatoTilBackendDato = (jsDato) => {
@@ -56,9 +67,11 @@ const populerSporsmalMedSvar = (sporsmal, svarFraSkjema, options) => {
                 return tilDatoSvar(svarFraSkjema);
             }
             case RADIO_GRUPPE:
-            case RADIO_GRUPPE_UKEKALENDER:
             case RADIO_GRUPPE_TIMER_PROSENT: {
                 return [];
+            }
+            case RADIO_GRUPPE_UKEKALENDER: {
+                return svarFraSkjema ? svarFraSkjema.svarverdier : [{ verdi: IKKETILBEHANDLING }];
             }
             case RADIO:
             case CHECKBOX: {
@@ -93,7 +106,7 @@ const erUndersporsmalStilt = (sporsmal, values) => {
     return sporsmal.svartype === CHECKBOX_GRUPPE
         || sporsmal.svartype === IKKE_RELEVANT
         || sporsmal.svartype === RADIO_GRUPPE
-        || sporsmal.svartype === RADIO_GRUPPE_UKEKALENDER
+        || sporsmal.svartype === INFO_BEHANDLINGSDAGER
         || sporsmal.svartype === RADIO_GRUPPE_TIMER_PROSENT
         || svarverdistrenger.indexOf(sporsmal.kriterieForVisningAvUndersporsmal) > -1;
 };
@@ -153,7 +166,6 @@ const populerSoknadMedSvar = (soknad, values, optionsParam = {}) => {
         ...optionsParam,
     };
     const sporsmal = populerSporsmalsliste(soknad.sporsmal, values, options);
-
     return {
         ...soknad,
         sporsmal,

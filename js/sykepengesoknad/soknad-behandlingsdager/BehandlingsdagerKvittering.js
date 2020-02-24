@@ -18,24 +18,23 @@ class BehandlingsdagerKvittering extends Component {
 
     render() {
         const { soknad } = this.props;
-        return (<div ref={(c) => {
-            this.kvittering = c;
-        }}>
-            <Sidetopp tittel="Kvittering" />
-            <div className="panel js-kvittering blokk">
-                <IllustrertInnholdGronnHake>
-                    <h2 className="panel__tittel">{getLedetekst(`sykepengesoknad.kvittering${getSendtTilSuffix(soknad)}-behandlingsdager.tittel`)}</h2>
-                    <div
-                        className="redaksjonelt-innhold"
-                        dangerouslySetInnerHTML={getHtmlLedetekst(`sykepengesoknad.kvittering${getSendtTilSuffix(soknad)}-behandlingsdager.tekst`, {
-                            '%ARBEIDSGIVER%': soknad.arbeidsgiver ? soknad.arbeidsgiver.navn : '',
-                        })} />
-                </IllustrertInnholdGronnHake>
+        return (
+            <div ref={(c) => { this.kvittering = c; }}>
+                <Sidetopp tittel="Kvittering" />
+                <div className="panel js-kvittering blokk">
+                    <IllustrertInnholdGronnHake>
+                        <h2 className="panel__tittel">{getLedetekst(`sykepengesoknad.kvittering${getSendtTilSuffix(soknad)}-behandlingsdager.tittel`)}</h2>
+                        <div
+                            className="redaksjonelt-innhold"
+                            dangerouslySetInnerHTML={getHtmlLedetekst(`sykepengesoknad.kvittering${getSendtTilSuffix(soknad)}-behandlingsdager.tekst`, {
+                                '%ARBEIDSGIVER%': soknad.arbeidsgiver ? soknad.arbeidsgiver.navn : '',
+                            })} />
+                    </IllustrertInnholdGronnHake>
+                </div>
+                <p className="ikke-print blokk navigasjonsstripe">
+                    <LenkeTilSoknader />
+                </p>
             </div>
-            <p className="ikke-print blokk navigasjonsstripe">
-                <LenkeTilSoknader />
-            </p>
-        </div>
         );
     }
 }
