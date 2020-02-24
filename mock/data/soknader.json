@@ -1368,7 +1368,7 @@
     "startSykeforlop": "2020-01-12",
     "sykmeldingUtskrevet": "2020-02-11",
     "arbeidsgiver": {
-      "navn": "Firma AS (Behandlingsdagersøknad NY)",
+      "navn": "Firma AS (Behandlingsdagersøknad)",
       "orgnummer": "1234567890"
     },
     "korrigerer": null,
@@ -1377,7 +1377,7 @@
     "soknadPerioder": [
       {
         "fom": "2020-01-12",
-        "tom": "2020-01-22",
+        "tom": "2020-02-05",
         "grad": 100,
         "sykmeldingstype": "BEHANDLINGSDAGER"
       }
