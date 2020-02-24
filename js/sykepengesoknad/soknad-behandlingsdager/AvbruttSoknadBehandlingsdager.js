@@ -34,7 +34,7 @@ const AvbruttSoknadBehandlingsdager = ({ soknad, sykmelding }) => {
         <div>
             <SoknadHeader soknad={soknad} />
             <AvbruttSoknadBehandlingsdagerStatuspanel soknad={soknad} />
-            <SykmeldingUtdragForBehandlingsdager sykmelding={sykmelding} erApen />
+            <SykmeldingUtdragForBehandlingsdager soknad={soknad} sykmelding={sykmelding} erApen />
         </div>
     );
 };

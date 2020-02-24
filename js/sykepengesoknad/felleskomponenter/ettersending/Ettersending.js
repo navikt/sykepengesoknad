@@ -10,7 +10,7 @@ import { soknadPt } from '../../../propTypes/index';
 import { EttersendDialogConnected } from './EttersendingDialog';
 import { ettersendSoknadTilNavNullstill } from '../../data/ettersending/ettersendingNav';
 import { ettersendSoknadTilArbeidsgiverNullstill } from '../../data/ettersending/ettersendingArbeidsgiver';
-import { ARBEIDSTAKERE } from '../../enums/soknadtyper';
+import { ARBEIDSTAKERE, BEHANDLINGSDAGER } from '../../enums/soknadtyper';
 
 const sendtTilNAVDato = 'sendtTilNAVDato';
 const sendtTilArbeidsgiverDato = 'sendtTilArbeidsgiverDato';
@@ -107,7 +107,11 @@ export class Ettersending extends Component {
         return (
             <div className="verktoylinje__element">
                 {
-                    (sykepengesoknad.soknadstype === ARBEIDSTAKERE || manglendeDato === sendtTilNAVDato) &&
+                    (sykepengesoknad.soknadstype === ARBEIDSTAKERE
+                        || manglendeDato === sendtTilNAVDato
+                        || (sykepengesoknad.soknadstype === BEHANDLINGSDAGER &&
+                            sykepengesoknad.arbeidssituasjon === 'ARBEIDSTAKER')
+                    ) &&
                     <React.Fragment>
                         <Knapp
                             type="standard"
