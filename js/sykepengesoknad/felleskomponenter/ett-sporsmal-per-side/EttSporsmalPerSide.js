@@ -11,11 +11,12 @@ import { GenereltEttSporsmalPerSideSkjema } from './GenereltEttSporsmalPerSideSk
 import { ARBEIDSTAKERE, BEHANDLINGSDAGER } from '../../enums/soknadtyper';
 import { SykepengesoknadSelvstendigOppsummeringSkjema } from '../../soknad-selvstendig-frilanser/oppsummering/SykepengesoknadSelvstendigOppsummeringSkjema';
 import SoknadIntro from '../soknad-intro/SoknadIntro';
+import { ARBEIDSSITUASJON_ARBEIDSTAKER } from '../../enums/arbeidssituasjon';
 
 export const hentSporsmalsvisning = (soknad, sidenummer, sykmelding) => {
     return erSisteSide(soknad, sidenummer)
         ? (
-            soknad.soknadstype === ARBEIDSTAKERE || (soknad.soknadstype === BEHANDLINGSDAGER && sykmelding.sporsmal.arbeidssituasjon === ARBEIDSTAKERE)
+            soknad.soknadstype === ARBEIDSTAKERE || (soknad.soknadstype === BEHANDLINGSDAGER && sykmelding.sporsmal.arbeidssituasjon === ARBEIDSSITUASJON_ARBEIDSTAKER)
                 ? SykepengesoknadArbeidstakerOppsummeringSkjema
                 : SykepengesoknadSelvstendigOppsummeringSkjema
         )

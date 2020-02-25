@@ -5,15 +5,17 @@ import ArbeidsledigKvittering from '../soknad-arbeidsledig/ArbeidsledigKvitterin
 import { ARBEIDSLEDIG, BEHANDLINGSDAGER, SELVSTENDIGE_OG_FRILANSERE } from '../enums/soknadtyper';
 import BehandlingsdagerKvittering from '../soknad-behandlingsdager/BehandlingsdagerKvittering';
 import KvitteringSelvstendige from '../soknad-selvstendig-frilanser/kvittering/Kvittering';
+import { ARBEIDSSITUASJON_ARBEIDSLEDIG, ARBEIDSSITUASJON_FRILANSER, ARBEIDSSITUASJON_SELVSTENDIG } from '../enums/arbeidssituasjon';
 
 const selvstendigOgFrilanser = (soknad) => {
     return (soknad.soknadstype === SELVSTENDIGE_OG_FRILANSERE) ||
-        (soknad.soknadstype === BEHANDLINGSDAGER && soknad.arbeidssituasjon === SELVSTENDIGE_OG_FRILANSERE);
+        (soknad.soknadstype === BEHANDLINGSDAGER && soknad.arbeidssituasjon === ARBEIDSSITUASJON_FRILANSER) ||
+        (soknad.soknadstype === BEHANDLINGSDAGER && soknad.arbeidssituasjon === ARBEIDSSITUASJON_SELVSTENDIG);
 };
 
 const arbeidsledig = (soknad) => {
     return (soknad.soknadstype === ARBEIDSLEDIG) ||
-        (soknad.soknadstype === BEHANDLINGSDAGER && soknad.arbeidssituasjon === ARBEIDSLEDIG);
+        (soknad.soknadstype === BEHANDLINGSDAGER && soknad.arbeidssituasjon === ARBEIDSSITUASJON_ARBEIDSLEDIG);
 };
 
 const behandlingsdager = (soknad) => {
