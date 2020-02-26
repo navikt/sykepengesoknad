@@ -11,6 +11,7 @@ import { EttersendDialogConnected } from './EttersendingDialog';
 import { ettersendSoknadTilNavNullstill } from '../../data/ettersending/ettersendingNav';
 import { ettersendSoknadTilArbeidsgiverNullstill } from '../../data/ettersending/ettersendingArbeidsgiver';
 import { ARBEIDSTAKERE, BEHANDLINGSDAGER } from '../../enums/soknadtyper';
+import { ARBEIDSSITUASJON_ARBEIDSTAKER } from '../../enums/arbeidssituasjon';
 
 const sendtTilNAVDato = 'sendtTilNAVDato';
 const sendtTilArbeidsgiverDato = 'sendtTilArbeidsgiverDato';
@@ -110,7 +111,7 @@ export class Ettersending extends Component {
                     (sykepengesoknad.soknadstype === ARBEIDSTAKERE
                         || manglendeDato === sendtTilNAVDato
                         || (sykepengesoknad.soknadstype === BEHANDLINGSDAGER &&
-                            sykepengesoknad.arbeidssituasjon === 'ARBEIDSTAKER')
+                            sykepengesoknad.arbeidssituasjon === ARBEIDSSITUASJON_ARBEIDSTAKER)
                     ) &&
                     <React.Fragment>
                         <Knapp
