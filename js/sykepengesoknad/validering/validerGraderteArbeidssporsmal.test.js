@@ -5,7 +5,8 @@ import expect from '../../../test/expect';
 import validerGraderteArbeidssporsmal from './validerGraderteArbeidssporsmal';
 import {
     selvstendigSoknadMedOppgittArbeidsgradMerEnnArbeidsgradISykmelding,
-    selvstendigSoknadMedOppgittArbeidsgradMindreEnnArbeidsgradISykmelding,
+    selvstendigSoknadMedOppgittArbeidsgradMindreEnnArbeidsgradISykmeldingGammeltFormat,
+    selvstendigSoknadMedOppgittArbeidsgradMindreEnnArbeidsgradISykmeldingNyttFormat,
     soknadMedOppgittArbeidsgradIProsent,
     soknadMedOppgittArbeidsgradMerEnnArbeidsgradISykmelding,
     soknadMedOppgittArbeidsgradMindreEnnArbeidsgradISykmelding,
@@ -33,8 +34,15 @@ describe('validerGraderteArbeidssporsmal', () => {
         expect(feilmeldinger.HVOR_MYE_TIMER_VERDI_0).to.equal('Timene du skrev inn tyder på at du har jobbet mindre enn 60 %. Du må enten svare nei på spørsmålet over eller endre antall timer her.');
     });
 
-    it('Skal klage når oppgitt timer i beregnet arbeidsgrad Frilanser/Selvstendig utgjør mindre enn arbeidsgrad i sykmeldingen', () => {
-        const soknad = selvstendigSoknadMedOppgittArbeidsgradMindreEnnArbeidsgradISykmelding;
+    it('Skal klage når oppgitt timer i beregnet arbeidsgrad Frilanser/Selvstendig utgjør mindre enn arbeidsgrad i sykmeldingen for nytt format', () => {
+        const soknad = selvstendigSoknadMedOppgittArbeidsgradMindreEnnArbeidsgradISykmeldingNyttFormat;
+        const values = fraBackendsoknadTilInitiellSoknad(soknad);
+        const feilmeldinger = validerGraderteArbeidssporsmal(soknad.sporsmal, values, parseSoknad(soknad));
+        expect(feilmeldinger.HVOR_MYE_TIMER_VERDI_0).to.equal('Timene du skrev inn tyder på at du har jobbet mindre enn 60 %. Du må enten svare nei på spørsmålet over eller endre antall timer her.');
+    });
+
+    it('Skal klage når oppgitt timer i beregnet arbeidsgrad Frilanser/Selvstendig utgjør mindre enn arbeidsgrad i sykmeldingen for gammelt format', () => {
+        const soknad = selvstendigSoknadMedOppgittArbeidsgradMindreEnnArbeidsgradISykmeldingGammeltFormat;
         const values = fraBackendsoknadTilInitiellSoknad(soknad);
         const feilmeldinger = validerGraderteArbeidssporsmal(soknad.sporsmal, values, parseSoknad(soknad));
         expect(feilmeldinger.HVOR_MYE_HAR_DU_JOBBET_1).to.equal('Prosenten du skrev inn tyder på at du har jobbet mindre enn 80 %. Du må enten svare nei på spørsmålet over eller endre prosenten til et tall mellom 81 og 99.');
