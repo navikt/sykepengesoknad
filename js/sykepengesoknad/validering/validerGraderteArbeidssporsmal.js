@@ -18,7 +18,7 @@ import {
 } from '../enums/tagtyper';
 import { getStillingsprosent } from '../../sykepengesoknad-gammel-plattform/aktiviteter-i-sykmeldingsperioden/BeregnetArbeidsgrad';
 import { JA } from '../enums/svarEnums';
-import { ARBEIDSTAKERE } from '../enums/soknadtyper';
+import { SELVSTENDIGE_OG_FRILANSERE } from '../enums/soknadtyper';
 
 const leggIndexPaTag = (tag, index) => {
     return `${tag}_${index}`;
@@ -62,17 +62,19 @@ const hentArbeidsgradGrense = (gradertArbeidssporsmal, erMin) => {
         .find((underspm) => {
             return fjernIndexFraTag(underspm.tag) === HVOR_MYE_HAR_DU_JOBBET;
         })
-        .undersporsmal.find((underspm) => {
+        .undersporsmal
+        .find((underspm) => {
             return fjernIndexFraTag(underspm.tag) === HVOR_MYE_PROSENT;
         })
-        .undersporsmal.find((underspm) => {
+        .undersporsmal
+        .find((underspm) => {
             return fjernIndexFraTag(underspm.tag) === HVOR_MYE_PROSENT_VERDI;
         });
     const grense = (erMin) ? prosentSporsmal.min : prosentSporsmal.max;
     return parseInt(grense, 10);
 };
 
-const validerArbeidstaker = (graderteArbeidssporsmal, skjemaverdier, soknad) => {
+const validerNyttFellesFormat = (graderteArbeidssporsmal, skjemaverdier, soknad) => {
     const feilmeldinger = {};
     graderteArbeidssporsmal.forEach((gradertArbeidssporsmal) => {
         const index = parseInt(gradertArbeidssporsmal.tag.split(`${JOBBET_DU_GRADERT}_`)[1], 10);
@@ -102,7 +104,7 @@ const validerArbeidstaker = (graderteArbeidssporsmal, skjemaverdier, soknad) => 
     return feilmeldinger;
 };
 
-const validerSelvstendigOgFrilanser = (graderteArbeidssporsmal, skjemaverdier) => {
+const validerGammeltFormatSelvstendigOgFrilanser = (graderteArbeidssporsmal, skjemaverdier) => {
     const feilmeldinger = {};
     graderteArbeidssporsmal.forEach((gradertArbeidssporsmal) => {
         const index = parseInt(gradertArbeidssporsmal.tag.split(`${JOBBET_DU_GRADERT}_`)[1], 10);
@@ -146,10 +148,28 @@ const validerGraderteArbeidssporsmal = (sporsmalsliste, skjemaverdier, soknad) =
             return harSvartPaFeriesporsmal;
         });
 
-    if (soknad.soknadstype === ARBEIDSTAKERE) {
-        return validerArbeidstaker(graderteArbeidssporsmal, skjemaverdier, soknad);
+    if (soknad.soknadstype === SELVSTENDIGE_OG_FRILANSERE) {
+        let gammeltFormat = true;
+        graderteArbeidssporsmal.forEach((gradertArbeidssporsmal) => {
+            const hvorMyeProsent = gradertArbeidssporsmal
+                .undersporsmal
+                .find((underspm) => {
+                    return fjernIndexFraTag(underspm.tag) === HVOR_MYE_HAR_DU_JOBBET;
+                })
+                .undersporsmal
+                .find((underspm) => {
+                    return fjernIndexFraTag(underspm.tag) === HVOR_MYE_PROSENT;
+                });
+            if (hvorMyeProsent) {
+                gammeltFormat = false;
+            }
+        });
+        if (gammeltFormat) {
+            return validerGammeltFormatSelvstendigOgFrilanser(graderteArbeidssporsmal, skjemaverdier, soknad);
+        }
     }
-    return validerSelvstendigOgFrilanser(graderteArbeidssporsmal, skjemaverdier);
+
+    return validerNyttFellesFormat(graderteArbeidssporsmal, skjemaverdier, soknad);
 };
 
 export default validerGraderteArbeidssporsmal;
