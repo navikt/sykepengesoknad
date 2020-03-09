@@ -50,6 +50,10 @@ class Soknadskjema extends Component {
                 <Bjorn className="blokk--s">{getLedetekst('sykepengesoknad.ferie_v2.bjorn')}</Bjorn>
                 }
 
+                {tittel === 'sykepengesoknad.arbeid_utenfor_norge.tittel' &&
+                <Bjorn className="blokk--s">{getLedetekst('sykepengesoknad.arbeid_utenfor_norge.bjorn')}</Bjorn>
+                }
+
                 {tittel === 'sykepengesoknad.fraver_for_behandling.tittel' && soknad.soknadstype === BEHANDLINGSDAGER &&
                 <Bjorn className="blokk--l">
                     <span>{getLedetekst('sykepengesoknad.fraver_for_behandling.bjorn')}</span>
