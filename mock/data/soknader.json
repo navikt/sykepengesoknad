@@ -1082,8 +1082,8 @@
         "svar": [],
         "undersporsmal": [
           {
-            "id": "72",
-            "tag": "HVOR_MANGE_TIMER_0",
+            "id": "870",
+            "tag": "HVOR_MANGE_TIMER_PER_UKE_0",
             "sporsmalstekst": "Hvor mange timer i uken jobber du vanligvis når du er frisk? Varierer det, kan du oppgi gjennomsnittet.",
             "undertekst": null,
             "svartype": "TIMER",
@@ -1095,17 +1095,77 @@
             "undersporsmal": []
           },
           {
-            "id": "73",
+            "id": "880",
             "tag": "HVOR_MYE_HAR_DU_JOBBET_0",
-            "sporsmalstekst": "Hvor mye jobbet du totalt i denne perioden som selvstendig næringsdrivende?",
+            "sporsmalstekst": "Hvor mye jobbet du totalt i 12. - 22. januar 2020 som selvstendig næringsdrivende?",
             "undertekst": null,
-            "svartype": "PROSENT",
-            "min": "1",
-            "max": "99",
+            "svartype": "RADIO_GRUPPE_TIMER_PROSENT",
+            "min": null,
+            "max": null,
             "pavirkerAndreSporsmal": false,
             "kriterieForVisningAvUndersporsmal": null,
             "svar": [],
-            "undersporsmal": []
+            "undersporsmal": [
+              {
+                "id": "890",
+                "tag": "HVOR_MYE_PROSENT_0",
+                "sporsmalstekst": "prosent",
+                "undertekst": null,
+                "svartype": "RADIO",
+                "min": null,
+                "max": null,
+                "pavirkerAndreSporsmal": false,
+                "kriterieForVisningAvUndersporsmal": "CHECKED",
+                "svar": [
+                  {
+                    "verdi": "CHECKED",
+                    "avgittAv": null
+                  }
+                ],
+                "undersporsmal": [
+                  {
+                    "id": "900",
+                    "tag": "HVOR_MYE_PROSENT_VERDI_0",
+                    "sporsmalstekst": null,
+                    "undertekst": "prosent",
+                    "svartype": "TALL",
+                    "min": "1",
+                    "max": "99",
+                    "pavirkerAndreSporsmal": false,
+                    "kriterieForVisningAvUndersporsmal": null,
+                    "svar": [],
+                    "undersporsmal": []
+                  }
+                ]
+              },
+              {
+                "id": "910",
+                "tag": "HVOR_MYE_TIMER_0",
+                "sporsmalstekst": "timer",
+                "undertekst": null,
+                "svartype": "RADIO",
+                "min": null,
+                "max": null,
+                "pavirkerAndreSporsmal": false,
+                "kriterieForVisningAvUndersporsmal": "CHECKED",
+                "svar": [],
+                "undersporsmal": [
+                  {
+                    "id": "920",
+                    "tag": "HVOR_MYE_TIMER_VERDI_0",
+                    "sporsmalstekst": null,
+                    "undertekst": "timer totalt",
+                    "svartype": "TALL",
+                    "min": "1",
+                    "max": "171",
+                    "pavirkerAndreSporsmal": false,
+                    "kriterieForVisningAvUndersporsmal": null,
+                    "svar": [],
+                    "undersporsmal": []
+                  }
+                ]
+              }
+            ]
           }
         ]
       },
