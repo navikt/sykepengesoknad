@@ -238,6 +238,19 @@
         ]
       },
       {
+        "id": "106",
+        "tag": "ARBEID_UTENFOR_NORGE",
+        "sporsmalstekst": "Har du arbeidet i utlandet i løpet av de siste 12 månedene?",
+        "undertekst": null,
+        "svartype": "JA_NEI",
+        "min": null,
+        "max": null,
+        "pavirkerAndreSporsmal": false,
+        "kriterieForVisningAvUndersporsmal": null,
+        "svar": [],
+        "undersporsmal": []
+      },
+      {
         "id": "16",
         "tag": "JOBBET_DU_100_PROSENT_0",
         "sporsmalstekst": "I perioden 12. - 22. januar 2020 var du 100 % sykmeldt fra Bedrift AS (Arbeidstakersøknad). Jobbet du noe i denne perioden?",
@@ -975,6 +988,19 @@
         ]
       },
       {
+        "id": "106",
+        "tag": "ARBEID_UTENFOR_NORGE",
+        "sporsmalstekst": "Har du arbeidet i utlandet i løpet av de siste 12 månedene?",
+        "undertekst": null,
+        "svartype": "JA_NEI",
+        "min": null,
+        "max": null,
+        "pavirkerAndreSporsmal": false,
+        "kriterieForVisningAvUndersporsmal": null,
+        "svar": [],
+        "undersporsmal": []
+      },
+      {
         "id": "66",
         "tag": "VAER_KLAR_OVER_AT",
         "sporsmalstekst": "Viktig å være klar over:",
@@ -1346,6 +1372,19 @@
         ]
       },
       {
+        "id": "106",
+        "tag": "ARBEID_UTENFOR_NORGE",
+        "sporsmalstekst": "Har du arbeidet i utlandet i løpet av de siste 12 månedene?",
+        "undertekst": null,
+        "svartype": "JA_NEI",
+        "min": null,
+        "max": null,
+        "pavirkerAndreSporsmal": false,
+        "kriterieForVisningAvUndersporsmal": null,
+        "svar": [],
+        "undersporsmal": []
+      },
+      {
         "id": "87",
         "tag": "UTDANNING",
         "sporsmalstekst": "Har du vært under utdanning i løpet av perioden 12. - 22. januar 2020?",
@@ -1449,6 +1488,19 @@
         "sporsmalstekst": "Jeg vet at jeg kan miste retten til sykepenger hvis opplysningene jeg gir ikke er riktige eller fullstendige. Jeg vet også at NAV kan holde igjen eller kreve tilbake penger, og at å gi feil opplysninger kan være straffbart.",
         "undertekst": null,
         "svartype": "CHECKBOX_PANEL",
+        "min": null,
+        "max": null,
+        "pavirkerAndreSporsmal": false,
+        "kriterieForVisningAvUndersporsmal": null,
+        "svar": [],
+        "undersporsmal": []
+      },
+      {
+        "id": "106",
+        "tag": "ARBEID_UTENFOR_NORGE",
+        "sporsmalstekst": "Har du arbeidet i utlandet i løpet av de siste 12 månedene?",
+        "undertekst": null,
+        "svartype": "JA_NEI",
         "min": null,
         "max": null,
         "pavirkerAndreSporsmal": false,
