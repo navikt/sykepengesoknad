@@ -33,7 +33,7 @@ export const hentLoginUrl = () => {
         return 'https://loginservice.nav.no/login';
     } else if (window.location.href.indexOf('localhost') > -1) {
         // Lokalt
-        return 'http://localhost:8080/syfoapi/local/cookie';
+        return 'http://localhost:5000';
     }
     // Preprod
     return 'https://loginservice-q.nav.no/login';
@@ -120,9 +120,15 @@ export const hentApiUrl = () => {
     if (url.indexOf('tjenester.nav') > -1) {
         // Prod
         return 'https://syfoapi.nav.no/syfosoknad/api';
-    } else if (url.indexOf('localhost') > -1 || url.indexOf('herokuapp') > -1) {
+    } else if (url.indexOf('herokuapp') > -1) {
+        // Heroku
+        return '/syfoapi/syfosoknad/api';
+    } else if (url.indexOf('localhost:8087') > -1) {
         // Lokalt
         return '/syfoapi/syfosoknad/api';
+    } else if (url.indexOf('localhost') > -1) {
+        // docker compose
+        return 'http://localhost:1995/syfosoknad/api';
     }
     // Preprod
     return 'https://syfoapi-q.nav.no/syfosoknad/api';

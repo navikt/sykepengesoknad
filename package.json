@@ -19,8 +19,9 @@
     "nais-build": "npm-run-all clean deploy images",
     "start": "node ./server.js",
     "start-opplaering": "node ./server.js opplaering",
-    "start-devlocal": "node ./server.js local backend",
-    "start-local": "node ./server.js local",
+    "start-devlocal-container": "PORT=8085 node ./server.js local backend",
+    "start-devlocal": "PORT=8085 SYFOREST_ROOT=http://localhost:1993 node ./server.js local backend development",
+    "start-local": "PORT=8087 node ./server.js local",
     "scripts:watch": "webpack-dev-server --inline --port 8086",
     "dev": "npm-run-all clean images scripts:watch",
     "deploy": "node deploy.js"

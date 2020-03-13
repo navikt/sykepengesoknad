@@ -22,7 +22,15 @@ const server = express();
 
 const env = process.argv[2];
 const localbackend = process.argv[3] === 'backend';
-const settings = env === 'local' ? {isProd: false} : require('./settings.json');
+const development = process.argv[4] === 'development';
+let settings;
+if (localbackend && !development) {
+    settings = require('./settings.json');
+} else if (env === 'local') {
+    settings = { isProd: false };
+} else {
+    settings = require('./settings.json');
+}
 
 server.set('views', `${__dirname}/dist`);
 server.set('view engine', 'mustache');
@@ -93,7 +101,7 @@ const startServer = (html) => {
         require('./mock/mockEndepunkter')(server, env === 'local', localbackend);
     }
 
-    const port = env !== 'local' ? process.env.PORT : 8085;
+    const port = process.env.PORT;
     server.listen(port, () => {
         console.log(`App listening on port: ${port}`);
     });
