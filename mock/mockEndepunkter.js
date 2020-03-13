@@ -16,26 +16,12 @@ function skapBackendProxy(server) {
     // eslint-disable-next-line import/no-extraneous-dependencies,global-require
     const proxy = require('http-proxy-middleware');
     // eslint-disable-next-line global-require
-    const fs = require('fs');
-    const jwt = fs.readFileSync('mock/jsonwebtoken.txt', 'utf8')
-        .replace(/\n/g, '');
 
-    const addHeaders = (proxyReq) => {
-        proxyReq.setHeader('Authorization', `Bearer ${jwt}`);
-    };
-
-    server.use('/syfoapi/syfosoknad', proxy({
-        target: 'http://localhost:7070',
-        changeOrigin: true,
-        pathRewrite: { '^/syfoapi/syfosoknad': '/syfosoknad' },
-        onProxyReq: addHeaders,
-    }));
 
     server.use('/syforest/sykmeldinger', proxy({
-        target: 'http://localhost:7070',
+        target: process.env.SYFOREST_ROOT,
         changeOrigin: true,
-        pathRewrite: { '^/syforest/sykmeldinger': '/syfosoknad/api/sykmeldingmockup' },
-        onProxyReq: addHeaders,
+        pathRewrite: { '^/syforest/sykmeldinger': '/syforest/sykmeldinger' },
     }));
 }
 

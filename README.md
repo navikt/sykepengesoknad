@@ -18,9 +18,9 @@ Du må ha Node installert.
 * Kjør tester med `npm test` eller `npm test:watch`
 * Lint JS-kode med `npm run lint` eller `npm run lint:fix`
 
-## Kjøre mot lokal backend
+## Kjøre mot lokal backend i docker compose
 Applikasjonen kan kjøre mot en lokal syfosoknad backend.
-Start lokal syfosoknad backend ved å kjøre main metoden i `no.nav.syfo.TestApplication.kt` i IntelliJ
+Start docker compose oppsettet
 
 * For å kjøre frontend koden: 
     - `$ npm install`
