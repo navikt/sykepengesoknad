@@ -13,7 +13,7 @@ Du må ha Node installert.
     - `$ npm install`
     - `$ npm run dev`
     - I et annet vindu `$ npm run start-local`
-    - Åpne `http://localhost:8085` i en nettleser
+    - Åpne `http://localhost:8087` i en nettleser
     - Eventuelt kan komandoene kjøres fra `package.json` i intellij.
 * Kjør tester med `npm test` eller `npm test:watch`
 * Lint JS-kode med `npm run lint` eller `npm run lint:fix`

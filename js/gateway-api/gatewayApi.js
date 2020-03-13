@@ -123,8 +123,11 @@ export const hentApiUrl = () => {
     } else if (url.indexOf('herokuapp') > -1) {
         // Heroku
         return '/syfoapi/syfosoknad/api';
-    } else if (url.indexOf('localhost') > -1) {
+    } else if (url.indexOf('localhost:8087') > -1) {
         // Lokalt
+        return '/syfoapi/syfosoknad/api';
+    } else if (url.indexOf('localhost') > -1) {
+        // docker compose
         return 'http://localhost:1995/syfosoknad/api';
     }
     // Preprod
