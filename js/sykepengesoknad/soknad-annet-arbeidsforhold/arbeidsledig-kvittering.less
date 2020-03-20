@@ -1,0 +1,35 @@
+.arbeidsledig-kvittering {
+    &.panel {
+        padding: 2rem 4rem;
+    }
+
+    .kvittering__ikon {
+        display: block;
+        margin: 0 auto;
+    }
+
+    .kvittering__tittel {
+        &.typo-innholdstittel {
+            text-align: center;
+            margin: 2rem 0;
+        }
+    }
+
+    .redaksjonelt-innhold {
+        p:first-child:before {
+            content: '';
+            display: inline-flex;
+            align-items: center;
+            width: 50px;
+            height: 44px;
+            background: url('/sykepengesoknad/img/svg/hoder/hake.svg') no-repeat;
+        }
+
+        p:nth-child(3) {
+            margin-bottom: 0;
+        }
+        p:nth-child(4) {
+            margin-top: 0;
+        }
+    }
+}

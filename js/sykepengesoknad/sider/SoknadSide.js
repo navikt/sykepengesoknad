@@ -9,7 +9,7 @@ import * as dineSykmeldingerActions from '../../data/dine-sykmeldinger/dineSykme
 import Feilmelding from '../../components/Feilmelding';
 import SideHvit from '../../sider/SideHvit';
 import Side from '../../sider/Side';
-import { ARBEIDSTAKERE, OPPHOLD_UTLAND, SELVSTENDIGE_OG_FRILANSERE, ARBEIDSLEDIG, BEHANDLINGSDAGER } from '../enums/soknadtyper';
+import { ARBEIDSTAKERE, OPPHOLD_UTLAND, SELVSTENDIGE_OG_FRILANSERE, ARBEIDSLEDIG, BEHANDLINGSDAGER, ANNET_ARBEIDSFORHOLD } from '../enums/soknadtyper';
 import SykepengesoknadUtlandSkjemaContainer from '../soknad-utland/skjema/SoknadUtlandSkjemaContainer';
 import {
     ArbeidsledigSoknadTrigger,
@@ -18,6 +18,7 @@ import {
     NyArbeidstakerSoknadHotjarTrigger,
     SykepengerUtlandSoknadTrigger,
     BehandlingsdagerSoknadTrigger,
+    AnnetArbeidsforholdTrigger,
 } from '../../components/HotjarTrigger';
 import { logEvent } from '../../utils/amplitude';
 import beregnBrodsmulesti from '../utils/beregnBrodsmulesti';
@@ -32,6 +33,7 @@ import SoknadArbeidsledig from '../soknad-arbeidsledig/SoknadArbeidsledig';
 import { selectSykepengesoknaderData } from '../../sykepengesoknad-gammel-plattform/data/sykepengesoknader/sykepengesoknaderSelectors';
 import { selectSoknaderData } from '../data/soknader/soknaderSelectors';
 import SoknadBehandlingsdager from '../soknad-behandlingsdager/SoknadBehandlingsdager';
+import SoknadAnnetArbeidsforhold from '../soknad-annet-arbeidsforhold/SoknadAnnetArbeidsforhold';
 
 const soknadSkalUtfylles = (soknad) => {
     return soknad && (soknad.status === NY || soknad.status === UTKAST_TIL_KORRIGERING);
@@ -81,6 +83,7 @@ export class Container extends Component {
             erNyArbeidstakersoknad,
             erArbeidsledigsoknad,
             erBehandlingsdagsoknad,
+            erAnnetArbeidsforholdsoknad,
             skalHenteSykmeldinger,
             henter,
             sti,
@@ -133,6 +136,12 @@ export class Container extends Component {
                                     <SoknadBehandlingsdager {...this.props} />
                                 </BehandlingsdagerSoknadTrigger>
                             );
+                        } else if (erAnnetArbeidsforholdsoknad) {
+                            return (
+                                <AnnetArbeidsforholdTrigger>
+                                    <SoknadAnnetArbeidsforhold {...this.props} />
+                                </AnnetArbeidsforholdTrigger>
+                            );
                         }
                         return <Feilmelding />;
                     })()}
@@ -158,6 +167,7 @@ Container.propTypes = {
     erNyArbeidstakersoknad: PropTypes.bool,
     erArbeidsledigsoknad: PropTypes.bool,
     erBehandlingsdagsoknad: PropTypes.bool,
+    erAnnetArbeidsforholdsoknad: PropTypes.bool,
     sti: PropTypes.string,
     henter: PropTypes.bool,
     soknadId: PropTypes.string,
@@ -192,6 +202,7 @@ export const mapStateToProps = (state, ownProps) => {
     const erNyArbeidstakersoknad = soknad !== undefined && soknad.soknadstype === ARBEIDSTAKERE;
     const erArbeidsledigsoknad = soknad !== undefined && soknad.soknadstype === ARBEIDSLEDIG;
     const erBehandlingsdagsoknad = soknad !== undefined && soknad.soknadstype === BEHANDLINGSDAGER;
+    const erAnnetArbeidsforholdsoknad = soknad !== undefined && soknad.soknadstype === ANNET_ARBEIDSFORHOLD;
     const erArbeidstakersoknad = sykepengesoknad !== undefined;
     const skalHenteSykmeldinger = !state.dineSykmeldinger.hentet && !state.dineSykmeldinger.henter;
     const henter = state.soknader.henter
@@ -201,7 +212,7 @@ export const mapStateToProps = (state, ownProps) => {
     const hentingFeilet = state.soknader.hentingFeilet || state.sykepengesoknader.hentingFeilet || state.ledetekster.hentingFeilet;
     const sti = ownProps.location.pathname;
     const stegSomNummer = parseInt(ownProps.params.steg, 10);
-    const sidenummer = erNyArbeidstakersoknad || erSelvstendigNaeringsdrivendeSoknad || erArbeidsledigsoknad || erBehandlingsdagsoknad
+    const sidenummer = erNyArbeidstakersoknad || erSelvstendigNaeringsdrivendeSoknad || erArbeidsledigsoknad || erBehandlingsdagsoknad || erAnnetArbeidsforholdsoknad
         ? (
             isNaN(stegSomNummer)
                 ? 1
@@ -216,6 +227,7 @@ export const mapStateToProps = (state, ownProps) => {
         erNyArbeidstakersoknad,
         erArbeidsledigsoknad,
         erBehandlingsdagsoknad,
+        erAnnetArbeidsforholdsoknad,
         henter,
         hentingFeilet,
         sti,
