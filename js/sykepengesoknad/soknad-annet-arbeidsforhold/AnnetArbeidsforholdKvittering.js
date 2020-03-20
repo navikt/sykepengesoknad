@@ -5,7 +5,7 @@ import { Innholdstittel } from 'nav-frontend-typografi';
 import { erSynligIViewport, getHtmlLedetekst, scrollTo, getLedetekst, Bjorn } from '@navikt/digisyfo-npm';
 import { soknadPt } from '../../propTypes/index';
 import { LenkeTilSoknader } from '../../sykepengesoknad/felleskomponenter/LenkeTilSoknader';
-import './arbeidsledig-kvittering.less';
+import '../soknad-arbeidsledig/arbeidsledig-kvittering.less';
 
 class AnnetArbeidsforholdKvittering extends Component {
     componentDidMount() {
@@ -27,7 +27,7 @@ class AnnetArbeidsforholdKvittering extends Component {
                         {getLedetekst('sykepengesoknad.kvittering.til-nav-arbeidsledig.tittel')}
                     </Innholdstittel>
                     <div className="redaksjonelt-innhold"
-                        dangerouslySetInnerHTML={getHtmlLedetekst('sykepengesoknad.kvittering.til-nav-arbeidsledig.tekst', {
+                        dangerouslySetInnerHTML={getHtmlLedetekst('sykepengesoknad.kvittering.til-nav-annet-arbeidsforhold.tekst', {
                             '%DATO%': dayjs(soknad.sendtTilNAVDato).locale('nb').format('D. MMMM YYYY, kl HH:mm'), '%TELEFON%': '55 55 33 33',
                         })}
                     />

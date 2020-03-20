@@ -7,8 +7,8 @@ import { soknadPt } from '../../propTypes';
 import { AVBRUTT, KORRIGERT, NY, SENDT, UTKAST_TIL_KORRIGERING, UTGAATT } from '../enums/soknadstatuser';
 import Feilmelding from '../../components/Feilmelding';
 import EttSporsmalPerSideContainer from '../felleskomponenter/ett-sporsmal-per-side/EttSporsmalPerSideContainer';
-import SendtSoknadAnnetArbeidsforhold from './SendtSoknadAnnetArbeidsforhold';
-import AvbruttSoknadAnnetArbeidsforhold from './AvbruttSoknadAnnetArbeidsforhold';
+import SendtSoknadAnnetArbeidsforhold from '../soknad-arbeidsledig/SendtSoknadArbeidsledig';
+import AvbruttSoknadAnnetArbeidsforhold from '../soknad-arbeidsledig/AvbruttSoknadArbeidsledig';
 
 const SoknadAnnetArbeidsforholdSkjema = (props) => {
     const { sti } = props;

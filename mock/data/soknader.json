@@ -1045,7 +1045,7 @@
     "arbeidsgiver": null,
     "korrigerer": null,
     "korrigertAv": null,
-    "arbeidssituasjon": "ANNET_ARBEIDSFORHOLD",
+    "arbeidssituasjon": "ANNET",
     "soknadPerioder": [
       {
         "fom": "2020-02-25",
@@ -1056,7 +1056,7 @@
     ],
     "sporsmal": [
       {
-        "id": "40",
+        "id": "10",
         "tag": "ANSVARSERKLARING",
         "sporsmalstekst": "Jeg vet at jeg kan miste retten til sykepenger hvis opplysningene jeg gir ikke er riktige eller fullstendige. Jeg vet også at NAV kan holde igjen eller kreve tilbake penger, og at å gi feil opplysninger kan være straffbart.",
         "undertekst": null,
@@ -1069,7 +1069,63 @@
         "undersporsmal": []
       },
       {
-        "id": "41",
+        "id": "20",
+        "tag": "PERMITTERT_PERIODE",
+        "sporsmalstekst": "Har du vært permittert i noen perioder etter 25. februar 2020?",
+        "undertekst": null,
+        "svartype": "JA_NEI",
+        "min": null,
+        "max": null,
+        "pavirkerAndreSporsmal": false,
+        "kriterieForVisningAvUndersporsmal": "JA",
+        "svar": [],
+        "undersporsmal": [
+          {
+            "id": "21",
+            "tag": "PERIODE_PERMITTERT",
+            "sporsmalstekst": "Når var du permittert?",
+            "undertekst": null,
+            "svartype": "PERIODER",
+            "min": "2020-02-25",
+            "max": "2020-03-20",
+            "pavirkerAndreSporsmal": false,
+            "kriterieForVisningAvUndersporsmal": null,
+            "svar": [],
+            "undersporsmal": []
+          }
+        ]
+      },
+      {
+        "id": "20",
+        "tag": "PERMITTERT_NAA",
+        "sporsmalstekst": "Er du permittert nå?",
+        "undertekst": null,
+        "svartype": "JA_NEI",
+        "min": null,
+        "max": null,
+        "pavirkerAndreSporsmal": false,
+        "kriterieForVisningAvUndersporsmal": "JA",
+        "svar": [],
+        "undersporsmal": [
+          {
+            "id": "21",
+            "tag": "PERMITTERT_DATO",
+            "sporsmalstekst": "Kryss av for første dag i permitteringen",
+            "undertekst": null,
+            "svartype": "DATO",
+            "min": "2020-02-25",
+            "max": "2020-03-20",
+            "pavirkerAndreSporsmal": false,
+            "kriterieForVisningAvUndersporsmal": null,
+            "svar": [
+            ],
+            "undersporsmal": []
+          }
+        ]
+      },
+
+      {
+        "id": "40",
         "tag": "FRISKMELDT",
         "sporsmalstekst": "Brukte du hele sykmeldingen fram til 22. januar 2020?",
         "undertekst": null,
@@ -1087,8 +1143,8 @@
             "sporsmalstekst": "Fra hvilken dato har du ikke lenger behov for sykmelding?",
             "undertekst": null,
             "svartype": "DATO",
-            "min": "2020-01-12",
-            "max": "2020-01-22",
+            "min": "2020-02-25",
+            "max": "2020-03-20",
             "pavirkerAndreSporsmal": false,
             "kriterieForVisningAvUndersporsmal": null,
             "svar": [
@@ -1098,9 +1154,36 @@
         ]
       },
       {
+        "id": "41",
+        "tag": "PERMISJON_V2",
+        "sporsmalstekst": "Tok du permisjon mens du var sykmeldt 25. februar - 20. mars 2020?",
+        "undertekst": null,
+        "svartype": "JA_NEI",
+        "min": null,
+        "max": null,
+        "pavirkerAndreSporsmal": false,
+        "kriterieForVisningAvUndersporsmal": "JA",
+        "svar": [],
+        "undersporsmal": [
+          {
+            "id": "411",
+            "tag": "PERMISJON_NAR_V2",
+            "sporsmalstekst": "Når tok du permisjon?",
+            "undertekst": null,
+            "svartype": "PERIODER",
+            "min": "2020-02-25",
+            "max": "2020-03-20",
+            "pavirkerAndreSporsmal": false,
+            "kriterieForVisningAvUndersporsmal": null,
+            "svar": [],
+            "undersporsmal": []
+          }
+        ]
+      },
+      {
         "id": "42",
         "tag": "ANDRE_INNTEKTSKILDER",
-        "sporsmalstekst": "Har du hatt inntekt mens du har vært sykmeldt i perioden 12. - 22. januar 2020? Du trenger ikke oppgi penger fra NAV.",
+        "sporsmalstekst": "Har du hatt inntekt mens du har vært sykmeldt i perioden 25. februar - 25. mars 2020? Du trenger ikke oppgi penger fra NAV.",
         "undertekst": null,
         "svartype": "JA_NEI",
         "min": null,
@@ -1330,7 +1413,7 @@
       {
         "id": "59",
         "tag": "UTDANNING",
-        "sporsmalstekst": "Har du vært under utdanning i løpet av perioden 12. - 22. januar 2020?",
+        "sporsmalstekst": "Har du vært under utdanning i løpet av perioden 25. februar - 20. mars 2020?",
         "undertekst": null,
         "svartype": "JA_NEI",
         "min": null,
@@ -1346,7 +1429,7 @@
             "undertekst": null,
             "svartype": "DATO",
             "min": null,
-            "max": "2020-01-22",
+            "max": "2020-02-25",
             "pavirkerAndreSporsmal": false,
             "kriterieForVisningAvUndersporsmal": null,
             "svar": [],
@@ -1370,7 +1453,7 @@
       {
         "id": "62",
         "tag": "ARBEIDSLEDIG_UTLAND",
-        "sporsmalstekst": "Var du på reise utenfor EØS mens du var sykmeldt 12. - 22. januar 2020?",
+        "sporsmalstekst": "Var du på reise utenfor EØS mens du var sykmeldt 25. februar - 20. mars 2020?",
         "undertekst": null,
         "svartype": "JA_NEI",
         "min": null,
@@ -1385,8 +1468,8 @@
             "sporsmalstekst": "Når var du utenfor EØS?",
             "undertekst": null,
             "svartype": "PERIODER",
-            "min": "2020-01-12",
-            "max": "2020-01-22",
+            "min": "2020-02-20",
+            "max": "2020-03-25",
             "pavirkerAndreSporsmal": false,
             "kriterieForVisningAvUndersporsmal": null,
             "svar": [],
