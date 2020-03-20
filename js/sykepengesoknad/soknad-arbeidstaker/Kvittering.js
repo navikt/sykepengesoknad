@@ -39,7 +39,7 @@ const Kvittering = ({ soknad }) => {
         return (<AnnetArbeidsforholdKvittering soknad={soknad} />);
     }
     if (behandlingsdager(soknad)) {
-        return (<BehandlingsdagerKvittering soknad={soknad}/>);
+        return (<BehandlingsdagerKvittering soknad={soknad} />);
     }
 
     return (<KvitteringArbeidstakersoknad sykepengesoknad={soknad} />);
