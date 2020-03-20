@@ -48,6 +48,60 @@
         "undersporsmal": []
       },
       {
+        "id": "342342",
+        "tag": "PERMITTERT_NAA",
+        "sporsmalstekst": "Er du permittert nå?",
+        "undertekst": null,
+        "svartype": "JA_NEI",
+        "min": null,
+        "max": null,
+        "pavirkerAndreSporsmal": false,
+        "kriterieForVisningAvUndersporsmal": "JA",
+        "svar": [],
+        "undersporsmal": [
+          {
+            "id": "234223",
+            "tag": "PERMITTERT_NAA_NAR",
+            "sporsmalstekst": "Velg første dag i permitteringen",
+            "undertekst": null,
+            "svartype": "DATO",
+            "min": "2019-11-13",
+            "max": "2020-03-20",
+            "pavirkerAndreSporsmal": false,
+            "kriterieForVisningAvUndersporsmal": null,
+            "svar": [],
+            "undersporsmal": []
+          }
+        ]
+      },
+      {
+        "id": "4435345",
+        "tag": "PERMITTERT_PERIODE",
+        "sporsmalstekst": "Har du vært permittert i noen perioder etter 1. februar 2020?",
+        "undertekst": null,
+        "svartype": "JA_NEI",
+        "min": null,
+        "max": null,
+        "pavirkerAndreSporsmal": false,
+        "kriterieForVisningAvUndersporsmal": "JA",
+        "svar": [],
+        "undersporsmal": [
+          {
+            "id": "54363463",
+            "tag": "PERMITTERT_PERIODE_NAR",
+            "sporsmalstekst": null,
+            "undertekst": null,
+            "svartype": "PERIODER",
+            "min": "2020-02-01",
+            "max": "2020-03-20",
+            "pavirkerAndreSporsmal": false,
+            "kriterieForVisningAvUndersporsmal": null,
+            "svar": [],
+            "undersporsmal": []
+          }
+        ]
+      },
+      {
         "id": "2",
         "tag": "EGENMELDINGER",
         "sporsmalstekst": "Vi har registrert at du ble sykmeldt søndag 12. januar 2020. Var du syk og borte fra jobb i perioden 27. desember 2019 - 11. januar 2020?",
@@ -635,6 +689,60 @@
         "undersporsmal": []
       },
       {
+        "id": "342342",
+        "tag": "PERMITTERT_NAA",
+        "sporsmalstekst": "Er du permittert nå?",
+        "undertekst": null,
+        "svartype": "JA_NEI",
+        "min": null,
+        "max": null,
+        "pavirkerAndreSporsmal": false,
+        "kriterieForVisningAvUndersporsmal": "JA",
+        "svar": [],
+        "undersporsmal": [
+          {
+            "id": "234223",
+            "tag": "PERMITTERT_NAA_NAR",
+            "sporsmalstekst": "Velg første dag i permitteringen",
+            "undertekst": null,
+            "svartype": "DATO",
+            "min": "2019-11-13",
+            "max": "2020-03-20",
+            "pavirkerAndreSporsmal": false,
+            "kriterieForVisningAvUndersporsmal": null,
+            "svar": [],
+            "undersporsmal": []
+          }
+        ]
+      },
+      {
+        "id": "4435345",
+        "tag": "PERMITTERT_PERIODE",
+        "sporsmalstekst": "Har du vært permittert i noen perioder etter 1. februar 2020?",
+        "undertekst": null,
+        "svartype": "JA_NEI",
+        "min": null,
+        "max": null,
+        "pavirkerAndreSporsmal": false,
+        "kriterieForVisningAvUndersporsmal": "JA",
+        "svar": [],
+        "undersporsmal": [
+          {
+            "id": "54363463",
+            "tag": "PERMITTERT_PERIODE_NAR",
+            "sporsmalstekst": null,
+            "undertekst": null,
+            "svartype": "PERIODER",
+            "min": "2020-02-01",
+            "max": "2020-03-20",
+            "pavirkerAndreSporsmal": false,
+            "kriterieForVisningAvUndersporsmal": null,
+            "svar": [],
+            "undersporsmal": []
+          }
+        ]
+      },
+      {
         "id": "41",
         "tag": "FRISKMELDT",
         "sporsmalstekst": "Brukte du hele sykmeldingen fram til 22. januar 2020?",
@@ -1069,34 +1177,7 @@
         "undersporsmal": []
       },
       {
-        "id": "20",
-        "tag": "PERMITTERT_PERIODE",
-        "sporsmalstekst": "Har du vært permittert i noen perioder etter 25. februar 2020?",
-        "undertekst": null,
-        "svartype": "JA_NEI",
-        "min": null,
-        "max": null,
-        "pavirkerAndreSporsmal": false,
-        "kriterieForVisningAvUndersporsmal": "JA",
-        "svar": [],
-        "undersporsmal": [
-          {
-            "id": "21",
-            "tag": "PERIODE_PERMITTERT",
-            "sporsmalstekst": "Når var du permittert?",
-            "undertekst": null,
-            "svartype": "PERIODER",
-            "min": "2020-02-25",
-            "max": "2020-03-20",
-            "pavirkerAndreSporsmal": false,
-            "kriterieForVisningAvUndersporsmal": null,
-            "svar": [],
-            "undersporsmal": []
-          }
-        ]
-      },
-      {
-        "id": "20",
+        "id": "342342",
         "tag": "PERMITTERT_NAA",
         "sporsmalstekst": "Er du permittert nå?",
         "undertekst": null,
@@ -1108,22 +1189,47 @@
         "svar": [],
         "undersporsmal": [
           {
-            "id": "21",
-            "tag": "PERMITTERT_DATO",
-            "sporsmalstekst": "Kryss av for første dag i permitteringen",
+            "id": "234223",
+            "tag": "PERMITTERT_NAA_NAR",
+            "sporsmalstekst": "Velg første dag i permitteringen",
             "undertekst": null,
             "svartype": "DATO",
-            "min": "2020-02-25",
+            "min": "2019-11-13",
             "max": "2020-03-20",
             "pavirkerAndreSporsmal": false,
             "kriterieForVisningAvUndersporsmal": null,
-            "svar": [
-            ],
+            "svar": [],
             "undersporsmal": []
           }
         ]
       },
-
+      {
+        "id": "4435345",
+        "tag": "PERMITTERT_PERIODE",
+        "sporsmalstekst": "Har du vært permittert i noen perioder etter 1. februar 2020?",
+        "undertekst": null,
+        "svartype": "JA_NEI",
+        "min": null,
+        "max": null,
+        "pavirkerAndreSporsmal": false,
+        "kriterieForVisningAvUndersporsmal": "JA",
+        "svar": [],
+        "undersporsmal": [
+          {
+            "id": "54363463",
+            "tag": "PERMITTERT_PERIODE_NAR",
+            "sporsmalstekst": null,
+            "undertekst": null,
+            "svartype": "PERIODER",
+            "min": "2020-02-01",
+            "max": "2020-03-20",
+            "pavirkerAndreSporsmal": false,
+            "kriterieForVisningAvUndersporsmal": null,
+            "svar": [],
+            "undersporsmal": []
+          }
+        ]
+      },
       {
         "id": "40",
         "tag": "FRISKMELDT",
@@ -1584,6 +1690,60 @@
         "kriterieForVisningAvUndersporsmal": null,
         "svar": [],
         "undersporsmal": []
+      },
+      {
+        "id": "342342",
+        "tag": "PERMITTERT_NAA",
+        "sporsmalstekst": "Er du permittert nå?",
+        "undertekst": null,
+        "svartype": "JA_NEI",
+        "min": null,
+        "max": null,
+        "pavirkerAndreSporsmal": false,
+        "kriterieForVisningAvUndersporsmal": "JA",
+        "svar": [],
+        "undersporsmal": [
+          {
+            "id": "234223",
+            "tag": "PERMITTERT_NAA_NAR",
+            "sporsmalstekst": "Velg første dag i permitteringen",
+            "undertekst": null,
+            "svartype": "DATO",
+            "min": "2019-11-13",
+            "max": "2020-03-20",
+            "pavirkerAndreSporsmal": false,
+            "kriterieForVisningAvUndersporsmal": null,
+            "svar": [],
+            "undersporsmal": []
+          }
+        ]
+      },
+      {
+        "id": "4435345",
+        "tag": "PERMITTERT_PERIODE",
+        "sporsmalstekst": "Har du vært permittert i noen perioder etter 1. februar 2020?",
+        "undertekst": null,
+        "svartype": "JA_NEI",
+        "min": null,
+        "max": null,
+        "pavirkerAndreSporsmal": false,
+        "kriterieForVisningAvUndersporsmal": "JA",
+        "svar": [],
+        "undersporsmal": [
+          {
+            "id": "54363463",
+            "tag": "PERMITTERT_PERIODE_NAR",
+            "sporsmalstekst": null,
+            "undertekst": null,
+            "svartype": "PERIODER",
+            "min": "2020-02-01",
+            "max": "2020-03-20",
+            "pavirkerAndreSporsmal": false,
+            "kriterieForVisningAvUndersporsmal": null,
+            "svar": [],
+            "undersporsmal": []
+          }
+        ]
       },
       {
         "id": "69",
