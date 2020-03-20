@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { SykmeldingUtdrag as SykmeldingUtdragForArbeidstakere, sykmelding as sykmeldingPt } from '@navikt/digisyfo-npm';
 import { settErOppdelt } from '../../utils/settErOppdelt';
-import { ARBEIDSTAKERE, SELVSTENDIGE_OG_FRILANSERE, ARBEIDSLEDIG, BEHANDLINGSDAGER } from '../../enums/soknadtyper';
+import { ARBEIDSTAKERE, SELVSTENDIGE_OG_FRILANSERE, ARBEIDSLEDIG, BEHANDLINGSDAGER, ANNET_ARBEIDSFORHOLD } from '../../enums/soknadtyper';
 import SykmeldingUtdragForSelvstendige from '../../soknad-selvstendig-frilanser/sykmelding-utdrag/SykmeldingUtdragForSelvstendige';
 import SykmeldingUtdragForArbeidsledige from '../../soknad-arbeidsledig/sykmelding-utdrag/SykmeldingUtdragForArbeidsledige';
 import { soknadPt } from '../../prop-types/soknadProptype';
@@ -34,6 +34,7 @@ const Utdrag = ({ sykmelding, soknad, erApen, erOppdelt }) => {
             );
 
         case ARBEIDSLEDIG:
+        case ANNET_ARBEIDSFORHOLD:
             return (
                 <SykmeldingUtdragForArbeidsledige
                     erApen={erApen}

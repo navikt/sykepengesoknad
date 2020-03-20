@@ -1192,6 +1192,92 @@
     }
   },
   {
+    "id": "289148ba-4c3c-4b3f-b7a3-385b7e7c927e",
+    "startLegemeldtFravaer": "2020-02-25",
+    "skalViseSkravertFelt": true,
+    "identdato": "2020-02-25",
+    "status": "NY",
+    "naermesteLederStatus": null,
+    "innsendtArbeidsgivernavn": null,
+    "valgtArbeidssituasjon": "ARBEIDSLEDIG",
+    "mottakendeArbeidsgiver": null,
+    "orgnummer": null,
+    "sendtdato": "2019-02-25T10:49:03",
+    "sporsmal": null,
+    "pasient": {
+      "fnr": "110110110110",
+      "fornavn": "Samuel \"Sam\"",
+      "mellomnavn": "Peyton",
+      "etternavn": "Jones"
+    },
+    "arbeidsgiver": null,
+    "stillingsprosent": 100,
+    "diagnose": {
+      "hoveddiagnose": null,
+      "bidiagnoser": [],
+      "fravaersgrunnLovfestet": null,
+      "fravaerBeskrivelse": null,
+      "svangerskap": null,
+      "yrkesskade": null,
+      "yrkesskadeDato": null
+    },
+    "mulighetForArbeid": {
+      "perioder": [
+        {
+          "fom": "2020-02-25",
+          "tom": "2020-03-20",
+          "grad": 100,
+          "behandlingsdager": null,
+          "reisetilskudd": null,
+          "avventende": null
+        }
+      ],
+      "aktivitetIkkeMulig433": [],
+      "aktivitetIkkeMulig434": [
+        "Annet"
+      ],
+      "aarsakAktivitetIkkeMulig433": null,
+      "aarsakAktivitetIkkeMulig434": "andre årsaker til sykefravær"
+    },
+    "friskmelding": {
+      "arbeidsfoerEtterPerioden": true,
+      "hensynPaaArbeidsplassen": "Må ta det pent",
+      "antarReturSammeArbeidsgiver": true,
+      "antattDatoReturSammeArbeidsgiver": "2019-03-25",
+      "antarReturAnnenArbeidsgiver": true,
+      "tilbakemeldingReturArbeid": null,
+      "utenArbeidsgiverAntarTilbakeIArbeid": false,
+      "utenArbeidsgiverAntarTilbakeIArbeidDato": null,
+      "utenArbeidsgiverTilbakemelding": null
+    },
+    "utdypendeOpplysninger": {
+      "sykehistorie": null,
+      "paavirkningArbeidsevne": null,
+      "resultatAvBehandling": null,
+      "henvisningUtredningBehandling": null,
+      "grupper": []
+    },
+    "arbeidsevne": {
+      "tilretteleggingArbeidsplass": "Fortsett som sist.",
+      "tiltakNAV": "Pasienten har plager som er kommet tilbake etter operasjon. Det er nylig tatt MR bildet som viser forandringer i hånd som mulig må opereres. Venter på time. Det er mulig sykemledingen vil vare utover aktuell sm periode. ",
+      "tiltakAndre": null
+    },
+    "meldingTilNav": {
+      "navBoerTaTakISaken": false,
+      "navBoerTaTakISakenBegrunnelse": null
+    },
+    "innspillTilArbeidsgiver": null,
+    "tilbakedatering": {
+      "dokumenterbarPasientkontakt": null,
+      "tilbakedatertBegrunnelse": null
+    },
+    "bekreftelse": {
+      "utstedelsesdato": "2019-02-20",
+      "sykmelder": "Helen Flood",
+      "sykmelderTlf": "113"
+    }
+  },
+  {
     "id": "8f316709-0d73-4491-8721-c40b616038f8",
     "startLegemeldtFravaer": "2020-01-20",
     "skalViseSkravertFelt": true,

@@ -90,3 +90,13 @@ export const BehandlingsdagerSoknadTrigger = ({ children }) => {
 BehandlingsdagerSoknadTrigger.propTypes = {
     children: node,
 };
+
+export const AnnetArbeidsforholdTrigger = ({ children }) => {
+    return (<HotjarTrigger hotjarTrigger="SOKNAD_ANNET_ARBEIDSFORHOLD">
+        {children}
+    </HotjarTrigger>);
+};
+
+AnnetArbeidsforholdTrigger.propTypes = {
+    children: node,
+};
