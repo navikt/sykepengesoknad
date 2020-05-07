@@ -89,7 +89,8 @@
     "scroll-behavior": "0.3.2",
     "simple-ajax": "2.6.0",
     "source-map-explorer": "1.6.0",
-    "whatwg-fetch": "0.11.0"
+    "whatwg-fetch": "0.11.0",
+    "jsdom": "11.3.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.0.0",
@@ -118,7 +119,6 @@
     "has-ansi": "2.0.0",
     "http-proxy-middleware": "^0.20.0",
     "ignore-styles": "5.0.1",
-    "jsdom": "11.3.0",
     "less": "3.8.1",
     "less-loader": "4.1.0",
     "less-plugin-autoprefix": "2.0.0",
