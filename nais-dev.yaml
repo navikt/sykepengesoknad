@@ -31,8 +31,8 @@ spec:
     enabled: true
     path: /actuator/metrics
   env:
-    - name: APPRES_CMS_URL
-      value: "https://appres-q1.nav.no"
+    - name: DECORATOR_URL
+      value: "https://www-q1.nav.no/dekoratoren"
     - name: LOGINSERVICE_URL
       value: "https://loginservice-q.nav.no/login"
     - name: SYFOAPI_SYFOTEKSTERAPI_URL

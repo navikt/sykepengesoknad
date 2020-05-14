@@ -5,12 +5,7 @@ const request = require('request');
 const { JSDOM } = jsdom;
 
 const requestDecorator = (callback) =>
-    request(
-        `${
-            process.env.APPRES_CMS_URL
-            }/common-html/v4/navno?header-withmenu=true&styles=true&scripts=true&footer=true`,
-        callback
-    );
+    request(`${process.env.DECORATOR_URL}/?simple=true`, callback);
 
 const getDecorator = () =>
     new Promise((resolve, reject) => {
@@ -27,8 +22,8 @@ const getDecorator = () =>
                     NAV_SCRIPTS: document.getElementById('scripts')[prop],
                     NAV_STYLES: document.getElementById('styles')[prop],
                     NAV_HEADING: document.getElementById('header-withmenu')[prop],
-                    NAV_FOOTER: document.getElementById('footer')[prop],
-                    NAV_MEGAMENU_RESOURCES: document.getElementById('megamenu-resources')[prop]
+                    NAV_FOOTER: document.getElementById('footer-withmenu')[prop],
+                    NAV_MEGAMENU_RESOURCES: document.getElementById('megamenu-resources')[prop],
                 };
                 resolve(data);
             } else {
