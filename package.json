@@ -29,7 +29,7 @@
   "author": "DigiSyfo <digisyfo@nav.no>",
   "license": "ISC",
   "dependencies": {
-    "@navikt/digisyfo-npm": "17.1.0",
+    "@navikt/digisyfo-npm": "17.6.2",
     "amplitude-js": "^5.9.0",
     "babel-loader": "7.1.5",
     "babel-polyfill": "6.26.0",
