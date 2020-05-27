@@ -120,8 +120,8 @@ export const hentApiUrl = () => {
     if (url.indexOf('tjenester.nav') > -1) {
         // Prod
         return 'https://syfoapi.nav.no/syfosoknad/api';
-    } else if (url.indexOf('herokuapp') > -1) {
-        // Heroku
+    } else if (url.indexOf('labs.nais.io') > -1) {
+        // Demo
         return '/syfoapi/syfosoknad/api';
     } else if (url.indexOf('localhost:8087') > -1) {
         // Lokalt
@@ -143,7 +143,7 @@ export const hentSyfoApiUrl = (appNavn) => {
     if (url.indexOf('tjenester.nav') > -1) {
         // Prod
         return `https://syfoapi.nav.no/${appNavn}/api`;
-    } else if (url.indexOf('localhost') > -1 || url.indexOf('herokuapp') > -1) {
+    } else if (url.indexOf('localhost') > -1 || url.indexOf('labs.nais.io') > -1) {
         // Lokalt
         return `/${appNavn}/api`;
     }

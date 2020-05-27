@@ -28,7 +28,7 @@ Start docker compose oppsettet
     - I et annet vindu `$ npm run start-devlocal`
     - Åpne `http://localhost:8085` i en nettleser
 
-## Deploy mock app til Heroku
+## Deploy mock app til Labs
 Mock appen blir deployet av github actions automatisk når master blir oppdatert
 
 ## Logge på i Q1-miljø

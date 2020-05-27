@@ -1,0 +1,26 @@
+apiVersion: "nais.io/v1alpha1"
+kind: "Application"
+metadata:
+  name: sykepengesoknad-old
+  namespace: flex
+  labels:
+    team: flex
+spec:
+  image: {{ image }}
+  port: 8080
+  ingresses:
+    - "https://sykepengesoknad-old.labs.nais.io/"
+  liveness:
+    path: /health/isAlive
+    intialDelay: 60
+  readiness:
+    path: /health/isReady
+    initialDelay: 60
+  env:
+    - name: DECORATOR_URL
+      value: https://www.nav.no/dekoratoren
+  accessPolicy:
+    outbound:
+      external:
+        - host: www.nav.no
+        - host: syfoapi.nav.no

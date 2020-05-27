@@ -19,8 +19,8 @@ export const Utlogget = () => {
 };
 
 const LenkeTilSykefravaerArbeidsgiver = () => {
-    const erHeroku = window.location.href.indexOf('herokuapp') > -1;
-    return erHeroku ? (<div className="side__innhold side__innhold--begrenset">
+    const erDemo = window.location.href.indexOf('labs.nais.io') > -1;
+    return erDemo ? (<div className="side__innhold side__innhold--begrenset">
         <a className="tilbakelenke" href="https://sykepengesoknadarbeidsgiver.herokuapp.com">Gå til øvingssiden Dine sykmeldte</a>
     </div>) : null;
 };

@@ -7,9 +7,9 @@ export const toggleBrukMockdataUtland = () => {
     return url.indexOf('localhost') > -1;
 };
 
-export const toggleErPaaHeroku = () => {
+export const toggleErPaaLabs = () => {
     const url = window.location.href;
-    return url.indexOf('heroku') > -1;
+    return url.indexOf('labs.nais.io') > -1;
 };
 
 export const toggleHeleAppen = () => {
