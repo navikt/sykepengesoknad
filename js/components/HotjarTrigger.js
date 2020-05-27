@@ -5,7 +5,7 @@ import { log } from '@navikt/digisyfo-npm';
 class HotjarTrigger extends Component {
     componentDidMount() {
         if (typeof window.hj === 'function'
-            && window.location.href.indexOf('herokuapp') === -1) {
+            && window.location.href.indexOf('labs.nais.io') === -1) {
             window.hj('trigger', this.props.hotjarTrigger);
         }
         log(`Trigger hotjar: ${this.props.hotjarTrigger}`);

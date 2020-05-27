@@ -34,8 +34,8 @@ export const getUrlTilKvittering = (soknadId) => {
 export const getUrlTilSykmelding = (sykmeldingId) => {
     return `${process.env.REACT_APP_SYKEFRAVAER_CONTEXT_ROOT}/sykmeldinger/${sykmeldingId}/`;
 };
-export const erHerokuApp = () => {
-    return url.indexOf('herokuapp') > -1;
+export const erDemoApp = () => {
+    return url.indexOf('labs.nais.io') > -1;
 };
 
 export const erLocalhost = () => {
@@ -55,7 +55,7 @@ export const erProduksjonEllerQ1 = () => {
 };
 
 export const getSykefravaerUrl = () => {
-    return erHerokuApp()
-        ? 'https://sykefravaer.herokuapp.com'
+    return erDemoApp()
+        ? 'https://sykefravaer.labs.nais.io/'
         : process.env.REACT_APP_SYKEFRAVAER_CONTEXT_ROOT;
 };
