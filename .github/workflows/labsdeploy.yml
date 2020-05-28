@@ -3,7 +3,6 @@ on:
   push:
     branches:
       - 'master'
-      - 'labs-deploy'
 env:
   APP: sykepengesoknad
 jobs:
