@@ -45,7 +45,7 @@ export const getClassNames = (laster, erInnlogget) => {
 
 const Hvitstyle = () => {
     return (<style dangerouslySetInnerHTML={{ __html:
-            'body { background-color: #fff }',
+            '#maincontent { background-color: #fff }',
     }} />);
 };
 
