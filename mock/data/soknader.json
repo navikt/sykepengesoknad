@@ -294,7 +294,7 @@
       {
         "id": "106",
         "tag": "ARBEID_UTENFOR_NORGE",
-        "sporsmalstekst": "Har du arbeidet i utlandet i løpet av de siste 12 månedene?",
+        "sporsmalstekst": "Utfører du arbeid andre steder enn i Norge?",
         "undertekst": null,
         "svartype": "JA_NEI",
         "min": null,
@@ -1098,7 +1098,7 @@
       {
         "id": "106",
         "tag": "ARBEID_UTENFOR_NORGE",
-        "sporsmalstekst": "Har du arbeidet i utlandet i løpet av de siste 12 månedene?",
+        "sporsmalstekst": "Utfører du arbeid andre steder enn i Norge?",
         "undertekst": null,
         "svartype": "JA_NEI",
         "min": null,
@@ -1613,7 +1613,7 @@
       {
         "id": "106",
         "tag": "ARBEID_UTENFOR_NORGE",
-        "sporsmalstekst": "Har du arbeidet i utlandet i løpet av de siste 12 månedene?",
+        "sporsmalstekst": "Utfører du arbeid andre steder enn i Norge?",
         "undertekst": null,
         "svartype": "JA_NEI",
         "min": null,
@@ -2051,7 +2051,7 @@
       {
         "id": "106",
         "tag": "ARBEID_UTENFOR_NORGE",
-        "sporsmalstekst": "Har du arbeidet i utlandet i løpet av de siste 12 månedene?",
+        "sporsmalstekst": "Utfører du arbeid andre steder enn i Norge?",
         "undertekst": null,
         "svartype": "JA_NEI",
         "min": null,
@@ -2175,7 +2175,7 @@
       {
         "id": "106",
         "tag": "ARBEID_UTENFOR_NORGE",
-        "sporsmalstekst": "Har du arbeidet i utlandet i løpet av de siste 12 månedene?",
+        "sporsmalstekst": "Utfører du arbeid andre steder enn i Norge?",
         "undertekst": null,
         "svartype": "JA_NEI",
         "min": null,
